@@ -1,21 +1,16 @@
 package co.wm21.https;
 
-import android.annotation.SuppressLint;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowInsets;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import co.wm21.https.databinding.ActivitySplashscreenBinding;
 
@@ -49,7 +44,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                         h2.postDelayed(() -> {
                             splashScreenView.animate().scaleX(2.08989f).scaleY(2.08989f).setDuration(1000).start();
                             h3.postDelayed(() -> {
-                                startActivity(new Intent(this, SplashscreenActivity.class));
+                                startActivity(new Intent(this, MainActivity.class));
                                 finish();
                                 h4 = new Handler();
                                 h4.postDelayed(splashScreenView::remove, 200);
@@ -63,14 +58,14 @@ public class SplashscreenActivity extends AppCompatActivity {
                         splashScreenView.remove();
                         binding.noInternetLayout.getRoot().setVisibility(View.VISIBLE);
                         binding.noInternetLayout.refreshButton.setOnClickListener(view -> {
-                            if (isInternetAvailable()) startActivity(new Intent(this, SplashscreenActivity.class));
+                            if (isInternetAvailable()) startActivity(new Intent(this, MainActivity.class));
                         });
                     }, 2000);
                 }
             });
             new Handler().postDelayed(() -> {
                 if (h1 == null) {
-                    startActivity(new Intent(this, SplashscreenActivity.class));
+                    startActivity(new Intent(this, MainActivity.class));
                     finish();
                 }
             }, 500);
@@ -85,7 +80,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                     h2.postDelayed(() -> {
                         splashLogo.animate().scaleX(1.05f).scaleY(1.05f).setDuration(1000).start();
                         h3.postDelayed(() -> {
-                            startActivity(new Intent(this, SplashscreenActivity.class));
+                            startActivity(new Intent(this, MainActivity.class));
                             finish();
                         }, 1000);
                     }, 1000);
@@ -95,7 +90,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                 h1.postDelayed(() -> {
                     binding.noInternetLayout.getRoot().setVisibility(View.VISIBLE);
                     binding.noInternetLayout.refreshButton.setOnClickListener(view -> {
-                        if (isInternetAvailable()) startActivity(new Intent(this, SplashscreenActivity.class));
+                        if (isInternetAvailable()) startActivity(new Intent(this, MainActivity.class));
                     });
                 }, 2000);
             }
