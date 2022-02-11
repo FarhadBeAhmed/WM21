@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">WM21</string>
     <string name="no_internet">No Internet!!</string>
+    <string name="bottom_menu_home">Home</string>
+    <string name="bottom_menu_e_shop">E-Shop</string>
+    <string name="bottom_menu_account">Account</string>
+    <string name="bottom_menu_cart">Cart</string>
+    <string name="bottom_menu_wishlist">Wishlist</string>
 </resources>
