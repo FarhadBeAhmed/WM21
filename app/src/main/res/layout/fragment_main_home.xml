@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/pull_to_refresh_for_home"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:name="co.wm21.https.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,20 +18,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="4dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    app:cardCornerRadius="@dimen/corner_radius"
-                    app:cardElevation="10dp">
+                    android:layout_marginVertical="14dp"
+                    android:layout_marginHorizontal="8dp"
+                    app:cardCornerRadius="@dimen/corner_radius">
 
                     <com.smarteist.autoimageslider.SliderView
-                        android:id="@+id/image_slider"
+                        android:id="@+id/imageSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="150dp"
                         app:sliderAnimationDuration="600"
                         app:sliderAutoCycleDirection="back_and_forth"
                         app:sliderAutoCycleEnabled="true"
@@ -48,40 +49,37 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/ecommerce_list"
+                    android:id="@+id/ecommerceList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
                     android:paddingVertical="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_category_layout_2" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/category_list"
+                    android:id="@+id/categoryList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
                     android:paddingVertical="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_category_layout" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/product_list"
+                    android:id="@+id/productList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
                     android:clipToPadding="false"
                     android:orientation="vertical"
-                    android:padding="8dp"
+                    android:paddingVertical="8dp"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="2"
                     tools:listitem="@layout/layout_item_product" />
-
             </LinearLayout>
-
         </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -89,7 +87,6 @@
     <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
     <!--        xmlns:tools="http://schemas.android.com/tools"-->
     <!--        android:id="@+id/list"-->
-    <!--        android:name="co.wm21.https.HomeFragment"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="match_parent"-->
     <!--        android:layout_marginLeft="16dp"-->
