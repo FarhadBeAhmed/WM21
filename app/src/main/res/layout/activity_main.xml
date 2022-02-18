@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".activities.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/mainAppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/primary_red"
+            android:elevation="5dp"
             android:gravity="center">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/mainToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_height="60dp"
+                android:elevation="5dp">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -30,5 +33,35 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-    </LinearLayout>
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomLayout"
+            android:layout_below="@+id/mainAppBarLayout" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-15dp"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:background="@color/primary_red"
+                android:elevation="5dp"
+                android:paddingVertical="15dp"
+                app:elevation="5dp"
+                app:itemIconTint="@color/white"
+                app:labelVisibilityMode="unlabeled"
+                app:menu="@menu/bottom_navigation_menu"
+                app:itemIconSize="26dp"/>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </layout>

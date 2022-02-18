@@ -1,4 +1,4 @@
-package co.wm21.https;
+package co.wm21.https.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import co.wm21.https.R;
+import co.wm21.https.activities.MainActivity;
 import co.wm21.https.databinding.ActivitySplashscreenBinding;
 
 public class SplashscreenActivity extends AppCompatActivity {
@@ -19,7 +21,7 @@ public class SplashscreenActivity extends AppCompatActivity {
     private ActivitySplashscreenBinding binding;
 
     private Handler h1, h2, h3, h4;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +58,10 @@ public class SplashscreenActivity extends AppCompatActivity {
                     splashLogo.setY(-340f);
                     h1.postDelayed(() -> {
                         splashScreenView.remove();
-                        binding.noInternetLayout.getRoot().setVisibility(View.VISIBLE);
-                        binding.noInternetLayout.refreshButton.setOnClickListener(view -> {
-                            if (isInternetAvailable()) startActivity(new Intent(this, MainActivity.class));
+                        binding.noInternetLayout.setVisibility(View.VISIBLE);
+                        binding.refreshButton.setOnClickListener(view -> {
+                            if (isInternetAvailable())
+                                startActivity(new Intent(this, MainActivity.class));
                         });
                     }, 2000);
                 }
@@ -88,9 +91,10 @@ public class SplashscreenActivity extends AppCompatActivity {
             } else {
                 splashLogo.animate().translationY(-300f).setDuration(2000).start();
                 h1.postDelayed(() -> {
-                    binding.noInternetLayout.getRoot().setVisibility(View.VISIBLE);
-                    binding.noInternetLayout.refreshButton.setOnClickListener(view -> {
-                        if (isInternetAvailable()) startActivity(new Intent(this, MainActivity.class));
+                    binding.noInternetLayout.setVisibility(View.VISIBLE);
+                    binding.refreshButton.setOnClickListener(view -> {
+                        if (isInternetAvailable())
+                            startActivity(new Intent(this, MainActivity.class));
                     });
                 }, 2000);
             }
@@ -104,7 +108,8 @@ public class SplashscreenActivity extends AppCompatActivity {
             h2.removeCallbacksAndMessages(null);
             h3.removeCallbacksAndMessages(null);
             h4.removeCallbacksAndMessages(null);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         super.onBackPressed();
     }
 
