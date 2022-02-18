@@ -5,8 +5,11 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ice_blue">#E2E7EB</color>
 
+    <color name="background_color">#6F6F6F</color>
     <color name="text_color">@color/white</color>
+    <color name="card_background_color">@color/black</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
