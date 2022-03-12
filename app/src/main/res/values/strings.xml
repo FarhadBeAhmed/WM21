@@ -11,4 +11,10 @@
     <string name="menu_sign_out">Sign out</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="sign_up_with_social_account">Sign up with social account</string>
+    <string name="privacy_policy_title">I agree to the privacy policy</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

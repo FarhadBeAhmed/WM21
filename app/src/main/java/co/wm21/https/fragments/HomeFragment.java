@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +102,7 @@ public class HomeFragment extends Fragment {
                     JSONObject json = response.getJSONObject(i);
                     sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.INFO), json.getString(Constant.Slide.IMAGE)));
                 }
+                Log.d("SLIDER IMAGE", "onCreateView: "+response.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }

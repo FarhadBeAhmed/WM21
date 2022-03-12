@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         switchFragment(new HomeFragment());
-
     }
 
     public void switchFragment(Fragment fragment) {
@@ -167,12 +166,6 @@ public class MainActivity extends AppCompatActivity {
                 finishAffinity();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
-//            case R.id.user_menu_affiliate:
-//                startActivity(new Intent(this, AffiliateActivity.class));
-//                return true;
-//            case R.id.user_menu_mlm:
-//                startActivity(new Intent(this, MlmActivity.class));
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

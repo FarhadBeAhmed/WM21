@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_baseline_home_light"
+        android:title="@string/bottom_menu_home" />
+
+    <item
+        android:id="@+id/menu_shop"
+        android:icon="@drawable/ic_baseline_shopping_cart_light"
+        android:title="@string/bottom_menu_e_shop" />
+
+    <item
+        android:id="@+id/menu_cart"
+        android:icon="@drawable/ic_baseline_shopping_bag_light"
+        android:title="@string/bottom_menu_cart" />
+
+    <item
+        android:id="@+id/menu_wishlist"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/bottom_menu_wishlist" />
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/menu_affiliate"
+                android:icon="@drawable/ic_user"
+                android:title="Affiliate" />
+            <item
+                android:id="@+id/menu_mlm"
+                android:icon="@drawable/ic_user"
+                android:title="MLM" />
+
+        </menu>
+    </item>
+
+    <item android:title="Profile">
+        <menu>
+            <item
+                android:id="@+id/menu_profile"
+                android:icon="@drawable/ic_user"
+                android:title="Profile" />
+
+        </menu>
+    </item>
+    <item android:title="Sign In">
+        <menu>
+            <item
+                android:id="@+id/menu_login"
+                android:icon="@drawable/ic_user"
+                android:title="Log In" />
+
+            <item
+                android:id="@+id/menu_register"
+                android:icon="@drawable/ic_user"
+                android:title="Register" />
+        </menu>
+
+    </item>
+</menu>

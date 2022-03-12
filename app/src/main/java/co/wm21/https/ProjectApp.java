@@ -1,4 +1,4 @@
-package co.wm21.https.helpers;
+package co.wm21.https;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
