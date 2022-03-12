@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/loginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/loginFragment"
-        tools:context=".fragments.LoginFragment">
+        tools:context=".fragments.LoginFragment"
+        android:background="@color/background_color">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -78,7 +80,7 @@
                     android:backgroundTint="@color/primary_blue"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:paddingVertical="10dp"
+                    android:paddingVertical="8dp"
                     android:text="Sign In"
                     android:textColor="@color/white"
                     android:textSize="16sp"

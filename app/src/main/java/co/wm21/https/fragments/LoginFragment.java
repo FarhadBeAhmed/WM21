@@ -20,6 +20,7 @@ import co.wm21.https.R;
 import co.wm21.https.api_request.Json;
 import co.wm21.https.databinding.FragmentLoginBinding;
 import co.wm21.https.databinding.FragmentMainHomeBinding;
+import co.wm21.https.fragments.member.mlm.MlmFragment;
 import co.wm21.https.helpers.API;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
@@ -56,7 +57,9 @@ public class LoginFragment extends Fragment {
                             User.getSession().loginUser(user, pass, binding.rememberMe.isChecked(), response.getString(Constant.Login.TYPE));
                             switchFragment(new HomeFragment());
                         } else openDismissButtonSnackbar(binding.loginFragment.getId(), response.getString(Constant.Login.MESSAGE), "OK", Snackbar.LENGTH_INDEFINITE);
-                    } catch (JSONException e) { e.printStackTrace(); }
+                    } catch (JSONException e) { e.printStackTrace();
+                        switchFragment(new MlmFragment());
+                    }
                 }));
             }
         });
@@ -68,11 +71,11 @@ public class LoginFragment extends Fragment {
         FragmentManager fm = getParentFragmentManager();
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
             fm.popBackStack();
-        fm.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+        fm.beginTransaction().replace(R.id.fragmentContainer, fragment).addToBackStack(null).commit();
     }
 
     /**
-     * Open Dissmisibble Button Snackbar is remove an arg of actionClick.
+     * Open Dismissible Button Snackbar is remove an arg of actionClick.
      * Because we set snackbar dismiss.
      * @param id What is the layout to insert a snackbar.
      * @param text What is you want to write with on bottom snackbar.

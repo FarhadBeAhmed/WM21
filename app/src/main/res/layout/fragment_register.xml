@@ -175,7 +175,7 @@
                     android:buttonTint="@color/primary_red"
                     android:checked="true"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="I agree to the privacy policy"
+                    android:text="@string/privacy_policy_title"
                     android:visibility="gone" />
 
                 <Button
@@ -187,11 +187,33 @@
                     android:backgroundTint="@color/primary_blue"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
-                    android:paddingVertical="10dp"
-                    android:text="Sign Up"
+                    android:paddingVertical="8dp"
+                    android:text="@string/btn_sign_up"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Already have an Account?" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Sign In"
+                        android:textColor="@color/primary_red"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/signUpWithSocial"
@@ -200,7 +222,7 @@
                     android:layout_marginVertical="10dp"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center_horizontal"
-                    android:text="Sign up with social account"
+                    android:text="@string/sign_up_with_social_account"
                     android:textAlignment="center" />
 
                 <LinearLayout

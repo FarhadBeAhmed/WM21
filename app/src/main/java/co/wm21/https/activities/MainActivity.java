@@ -2,7 +2,9 @@ package co.wm21.https.activities;
 
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -10,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.Objects;
 
@@ -21,6 +24,9 @@ import co.wm21.https.fragments.LoginFragment;
 import co.wm21.https.fragments.RegisterFragment;
 import co.wm21.https.fragments.ShopFragment;
 import co.wm21.https.fragments.WishlistFragment;
+import co.wm21.https.fragments.member.ProfileFragment;
+import co.wm21.https.fragments.member.affiliate.AffiliateFragment;
+import co.wm21.https.fragments.member.mlm.MlmFragment;
 import co.wm21.https.helpers.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     public MenuItem notificationItem, signoutItem;
     public Menu TopMenu;
+
+    private Integer itemIdWhenClosed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,47 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.mainToolbar);
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.mainToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                // If id to show is marked, perform action
+                if (itemIdWhenClosed != null) {
+                    switch (itemIdWhenClosed) {
+                        case R.id.menu_home:
+                            switchFragment(homeFragment);break;
+                        case R.id.menu_shop:
+                            switchFragment(eshopFragment);break;
+                        case R.id.menu_cart:
+                            switchFragment(cartFragment);break;
+                        case R.id.menu_wishlist:
+                            switchFragment(wishlistFragment);break;
+                        case R.id.menu_profile:
+                            switchFragment(new ProfileFragment());break;
+                        case R.id.menu_login:
+                            switchFragment(new LoginFragment());break;
+                        case R.id.menu_register:
+                            switchFragment(new RegisterFragment());break;
+                        case R.id.menu_mlm:
+                            switchFragment(new MlmFragment());break;
+                        case R.id.menu_affiliate:
+                            switchFragment(new AffiliateFragment());break;
+                    }
+                    // Reset value
+                    itemIdWhenClosed = null;
+                }
+            }
+        };
+        binding.drawerLayout.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+
+        binding.navigationView.setNavigationItemSelectedListener(item -> {
+            itemIdWhenClosed = item.getItemId(); // Mark action when closed
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -61,13 +110,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bottom_menu_account:
                     if (user.getSession().isLoggedIn()) {
                         switch (user.getMemberType()) {
-//                            case "MLM": startActivity(new Intent(this, MlmActivity.class)); break;
-//                            case "Aff": startActivity(new Intent(this, AffiliateActivity.class)); break;
+                            case "MLM": switchFragment(new MlmFragment()); break;
+                            case "Aff": switchFragment(new AffiliateFragment()); break;
                             case "Eco": // Notification Button
                                 break;
                         }
                     } else {
                         switchFragment(loginFragment);
+//                        switchFragment(new MlmFragment());
                     }
                     return true;
                 case R.id.bottom_menu_cart:
@@ -80,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        switchFragment(new RegisterFragment());
+        switchFragment(new HomeFragment());
 
     }
 
