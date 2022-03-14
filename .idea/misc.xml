@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_cart_btn.xml" value="0.242" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_category.xml" value="0.2005" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_facebook_circle.xml" value="0.187" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_round_btn.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_facebook_dark.xml" value="0.187" />
@@ -44,13 +45,14 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/digital_bussiness_category_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_affiliate.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_home.xml" value="0.25" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_shop.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_wishlist.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_member_flexiload.xml" value="0.25" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_mlm.xml" value="0.2390625" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_product.xml" value="0.18788627935723115" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_profile_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_register.xml" value="0.25" />

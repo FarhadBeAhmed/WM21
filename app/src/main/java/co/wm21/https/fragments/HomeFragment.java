@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
                     JSONObject json = response.getJSONObject(i);
                     sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.INFO), json.getString(Constant.Slide.IMAGE)));
                 }
-                Log.d("SLIDER IMAGE", "onCreateView: "+response.toString());
+                Log.d("SLIDER IMAGE", "onCreateView: "+ response);
             } catch (Exception e) {
                 e.printStackTrace();
             }

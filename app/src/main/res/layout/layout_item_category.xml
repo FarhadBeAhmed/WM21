@@ -6,24 +6,28 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="30dp">
+        android:background="@drawable/bg_category"
+        android:layout_marginHorizontal="20dp"
+        >
+<!--        app:cardBackgroundColor="@color/white"-->
+<!--        app:cardCornerRadius="@dimen/category_dimen"-->
+
 
         <ImageView
             android:id="@+id/category_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/category_dimen"
+            android:layout_height="@dimen/category_dimen"
             android:layout_margin="15dp"
             android:src="@drawable/ic_shirt_outline" />
 
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/category_name"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:fontFamily="@font/poppins_medium"
@@ -31,6 +35,6 @@
         android:hint="Smaple"
         android:paddingHorizontal="3dp"
         android:textColor="@color/text_color"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

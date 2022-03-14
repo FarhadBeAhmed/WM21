@@ -67,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="-15dp"
-                    app:cardCornerRadius="@dimen/corner_radius">
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="5dp">
 
                     <com.google.android.material.bottomnavigation.BottomNavigationView
                         android:id="@+id/bottomNavigationView"
@@ -79,9 +80,8 @@
                         android:elevation="5dp"
                         android:paddingVertical="10dp"
                         app:elevation="5dp"
-                        app:itemIconSize="24dp"
+                        app:itemIconSize="25dp"
                         app:itemIconTint="@color/white"
-
                         app:labelVisibilityMode="unlabeled"
                         app:menu="@menu/bottom_navigation_menu" />
                 </androidx.cardview.widget.CardView>
