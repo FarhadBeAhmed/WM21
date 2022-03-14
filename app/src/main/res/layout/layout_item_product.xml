@@ -54,7 +54,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="160dp"
             app:cardBackgroundColor="@color/ice_blue"
             app:cardCornerRadius="13dp"
             app:cardElevation="0dp"
@@ -116,8 +116,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/bg_cart_btn"
+                android:backgroundTint="@color/primary_red"
                 android:padding="8dp"
-                android:src="@drawable/ic_shopping_cart_outline" />
+                android:src="@drawable/ic_shopping_cart_outline"
+                app:tint="@color/white" />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
