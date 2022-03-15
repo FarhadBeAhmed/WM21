@@ -7,15 +7,20 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_category.xml" value="0.2005" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_facebook_circle.xml" value="0.187" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_round_btn.xml" value="0.1925" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/home_selector.xml" value="0.2195" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_facebook_dark.xml" value="0.187" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_google_plus_dark.xml" value="0.187" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_heart_dark.xml" value="0.183" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_home_light.xml" value="0.2195" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1955" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1955" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_baseline_refresh_light.xml" value="0.137" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_heart.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_home.xml" value="0.1925" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_home_outline.xml" value="0.2195" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_home_solid.xml" value="0.2195" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_location_solid.xml" value="0.14" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_lock.xml" value="0.197" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_notification.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_notification_solid.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_orders.xml" value="0.14" />
@@ -31,6 +36,7 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_shopping_cart_outline.xml" value="0.1955" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_shopping_cart_solid.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_star_solid.xml" value="0.1925" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_user.xml" value="0.197" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/ic_youtube_dark.xml" value="0.14" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/round_btn_bg.xml" value="0.137" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/twitter_circle_outline.xml" value="0.187" />
@@ -40,7 +46,7 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/font/poppins_semibold.xml" value="0.2537037037037037" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/activity_fullscreen.xml" value="0.2111111111111111" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/activity_splashscreen.xml" value="0.25" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/activity_splashscreen.xml" value="0.67" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/dialog_affiliate_balance.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/digital_bussiness_category_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_affiliate.xml" value="0.25416666666666665" />
@@ -65,6 +71,7 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/layout_item_digital_service_category.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/layout_item_product.xml" value="0.33" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/layout_no_internet.xml" value="0.25" />
+        <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/layout_product_variant_photo.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/layout/nav_drawer_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/menu/drawer_menu.xml" value="0.25416666666666665" />

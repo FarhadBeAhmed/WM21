@@ -165,7 +165,8 @@ public class HomeFragment extends Fragment {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject json = response.getJSONObject(i);
-                        sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.INFO) == null ? "" : json.getString(Constant.Slide.INFO), json.getString(Constant.Slide.IMAGE)));
+                        json.getString(Constant.Slide.INFO);
+                        sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.IMAGE), json.getString(Constant.Slide.INFO)));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

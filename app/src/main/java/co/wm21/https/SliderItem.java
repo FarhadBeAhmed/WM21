@@ -2,17 +2,12 @@ package co.wm21.https;
 
 public class SliderItem {
 
-    public String description;
     public String imageUrl;
+    public String description;
 
-    public SliderItem(String description, String imageUrl) {
-        setImageUrl(imageUrl);
-        try {
-            setDescription(description);
-        } catch (Exception e) {
-            setDescription("");
-            e.printStackTrace();
-        }
+    public SliderItem(String imageUrl, String description) {
+        this.imageUrl = imageUrl;
+        this.description = description;
     }
 
     public String getDescription() {

@@ -5,9 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
-    app:cardPreventCornerOverlap="false"
     app:cardBackgroundColor="@color/card_background_color"
-    app:cardCornerRadius="@dimen/corner_radius">
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardPreventCornerOverlap="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,10 +55,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="160dp"
+            android:layout_marginHorizontal="8dp"
             app:cardBackgroundColor="@color/ice_blue"
             app:cardCornerRadius="13dp"
-            app:cardElevation="0dp"
-            android:layout_marginHorizontal="8dp">
+            app:cardElevation="0dp">
 
             <ImageView
                 android:id="@+id/productImage"
@@ -72,54 +72,54 @@
             android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:lineHeight="20dp"
             android:paddingHorizontal="5dp"
             android:paddingVertical="8dp"
             android:text="Nope Ship Lebanon"
-            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginHorizontal="8dp"/>
+            android:textSize="14sp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp">
-
-            <TextView
-                android:id="@+id/previousPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_regular"
-                android:text="$95.00"
-                android:textColor="@color/gray"
-                android:textSize="10sp" />
+            android:layout_marginHorizontal="8dp"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/addToCart"
-                android:layout_toEndOf="@id/previousPrice"
                 android:fontFamily="@font/poppins_medium"
+                android:paddingEnd="16dp"
                 android:text="$90.00"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <ImageButton
-                android:id="@+id/addToCart"
+            <TextView
+                android:id="@+id/previousPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/bg_cart_btn"
-                android:backgroundTint="@color/primary_red"
-                android:padding="8dp"
-                android:src="@drawable/ic_shopping_cart_outline"
-                app:tint="@color/white" />
-        </RelativeLayout>
+                android:fontFamily="@font/poppins_regular"
+                android:text="$95.00"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/addToCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_cart_btn"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingVertical="8dp"
+            android:text="Add to Cart"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

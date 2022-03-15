@@ -21,6 +21,7 @@ public class ProductFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false);
 
 
+
         return binding.getRoot();
     }
 }

@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/ic_baseline_home_light"
+        android:icon="@drawable/ic_home_solid"
         android:title="@string/bottom_menu_home" />
 
     <item
