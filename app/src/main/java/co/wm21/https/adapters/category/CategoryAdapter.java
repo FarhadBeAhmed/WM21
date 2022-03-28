@@ -1,9 +1,10 @@
-package co.wm21.https.adapters;
+package co.wm21.https.adapters.category;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,17 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import co.wm21.https.*;
+import co.wm21.https.adapters.ItemClickListener;
 import co.wm21.https.helpers.Constant;
 
-public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewAdapter.CategoryViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private ArrayList<String> mList;
+    private ArrayList<CategoryView> categoryList;
     private LayoutInflater mInflater;
     public ItemClickListener listener;
     private String layoutType;
 
-    public CategoryViewAdapter(Context context, ArrayList<String> mList, String layoutType) {
-        this.mList = mList;
+    public CategoryAdapter(Context context, ArrayList<CategoryView> categoryList, String layoutType) {
+        this.categoryList = categoryList;
         this.mInflater = LayoutInflater.from(context);
         this.layoutType = layoutType;
     }
@@ -35,8 +37,9 @@ public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        String text = mList.get(position);
-        holder.text.setText(text);
+        CategoryView category = categoryList.get(position);
+        holder.image.setImageDrawable(Constant.getDrawableFromUrl("image", "cat", category.getCategoryImageUrl()));
+        holder.text.setText(category.getCategoryName());
     }
 
     @Override
@@ -47,13 +50,16 @@ public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewAdapte
     }
 
     @Override
-    public int getItemCount() { return mList.size(); }
+    public int getItemCount() { return categoryList.size(); }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
+        ImageView image;
         TextView text;
+
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
+            image = itemView.findViewById(R.id.category_icon);
             text = itemView.findViewById(R.id.category_name);
             itemView.setOnClickListener(v -> {
                 if (listener != null) listener.OnClick(v, getAdapterPosition());

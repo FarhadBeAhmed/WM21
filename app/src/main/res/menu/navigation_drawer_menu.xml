@@ -5,33 +5,33 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home_solid"
-        android:title="@string/bottom_menu_home" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/menu_shop"
-        android:icon="@drawable/ic_baseline_shopping_cart_light"
-        android:title="@string/bottom_menu_e_shop" />
+        android:icon="@drawable/ic_shopping_cart_solid"
+        android:title="@string/e_shop" />
 
     <item
         android:id="@+id/menu_cart"
-        android:icon="@drawable/ic_baseline_shopping_bag_light"
-        android:title="@string/bottom_menu_cart" />
+        android:icon="@drawable/ic_shopping_bag_solid"
+        android:title="@string/cart" />
 
     <item
         android:id="@+id/menu_wishlist"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/bottom_menu_wishlist" />
+        android:icon="@drawable/ic_heart_solid"
+        android:title="@string/wishlist" />
 
     <item android:title="Account">
         <menu>
             <item
                 android:id="@+id/menu_affiliate"
                 android:icon="@drawable/ic_user"
-                android:title="Affiliate" />
+                android:title="@string/affiliate" />
             <item
                 android:id="@+id/menu_mlm"
                 android:icon="@drawable/ic_user"
-                android:title="MLM" />
+                android:title="@string/mlm" />
 
         </menu>
     </item>

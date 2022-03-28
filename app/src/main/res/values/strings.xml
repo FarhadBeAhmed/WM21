@@ -1,21 +1,36 @@
 <resources>
+    <!--================ Application Name ================-->
     <string name="app_name">WM21</string>
+
     <string name="no_internet">No Internet!!</string>
-    <string name="bottom_menu_home">Home</string>
-    <string name="bottom_menu_e_shop">E-Shop</string>
-    <string name="bottom_menu_account">Account</string>
-    <string name="bottom_menu_cart">Cart</string>
-    <string name="bottom_menu_wishlist">Wishlist</string>
+
+    <!--================ Navigation Menu ================-->
+    <string name="home">Home</string>
+    <string name="e_shop">E-Shop</string>
+    <string name="account">Account</string>
+    <string name="cart">Cart</string>
+    <string name="wishlist">Wishlist</string>
     <string name="btn_refresh">Refresh</string>
-    <string name="menu_notification">Notification</string>
-    <string name="menu_sign_out">Sign out</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btn_sign_up">Sign Up</string>
+    <string name="notification">Notification</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="affiliate">Affiliate</string>
+    <string name="mlm">MLM</string>
+
+    <!--================ Home ================-->
     <string name="sign_up_with_social_account">Sign up with social account</string>
     <string name="privacy_policy_title">I agree to the privacy policy</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_log_in">Log In</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_account">Don\'t have account?</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="digital_service">Digital Service</string>
+    <string name="digital_business">Digital Business</string>
+    <string name="our_community_work">Our Community Work</string>
+    <string name="top_categories">Top Categories</string>
+
+
 </resources>

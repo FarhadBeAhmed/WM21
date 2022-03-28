@@ -81,7 +81,7 @@ public interface API {
     @RequestUrl({"apps", "product"})
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonArrayResponse product(@Field(Constant.Category.BRAND_ID) long brand_id);
+    JsonArrayResponse product(@Field(Constant.Category.CATEGORY_ID) long cat_id);
 
     @RequestUrl({"apps", "product"})
     @SendMethod(Request.Method.POST)

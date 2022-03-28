@@ -64,6 +64,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        binding.btnSignUp.setOnClickListener(view -> switchFragment(new RegisterFragment()));
+
         return binding.getRoot();
     }
 

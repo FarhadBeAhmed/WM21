@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/bottom_menu_home"
-        android:icon="@drawable/home_selector"
-        android:title="@string/bottom_menu_home" />
+        android:id="@+id/menu_home"
+        android:icon="@drawable/selector_home"
+        android:title="@string/home" />
 
     <item
-        android:id="@+id/bottom_menu_shop"
-        android:icon="@drawable/ic_baseline_shopping_cart_light"
-        android:title="@string/bottom_menu_e_shop" />
+        android:id="@+id/menu_shop"
+        android:icon="@drawable/selector_shop"
+        android:title="@string/e_shop" />
 
     <item
-        android:id="@+id/bottom_menu_account"
-        android:icon="@drawable/ic_baseline_account_circle_light"
-        android:title="@string/bottom_menu_account" />
+        android:id="@+id/menu_account"
+        android:icon="@drawable/selector_person"
+        android:title="@string/account" />
 
     <item
-        android:id="@+id/bottom_menu_cart"
-        android:icon="@drawable/ic_baseline_shopping_bag_light"
-        android:title="@string/bottom_menu_cart" />
+        android:id="@+id/menu_cart"
+        android:icon="@drawable/selector_cart"
+        android:title="@string/cart" />
 
     <item
-        android:id="@+id/bottom_menu_wishlist"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/bottom_menu_wishlist" />
+        android:id="@+id/menu_wishlist"
+        android:icon="@drawable/selector_heart"
+        android:title="@string/wishlist" />
 </menu>

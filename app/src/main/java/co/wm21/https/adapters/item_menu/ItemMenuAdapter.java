@@ -1,6 +1,7 @@
 package co.wm21.https.adapters.item_menu;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -37,9 +39,10 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ItemMe
 
     @Override
     public void onBindViewHolder(@NonNull ItemMenuHolder holder, int position) {
-        ItemMenuView mView = mList.get(position);
-        holder.textView.setText(mView.getTitle());
-        holder.imageView.setImageDrawable(mView.getImage() == null ? null : mView.getImage());
+        ItemMenuView item = mList.get(position);
+        holder.textView.setText(item.getTitle());
+        holder.imageView.setImageDrawable(item.getImage() == null ? null : item.getImage());
+        if(item.getColor()!=null) holder.cardItem.setCardBackgroundColor(Color.parseColor(item.getColor()));
     }
 
     @Override
@@ -57,11 +60,13 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ItemMe
     class ItemMenuHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
+        CardView cardItem;
 
         public ItemMenuHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.category_name);
             imageView = itemView.findViewById(R.id.category_icon);
+            cardItem = itemView.findViewById(R.id.card_item);
             if (mListener != null) itemView.setOnClickListener(view -> mListener.OnClick(view, getAdapterPosition()));
         }
     }

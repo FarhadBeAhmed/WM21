@@ -12,8 +12,9 @@
     <!--    <color name="text_color">@color/white</color>-->
     <!--    <color name="card_background_color">@color/black</color>-->
 <!--    <color name="background_color">#FAFDFA</color>-->
-    <color name="background_color">#FFFFFF</color>
+    <color name="background_color">#FAFDFA</color>
     <color name="text_color">@color/black</color>
+    <color name="text_color_invert">@color/white</color>
     <color name="card_background_color">@color/white</color>
 
     <color name="purple_200">#FFBB86FC</color>

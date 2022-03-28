@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     android:orientation="vertical"
     app:cardBackgroundColor="@color/card_background_color"
     app:cardCornerRadius="@dimen/corner_radius"
@@ -12,60 +12,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/star"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:paddingBottom="2dp"
-                android:src="@drawable/ic_star_solid" />
-
-
-            <TextView
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/star"
-                android:fontFamily="@font/poppins_regular"
-                android:text="5.0"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_heart_outline" />
-
-        </RelativeLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_marginHorizontal="8dp"
+            android:layout_marginHorizontal="5dp"
             app:cardBackgroundColor="@color/ice_blue"
-            app:cardCornerRadius="13dp"
+            app:cardCornerRadius="12dp"
             app:cardElevation="0dp">
 
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/product" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product" />
+
+                <ImageView
+                    android:id="@+id/favorite"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_heart_outline"
+                    app:tint="@color/primary_red" />
+            </RelativeLayout>
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -75,16 +56,19 @@
             android:layout_marginHorizontal="8dp"
             android:fontFamily="@font/poppins_medium"
             android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="5dp"
             android:text="Nope Ship Lebanon"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp"
+            android:maxLines="1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:orientation="horizontal"
+            android:paddingStart="4dp"
             android:paddingBottom="8dp">
 
             <TextView
@@ -96,7 +80,7 @@
                 android:text="$90.00"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/previousPrice"
@@ -105,21 +89,22 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="$95.00"
                 android:textColor="@color/gray"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/addToCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/bg_cart_btn"
             android:fontFamily="@font/poppins_bold"
-            android:paddingVertical="8dp"
+            android:paddingVertical="7dp"
             android:text="Add to Cart"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

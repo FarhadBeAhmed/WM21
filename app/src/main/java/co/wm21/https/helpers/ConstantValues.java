@@ -50,6 +50,8 @@ interface ConstantValues {
 
         String CATEGORY_NAME = "cat";
         String SUB_CATEGORY_NAME = "scat";
+        String SUB_CATEGORY_IMAGE = "scat_img";
+        String CATEGORY_IMAGE = "cat_img";
         String BRAND_NAME = "brand";
     }
 
