@@ -101,13 +101,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.bottom_menu_home:
+                case R.id.menu_home:
                     switchFragment(homeFragment);
                     return true;
-                case R.id.bottom_menu_shop:
+                case R.id.menu_shop:
                     switchFragment(eshopFragment);
                     return true;
-                case R.id.bottom_menu_account:
+                case R.id.menu_account:
                     if (user.getSession().isLoggedIn()) {
                         switch (user.getMemberType()) {
                             case "MLM": switchFragment(new MlmFragment()); break;
@@ -120,17 +120,17 @@ public class MainActivity extends AppCompatActivity {
 //                        switchFragment(new MlmFragment());
                     }
                     return true;
-                case R.id.bottom_menu_cart:
+                case R.id.menu_cart:
                     switchFragment(cartFragment);
                     return true;
-                case R.id.bottom_menu_wishlist:
+                case R.id.menu_wishlist:
                     switchFragment(wishlistFragment);
                     return true;
             }
             return false;
         });
 
-        switchFragment(new HomeFragment());
+        switchFragment(new MlmFragment());
     }
 
     public void switchFragment(Fragment fragment) {

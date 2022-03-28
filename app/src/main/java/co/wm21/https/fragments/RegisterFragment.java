@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -102,8 +103,8 @@ public class RegisterFragment extends Fragment {
                         binding.applicantMobile.setVisibility(View.GONE);
                         binding.applicantMobile.setEnabled(false);
                         binding.verificationCode.setVisibility(View.VISIBLE);
-                        binding.signUpWithSocial.setVisibility(View.GONE);
-                        binding.socials.setVisibility(View.GONE);
+//                        binding.signUpWithSocial.setVisibility(View.GONE);
+//                        binding.socials.setVisibility(View.GONE);
                         binding.btnSignUp.setText("Confirm");
                         view.setOnClickListener(view1 -> {
                             if (Constant.validation(binding.verificationCode)) {
@@ -147,8 +148,8 @@ public class RegisterFragment extends Fragment {
                         binding.applicantEmail.setVisibility(View.GONE);
                         binding.applicantEmail.setEnabled(false);
                         binding.verificationCode.setVisibility(View.VISIBLE);
-                        binding.signUpWithSocial.setVisibility(View.GONE);
-                        binding.socials.setVisibility(View.GONE);
+//                        binding.signUpWithSocial.setVisibility(View.GONE);
+//                        binding.socials.setVisibility(View.GONE);
                         binding.btnSignUp.setText("Confirm");
                         view.setOnClickListener(view1 -> {
                             if (Constant.validation(binding.verificationCode)) {
@@ -188,6 +189,16 @@ public class RegisterFragment extends Fragment {
 //            finish();
 //        });
 
+
+        binding.btnSignIn.setOnClickListener(view -> switchFragment(new RegisterFragment()));
+
         return binding.getRoot();
+    }
+
+    public void switchFragment(Fragment fragment) {
+        FragmentManager fm = getParentFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();
+        fm.beginTransaction().replace(R.id.fragmentContainer, fragment).addToBackStack(null).commit();
     }
 }

@@ -110,26 +110,26 @@ public class MlmFragment extends Fragment {
         })));
 
         socialsList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Social Timeline"),
-                new ItemMenuView("Online News"),
-                new ItemMenuView("Live TV"),
-                new ItemMenuView("Invite Friends"),
-                new ItemMenuView("Business Live"),
-                new ItemMenuView("Important Links")));
+                new ItemMenuView("Social Timeline", R.drawable.ic_timeline, "#6979E0"),
+                new ItemMenuView("Online News", R.drawable.ic_timeline, "#f6ac00"),
+                new ItemMenuView("Live TV", R.drawable.ic_news, "#e13a7b"),
+                new ItemMenuView("Invite Friends", R.drawable.ic_timeline, "#b524eb"),
+                new ItemMenuView("Business Live", R.drawable.ic_timeline, "#2e83df"),
+                new ItemMenuView("Important Links", R.drawable.ic_timeline, "#a438cc")));
 
         digitalServiceList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Mobile Recharge"),
-                new ItemMenuView("Utility Bill"),
-                new ItemMenuView("Bus Ticket"),
-                new ItemMenuView("Air Ticket"),
-                new ItemMenuView("Hotel Booking"),
-                new ItemMenuView("Bank Accounts"),
-                new ItemMenuView("Hello Doctors"),
-                new ItemMenuView("Expert Finder")));
+                new ItemMenuView("Mobile Recharge", R.drawable.ic_plane_ticket, "#a438cc"),
+                new ItemMenuView("Utility Bill", R.drawable.ic_plane_ticket, "#2e83df"),
+                new ItemMenuView("Bus Ticket", R.drawable.ic_plane_ticket, "#f6ac00"),
+                new ItemMenuView("Air Ticket", R.drawable.ic_plane_ticket, "#a438cc"),
+                new ItemMenuView("Hotel Booking", R.drawable.ic_plane_ticket, "#a438cc"),
+                new ItemMenuView("Bank Accounts", R.drawable.ic_plane_ticket, "#a438cc"),
+                new ItemMenuView("Hello Doctors", R.drawable.ic_plane_ticket, "#a438cc"),
+                new ItemMenuView("Expert Finder", R.drawable.ic_plane_ticket, "#a438cc")));
 
         digitalBusinessList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Company"),
-                new ItemMenuView("Franchise and e-shop"),
+                new ItemMenuView("Company", R.drawable.img_company),
+                new ItemMenuView("Franchise and e-shop", R.drawable.img_company),
                 new ItemMenuView("Received"),
                 new ItemMenuView("Genealogy"),
                 new ItemMenuView("Training"),
@@ -144,7 +144,7 @@ public class MlmFragment extends Fragment {
                 new ItemMenuView("Royal Fortune Club"),
                 new ItemMenuView("Volunteer Club")));
 
-        binding.socialsRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), socialsList, R.layout.layout_item_category));
+        binding.socialsRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), socialsList, R.layout.layout_item_socials));
         binding.digitalServiceRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), digitalServiceList, R.layout.layout_item_digital_service_category));
         binding.digitalBusinessRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), digitalBusinessList, R.layout.layout_item_digital_business_category));
         binding.communityWorkRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), communityWorkList, R.layout.layout_item_digital_business_category));

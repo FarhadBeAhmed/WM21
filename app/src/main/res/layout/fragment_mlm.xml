@@ -20,7 +20,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="3"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/primary_red"
                 app:cardCornerRadius="@dimen/card_corner_radius">
 
                 <androidx.cardview.widget.CardView
@@ -52,10 +52,12 @@
                         android:layout_height="0dp"
                         android:layout_weight="4"
                         android:gravity="center_vertical"
-                        android:hint="User"
+                        android:text="User"
                         android:paddingEnd="20dp"
+                        android:textSize="12sp"
                         android:singleLine="true"
-                        android:textColor="@color/text_color" />
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/text_color_invert" />
 
                     <TextView
                         android:id="@+id/usernameInfo"
@@ -66,7 +68,9 @@
                         android:paddingEnd="20dp"
                         android:singleLine="true"
                         android:text="Worldmission"
-                        android:textColor="@color/text_color" />
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/text_color_invert"
+                        android:textSize="15sp"/>
 
                 </LinearLayout>
 
@@ -80,7 +84,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="2"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/light_blue_A400"
                 app:cardCornerRadius="@dimen/card_corner_radius">
 
                 <LinearLayout
@@ -95,7 +99,9 @@
                         android:gravity="bottom"
                         android:paddingHorizontal="20dp"
                         android:text="Balance"
-                        android:textColor="@color/text_color" />
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/text_color_invert" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -103,10 +109,11 @@
                         android:layout_weight="4"
                         android:gravity="center_vertical"
                         android:hint="Balance"
+                        android:fontFamily="@font/poppins_medium"
                         android:paddingHorizontal="20dp"
                         android:text="0.0"
-                        android:textColor="@color/text_color"
-                        android:textSize="18sp" />
+                        android:textColor="@color/text_color_invert"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -123,6 +130,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!--                <TextView-->
+                <!--                    android:id="@+id/updateAccount"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@color/primary_red"-->
+                <!--                    android:fontFamily="@font/poppins_medium"-->
+                <!--                    android:paddingTop="10dp"-->
+                <!--                    android:paddingBottom="5dp"-->
+                <!--                    android:text="Update Account"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:textColor="@color/white"-->
+                <!--                    android:textSize="18sp" />-->
+                <!--                -->
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/socialsRecyclerView"
                     android:layout_width="match_parent"
@@ -134,39 +155,123 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:reverseLayout="false"
                     tools:itemCount="6"
-                    tools:listitem="@layout/layout_item_category" />
+                    tools:listitem="@layout/layout_item_socials" />
 
-                <TextView
-                    android:id="@+id/updateAccount"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary_red"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="Update Account"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:layout_margin="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/card_corner_radius">
 
-                <TextView
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/downgradeAccountLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/businessAccountLayout"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="10dp">
+
+                            <ImageView
+                                android:id="@+id/downgradeAccount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_left"
+                                app:tint="@color/black" />
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/businessAccountLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="vertical"
+                            android:paddingEnd="12dp">
+
+                            <ImageView
+                                android:id="@+id/logoBusiness"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="12dp"
+                                android:src="@drawable/img_earnings" />
+
+                            <TextView
+                                android:id="@+id/title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/logoBusiness"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Update Business"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/subTitle"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/title"
+                                android:layout_toEndOf="@+id/logoBusiness"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Update Account"
+                                android:textColor="@color/black"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/updateAccountLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/businessAccountLayout"
+                            android:gravity="right"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="10dp">
+
+                            <ImageView
+                                android:id="@+id/updateAccount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="@color/black" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="Digital Service"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/text_color" />
+                    <TextView
+                        android:id="@+id/titleDigitalService"
+                        style="@style/AffiliateTitle"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/digital_service" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@+id/titleDigitalService" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/titleDigitalService" />
+
+                </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/digitalServiceRecyclerView"
@@ -181,24 +286,34 @@
                     tools:itemCount="8"
                     tools:listitem="@layout/layout_item_digital_service_category" />
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="Digital Business"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/text_color" />
+                    <TextView
+                        android:id="@+id/titleDigitalBusiness"
+                        style="@style/AffiliateTitle"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/digital_business" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@+id/titleDigitalBusiness" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/titleDigitalBusiness" />
+
+                </RelativeLayout>
+
+                <!--                <View-->
+                <!--                    android:layout_width="200dp"-->
+                <!--                    android:layout_height="2dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_marginBottom="10dp"-->
+                <!--                    android:background="@color/text_color" />-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/digitalBusinessRecyclerView"
@@ -213,24 +328,28 @@
                     tools:itemCount="6"
                     tools:listitem="@layout/layout_item_digital_business_category" />
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="Our Community Work"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/text_color"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="210dp"
-                    android:layout_height="2dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/text_color" />
+                    <TextView
+                        android:id="@+id/titleCommunityWork"
+                        style="@style/AffiliateTitle"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/our_community_work" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@+id/titleCommunityWork" />
+
+                    <View
+                        style="@style/HorizontalLine"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/titleCommunityWork" />
+
+                </RelativeLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/communityWorkRecyclerView"

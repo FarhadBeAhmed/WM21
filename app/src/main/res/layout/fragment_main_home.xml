@@ -8,30 +8,31 @@
         android:name="co.wm21.https.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".BottomNavigationFragments.HomeFragment">
+        tools:context=".fragments.HomeFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background_color"
             android:scrollbars="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="2dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
                     android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="10dp"
                     app:cardCornerRadius="@dimen/corner_radius">
 
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/imageSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         app:sliderAnimationDuration="600"
                         app:sliderAutoCycleDirection="back_and_forth"
                         app:sliderAutoCycleEnabled="true"
@@ -42,7 +43,7 @@
                         app:sliderIndicatorPadding="3dp"
                         app:sliderIndicatorRadius="2dp"
                         app:sliderIndicatorSelectedColor="#FFF"
-                        app:sliderIndicatorUnselectedColor="#999"
+                        app:sliderIndicatorUnselectedColor="@color/primary_red"
                         app:sliderScrollTimeInSec="4"
                         app:sliderStartAutoCycle="true" />
 
@@ -58,13 +59,24 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_category_layout_2" />
 
+                <TextView
+                    android:id="@+id/titleCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="@string/top_categories"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    android:paddingVertical="10dp"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
-                    android:paddingVertical="10dp"
+                    android:paddingTop="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/layout_item_category" />
 
@@ -74,7 +86,8 @@
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
                     android:orientation="vertical"
-                    android:paddingVertical="8dp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="2dp"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="2"
                     tools:listitem="@layout/layout_item_product" />
