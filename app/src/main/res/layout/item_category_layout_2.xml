@@ -16,17 +16,17 @@
 
         <ImageView
             android:id="@+id/category_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="15dp"
-            android:tint="@color/primary_red"
+            app:tint="@color/primary_red"
             android:src="@drawable/ic_shirt_outline"/>
 
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/category_name"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:fontFamily="@font/poppins_medium"
