@@ -104,6 +104,20 @@
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/menu/toolbar_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.119" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/activity_main.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/activity_splashscreen.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/fragment_affiliate.xml" value="0.33" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/fragment_main_home.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/fragment_main_wishlist.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/fragment_mlm.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/image_slider_layout_item.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/item_category_layout_2.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_item_cart.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_item_community_work.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_item_digital_business_category.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_item_digital_service_category.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_item_socials.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/WM21-New/app/src/main/res/layout/layout_product_variant_photo.xml" value="0.4171875" />
       </map>
     </option>
   </component>

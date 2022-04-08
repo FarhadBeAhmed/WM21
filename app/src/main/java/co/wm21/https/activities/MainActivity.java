@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.menu_mlm:
                             switchFragment(new MlmFragment());break;
                         case R.id.menu_affiliate:
-                            switchFragment(new AffiliateFragment());break;
+                            switchFragment(new MlmFragment());break;
                     }
                     // Reset value
                     itemIdWhenClosed = null;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     if (user.getSession().isLoggedIn()) {
                         switch (user.getMemberType()) {
                             case "MLM": switchFragment(new MlmFragment()); break;
-                            case "Aff": switchFragment(new AffiliateFragment()); break;
+                            case "Aff": switchFragment(new MlmFragment()); break;
                             case "Eco": // Notification Button
                                 break;
                         }
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        switchFragment(new MlmFragment());
+        switchFragment(new HomeFragment());
     }
 
     public void switchFragment(Fragment fragment) {

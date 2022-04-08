@@ -27,7 +27,6 @@ import co.wm21.https.R;
 import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.api_request.Json;
-import co.wm21.https.databinding.FragmentAffiliateBinding;
 import co.wm21.https.databinding.FragmentMlmBinding;
 import co.wm21.https.fragments.HomeFragment;
 import co.wm21.https.helpers.Constant;
@@ -110,22 +109,22 @@ public class MlmFragment extends Fragment {
         })));
 
         socialsList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Social Timeline", R.drawable.ic_timeline, "#6979E0"),
-                new ItemMenuView("Online News", R.drawable.ic_timeline, "#f6ac00"),
-                new ItemMenuView("Live TV", R.drawable.ic_news, "#e13a7b"),
-                new ItemMenuView("Invite Friends", R.drawable.ic_timeline, "#b524eb"),
-                new ItemMenuView("Business Live", R.drawable.ic_timeline, "#2e83df"),
-                new ItemMenuView("Important Links", R.drawable.ic_timeline, "#a438cc")));
+                new ItemMenuView("Social Timeline", R.drawable.ic_social_timelines, "#6979E0"),
+                new ItemMenuView("Online News", R.drawable.ic_online_news, "#f6ac00"),
+                new ItemMenuView("Live TV", R.drawable.ic_live_tv, "#e13a7b"),
+                new ItemMenuView("Invite Friends", R.drawable.ic_invite_friends, "#b524eb"),
+                new ItemMenuView("Business Live", R.drawable.ic_business_live, "#2e83df"),
+                new ItemMenuView("Important Links", R.drawable.ic_important_link, "#a438cc")));
 
         digitalServiceList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Mobile Recharge", R.drawable.ic_plane_ticket, "#a438cc"),
-                new ItemMenuView("Utility Bill", R.drawable.ic_plane_ticket, "#2e83df"),
-                new ItemMenuView("Bus Ticket", R.drawable.ic_plane_ticket, "#f6ac00"),
-                new ItemMenuView("Air Ticket", R.drawable.ic_plane_ticket, "#a438cc"),
-                new ItemMenuView("Hotel Booking", R.drawable.ic_plane_ticket, "#a438cc"),
-                new ItemMenuView("Bank Accounts", R.drawable.ic_plane_ticket, "#a438cc"),
-                new ItemMenuView("Hello Doctors", R.drawable.ic_plane_ticket, "#a438cc"),
-                new ItemMenuView("Expert Finder", R.drawable.ic_plane_ticket, "#a438cc")));
+                new ItemMenuView("Mobile Recharge", R.drawable.ic_mobile_recharge, "#a438cc"),
+                new ItemMenuView("Utility Bill", R.drawable.ic_bill, "#2e83df"),
+                new ItemMenuView("Bus Ticket", R.drawable.ic_bus_ticket, "#f6ac00"),
+                new ItemMenuView("Air Ticket", R.drawable.ic_ticket_flight, "#b524eb"),
+                new ItemMenuView("Hotel Booking", R.drawable.ic_hotel, "#6979E0"),
+                new ItemMenuView("Bank Accounts", R.drawable.ic_bank, "#f6ac00"),
+                new ItemMenuView("Hello Doctors", R.drawable.ic_doctor, "#a438cc"),
+                new ItemMenuView("Expert Finder", R.drawable.ic_expert_finder, "#e13a7b")));
 
         digitalBusinessList = new ArrayList<>(Arrays.asList(
                 new ItemMenuView("Company", R.drawable.img_company),
@@ -137,17 +136,17 @@ public class MlmFragment extends Fragment {
                 new ItemMenuView("Products")));
 
         communityWorkList = new ArrayList<>(Arrays.asList(
-                new ItemMenuView("Blood Bank"),
-                new ItemMenuView("Donation"),
-                new ItemMenuView("Scholarship"),
-                new ItemMenuView("Idea Tracking"),
-                new ItemMenuView("Royal Fortune Club"),
-                new ItemMenuView("Volunteer Club")));
+                new ItemMenuView("Blood Bank", R.drawable.ic_blood_bank, "#a438cc"),
+                new ItemMenuView("Donation",R.drawable.ic_donation, "#f6ac00"),
+                new ItemMenuView("Scholarship", R.drawable.ic_scholarship, "#b524eb"),
+                new ItemMenuView("Idea Tracking", R.drawable.ic_idea_tracking,"#6979E0"),
+                new ItemMenuView("Royal Fortune Club", R.drawable.ic_royal_fortune_club,"#2e83df"),
+                new ItemMenuView("Volunteer Club", R.drawable.ic_volunteer_club, "#e13a7b")));
 
         binding.socialsRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), socialsList, R.layout.layout_item_socials));
         binding.digitalServiceRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), digitalServiceList, R.layout.layout_item_digital_service_category));
         binding.digitalBusinessRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), digitalBusinessList, R.layout.layout_item_digital_business_category));
-        binding.communityWorkRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), communityWorkList, R.layout.layout_item_digital_business_category));
+        binding.communityWorkRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), communityWorkList, R.layout.layout_item_community_work));
 
         binding.updateAccount.setOnClickListener(view -> {
             switchFragment(new HomeFragment());

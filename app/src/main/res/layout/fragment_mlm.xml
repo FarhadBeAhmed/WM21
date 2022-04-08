@@ -361,8 +361,8 @@
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:reverseLayout="false"
                     app:spanCount="3"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/layout_item_digital_business_category" />
+                    tools:itemCount="6"
+                    tools:listitem="@layout/layout_item_community_work" />
 
             </LinearLayout>
 

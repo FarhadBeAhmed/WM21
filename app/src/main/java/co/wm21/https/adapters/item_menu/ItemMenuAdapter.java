@@ -42,7 +42,11 @@ public class ItemMenuAdapter extends RecyclerView.Adapter<ItemMenuAdapter.ItemMe
         ItemMenuView item = mList.get(position);
         holder.textView.setText(item.getTitle());
         holder.imageView.setImageDrawable(item.getImage() == null ? null : item.getImage());
-        if(item.getColor()!=null) holder.cardItem.setCardBackgroundColor(Color.parseColor(item.getColor()));
+
+        if(layout == R.layout.layout_item_community_work){
+            holder.textView.setTextColor(Color.parseColor(item.getColor()));
+            holder.imageView.setColorFilter(Color.parseColor(item.getColor()));
+        }else if(item.getColor()!=null) holder.cardItem.setCardBackgroundColor(Color.parseColor(item.getColor()));
     }
 
     @Override
