@@ -27,14 +27,14 @@ import co.wm21.https.R;
 import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.api_request.Json;
-import co.wm21.https.databinding.FragmentMlmBinding;
+import co.wm21.https.databinding.FragmentMemberMlmBinding;
 import co.wm21.https.fragments.HomeFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
 
 public class MlmFragment extends Fragment {
 
-    public FragmentMlmBinding binding;
+    public FragmentMemberMlmBinding binding;
 
     public static co.wm21.https.helpers.API API;
     public static co.wm21.https.helpers.User user;
@@ -44,7 +44,7 @@ public class MlmFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mlm, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_mlm, container, false);
 
         API = Constant.getAPI();
         user = new User();

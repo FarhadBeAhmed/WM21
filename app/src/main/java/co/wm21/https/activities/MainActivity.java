@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     if (user.getSession().isLoggedIn()) {
                         switch (user.getMemberType()) {
                             case "MLM": switchFragment(new MlmFragment()); break;
-                            case "Aff": switchFragment(new MlmFragment()); break;
+                            case "Aff": switchFragment(new AffiliateFragment()); break;
                             case "Eco": // Notification Button
                                 break;
                         }
