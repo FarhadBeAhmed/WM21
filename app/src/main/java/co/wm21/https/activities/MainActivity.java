@@ -14,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.Objects;
-
 import co.wm21.https.R;
 import co.wm21.https.databinding.ActivityMainBinding;
 import co.wm21.https.fragments.CartFragment;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Fragment homeFragment, eshopFragment, wishlistFragment, cartFragment, loginFragment;
 
-    public MenuItem notificationItem, signoutItem;
+    public MenuItem notificationItem, signOutItem;
     public Menu TopMenu;
 
     private Integer itemIdWhenClosed;
@@ -151,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         menuId = R.menu.toolbar_menu;
         getMenuInflater().inflate(menuId, TopMenu = menu);
         notificationItem = TopMenu.getItem(0);
-        signoutItem = TopMenu.getItem(1);
+        signOutItem = TopMenu.getItem(1);
         if (!user.getSession().isLoggedIn())
             TopMenu.removeItem(R.id.home_menu_sign_out);
         return super.onCreateOptionsMenu(menu);
