@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="100"
+            android:paddingStart="5dp"
             android:textColor="@color/primary_red" />
     </LinearLayout>
 
