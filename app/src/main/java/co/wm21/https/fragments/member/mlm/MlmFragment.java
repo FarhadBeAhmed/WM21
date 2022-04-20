@@ -128,12 +128,12 @@ public class MlmFragment extends Fragment {
 
         digitalBusinessList = new ArrayList<>(Arrays.asList(
                 new ItemMenuView("Company", R.drawable.img_company),
-                new ItemMenuView("Franchise and e-shop", R.drawable.img_company),
-                new ItemMenuView("Received"),
-                new ItemMenuView("Genealogy"),
-                new ItemMenuView("Training"),
-                new ItemMenuView("Notification", R.drawable.ic_baseline_notifications_24),
-                new ItemMenuView("Products")));
+                new ItemMenuView("Franchise and e-shop", R.drawable.img_e_shop),
+                new ItemMenuView("Received", R.drawable.img_receive),
+                new ItemMenuView("Genealogy", R.drawable.img_genealogy),
+                new ItemMenuView("Training", R.drawable.img_training),
+                new ItemMenuView("Notification", R.drawable.img_notification),
+                new ItemMenuView("Products",R.drawable.img_product)));
 
         communityWorkList = new ArrayList<>(Arrays.asList(
                 new ItemMenuView("Blood Bank", R.drawable.ic_blood_bank, "#a438cc"),
