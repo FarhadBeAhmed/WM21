@@ -37,18 +37,6 @@ import co.wm21.https.helpers.*;
 
 public class HomeFragment extends Fragment {
 
-//    private static final String ARG_COLUMN_COUNT = "column-count";
-//    private int mColumnCount = 1;
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        if (getArguments() != null) {
-//            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-//        }
-//    }
-
     List<SliderItem> sliderItemList;
     ArrayList<ProductView> productViews;
     ArrayList<CategoryView> categoryList;
