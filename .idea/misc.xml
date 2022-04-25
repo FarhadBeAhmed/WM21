@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Fuad/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_cart.xml" value="0.33" />
+        <entry key="..\:/Users/Fuad/AndroidStudioProjects/WM21-New/app/src/main/res/layout/fragment_main_home.xml" value="0.425" />
+        <entry key="..\:/Users/Fuad/AndroidStudioProjects/WM21-New/app/src/main/res/layout/layout_item_cart.xml" value="0.425" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_cart_btn.xml" value="0.242" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_category.xml" value="0.2005" />
         <entry key="..\:/Users/saifu/AndroidStudioProjects/WM21-New/app/src/main/res/drawable/bg_circle.xml" value="0.119" />

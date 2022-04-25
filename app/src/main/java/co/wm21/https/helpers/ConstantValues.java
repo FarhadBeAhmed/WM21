@@ -97,5 +97,6 @@ interface ConstantValues {
         String PRICE = "price";
         String DISCOUNT = "discount";
         String PRODUCT_ID = "serial";
+        String LIMIT = "limit";
     }
 }

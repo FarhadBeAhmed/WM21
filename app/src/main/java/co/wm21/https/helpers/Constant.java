@@ -85,7 +85,7 @@ public final class Constant implements ConstantValues {
 
     public static String getFixedUrl(String url) {
         try {
-//            url = url.replaceAll(" ","%20");
+            url = url.replaceAll(" ","%20");
             return new URI(URLDecoder.decode(url, "UTF-8")).toString();
         } catch (Exception e) {
             e.printStackTrace();

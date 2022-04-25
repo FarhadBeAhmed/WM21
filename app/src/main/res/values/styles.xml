@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Widget.Theme.WM21.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
@@ -8,11 +9,14 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="AffiliateTitle" parent="Theme.WM21">
+    <style name="NormalText" parent="Theme.WM21">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="AffiliateTitle" parent="NormalText">
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textAlignment">center</item>

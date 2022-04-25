@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".fragments.CartFragment">
 
     <LinearLayout
         android:id="@+id/emptyCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone">
 
 
@@ -33,9 +32,54 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartProducts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/checkoutLayout"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
         tools:listitem="@layout/layout_item_cart">
 
     </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/checkoutLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                style="@style/NormalText"
+                android:text="Subtotal"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tk 0.0"
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_cart_btn"
+            android:backgroundTint="@color/light_red"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            android:text="Checkout"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

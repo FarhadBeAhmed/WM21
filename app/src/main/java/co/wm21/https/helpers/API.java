@@ -76,7 +76,7 @@ public interface API {
     @RequestUrl({"apps", "product"})
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonArrayResponse product();
+    JsonArrayResponse product(@Field(ConstantValues.Product.LIMIT) int limit);
 
     @RequestUrl({"apps", "product"})
     @SendMethod(Request.Method.POST)
