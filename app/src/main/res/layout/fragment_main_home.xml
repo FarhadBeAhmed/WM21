@@ -49,17 +49,11 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/ecommerceRecyclerView"
+                <com.facebook.shimmer.ShimmerFrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="0dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_category_layout_2" />
+                    android:layout_height="wrap_content">
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <TextView
                     android:id="@+id/titleCategory"
