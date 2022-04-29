@@ -73,26 +73,27 @@ public class HomeFragment extends Fragment {
 
 //        new SliderImageTask().execute();
 
-//        Json.addRequests(API.slide().before(obj -> binding.imageSlider.setVisibility(View.GONE)).success(response -> {
-//            try {
-//                for (int i = 0; i < response.length(); i++) {
-//                    JSONObject json = response.getJSONObject(i);
-//                    json.getString(Constant.Slide.INFO);
-//                    sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.IMAGE), json.getString(Constant.Slide.INFO)));
-//                }
-//                Log.d("SLIDER IMAGE", "onCreateView: " + response + " - " + sliderItemList.size());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }).after(returnObj -> {
-//            binding.imageSlider.setVisibility(View.VISIBLE);
-//            adapter.renewItems(sliderItemList);
-//            binding.imageSlider.setSliderAdapter(adapter);
-//
-//            binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-//            binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-//            binding.imageSlider.startAutoCycle();
-//        }));
+        Json.addRequests(API.slide().before(obj -> binding.imageSlider.setVisibility(View.GONE)).success(response -> {
+            try {
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject json = response.getJSONObject(i);
+                    json.getString(Constant.Slide.INFO);
+                    sliderItemList.add(i, new SliderItem(json.getString(Constant.Slide.IMAGE), json.getString(Constant.Slide.INFO)));
+                }
+                Log.d("SLIDER IMAGE", "onCreateView: " + response + " - " + sliderItemList.size());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).after(returnObj -> {
+            binding.shimmerImageSlider.setVisibility(View.GONE);
+            binding.imageSlider.setVisibility(View.VISIBLE);
+            adapter.renewItems(sliderItemList);
+            binding.imageSlider.setSliderAdapter(adapter);
+
+            binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+            binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+            binding.imageSlider.startAutoCycle();
+        }));
 
 //        Json.addRequests(API.category().before(obj -> {
 //            binding.categoryRecyclerView.setVisibility(View.GONE);

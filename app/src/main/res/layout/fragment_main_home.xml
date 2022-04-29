@@ -22,6 +22,7 @@
                 android:layout_marginHorizontal="2dp"
                 android:orientation="vertical">
 
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -29,10 +30,17 @@
                     android:layout_marginVertical="10dp"
                     app:cardCornerRadius="@dimen/corner_radius">
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerImageSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@drawable/bg_shimmer" />
+
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/imageSlider"
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
+                        android:visibility="gone"
                         app:sliderAnimationDuration="600"
                         app:sliderAutoCycleDirection="back_and_forth"
                         app:sliderAutoCycleEnabled="true"
@@ -49,11 +57,30 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <com.facebook.shimmer.ShimmerFrameLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ecommerceRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_category_layout_2" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                </com.facebook.shimmer.ShimmerFrameLayout>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                    <include layout="@layout/layout_shimmer_ecommerce"/>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/titleCategory"
@@ -61,10 +88,18 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
+                    android:paddingVertical="10dp"
                     android:text="@string/top_categories"
                     android:textColor="@color/text_color"
-                    android:textSize="20sp"
-                    android:paddingVertical="10dp"/>
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/shimmerTitleCategory"
+                    android:layout_width="160dp"
+                    android:layout_height="20dp"
+                    android:padding="10dp"
+                    android:background="@color/light_gray"
+                    android:layout_gravity="center"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryRecyclerView"
@@ -76,14 +111,35 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/layout_item_category" />
 
+                <LinearLayout
+                    android:id="@+id/shimmerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                    <include layout="@layout/layout_shimmer_category"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/productRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
                     android:orientation="vertical"
-                    android:paddingVertical="5dp"
                     android:paddingHorizontal="2dp"
+                    android:paddingVertical="5dp"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="2"
                     tools:listitem="@layout/layout_item_product" />
