@@ -73,7 +73,10 @@ public class HomeFragment extends Fragment {
 
 //        new SliderImageTask().execute();
 
-        Json.addRequests(API.slide().before(obj -> binding.imageSlider.setVisibility(View.GONE)).success(response -> {
+        Json.addRequests(API.slide().before(obj -> {
+            binding.shimmerImageSlider.setVisibility(View.VISIBLE);
+            binding.imageSlider.setVisibility(View.GONE);
+        }).success(response -> {
             try {
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject json = response.getJSONObject(i);
@@ -85,39 +88,44 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }).after(returnObj -> {
-            binding.shimmerImageSlider.setVisibility(View.GONE);
-            binding.imageSlider.setVisibility(View.VISIBLE);
             adapter.renewItems(sliderItemList);
             binding.imageSlider.setSliderAdapter(adapter);
-
             binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
             binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
             binding.imageSlider.startAutoCycle();
+
+            binding.shimmerImageSlider.setVisibility(View.GONE);
+            binding.imageSlider.setVisibility(View.VISIBLE);
+
         }));
 
-//        Json.addRequests(API.category().before(obj -> {
-//            binding.categoryRecyclerView.setVisibility(View.GONE);
-//            binding.titleCategory.setVisibility(View.GONE);
-//        }).success(response -> {
-//            categoryList = new ArrayList<>();
-//            try {
-//                Log.d("CATEGORY", "onCreateView: " + response + " - " + categoryList.size());
-//                for (int i = 0; i < response.length(); i++) {
-//                    JSONObject json = response.getJSONObject(i);
-//                    categoryList.add(new CategoryView(json.getString(Constant.Category.CATEGORY_NAME), json.getString(Constant.Category.CATEGORY_IMAGE)));
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }).after(returnObj -> {
-//            CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), categoryList, Constant.GRID_LAYOUT);
-//            binding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//            binding.categoryRecyclerView.setAdapter(categoryAdapter);
-//            binding.titleCategory.setVisibility(View.VISIBLE);
-//            binding.categoryRecyclerView.setVisibility(View.VISIBLE);
-//        }));
+        Json.addRequests(API.category().before(obj -> {
+            binding.shimmerCategory.setVisibility(View.VISIBLE);
+            binding.categoryRecyclerView.setVisibility(View.GONE);
+        }).success(response -> {
+            categoryList = new ArrayList<>();
+            try {
+                Log.d("CATEGORY", "onCreateView: " + response + " - " + categoryList.size());
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject json = response.getJSONObject(i);
+                    categoryList.add(new CategoryView(json.getString(Constant.Category.CATEGORY_NAME), json.getString(Constant.Category.CATEGORY_IMAGE)));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).after(returnObj -> {
+            CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), categoryList, Constant.GRID_LAYOUT);
+            binding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            binding.categoryRecyclerView.setAdapter(categoryAdapter);
 
-        Json.addRequests(API.product(1).before(obj -> binding.productRecyclerView.setVisibility(View.GONE)).success(response -> {
+            binding.shimmerCategory.setVisibility(View.GONE);
+            binding.categoryRecyclerView.setVisibility(View.VISIBLE);
+        }));
+
+        Json.addRequests(API.product(1).before(obj -> {
+            binding.shimmerProduct.setVisibility(View.VISIBLE);
+            binding.productRecyclerView.setVisibility(View.GONE);
+        }).success(response -> {
             try {
                 Log.d("PRODUCT", "onCreateView: " + response + " - " + productViews.size());
 
@@ -144,6 +152,7 @@ public class HomeFragment extends Fragment {
 //                        .putExtra("brand_id", productView.getBrandId())
 //                        .putExtra("product_id", productView.getProductId()));
             }));
+            binding.shimmerProduct.setVisibility(View.GONE);
             binding.productRecyclerView.setVisibility(View.VISIBLE);
         }));
 
