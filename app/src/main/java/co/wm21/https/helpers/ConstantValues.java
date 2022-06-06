@@ -2,6 +2,8 @@ package co.wm21.https.helpers;
 
 import static co.wm21.https.BuildConfig.VERSION_NAME;
 
+import android.net.Uri;
+
 /**
  * Making a interface instead of making static final class because a interface always static, final,
  * public.<br/>

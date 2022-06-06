@@ -22,6 +22,7 @@ import java.lang.reflect.Proxy;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import co.wm21.https.ProjectApp;
@@ -34,6 +35,10 @@ import co.wm21.https.api_request.JsonObjectResponse;
  * @see ConstantValues
  */
 public final class Constant implements ConstantValues {
+
+    public static String FACEBOOK_URL = "https://www.facebook.com/groups/262949877574547/";
+    public static String YOUTUBE_URL = "https://www.youtube.com/hashtag/wm21";
+
     public static void addMultipleClickListener(View.OnClickListener v, @NonNull View... views) {
         for (View b : views) b.setOnClickListener(v);
     }
@@ -46,7 +51,7 @@ public final class Constant implements ConstantValues {
      */
     @NotNull
     public static String getFileName(@NonNull String... strings) {
-        return getFixedUrl(new Joiner<>("/", web_url, "", strings).toString());
+        return getFixedImageUrl(new Joiner<>("/", web_url, "", strings).toString());
     }
 
     /**
@@ -85,9 +90,17 @@ public final class Constant implements ConstantValues {
 
     public static String getFixedUrl(String url) {
         try {
-            url = url.replaceAll(" ","%20");
             return new URI(URLDecoder.decode(url, "UTF-8")).toString();
         } catch (Exception e) {
+            e.printStackTrace();
+            return url;
+        }
+    }
+
+    public static String getFixedImageUrl(String url) {
+        try {
+            return url.replaceAll(" ", "%20");
+        }catch(Exception e){
             e.printStackTrace();
             return url;
         }

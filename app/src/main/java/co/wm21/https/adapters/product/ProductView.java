@@ -1,44 +1,28 @@
 package co.wm21.https.adapters.product;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.DrawableRes;
 import androidx.core.content.res.ResourcesCompat;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.ProjectApp;
 
 public class ProductView {
-    private String productName;
+    private String productName, imageUrl;
     private Drawable image;
     private double price, discount, rating;
     private long cat_id, scat_id, brand_id, product_id;
 
-    public ProductView(String productName, Drawable image, double price, double discount, double rating, long cat_id, long scat_id, long brand_id, long product_id) {
-        setProductName(productName);
-        setImage(image);
-        setPrice(price);
-        setDiscount(discount);
-        setRating(rating);
-        setCatId(cat_id);
-        setScatId(scat_id);
-        setBrandId(brand_id);
-        setProductId(product_id);
-    }
-
-    public ProductView(String productName, @DrawableRes int image, double price, double discount, double rating, long cat_id, long scat_id, long brand_id, long product_id) {
-        setProductName(productName);
-        setImage(image);
-        setPrice(price);
-        setDiscount(discount);
-        setRating(rating);
-        setCatId(cat_id);
-        setScatId(scat_id);
-        setBrandId(brand_id);
-        setProductId(product_id);
-    }
+    public ProductView() {}
 
     public ProductView(String productName, String image, double price, double discount, double rating, long cat_id, long scat_id, long brand_id, long product_id) {
+        this.imageUrl = image;
         setProductName(productName);
         setImage(image);
         setPrice(price);
@@ -54,6 +38,7 @@ public class ProductView {
 
     public void setProductName(String productName) { this.productName = productName; }
 
+    public String getImageUrl() { return imageUrl; }
     public Drawable getImage() { return image; }
 
     public void setImage(Drawable image) { this.image = image; }
@@ -91,4 +76,5 @@ public class ProductView {
     public long getProductId() { return product_id; }
 
     public void setProductId(long product_id) { this.product_id = product_id; }
+
 }

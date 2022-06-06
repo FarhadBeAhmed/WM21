@@ -37,10 +37,37 @@
         android:layout_height="match_parent"
         android:layout_above="@id/checkoutLayout"
         android:layout_alignParentTop="true"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:listitem="@layout/layout_item_cart">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/layout_item_cart"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#D1D1D1"
+            android:layout_marginHorizontal="10dp"/>
+
+        <include layout="@layout/layout_item_cart"/><View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#D1D1D1"
+            android:layout_marginHorizontal="10dp"/>
+
+        <include layout="@layout/layout_item_cart"/><View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#D1D1D1"
+            android:layout_marginHorizontal="10dp"/>
+
+        <include layout="@layout/layout_item_cart"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/checkoutLayout"
@@ -63,7 +90,7 @@
                 style="@style/NormalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tk 0.0"
+                android:text="Tk 4400.0"
                 android:textAlignment="textEnd"
                 android:textSize="18sp" />
 

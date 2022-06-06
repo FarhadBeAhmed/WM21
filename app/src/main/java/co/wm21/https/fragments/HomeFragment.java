@@ -1,5 +1,8 @@
 package co.wm21.https.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +55,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_home, container, false);
+//        binding = FragmentMainHomeBinding.inflate(getLayoutInflater());
 
         API = Constant.getAPI();
         user = new User(getContext());
@@ -65,7 +71,17 @@ public class HomeFragment extends Fragment {
                 new ItemMenuView("Delivered", R.drawable.ic_location_outline),
                 new ItemMenuView("Received", R.drawable.ic_shirt_outline)));
 
-        binding.ecommerceRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), itemMenuViews, R.layout.item_category_layout_2));
+        binding.ecommerceRecyclerView.setAdapter(new ItemMenuAdapter(getContext(), itemMenuViews, R.layout.item_category_layout_2).addOnClickListener((view, position) -> {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.FACEBOOK_URL)));
+                        break;
+                    case 1:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.YOUTUBE_URL)));
+                        break;
+                }
+        }));
+
 //        }
         sliderItemList = new ArrayList<>();
         adapter = new SliderAdapter(getContext());
@@ -131,7 +147,8 @@ public class HomeFragment extends Fragment {
 
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject json = response.getJSONObject(i);
-                    productViews.add(new ProductView(json.getString(Constant.Product.NAME),
+                    productViews.add(new ProductView(
+                            json.getString(Constant.Product.NAME),
                             json.getString(Constant.Product.IMAGE),
                             json.getDouble(Constant.Product.PREVIOUS_PRICE),
                             json.getDouble(Constant.Product.DISCOUNT), 4,
@@ -144,13 +161,20 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }).after(returnObj -> {
-            binding.productRecyclerView.setAdapter(new ProductAdapter(getContext(), productViews).addOnClickListener((View, position) -> {
-                ProductView productView = productViews.get(position);
-//                startActivity(new Intent(getContext(), ProductDetailsActivity.class)
-//                        .putExtra("cat_id", productView.getCatId())
-//                        .putExtra("scat_id", productView.getScatId())
-//                        .putExtra("brand_id", productView.getBrandId())
-//                        .putExtra("product_id", productView.getProductId()));
+            binding.productRecyclerView.setAdapter(new ProductAdapter(getContext(), productViews).addOnClickListener((View, position2) -> {
+                ProductView productView = productViews.get(position2);
+                Activity activity = getActivity();
+                if (activity!=null)
+                    startActivity(new Intent(getContext(), ProductDetailsActivity.class)
+//                                    .putExtra("product", productView));
+                        .putExtra("name", productView.getProductName())
+                        .putExtra("image_url", productView.getImageUrl())
+                        .putExtra("price", productView.getPrice())
+                        .putExtra("discount", productView.getDiscount())
+                        .putExtra("cat_id", productView.getCatId())
+                        .putExtra("scat_id", productView.getScatId())
+                        .putExtra("brand_id", productView.getBrandId())
+                        .putExtra("product_id", productView.getProductId()));
             }));
             binding.shimmerProduct.setVisibility(View.GONE);
             binding.productRecyclerView.setVisibility(View.VISIBLE);
