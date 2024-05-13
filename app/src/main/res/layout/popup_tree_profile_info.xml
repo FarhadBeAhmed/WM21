@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_popup_profile_Image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/rounded_spinner" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Profile Information"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Name: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_User"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="User: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_Gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Gender: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_Join"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Join: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_Rank"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Rank: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_IDStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="ID Status: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_ReferID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Refer ID: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/tv_popup_profile_LeftMember"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Team Member: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+<!--
+                        <TextView
+                            android:id="@+id/tv_popup_profile_RightMember"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="B Team Member: "
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />-->
+
+                        <LinearLayout
+                            android:id="@+id/lnr_popup_profile_CarryPoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+<!--
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CarryPoint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Carry Point: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />-->
+
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CarryPointTeamA"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Carry Point: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+<!--
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CarryPointTeamB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Team B: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />-->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_popup_profile_sponsors"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+<!--
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CarryPoint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Carry Point: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />-->
+
+                            <TextView
+                                android:id="@+id/tv_popup_profile_sponsors"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Sponsor's: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+<!--
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CarryPointTeamB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Team B: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />-->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lnr_popup_profile_CurrentPoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="vertical">
+
+                           <!-- <TextView
+                                android:id="@+id/tv_popup_profile_CurrentPoint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Current Point: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />-->
+
+                            <TextView
+                                android:id="@+id/tv_popup_profile_CurrentPointTeamA"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Current Point: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                           <!-- <TextView
+                                android:id="@+id/tv_popup_profile_CurrentPointTeamB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:minLines="1"
+                                android:text="Team B: "
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />-->
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/lnr_popup_profile_Cancel"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cancel"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.7dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/colorWhite" />
+
+                        <LinearLayout
+                            android:id="@+id/lnr_popup_profile_UserTree"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/txt_popup_profile_showTree"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="User's Tree"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>

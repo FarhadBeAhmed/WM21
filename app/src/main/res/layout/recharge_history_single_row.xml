@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="3dp"
+
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        tools:ignore="RtlSymmetry">
+        <TextView
+            android:id="@+id/trxTypeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile Recharge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/mNumberId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/trxTypeId"
+            android:text="01830800237"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:id="@+id/id_trx_IdLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/mNumberId"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trx_ID: "
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_11sdp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/transactionID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="trx323dshfjdjjfdk5434"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_11sdp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/id_StatusLayout"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:paddingEnd="5dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/id_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Success"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:textColor="@color/green"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_dateLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_StatusLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/id_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="5dp"
+                android:text="31-09-2022 "
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_10sdp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/id_Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="5dp"
+                android:text="12:00 am"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_10sdp"
+                tools:ignore="HardcodedText" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/r_amountLayoutId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/id_dateLayout"
+            android:paddingEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_alignParentEnd="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="৳"
+                android:textColor="@color/green"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+            <View
+                android:layout_width="3dp"
+                android:layout_height="20dp"
+                />
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="104.00"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:textColor="@color/green"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

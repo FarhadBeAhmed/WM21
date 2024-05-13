@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="15dp"
+    android:paddingBottom="7.5dp">
+
+    <https.outsourcingvilla.com.PanelView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:baseColor="#bce8f1"
+        app:title="Current Verification Status">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/verification_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:progress="0"
+            app:trackCornerRadius="15dp"
+            app:trackThickness="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0% Complete"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/next_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Next Task: Not Verified"
+                android:background="@drawable/round_bg"
+                android:backgroundTint="@color/white"
+                android:foreground="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+        </LinearLayout>
+
+
+    </https.outsourcingvilla.com.PanelView>
+
+</LinearLayout>
