@@ -2,12 +2,16 @@ package co.wm21.https.interfaces;
 
 import com.google.gson.JsonArray;
 
-public interface OnDivisionListView {
-    void onDivisionListDataLoad(JsonArray jsonArray);
+import java.util.List;
 
-    void onDivisionListStartLoading();
+import co.wm21.https.FHelper.networks.Models.BlogsModel;
 
-    void onDivisionListStopLoading();
+public interface OnBlogListView {
+    void onBlogListDataLoad(List<BlogsModel> blogs);
 
-    void onDivisionListShowMessage(String errmsg);
+    void onBlogListStartLoading();
+
+    void onBlogListStopLoading();
+
+    void onBlogListShowMessage(String errmsg);
 }

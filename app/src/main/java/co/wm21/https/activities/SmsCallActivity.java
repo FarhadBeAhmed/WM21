@@ -1,25 +1,28 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.ViewPagerAdapter;
-import com.wm21ltd.wm21.fragments.BrandAmbassadorFragment;
-import com.wm21ltd.wm21.fragments.CommonBloodFragment;
-import com.wm21ltd.wm21.fragments.CustomerCareFragment;
-import com.wm21ltd.wm21.fragments.TeamMemberFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+
 
 import java.util.ArrayList;
+
+import co.wm21.https.R;
+import co.wm21.https.adapters.ViewPagerAdapter;
+import co.wm21.https.fragments.member.BrandAmbassadorFragment;
+import co.wm21.https.fragments.member.CommonBloodFragment;
+import co.wm21.https.fragments.member.CustomerCareFragment;
+import co.wm21.https.fragments.member.TeamMemberFragment;
 
 public class SmsCallActivity extends AppCompatActivity {
 

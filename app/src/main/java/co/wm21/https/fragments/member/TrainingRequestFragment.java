@@ -1,41 +1,27 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
+
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnDistrictListView;
-import com.wm21ltd.wm21.interfaces.OnDivisionListView;
-import com.wm21ltd.wm21.interfaces.OnThanaListView;
-import com.wm21ltd.wm21.interfaces.OnTrainingRequestFormView;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsListView;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsListModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.presenters.DistrictListPresenter;
-import com.wm21ltd.wm21.presenters.DivisionListPresenter;
-import com.wm21ltd.wm21.presenters.ThanaListPersenter;
-import com.wm21ltd.wm21.presenters.TrainerRequestPresenter;
-import com.wm21ltd.wm21.presenters.TrainingServiceNewsPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +30,24 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.R;
+import co.wm21.https.databinding.FragmentTrainingRequestBinding;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnDistrictListView;
+import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnThanaListView;
+import co.wm21.https.interfaces.OnTrainingRequestFormView;
+import co.wm21.https.interfaces.OnTrainingServiceNewsListView;
+import co.wm21.https.presenter.DistrictListPresenter;
+import co.wm21.https.presenter.DivisionListPresenter;
+import co.wm21.https.presenter.ThanaListPersenter;
+import co.wm21.https.presenter.TrainerRequestPresenter;
+import co.wm21.https.presenter.TrainingServiceNewsPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,11 +59,12 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
 
     View mView;
     MaterialDialog dialog;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     TrainerRequestPresenter trainerRequestPresenter;
+    FragmentTrainingRequestBinding binding;
 
-    @BindView(R.id.spinr_training_category)
+   /* @BindView(R.id.spinr_training_category)
     Spinner spinnerTrainingCategory;
     @BindView(R.id.et_training_Title)
     EditText editTextTraininTitle;
@@ -84,7 +89,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
     @BindView(R.id.spnr_tRequest_District)
     Spinner spinnerDistrict;
     @BindView(R.id.spnr_tRequest_Thana)
-    Spinner spinnerThana;
+    Spinner spinnerThana;*/
 
 
     private List<String> divisionList = new ArrayList<>();
@@ -112,9 +117,8 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_training_request, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding= FragmentTrainingRequestBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
         dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
                 .content(getResources().getString(R.string.pleaseWait))
@@ -128,15 +132,15 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         divisionListPresenter = new DivisionListPresenter(this);
         districtListPresenter = new DistrictListPresenter(this);
         thanaListPersenter = new ThanaListPersenter(this);
-        textViewTrainingDate.setOnClickListener(this);
-        buttonRequestSubmit.setOnClickListener(this);
+        binding.tvTrainingDate.setOnClickListener(this);
+        binding.btnTainingRequestSubmit.setOnClickListener(this);
 
         loadDivisionData();
 
-        spinnerDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnrTRequestDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                loadDistrictData("947", spinnerDivision.getSelectedItemPosition());
+                loadDistrictData("947", binding.spnrTRequestDivision.getSelectedItemPosition());
             }
 
             @Override
@@ -145,10 +149,10 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
             }
         });
 
-        spinnerDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnrTRequestDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                loadThanaData("947", spinnerDivision.getSelectedItemPosition(), spinnerDistrict.getSelectedItemPosition());
+                loadThanaData("947", binding.spnrTRequestDivision.getSelectedItemPosition(), binding.spnrTRequestDistrict.getSelectedItemPosition());
             }
 
             @Override
@@ -156,7 +160,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
 
             }
         });
-        return mView;
+        return binding.getRoot();
     }
 
     @Override
@@ -165,86 +169,92 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
 
             case R.id.tv_training_Date:
                 Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
+              /*  DatePickerDialog dpd = DatePickerDialog.newInstance(
                         this,
                         now.get(Calendar.YEAR), // Initial year selection
                         now.get(Calendar.MONTH), // Initial month selection
                         now.get(Calendar.DAY_OF_MONTH) // Inital day selection
                 );
                 dpd.setVersion(DatePickerDialog.Version.VERSION_2);
-                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");*/
+
+                DatePickerDialog dpd = new DatePickerDialog (requireContext(), null, now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+                dpd.show();
+
+
                 break;
 
             case R.id.btn_taining_RequestSubmit:
 
-                if (spinnerTrainingCategory.getSelectedItemPosition() != 0 || spinnerTrainingTrainer.getSelectedItemPosition() != 0){
-                    String tempTrainingCategory = spinnerTrainingCategory.getSelectedItem().toString().trim();
-                    String tempTitle = editTextTraininTitle.getText().toString().trim();
-                    String tempDetails = editTextTrainingDetails.getText().toString().trim();
-                    String tempTrainer = spinnerTrainingTrainer.getSelectedItem().toString().trim();
-                    String tempCharge = editTextTrainingCharge.getText().toString().trim();
-                    String tempDuration = editTextTrainingDuration.getText().toString().trim();
-                    String tempVenue = editTextTrainingVenue.getText().toString().trim();
-                    String tempSeats = editTextTrainingSeats.getText().toString().trim();
-                    String tempTargetDate = textViewTrainingDate.getText().toString().trim();
+                if (binding.spinrTrainingCategory.getSelectedItemPosition() != 0 || binding.spinrTrainerName.getSelectedItemPosition() != 0){
+                    String tempTrainingCategory = binding.spinrTrainingCategory.getSelectedItem().toString().trim();
+                    String tempTitle = binding.etTrainingTitle.getText().toString().trim();
+                    String tempDetails = binding.etTrainingDetails.getText().toString().trim();
+                    String tempTrainer = binding.spinrTrainerName.getSelectedItem().toString().trim();
+                    String tempCharge = binding.etTrainingCharge.getText().toString().trim();
+                    String tempDuration = binding.etTrainingDuration.getText().toString().trim();
+                    String tempVenue = binding.etTrainingAppVenue.getText().toString().trim();
+                    String tempSeats = binding.etTrainingAppSeats.getText().toString().trim();
+                    String tempTargetDate = binding.tvTrainingDate.getText().toString().trim();
 
 
 
                     if (tempTitle.length() <= 0) {
-                        editTextTraininTitle.setError("Error!");
+                        binding.etTrainingTitle.setError("Error!");
                         return;
                     }
                     if (tempDetails.length() <= 0) {
-                        editTextTrainingDetails.setError("Error!");
+                        binding.etTrainingDetails.setError("Error!");
                         return;
                     }
 
                     if (tempCharge.length() <= 0) {
-                        editTextTrainingCharge.setError("Error!");
+                        binding.etTrainingCharge.setError("Error!");
                         return;
                     }
                     if (tempDuration.length() <= 0) {
-                        editTextTrainingDuration.setError("Error!");
+                        binding.etTrainingDuration.setError("Error!");
                         return;
                     }
                     if (tempVenue.length() <= 0) {
-                        editTextTrainingVenue.setError("Error!");
+                        binding.etTrainingAppVenue.setError("Error!");
                         return;
                     }
                     if (tempSeats.length() <= 0) {
-                        editTextTrainingSeats.setError("Error!");
+                        binding.etTrainingAppSeats.setError("Error!");
                         return;
                     }
 
                     if (tempTargetDate.length() <= 0) {
-                        textViewTrainingDate.setError("Error!");
+                        binding.tvTrainingDate.setError("Error!");
                         return;
                     }
 
                     String divisionID;
                     String districtID = "";
                     String thanaID = "";
-                    if (spinnerDivision.getSelectedItemPosition() > 0) {
-                        divisionID = divisionIDList.get(spinnerDivision.getSelectedItemPosition() - 1);
+                    if (binding.spnrTRequestDivision.getSelectedItemPosition() > 0) {
+                        divisionID = divisionIDList.get(binding.spnrTRequestDivision.getSelectedItemPosition() - 1);
                     } else {
-                        ((TextView) spinnerDivision.getSelectedView()).setError("Country field not selected!");
+                        ((TextView) binding.spnrTRequestDivision.getSelectedView()).setError("Country field not selected!");
                         return;
                     }
 
-                    if (spinnerDistrict.getSelectedItemPosition() > 0) {
-                        districtID = districtIDList.get(spinnerDistrict.getSelectedItemPosition() - 1);
+                    if (binding.spnrTRequestDistrict.getSelectedItemPosition() > 0) {
+                        districtID = districtIDList.get(binding.spnrTRequestDistrict.getSelectedItemPosition() - 1);
                     } else {
                         districtID = "";
                     }
 
-                    if (spinnerThana.getSelectedItemPosition() > 0) {
-                        thanaID = thanaIDList.get(spinnerThana.getSelectedItemPosition() - 1);
+                    if (binding.spnrTRequestThana.getSelectedItemPosition() > 0) {
+                        thanaID = thanaIDList.get(binding.spnrTRequestThana.getSelectedItemPosition() - 1);
                     } else {
                         thanaID = "";
                     }
 
                     if (checkInternetConnection.isInternetAvailable(getActivity())) {
-                        trainerRequestPresenter.onTrainerRequestDataResponse(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+                        trainerRequestPresenter.onTrainerRequestDataResponse(appSessionManager.getUserDetails().getUsername(),
                                 tempTrainingCategory, tempTitle, tempDetails, tempTrainer, tempCharge, tempDuration, tempVenue, tempSeats, tempTargetDate,divisionID,districtID,thanaID);
                     } else {
                         Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
@@ -258,11 +268,12 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    @Override
+
+ /*   @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = year + "-" + String.format("%02d", monthOfYear + 1) + "-" + dayOfMonth;
         textViewTrainingDate.setText(date);
-    }
+    }*/
 
     @Override
     public void onTrainingRequestFormData(HashMap hashMap) {
@@ -270,14 +281,14 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         if (errCode.equals("0")) {
             Toast.makeText(getActivity(), hashMap.get("error_report").toString(), Toast.LENGTH_SHORT).show();
             //editTextTrainingCategory.setText("");
-            editTextTraininTitle.setText("");
-            editTextTrainingDetails.setText("");
+            binding.etTrainingTitle.setText("");
+            binding.etTrainingDetails.setText("");
             //editTextTrainingTrainer.setText("");
-            editTextTrainingCharge.setText("");
-            editTextTrainingDuration.setText("");
-            editTextTrainingVenue.setText("");
-            editTextTrainingSeats.setText("");
-            textViewTrainingDate.setText("");
+            binding.etTrainingCharge.setText("");
+            binding.etTrainingDuration.setText("");
+            binding.etTrainingAppVenue.setText("");
+            binding.etTrainingAppSeats.setText("");
+            binding.tvTrainingDate.setText("");
         } else {
             Toast.makeText(getActivity(), hashMap.get("error_report").toString(), Toast.LENGTH_SHORT).show();
         }
@@ -304,7 +315,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         for (int i=1; i< trainingServiceNewsList.size(); i++){
             categoryList.add(trainingServiceNewsList.get(i).getCategory());
         }
-        spinnerTrainingCategory.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categoryList));
+        binding.spinrTrainingCategory.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categoryList));
     }
 
     @Override
@@ -341,7 +352,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
                                     trainerList.add(trainerObject.get("Name").getAsString());
                                 }
 
-                                spinnerTrainingTrainer.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, trainerList));
+                                binding.spinrTrainerName.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, trainerList));
                             }
 
                         }
@@ -374,7 +385,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
                 divisionList.add(divisionObj.get("Name").getAsString());
             }
         }
-        spinnerDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
+        binding.spnrTRequestDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
     }
 
     @Override
@@ -393,7 +404,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         divisionList.add("Select Zone");
         divisionIDList.clear();
         divisionIDList.add("0");
-        spinnerDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
+        binding.spnrTRequestDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
         Toast.makeText(getActivity(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -412,7 +423,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
                 districtList.add(districtObj.get("Name").getAsString());
             }
         }
-        spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+        binding.spnrTRequestDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
     }
 
     @Override
@@ -430,7 +441,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         districtList.clear();
         districtList.add("Select District");
         districtIDList.add("0");
-        spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+        binding.spnrTRequestDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
         Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -448,7 +459,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
                 thanaList.add(thanaObj.get("Name").getAsString());
             }
         }
-        spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+        binding.spnrTRequestThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
     }
 
     @Override
@@ -467,7 +478,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
         thanaIDList.clear();
         thanaList.add("Select Thana");
         thanaIDList.add("0");
-        spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+        binding.spnrTRequestThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
         Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -494,7 +505,7 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
             districtList.clear();
             districtList.add("Select District");
             districtIDList.add("0");
-            spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+            binding.spnrTRequestDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
         }
     }
 
@@ -513,7 +524,14 @@ public class TrainingRequestFragment extends Fragment implements View.OnClickLis
             thanaIDList.clear();
             thanaList.add("Select Thana");
             thanaIDList.add("0");
-            spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+            binding.spnrTRequestThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
         }
+    }
+
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        String date = i + "-" + String.format("%02d", i1 + 1) + "-" + i2;//i=year,i1=month, i2=day
+        binding.tvTrainingDate.setText(date);
     }
 }

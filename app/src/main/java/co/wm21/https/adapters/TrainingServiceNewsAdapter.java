@@ -1,19 +1,21 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsClickListener;
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnTrainingServiceNewsClickListener;
 
 public class TrainingServiceNewsAdapter extends RecyclerView.Adapter<TrainingServiceNewsAdapter.TrainingServiceNewsViewHolder> {
     private Context context;

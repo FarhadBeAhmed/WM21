@@ -1,37 +1,36 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.Models.AppliedProductModelHead;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.interfaces.OnAppliedProductsRequestComplete;
+import co.wm21.https.interfaces.OnAppliedProductsView;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.serviceapis.InvokeAppliedProductsApi;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class AppliedProductsPresenter {
+    OnAppliedProductsView productsView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public AppliedProductsPresenter(OnAppliedProductsView productsView) {
+        this.productsView = productsView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void appliedProductsDataLoad(String user_id) {
+        productsView.onAppliedProductsStartLoading();
+        new InvokeAppliedProductsApi(user_id, new OnAppliedProductsRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onAppliedProductsRequestComplete(Object obj) {
+                productsView.onAppliedProductsStopLoading();
+                productsView.onAppliedProductsDataLoad((AppliedProductModelHead) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onAppliedProductsRequestError(String errMsg) {
+                productsView.onAppliedProductsStopLoading();
+                productsView.onAppliedProductsShowMessage(errMsg);
             }
         });
     }

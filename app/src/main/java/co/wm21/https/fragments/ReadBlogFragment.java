@@ -2,65 +2,79 @@ package co.wm21.https.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import co.wm21.https.R;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReadBlogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONException;
+
+import co.wm21.https.FHelper.API;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.R;
+import co.wm21.https.databinding.FragmentReadBlogBinding;
+
+
 public class ReadBlogFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    FragmentReadBlogBinding binding;
+    String blogId;
+    API api;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ReadBlogFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReadBlogFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ReadBlogFragment newInstance(String param1, String param2) {
-        ReadBlogFragment fragment = new ReadBlogFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding=FragmentReadBlogBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        api=ConstantValues.getAPI();
+
+        Bundle bundle=this.getArguments();
+        if (bundle!=null){
+            blogId=bundle.getString(ConstantValues.ARGUMENT1);
+            blog(blogId);
         }
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_read_blog, container, false);
+    private void blog(String blogId) {
+        binding.shimmerBloggerImage.setVisibility(View.VISIBLE);
+        binding.shimmerSubject.setVisibility(View.VISIBLE);
+        binding.shimmerTextTv.setVisibility(View.VISIBLE);
+        binding.bloggerImage.setVisibility(View.GONE);
+        binding.textTv.setVisibility(View.GONE);
+        binding.subject.setVisibility(View.GONE);
+        MySingleton.getInstance(getContext()).addToRequestQueue(api.singleBlog(blogId,response -> {
+            try {
+                if (response.getString(ConstantValues.ERROR).equals("0")){
+                    Picasso.get().load(ConstantValues.web_url + "image/blog/" + response.getString(ConstantValues.blog.BLOG_IMAGE)).error(R.drawable.ic_image_temp).into(binding.bloggerImage);
+                    binding.textTv.setText(response.getString(ConstantValues.blog.TEXT));
+                    binding.subject.setText(response.getString(ConstantValues.blog.SUBJECT));
+                    binding.blogDate.setText(response.getString(ConstantValues.blog.DATE));
+                    binding.bloggerName.setText(response.getString(ConstantValues.blog.NAME));
+                    binding.shimmerBloggerImage.setVisibility(View.GONE);
+                    binding.shimmerSubject.setVisibility(View.GONE);
+                    binding.shimmerTextTv.setVisibility(View.GONE);
+                    binding.bloggerImage.setVisibility(View.VISIBLE);
+                    binding.textTv.setVisibility(View.VISIBLE);
+                    binding.subject.setVisibility(View.VISIBLE);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }));
+
+
     }
+
 }

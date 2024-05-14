@@ -15,7 +15,7 @@ import android.net.Uri;
  *     {@link String} ACTION = "action";
  * }
  * </pre>
- *
+ * <p>
  * In static final class
  * <pre>
  * public static final class Link {
@@ -27,6 +27,7 @@ import android.net.Uri;
  */
 interface ConstantValues {
     String web_url = "https://wm21.net/";
+    String URL = "https://www.wm21.co/";
     String KEY_EMPTY = "";
     String APP_VER = VERSION_NAME;
     String ID = "id";
@@ -38,6 +39,7 @@ interface ConstantValues {
     String GRID_LAYOUT = "grid";
     String MENU_LAYOUT = "menu";
     String RESULT = "result";
+    String LIMIT = "limit";
 
     interface Login {
         String STATUS = "error";
@@ -49,6 +51,7 @@ interface ConstantValues {
         String CATEGORY_ID = "cat_id";
         String SUB_CATEGORY_ID = "scat_id";
         String BRAND_ID = "brand_id";
+        String ORDERING = "ordering ";
 
         String CATEGORY_NAME = "cat";
         String SUB_CATEGORY_NAME = "scat";
@@ -56,6 +59,7 @@ interface ConstantValues {
         String CATEGORY_IMAGE = "cat_img";
         String BRAND_NAME = "brand";
     }
+
 
     interface Balance {
         interface Affiliate {
@@ -69,20 +73,37 @@ interface ConstantValues {
             String TOTAL_MOBILE_RECHARGE = "total_mobile_recharge";
             String TOTAL_WITHDRAWAL_BALANCE = "total_withdrawal_balance";
             String CURRENT_WALLET_BALANCE = "current_wallet_balance";
-        } interface MLM {
+        }
 
+        interface MLM {
+            String MY_PROMOTIONAL_EARNING = "my_promotional_earning";
+            String OWN_PRIMARY_EARNING = "own_primary_earning";
+            String OWN_ADVANCE_EARNING = "own_advance_earning";
+            String TEAM_PRIMARY_EARNING = "team_primary_earning";
+            String TEAM_ADVANCE_EARNING = "team_advance_earning";
+            String TEAM_EXTRA_EARNING = "team_extra_earning";
+            String TOTAL_AFFILIATE_EARNING = "total_affiliate_earning";
+            String TOTAL_MOBILE_RECHARGE = "total_mobile_recharge";
+            String TOTAL_WITHDRAWAL_BALANCE = "total_withdrawal_balance";
+            String CURRENT_WALLET_BALANCE = "current_wallet_balance";
         }
     }
 
     interface Profile {
-        interface Affiliate {
+
             String NAME = "name";
+            String IMAGE = "img";
+            String DATE = "date";
+            String RATING = "rating";
+            String REVIEW = "review";
             String MOBILE = "mobile";
             String EMAIL = "email";
             String ID_CARD_TYPE = "id_card_type";
             String ID_CARD_INFO = "id_card_info";
             String Country = "country";
-        } interface MLM {
+
+
+        interface MLM {
 
         }
     }
@@ -94,11 +115,29 @@ interface ConstantValues {
 
     interface Product {
         String NAME = "name";
+        String OFFER_DATE = "offer_date";
+        String UPLOAD_BY = "upload_by";
         String IMAGE = "img";
         String PREVIOUS_PRICE = "sprice";
         String PRICE = "price";
         String DISCOUNT = "discount";
         String PRODUCT_ID = "serial";
         String LIMIT = "limit";
+        String PARCEL = "parcel";
+        String VALUE = "value";
+        String POINT = "point";
+    }
+
+    interface PopularProduct {
+        String NAME = "name";
+        String IMAGE = "img";
+        String PREVIOUS_PRICE = "sprice";
+        String PRICE = "price";
+        String DISCOUNT = "discount";
+        String PRODUCT_ID = "serial";
+        String PARCEL = "parcel";
+        String UPLOAD_BY = "upload_by";
+        String OFFERED_DATE = "offer_date";
+        String POINT = "point";
     }
 }

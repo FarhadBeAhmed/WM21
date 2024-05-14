@@ -1,16 +1,14 @@
 package co.wm21.https.interfaces;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
 
-public interface OnAddToCartView {
-    void onAddToCartDataLoad(AddToCartModel addToCartModel);
+public interface OnProfileDetailsView {
+    void onProfileDetailsDataLoad(ProfileDetailsHead profileDetailsHead);
 
-    void onAddToCartStartLoading();
+    void onProfileDetailsStartLoading();
 
-    void onAddToCartStopLoading();
+    void onProfileDetailsStopLoading();
 
-    void onAddToCartShowMessage(String errmsg);
+    void onProfileDetailsShowMessage(String errmsg);
 }

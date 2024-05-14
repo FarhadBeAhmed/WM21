@@ -2,37 +2,39 @@ package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.HotProductModelHead;
 import co.wm21.https.FHelper.networks.Models.PopularProductViewModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.interfaces.OnHomePopularProductComplete;
+import co.wm21.https.interfaces.OnHotProductRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeHomePopularProductApi {
-    private OnHomePopularProductComplete onHomePopularProductComplete;
+public class InvokeHotProductApi {
+    private OnHotProductRequestComplete onHotProductRequestComplete;
 
-    public InvokeHomePopularProductApi(String value, final OnHomePopularProductComplete onHomePopularProductComplete) {
-        this.onHomePopularProductComplete = onHomePopularProductComplete;
+    public InvokeHotProductApi(int value, final OnHotProductRequestComplete onHotProductRequestComplete) {
+        this.onHotProductRequestComplete = onHotProductRequestComplete;
         APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getPopularProductList(value).enqueue(new Callback<PopularProductViewModelHead>() {
+        apiService.getHotProduct(value).enqueue(new Callback<HotProductModelHead>() {
             @Override
-            public void onResponse(Call<PopularProductViewModelHead> call, Response<PopularProductViewModelHead> response) {
+            public void onResponse(Call<HotProductModelHead> call, Response<HotProductModelHead> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0){
-                        onHomePopularProductComplete.onHomePopularProductSuccess(response.body().getProductViews());
+                        onHotProductRequestComplete.onHotProductSuccess(response.body().getHotProduct());
                     }else {
-                        onHomePopularProductComplete.onHomePopularProductError(response.body().getErrorReport());
+                        onHotProductRequestComplete.onHotProductError(response.body().getErrorReport());
                     }
 
                 }else {
-                    onHomePopularProductComplete.onHomePopularProductError("Something went wrong!");
+                    onHotProductRequestComplete.onHotProductError("Something went wrong!");
                 }
             }
 
             @Override
-            public void onFailure(Call<PopularProductViewModelHead> call, Throwable t) {
+            public void onFailure(Call<HotProductModelHead> call, Throwable t) {
 
             }
         });

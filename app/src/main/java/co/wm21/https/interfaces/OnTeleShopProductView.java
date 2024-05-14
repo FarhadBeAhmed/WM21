@@ -3,14 +3,13 @@ package co.wm21.https.interfaces;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.adapters.category.CategoryView;
 
-public interface OnHotProductView {
-    void onHotProductDataLoaded(List<ProductModel> sliderItem);
+public interface OnTeleShopProductView {
+    void onTeleShopProductDataLoaded(List<ProductModel> teleShopProducts);
 
-    void onHotProductStartLoading();
+    void onTeleShopProductStartLoading();
 
-    void onHotProductStopLoading();
+    void onTeleShopProductStopLoading();
 
-    void onHotProductShowMessage(String errMsg);
+    void onTeleShopProductShowMessage(String errMsg);
 }

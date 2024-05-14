@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BlogsModelHead {
+public class ProductReviewModelHead {
     @SerializedName("error")
     @Expose
     private Integer error;
@@ -14,7 +14,7 @@ public class BlogsModelHead {
     private String errorReport;
     @SerializedName("data")
     @Expose
-    private List<BlogsModel> blogsModelList;
+    private List<ProductReviewModel> productReviewModels;
 
     public Integer getError() {
         return error;
@@ -32,11 +32,12 @@ public class BlogsModelHead {
         this.errorReport = errorReport;
     }
 
-    public List<BlogsModel> getBlogsModelList() {
-        return blogsModelList;
+
+    public List<ProductReviewModel> getProductReviewModels() {
+        return productReviewModels;
     }
 
-    public void setBlogsModelList(List<BlogsModel> blogsModelList) {
-        this.blogsModelList = blogsModelList;
+    public void setProductReviewModels(List<ProductReviewModel> productReviewModels) {
+        this.productReviewModels = productReviewModels;
     }
 }

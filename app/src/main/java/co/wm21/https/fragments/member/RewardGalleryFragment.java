@@ -1,31 +1,35 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.RewardGalleryApapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnRewardGalleryView;
-import com.wm21ltd.wm21.networks.Models.RewardGalleryDataListModel;
-import com.wm21ltd.wm21.presenters.RewardGalleryPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.RewardGalleryDataListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.RewardGalleryApapter;
+import co.wm21.https.databinding.FragmentRewardGalleryBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnRewardGalleryView;
+import co.wm21.https.presenter.RewardGalleryPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,15 +37,15 @@ import butterknife.ButterKnife;
 public class RewardGalleryFragment extends Fragment implements OnRewardGalleryView {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     RewardGalleryPresenter rewardGalleryPresenter;
 
-    @BindView(R.id.rv_rewardGallery)
-    RecyclerView recyclerViewGallery;
-    private List<RewardGalleryDataListModel> rgList = new ArrayList<>();
+
+    private  List<RewardGalleryDataListModel> rgList;
     private RewardGalleryApapter rAdapter;
-    MaterialDialog dialog;
+    FragmentRewardGalleryBinding binding;
+    LoadingDialog loadingDialog;
     int loadMore = 0;
 
 
@@ -53,24 +57,20 @@ public class RewardGalleryFragment extends Fragment implements OnRewardGalleryVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_reward_gallery, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentRewardGalleryBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+        loadingDialog=new LoadingDialog(getActivity());
         rewardGalleryPresenter = new RewardGalleryPresenter(this);
         initializedFields();
-        return mView;
+        return binding.getRoot();
     }
 
     private void initializedFields() {
+        rgList = new ArrayList<>();
         rAdapter = new RewardGalleryApapter(rgList, getActivity());
-        recyclerViewGallery.setAdapter(rAdapter);
-        recyclerViewGallery.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        binding.rvRewardGallery.setAdapter(rAdapter);
+        binding.rvRewardGallery.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         parseData(0);
         rAdapter.setOnBottomReachedListener(new OnBottomReachedListener() {
             @Override
@@ -82,7 +82,7 @@ public class RewardGalleryFragment extends Fragment implements OnRewardGalleryVi
 
     private void parseData(int loadMoreValue) {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            rewardGalleryPresenter.onRewardGalleryDataResponse(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+            rewardGalleryPresenter.onRewardGalleryDataResponse(appSessionManager.getUserDetails().getUsername(),
                     loadMoreValue + ",10");
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
@@ -97,12 +97,12 @@ public class RewardGalleryFragment extends Fragment implements OnRewardGalleryVi
 
     @Override
     public void onRewardGalleryStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onRewardGalleryStopLoading() {
-        dialog.dismiss();
+        loadingDialog.dismissDialog();
     }
 
     @Override

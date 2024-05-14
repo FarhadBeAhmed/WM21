@@ -4,4 +4,37 @@
         <attr name="fullscreenTextColor" format="color" />
         <attr name="iconColor" format="color" />
     </declare-styleable>
+
+    <attr name="dayNightTextColor" format="color"/>
+    <attr name="dayNightTitleColor" format="color"/>
+    <attr name="nightDayTextColor" format="color"/>
+    <attr name="invertPanelColor" format="color"/>
+    <attr name="recyclerPanelColor" format="color"/>
+    <attr name="iconColorSelector" format="color"/>
+    <attr name="drawableBackgroundColor" format="color"/>
+    <attr name="topColor" format="color"/>
+    <declare-styleable name="PanelView">
+        <attr name="baseColor" format="color">
+            <!--<enum name="black" value="#000"/>
+            <enum name="silver" value="#C0C0C0"/>
+            <enum name="gray" value="#808080"/>
+            <enum name="white" value="#fff"/>
+            <enum name="maroon" value="#800000"/>
+            <enum name="red" value="#F00"/>
+            <enum name="purple" value="#800080"/>
+            <enum name="fuchsia" value="#FF00FF"/>
+            <enum name="green" value="#008000"/>
+            <enum name="lime" value="#00FF00"/>
+            <enum name="olive" value="#808000"/>
+            <enum name="yellow" value="#FF0"/>
+            <enum name="navy" value="#000080"/>
+            <enum name="blue" value="#00F"/>
+            <enum name="teal" value="#008080"/>
+            <enum name="cyan" value="#0FF"/>-->
+        </attr>
+        <attr name="title" format="string"/>
+        <attr name="titleIcon" format="reference"/>
+        <attr name="showHeader" format="boolean"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
 </resources>

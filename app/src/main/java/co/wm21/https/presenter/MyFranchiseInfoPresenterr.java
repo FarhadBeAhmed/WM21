@@ -1,10 +1,11 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnMyFranchiseRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnMyFranchiseView;
-import com.wm21ltd.wm21.serviceapis.InvokeMyFranchiseInfoApi;
 
 import java.util.HashMap;
+
+import co.wm21.https.interfaces.OnMyFranchiseRequestComplete;
+import co.wm21.https.interfaces.OnMyFranchiseView;
+import co.wm21.https.serviceapis.InvokeMyFranchiseInfoApi;
 
 public class MyFranchiseInfoPresenterr {
     OnMyFranchiseView mView;

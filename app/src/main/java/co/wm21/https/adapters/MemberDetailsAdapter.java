@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,16 +21,16 @@ import androidx.appcompat.view.ActionMode;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.activities.SendSmsActivity;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnCustomerCareItemClickListner;
-import com.wm21ltd.wm21.networks.Models.MemberDetailsListModel;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.MemberDetailsListModel;
+import co.wm21.https.R;
+import co.wm21.https.activities.SendSmsActivity;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnCustomerCareItemClickListner;
 
 public class MemberDetailsAdapter extends RecyclerView.Adapter<MemberDetailsAdapter.MemberDetailsViewHolder> {
     private Context context;

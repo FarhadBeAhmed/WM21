@@ -1,11 +1,4 @@
-package com.wm21ltd.wm21.activities;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package co.wm21.https.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,28 +9,35 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.MemberDetailsAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnCustomerCareItemClickListner;
-import com.wm21ltd.wm21.interfaces.OnMemberDetailsView;
-import com.wm21ltd.wm21.networks.Models.MemberDetailsListModel;
-import com.wm21ltd.wm21.presenters.MemberDetailsPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.MemberDetailsListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.MemberDetailsAdapter;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnCustomerCareItemClickListner;
+import co.wm21.https.interfaces.OnMemberDetailsView;
+import co.wm21.https.presenter.MemberDetailsPresenter;
 
 public class MemberDetailsActivity extends AppCompatActivity implements OnMemberDetailsView, OnCustomerCareItemClickListner {
     private static final int CALL_PHONE_PERMISSION_CODE = 11;
     private RecyclerView memberDetailRecycler;
-    private MemberDetailsAdapter memberDetailsAdapter;
+            private MemberDetailsAdapter memberDetailsAdapter;
     private MemberDetailsPresenter memberDetailsPresenter;
     private List<MemberDetailsListModel> memberDetailsList = new ArrayList<>();
     private int loadMore = 0;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     private String rank;
 
@@ -60,10 +60,10 @@ public class MemberDetailsActivity extends AppCompatActivity implements OnMember
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        appSessionManager = new AppSessionManager(this);
+        appSessionManager = new SessionHandler(this);
         checkInternetConnection = new CheckInternetConnection();
 
-        Log.d("id",appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID));
+        Log.d("id",appSessionManager.getUserDetails().getUsername());
 
         memberDetailRecycler = findViewById(R.id.memberDetailRecycler);
         memberDetailsPresenter = new MemberDetailsPresenter(this);
@@ -106,7 +106,7 @@ public class MemberDetailsActivity extends AppCompatActivity implements OnMember
     }
 
     private void parseData(int loadMoreData) {
-        memberDetailsPresenter.getMemberDetailsResponse(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),rank,loadMoreData + ",10");
+        memberDetailsPresenter.getMemberDetailsResponse(appSessionManager.getUserDetails().getUsername(),rank,loadMoreData + ",10");
     }
 
 

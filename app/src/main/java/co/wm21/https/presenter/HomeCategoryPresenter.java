@@ -2,31 +2,33 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.HomeTopSliderImageModelHead;
+import co.wm21.https.FHelper.networks.Models.HomeCategoryHead;
 import co.wm21.https.SliderItem;
-import co.wm21.https.interfaces.OnHomeTopSliderImageRequestComplete;
-import co.wm21.https.interfaces.OnHomeTopSliderImageView;
+import co.wm21.https.adapters.category.CategoryView;
+import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
+import co.wm21.https.interfaces.OnHomeCategoryView;
+import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
 import co.wm21.https.serviceapis.InvokeHomeTopSliderImageApi;
 
-public class HomeTopSliderImagePresenter {
-    private OnHomeTopSliderImageView onHomeTopSliderImageView;
+public class HomeCategoryPresenter {
+    private OnHomeCategoryView onHomeCategoryView;
 
-    public HomeTopSliderImagePresenter(OnHomeTopSliderImageView onHomeTopSliderImageView) {
-        this.onHomeTopSliderImageView = onHomeTopSliderImageView;
+    public HomeCategoryPresenter(OnHomeCategoryView onHomeCategoryView) {
+        this.onHomeCategoryView = onHomeCategoryView;
     }
-    public void getSliderImageDataResponse(String limit){
-        onHomeTopSliderImageView.onHomeSliderDataStartLoading();
-        new InvokeHomeTopSliderImageApi(limit, new OnHomeTopSliderImageRequestComplete() {
+    public void getCategoryDataResponse(String limit){
+        onHomeCategoryView.onHomeCategoryDataStartLoading();
+        new InvokeHomeCategoryApi(limit, new OnHomeCategoryRequestComplete() {
             @Override
-            public void onHomeTopSliderImageRequestSuccess(Object obj) {
-                onHomeTopSliderImageView.onHomeSliderDataStopLoading();
-                onHomeTopSliderImageView.onHomeSliderDataLoaded((List<SliderItem>)obj);
+            public void onHomeCategoryRequestSuccess(Object obj) {
+                onHomeCategoryView.onHomeCategoryDataStopLoading();
+                onHomeCategoryView.onHomeCategoryDataLoaded((List<CategoryView>)obj);
             }
 
             @Override
-            public void onHomeTopSliderImageRequestError(String errMsg) {
-                onHomeTopSliderImageView.onHomeSliderDataStopLoading();
-                onHomeTopSliderImageView.onHomeSliderDataShowMessage(errMsg);
+            public void onHomeCategoryRequestError(String errMsg) {
+                onHomeCategoryView.onHomeCategoryDataStopLoading();
+                onHomeCategoryView.onHomeCategoryDataShowMessage(errMsg);
             }
         });
 

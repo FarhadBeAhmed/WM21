@@ -1,8 +1,9 @@
-package com.wm21ltd.wm21.interfaces;
+package co.wm21.https.interfaces;
 
-import com.wm21ltd.wm21.networks.Models.FranchiseAccountDataListModel;
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
 
 public interface OnFranchiseAccountView {
     void onFranchiseAccountData(List<FranchiseAccountDataListModel> dataListModel);

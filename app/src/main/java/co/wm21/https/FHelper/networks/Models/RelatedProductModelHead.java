@@ -5,9 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.Annotations.VendorProductModel;
-
-public class VendorProductModelHead {
+public class RelatedProductModelHead {
     @SerializedName("error")
     @Expose
     private Integer error;

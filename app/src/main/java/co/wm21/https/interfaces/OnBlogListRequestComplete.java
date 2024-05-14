@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnDivisionListRequestComplete {
-    void onDivisionListRequestComplete(Object obj);
+public interface OnBlogListRequestComplete {
+    void onBlogListRequestComplete(Object obj);
 
-    void onDevisionListRequestError(String errMsg);
+    void onBlogListRequestError(String errMsg);
 }

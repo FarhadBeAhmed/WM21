@@ -5,10 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.SliderItem;
-import co.wm21.https.adapters.product.ProductView;
-
-public class HomeProductViewModelHead {
+public class PopularProductViewModelHead {
     @SerializedName("error")
     @Expose
     private Integer error;
@@ -17,7 +14,7 @@ public class HomeProductViewModelHead {
     private String errorReport;
     @SerializedName("data")
     @Expose
-    private List<ProductView> productViews = null;
+    private List<ProductModel> productViews = null;
     private final static long serialVersionUID = 8482563432836191883L;
 
     public Integer getError() {
@@ -36,11 +33,11 @@ public class HomeProductViewModelHead {
         this.errorReport = errorReport;
     }
 
-    public List<ProductView> getProductViews() {
+    public List<ProductModel> getProductViews() {
         return productViews;
     }
 
-    public void setProductViews(List<ProductView> productViews) {
+    public void setProductViews(List<ProductModel> productViews) {
         this.productViews = productViews;
     }
 }

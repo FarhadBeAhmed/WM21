@@ -1,9 +1,12 @@
 package co.wm21.https.FHelper.networks.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PopularProductModel {
+public class ProductModel implements Parcelable {
     @SerializedName("serial")
     @Expose
     private String serial;
@@ -43,6 +46,34 @@ public class PopularProductModel {
     @SerializedName("discount_in_percet")
     @Expose
     private String discountInPercet;
+
+    public ProductModel(Parcel in) {
+        serial = in.readString();
+        name = in.readString();
+        uploadBy = in.readString();
+        offerDate = in.readString();
+        img = in.readString();
+        discount = in.readString();
+        sprice = in.readString();
+        point = in.readString();
+        price = in.readString();
+        catId = in.readString();
+        scatId = in.readString();
+        brandId = in.readString();
+        discountInPercet = in.readString();
+    }
+
+    public static final Creator<ProductModel> CREATOR = new Creator<ProductModel>() {
+        @Override
+        public ProductModel createFromParcel(Parcel in) {
+            return new ProductModel(in);
+        }
+
+        @Override
+        public ProductModel[] newArray(int size) {
+            return new ProductModel[size];
+        }
+    };
 
     public String getSerial() {
         return serial;
@@ -146,5 +177,27 @@ public class PopularProductModel {
 
     public void setDiscountInPercet(String discountInPercet) {
         this.discountInPercet = discountInPercet;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(serial);
+        parcel.writeString(name);
+        parcel.writeString(uploadBy);
+        parcel.writeString(offerDate);
+        parcel.writeString(img);
+        parcel.writeString(discount);
+        parcel.writeString(sprice);
+        parcel.writeString(point);
+        parcel.writeString(price);
+        parcel.writeString(catId);
+        parcel.writeString(scatId);
+        parcel.writeString(brandId);
+        parcel.writeString(discountInPercet);
     }
 }

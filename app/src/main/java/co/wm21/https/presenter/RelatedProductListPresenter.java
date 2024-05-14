@@ -1,37 +1,36 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnRelatedProductListRequestComplete;
+import co.wm21.https.interfaces.OnRelatedProductListView;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.serviceapis.InvokeRelatedProductListApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class RelatedProductListPresenter {
+    OnRelatedProductListView relatedProductListView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public RelatedProductListPresenter(OnRelatedProductListView relatedProductListView) {
+        this.relatedProductListView = relatedProductListView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void RelatedProductDataLoad(String limit,String cat_id,String scat_id,String brand_id) {
+        relatedProductListView.onRelatedProductListStartLoading();
+        new InvokeRelatedProductListApi(limit,cat_id,scat_id,brand_id, new OnRelatedProductListRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onRelatedProductListRequestComplete(Object obj) {
+                relatedProductListView.onRelatedProductListStopLoading();
+                relatedProductListView.onRelatedProductListDataLoad((List<ProductModel>) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onRelatedProductListRequestError(String errMsg) {
+                relatedProductListView.onRelatedProductListStopLoading();
+                relatedProductListView.onRelatedProductListShowMessage(errMsg);
             }
         });
     }

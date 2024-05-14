@@ -1,12 +1,12 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnBrandAmbassadorListView;
-import com.wm21ltd.wm21.interfaces.OnBrandAmbassadorRequestComplete;
-import com.wm21ltd.wm21.networks.Models.BrandAmbassadorDataModel;
-import com.wm21ltd.wm21.networks.Models.BrandAmbassadorListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeBrandAmbassadorApi;
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.BrandAmbassadorListModel;
+import co.wm21.https.interfaces.OnBrandAmbassadorListView;
+import co.wm21.https.interfaces.OnBrandAmbassadorRequestComplete;
+import co.wm21.https.serviceapis.InvokeBrandAmbassadorApi;
 
 public class BrandAmbassadorPresenter {
     private OnBrandAmbassadorListView onBrandAmbassadorListView;

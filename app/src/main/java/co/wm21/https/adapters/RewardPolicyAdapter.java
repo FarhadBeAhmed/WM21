@@ -1,46 +1,52 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.networks.Models.RewardPolicyDataListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
 
 public class RewardPolicyAdapter extends RecyclerView.Adapter<RewardPolicyAdapter.MyViewHolder> {
 
-    private List<RewardPolicyDataListModel> rList;
-    private Context context;
+     List<RewardPolicyDataListModel> rList;
+     Context context;
 
 
     public RewardPolicyAdapter(List<RewardPolicyDataListModel> rList, Context context) {
         this.rList = rList;
         this.context = context;
     }
-
+    @SuppressLint("NonConstantResourceId")
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_row_rewardPolicy_Sl)
+
         TextView textViewSL;
-        @BindView(R.id.txt_row_rewardPolicy_Rank)
         TextView textViewRank;
-        @BindView(R.id.txt_row_rewardPolicy_TeamA)
         TextView textViewTeamA;
-        @BindView(R.id.txt_row_rewardPolicy_TeamB)
+
         TextView textViewTeamB;
+        TextView notFoundTxt;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            notFoundTxt=itemView.findViewById(R.id.notFoundTxt);
+            textViewTeamB=itemView.findViewById(R.id.txt_row_rewardPolicy_TeamB);
+            textViewTeamA=itemView.findViewById(R.id.txt_row_rewardPolicy_TeamA);
+            textViewRank=itemView.findViewById(R.id.txt_row_rewardPolicy_Rank);
+            textViewSL=itemView.findViewById(R.id.txt_row_rewardPolicy_Sl);
         }
     }
 
@@ -51,13 +57,18 @@ public class RewardPolicyAdapter extends RecyclerView.Adapter<RewardPolicyAdapte
         return new MyViewHolder(mView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        RewardPolicyDataListModel model = rList.get(i);
-        myViewHolder.textViewSL.setText(model.getSerial());
-        myViewHolder.textViewRank.setText("Rank: " + model.getRank());
-        myViewHolder.textViewTeamA.setText("Team A: " + model.getTeamA());
-        myViewHolder.textViewTeamB.setText("Team B: " + model.getTeamB());
+        if (!rList.isEmpty()) {
+            RewardPolicyDataListModel model = rList.get(i);
+            myViewHolder.textViewSL.setText(model.getSerial());
+            myViewHolder.textViewRank.setText("Rank: " + model.getRank());
+            myViewHolder.textViewTeamA.setText("Team A: " + model.getTeamA());
+            myViewHolder.textViewTeamB.setText("Team B: " + model.getTeamB());
+        }else{
+            myViewHolder.notFoundTxt.setText("No Data Found");
+        }
     }
 
     @Override

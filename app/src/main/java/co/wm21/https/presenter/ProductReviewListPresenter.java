@@ -1,37 +1,36 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.ProductReviewModel;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnProductReviewListRequestComplete;
+import co.wm21.https.interfaces.OnProductReviewListView;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.serviceapis.InvokeProductReviewListApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class ProductReviewListPresenter {
+    OnProductReviewListView productReviewListView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public ProductReviewListPresenter(OnProductReviewListView productReviewListView) {
+        this.productReviewListView = productReviewListView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void ProductReviewDataLoad(String id) {
+        productReviewListView.onProductReviewListStartLoading();
+        new InvokeProductReviewListApi(id, new OnProductReviewListRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onProductReviewListRequestComplete(Object obj) {
+                productReviewListView.onProductReviewListStopLoading();
+                productReviewListView.onProductReviewListDataLoad((List<ProductReviewModel>) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onProductReviewListRequestError(String errMsg) {
+                productReviewListView.onProductReviewListStopLoading();
+                productReviewListView.onProductReviewListShowMessage(errMsg);
             }
         });
     }

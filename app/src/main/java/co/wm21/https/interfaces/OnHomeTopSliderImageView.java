@@ -2,12 +2,16 @@ package co.wm21.https.interfaces;
 
 import com.google.gson.JsonArray;
 
-public interface OnDistrictListView {
-    void onDistrictListDataLoad(JsonArray jsonArray);
+import java.util.List;
 
-    void onDistrictListStartLoading();
+import co.wm21.https.SliderItem;
 
-    void onDistrictListStopLoading();
+public interface OnHomeTopSliderImageView {
+    void onHomeSliderDataLoaded(List<SliderItem> sliderItem);
 
-    void onDistrictListShowMessage(String errMsg);
+    void onHomeSliderDataStartLoading();
+
+    void onHomeSliderDataStopLoading();
+
+    void onHomeSliderDataShowMessage(String errMsg);
 }

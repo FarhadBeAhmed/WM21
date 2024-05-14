@@ -2,15 +2,16 @@ package co.wm21.https.interfaces;
 
 import java.util.List;
 
-import co.wm21.https.SliderItem;
+import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.adapters.category.CategoryView;
+import co.wm21.https.adapters.product.ProductView;
 
-public interface OnHomeCategoryView {
-    void onHomeCategoryDataLoaded(List<CategoryView> sliderItem);
+public interface OnHomePopularProductView {
+    void onHomePopularProductLoaded(List<ProductModel> productViews);
 
-    void onHomeCategoryDataStartLoading();
+    void onHomePopularProductStartLoading();
 
-    void onHomeCategoryDataStopLoading();
+    void onHomePopularProductStopLoading();
 
-    void onHomeCategoryDataShowMessage(String errMsg);
+    void onHomePopularProductShowMessage(String errMsg);
 }

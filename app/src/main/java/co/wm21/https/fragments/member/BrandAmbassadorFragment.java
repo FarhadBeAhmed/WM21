@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.Manifest;
@@ -8,26 +8,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.BrandAmbassadorAdapter;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnBrandAmbassadorListView;
-import com.wm21ltd.wm21.interfaces.SearchSmsCallListener;
-import com.wm21ltd.wm21.networks.Models.BrandAmbassadorListModel;
-import com.wm21ltd.wm21.presenters.BrandAmbassadorPresenter;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.BrandAmbassadorListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.BrandAmbassadorAdapter;
+import co.wm21.https.databinding.FragmentBrandAmbassadorBinding;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnBrandAmbassadorListView;
+import co.wm21.https.interfaces.SearchSmsCallListener;
+import co.wm21.https.presenter.BrandAmbassadorPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,12 +38,13 @@ import java.util.List;
 public class BrandAmbassadorFragment extends Fragment implements OnBrandAmbassadorListView, SearchSmsCallListener {
 
     private static final int CALL_PHONE_PERMISSION_CODE = 1;
-    private RecyclerView brandambassadorRecycler;
+
     private BrandAmbassadorAdapter brandAmbassadorAdapter;
     private BrandAmbassadorPresenter brandAmbassadorPresenter;
     private List<BrandAmbassadorListModel> ambassadorList = new ArrayList<>();
     private int loadMore = 0;
 
+    FragmentBrandAmbassadorBinding binding;
 
     public BrandAmbassadorFragment() {
         // Required empty public constructor
@@ -51,12 +55,11 @@ public class BrandAmbassadorFragment extends Fragment implements OnBrandAmbassad
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_brand_ambassador, container, false);
-        brandambassadorRecycler = view.findViewById(R.id.brand_ambassador_recycler);
+       binding=FragmentBrandAmbassadorBinding.inflate(getLayoutInflater());
 
         brandAmbassadorPresenter = new BrandAmbassadorPresenter(this);
         initializedRecyclerView();
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -83,15 +86,10 @@ public class BrandAmbassadorFragment extends Fragment implements OnBrandAmbassad
 
     private void initializedRecyclerView(){
         brandAmbassadorAdapter = new BrandAmbassadorAdapter(getContext(), ambassadorList, this);
-        brandambassadorRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        brandambassadorRecycler.setAdapter(brandAmbassadorAdapter);
+        binding.brandAmbassadorRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.brandAmbassadorRecycler.setAdapter(brandAmbassadorAdapter);
         parseData(0);
-        brandAmbassadorAdapter.setOnBottomReachedListener(new OnBottomReachedListener() {
-            @Override
-            public void onBottomReached(int position) {
-                parseData(loadMore = loadMore + 10);
-            }
-        });
+        brandAmbassadorAdapter.setOnBottomReachedListener(position -> parseData(loadMore = loadMore + 10));
 }
 
     private void parseData(int loadMoreData) {

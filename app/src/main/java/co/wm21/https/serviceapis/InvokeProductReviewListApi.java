@@ -1,43 +1,41 @@
 package co.wm21.https.serviceapis;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
+import co.wm21.https.FHelper.networks.Models.ProductReviewModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
+import co.wm21.https.interfaces.OnProductReviewListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeBlogListApi {
-    OnBlogListRequestComplete requestComplete;
+public class InvokeProductReviewListApi {
+    OnProductReviewListRequestComplete requestComplete;
 
-    public InvokeBlogListApi(int limit, final OnBlogListRequestComplete requestComplete) {
+    public InvokeProductReviewListApi(String id, final OnProductReviewListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.getAllBlogs(limit).enqueue(new Callback<BlogsModelHead>() {
+        mApiService.getAllProductReview(id).enqueue(new Callback<ProductReviewModelHead>() {
             @Override
-            public void onResponse(Call<BlogsModelHead> call, Response<BlogsModelHead> response) {
+            public void onResponse(Call<ProductReviewModelHead> call, Response<ProductReviewModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onBlogListRequestComplete(response.body().getBlogsModelList());
+                        requestComplete.onProductReviewListRequestComplete(response.body().getProductReviewModels());
                     } else {
-                        requestComplete.onBlogListRequestError(response.body().getErrorReport());
+                        requestComplete.onProductReviewListRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onBlogListRequestError("Something Went Wrong!");
+                    requestComplete.onProductReviewListRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
-            public void onFailure(Call<BlogsModelHead> call, Throwable t) {
-                requestComplete.onBlogListRequestError("Something Went Wrong!");
+            public void onFailure(Call<ProductReviewModelHead> call, Throwable t) {
+                requestComplete.onProductReviewListRequestError("Something Went Wrong!");
             }
         });
     }

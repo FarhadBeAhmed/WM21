@@ -1,29 +1,22 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.networks.Models.MemberDetailsListModel;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+
 
 import java.util.ArrayList;
+
+import co.wm21.https.FHelper.networks.Models.MemberDetailsListModel;
+import co.wm21.https.R;
 
 public class SendSmsActivity extends AppCompatActivity {
 

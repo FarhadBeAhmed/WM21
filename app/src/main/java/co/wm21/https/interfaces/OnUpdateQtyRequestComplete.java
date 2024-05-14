@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnAddToCartRequestComplete {
-    void onAddToCartRequestComplete(Object obj);
+public interface OnUpdateQtyRequestComplete {
+    void onUpdateQtyRequestComplete(Object obj);
 
-    void onAddToCartRequestError(String errMsg);
+    void onUpdateQtyRequestError(String errMsg);
 }

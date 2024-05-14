@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.SignupModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnSignupFirstRequestComplete;
+import co.wm21.https.interfaces.OnSignupFirstView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeSignupFirstApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class SignupFirstPresenter {
+    OnSignupFirstView signupFirstView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public SignupFirstPresenter(OnSignupFirstView signupFirstView) {
+        this.signupFirstView = signupFirstView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void signupFirstDataLoad(String mobile,String userId) {
+        signupFirstView.onSignupFirstStartLoading();
+        new InvokeSignupFirstApi(mobile,userId, new OnSignupFirstRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onSignupFirstRequestComplete(Object obj) {
+                signupFirstView.onSignupFirstStopLoading();
+                signupFirstView.onSignupFirstDataLoad((SignupModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onSignupFirstRequestError(String errMsg) {
+                signupFirstView.onSignupFirstStopLoading();
+                signupFirstView.onSignupFirstShowMessage(errMsg);
             }
         });
     }

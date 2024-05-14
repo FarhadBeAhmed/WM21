@@ -10,7 +10,7 @@
         android:id="@+id/card_item"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_margin="4dp"
+        android:layout_margin="3dp"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/card_corner_radius">

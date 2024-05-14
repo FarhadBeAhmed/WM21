@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.VerificationModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnVerificationRequestComplete;
+import co.wm21.https.interfaces.OnVerificationView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeVerificationApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class VerificationPresenter {
+    OnVerificationView verificationView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public VerificationPresenter(OnVerificationView verificationView) {
+        this.verificationView = verificationView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void verificationDataLoad(String user_id) {
+        verificationView.onVerificationStartLoading();
+        new InvokeVerificationApi(user_id, new OnVerificationRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onVerificationRequestComplete(Object obj) {
+                verificationView.onVerificationStopLoading();
+                verificationView.onVerificationDataLoad((VerificationModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onVerificationRequestError(String errMsg) {
+                verificationView.onVerificationStopLoading();
+                verificationView.onVerificationShowMessage(errMsg);
             }
         });
     }

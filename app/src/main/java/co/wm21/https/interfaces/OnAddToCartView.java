@@ -1,17 +1,16 @@
 package co.wm21.https.interfaces;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
 
-public interface OnBlogListView {
-    void onBlogListDataLoad(List<BlogsModel> blogs);
+public interface OnAddToCartView {
+    void onAddToCartDataLoad(AddToCartModel addToCartModel);
 
-    void onBlogListStartLoading();
+    void onAddToCartStartLoading();
 
-    void onBlogListStopLoading();
+    void onAddToCartStopLoading();
 
-    void onBlogListShowMessage(String errmsg);
+    void onAddToCartShowMessage(String errmsg);
 }

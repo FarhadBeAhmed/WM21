@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnHomeTopSliderImageRequestComplete {
-    void onHomeTopSliderImageRequestSuccess(Object obj);
+public interface OnHomeCategoryRequestComplete {
+    void onHomeCategoryRequestSuccess(Object obj);
 
-    void onHomeTopSliderImageRequestError(String errMsg);
+    void onHomeCategoryRequestError(String errMsg);
 }

@@ -1,13 +1,15 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.company;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wm21ltd.wm21.R;
+import androidx.fragment.app.Fragment;
+
+import co.wm21.https.R;
+
 
 /**
  * A simple {@link Fragment} subclass.

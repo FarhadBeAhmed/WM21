@@ -1,11 +1,14 @@
-package com.wm21ltd.wm21.serviceapis;
+package co.wm21.https.serviceapis;
 
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsRequestComplete;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
 
+
+import android.util.Log;
+
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsDataModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.interfaces.OnTrainingServiceNewsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,8 +38,9 @@ public class InvokeTrainingServiceNewsApi {
 
             @Override
             public void onFailure(Call<TrainingServiceNewsDataModel> call, Throwable t) {
-
+                Log.d("tag", "onFailure: "+t.getMessage());
                 onTrainingServiceNewsRequestComplete.onTrainingServiceNewsRequestError("Something went wrong!");
+
             }
         });
     }

@@ -1,31 +1,35 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.FranchiseAccountCommissionAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnFranchiseAccountView;
-import com.wm21ltd.wm21.networks.Models.FranchiseAccountDataListModel;
-import com.wm21ltd.wm21.presenters.FranchiseAccountCommissionPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.FranchiseAccountCommissionAdapter;
+import co.wm21.https.databinding.FragmentFranchiseAccountsBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnFranchiseAccountView;
+import co.wm21.https.presenter.FranchiseAccountCommissionPresenter;
 
 
 /**
@@ -34,13 +38,13 @@ import butterknife.ButterKnife;
 public class FranchiseAccountsFragment extends Fragment implements OnFranchiseAccountView {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
-    MaterialDialog dialog;
+    LoadingDialog loadingDialog;
     FranchiseAccountCommissionPresenter franchiseAccountCommissionPresenter;
 
-    @BindView(R.id.rv_franchiseCommission)
-    RecyclerView recyclerViewFranchiseCommission;
+
+    FragmentFranchiseAccountsBinding binding;
     private List<FranchiseAccountDataListModel> franList = new ArrayList<>();
     private FranchiseAccountCommissionAdapter adapter;
     int loadMore = 0;
@@ -53,25 +57,20 @@ public class FranchiseAccountsFragment extends Fragment implements OnFranchiseAc
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_franchise_accounts, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+       binding=FragmentFranchiseAccountsBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+       loadingDialog=new LoadingDialog(getActivity());
         franchiseAccountCommissionPresenter = new FranchiseAccountCommissionPresenter(this);
         initializedFields();
-        return mView;
+        return binding.getRoot();
     }
 
     private void initializedFields() {
         adapter = new FranchiseAccountCommissionAdapter(franList, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewFranchiseCommission.setAdapter(adapter);
-        recyclerViewFranchiseCommission.setLayoutManager(layoutManager);
+        binding.rvFranchiseCommission.setAdapter(adapter);
+        binding.rvFranchiseCommission.setLayoutManager(layoutManager);
         parseData(0);
         adapter.setOnBottomReachedListener(new OnBottomReachedListener() {
             @Override
@@ -83,7 +82,7 @@ public class FranchiseAccountsFragment extends Fragment implements OnFranchiseAc
 
     private void parseData(int loadMoreValue) {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            franchiseAccountCommissionPresenter.onFranchiseAccountRequestData(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+            franchiseAccountCommissionPresenter.onFranchiseAccountRequestData(appSessionManager.getUserDetails().getUsername(),
                     loadMoreValue + ",10");
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
@@ -101,12 +100,12 @@ public class FranchiseAccountsFragment extends Fragment implements OnFranchiseAc
 
     @Override
     public void onFranchiseAccountStartLoading() {
-        dialog.show();
+       loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onFranchiseAccountStopLoading() {
-        dialog.dismiss();
+       loadingDialog.dismissDialog();
     }
 
     @Override

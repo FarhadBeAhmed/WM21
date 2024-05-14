@@ -1,8 +1,8 @@
 package co.wm21.https.interfaces;
 
-public interface OnHotProductRequestComplete {
+public interface OnTeleShopProductRequestComplete {
 
-    void onHotProductSuccess(Object obj);
+    void onTeleShopProductSuccess(Object obj);
 
-    void onHotProductError(String errMsg);
+    void onTeleShopProductError(String errMsg);
 }

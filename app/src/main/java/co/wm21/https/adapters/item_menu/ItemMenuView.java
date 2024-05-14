@@ -11,6 +11,8 @@ public class ItemMenuView {
     String title;
     Drawable image;
     String color;
+    String subTitle;
+    String text;
 
     public ItemMenuView(String title, @DrawableRes int image) {
         setTitle(title);
@@ -28,8 +30,29 @@ public class ItemMenuView {
         setImage(image);
     }
 
+
     public ItemMenuView(String title) {
         setTitle(title);
+    }
+    public ItemMenuView(String title,String color) {
+        setTitle(title);
+        setColor(color);
+    }
+
+    public ItemMenuView(String title,@DrawableRes int image, String subTitle,String text ) {
+        setTitle(title);
+        setImage(image);
+        setSubTitle(subTitle);
+        setSubTitle(subTitle);
+        setText(text);
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void setTitle(String title) {
@@ -43,6 +66,15 @@ public class ItemMenuView {
     public void setImage(@DrawableRes int image) {
         this.image = ProjectApp.getIntResDrawable(image);
     }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
 
     public void setImage(String... image) {
         this.image = Constant.getDrawableFromUrl(image);

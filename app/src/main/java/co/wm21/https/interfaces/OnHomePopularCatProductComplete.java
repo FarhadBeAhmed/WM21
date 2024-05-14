@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnHomePopularProductComplete {
-    void onHomePopularProductSuccess(Object obj);
+public interface OnHomePopularCatProductComplete {
+    void onHomePopularCatProductSuccess(Object obj);
 
-    void onHomePopularProductError(String errMsg);
+    void onHomePopularCatProductError(String errMsg);
 }

@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnProfileDetailsRequestComplete;
+import co.wm21.https.interfaces.OnProfileDetailsView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeProfileDetailsApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class ProfileDetailsPresenter {
+    OnProfileDetailsView profileDetailsView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public ProfileDetailsPresenter(OnProfileDetailsView profileDetailsView) {
+        this.profileDetailsView = profileDetailsView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void profileDetailsDataLoad(String userId) {
+        profileDetailsView.onProfileDetailsStartLoading();
+        new InvokeProfileDetailsApi(userId, new OnProfileDetailsRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onProfileDetailsRequestComplete(Object obj) {
+                profileDetailsView.onProfileDetailsStopLoading();
+                profileDetailsView.onProfileDetailsDataLoad((ProfileDetailsHead) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onProfileDetailsRequestError(String errMsg) {
+                profileDetailsView.onProfileDetailsStopLoading();
+                profileDetailsView.onProfileDetailsShowMessage(errMsg);
             }
         });
     }

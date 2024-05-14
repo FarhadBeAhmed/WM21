@@ -20,7 +20,7 @@
             app:cardMaxElevation="0dp"
             app:elevation="0dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -36,7 +36,7 @@
                     android:src="@drawable/ic_shirt_outline"
                     app:tint="@color/white" />
 
-            </LinearLayout>
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 

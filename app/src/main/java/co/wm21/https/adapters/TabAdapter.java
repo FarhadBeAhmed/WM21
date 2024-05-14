@@ -1,4 +1,4 @@
-package https.outsourcingvilla.com.Adapter.uwViewPagerAdapter;
+package co.wm21.https.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

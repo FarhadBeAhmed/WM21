@@ -1,11 +1,12 @@
 <resources>
     <!--================ Application Name ================-->
-    <string name="app_name">WM21</string>
+    <string name="app_name">World Mission</string>
 
     <string name="no_internet">No Internet!!</string>
 
     <!--================ Navigation Menu ================-->
     <string name="home">Home</string>
+    <string name="aboutUs">about us</string>
     <string name="e_shop">E-Shop</string>
     <string name="account">Account</string>
     <string name="cart">Cart</string>
@@ -31,6 +32,98 @@
     <string name="digital_business">Digital Business</string>
     <string name="our_community_work">Our Community Work</string>
     <string name="top_categories">Top Categories</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="aboutUsLBM">Largest Bangladeshi Marketplace</string>
+    <string name="aboutUsWe">We Provide Ecommerce &amp; Affiliate Service for Customers</string>
+    <string name="mFromMDirector">May I Welcome you into the family of World Mission 21 Ltd. Tomorrow Today.\n\n
+With Introducing the BRAND, It gives me great pleasure and honor to say that
+we work in a family who are DEDICATED, SINCERE, COMMITTED.
+Beside through professionalism. Our TEAM believe in giving personal touch, to
+deliver their utmost satisfaction.\n\n
+We hope you will consider us as we guide our brand slogan “Tomorrow Today".\n\n
+Wishing you Good HEALTHY, HAPPINESS, PROSPERITY &amp;  SUCCESS in
+life.</string>
+    <string name="ourVision">To be the pioneer network marketing company in
+Bangladesh and worldwide.</string>
+    <string name="ourMission">To enhance quality a life and leading the model community
+where all can live, work and enjoy.\n
+We lead towards positive social change deliver value to
+members about information, advocacy service and income
+procedure activities.</string>
+    <string name="WhoWeAre">In 2012, World Mission 21 Ltd was founded with a view to establish a very stable company in
+Bangladesh with tremendous business growth with new strategies and technologies, As the
+first leading marketing company in Bangladesh we offer flexible, trust worthy and sustainable
+business with us.\n
+World Mission 21 Ltd is the prominent marketing company in Bangladesh which provides new
+technology door to door by lots of our distributors, We are trying to promote our business with
+advanced Marketing methods to every remote Area of Bangladesh.
+Every day, in every way, World Mission 21 Ltd is united in building people through tech-
+nology, success, service and support. </string>
+
+    <string name="change_update">(<font color='#FE0000'>change/update</font> )</string>
+    <string name="shippingTerm"><li>* প্রোডাক্ট অর্ডারের পূর্বে হেল্পলাইন থেকে স্টক এবং ডেলিভারী সর্ম্পকে সঠিকভাবে জেনে অর্ডার করার জন্য বিশেষভাবে অনুরোধ করা যাচ্ছে ।
+    * হোম ডেলিভারী ঢাকার মধ্যে সর্বচ্চ সময় ডেলিভারী ৩ দিন (ডেলিভারী চার্জ  ৫০ টাকা প্রতি কেজি)।
+    * হোম ডেলিভারী ঢাকার বাইরে  সর্বচ্চ সময় ডেলিভারী ৫ দিন (ডেলিভারী চার্জ  ১৫০ টাকা প্রতি কেজি)।
+    * হোম ডেলিভারী এর ক্ষেত্রে  সামান্য ডেলিভারী চার্জ  অ্যাডভান্স প্রদান করতে হবে।</li></string>
+    <string name="confirm_order_terms1">* ২১ লগো বিহীন কোন পণ্যই আমাদের উৎপাদিত কোন পণ্য নয়। তাই মানের ও দামের বিষয়ে আপত্তি থাকলে অভিযোগ করুন। প্রয়োজনে আমরা সেই পণ্য বিক্রয় থেকে বিরত থাকবো।</string>
+    <string name="confirm_order_terms2">* প্রতিটি পণ্য ডেলিভারি এর সময় পণ্য এর মূল্য গ্রহণ করা হয় । অগ্রিম অর্থ প্রদান সম্পুর্ন নিষিদ্ধ । মাল বুঝে না পেয়ে কোনরূপ অর্থ প্রদান হতে বিরত থাকুন।</string>
+    <string name="confirm_order_terms3">* পণ্য ডেলিভারি এর সময় দেখে শুনে বুঝে নিন । তারপরও বিবরন বহির্ভূত কোন পণ্য প্রদান করলে আমাদেরকে অবহিত করুন॥  বিক্রিত পণ্য ৭২ ঘন্টার মধ্যে রিসিভ বাটনে প্রেস না করলে ফেরত যোগ্য । পুরাতন / নষ্ট পণ্য গ্রহণ থেকে বিরত থাকুন।</string>
+    <string name="confirm_order_terms4">* প্রতিটি পণ্য উৎপাদিত কোম্পানির প্যাকেট কৃত মূল্যে বা (১/২ %) কম মূল্যে বিক্রয় করি । আমরা কোন মূল্য/ পয়েন্ট নির্ধারণ করি না।</string>
+    <string name="confirm_order_terms5">* রিওয়ার্ড পয়েন্ট হচ্ছে উৎপাদিত কোম্পানির/ শপের  পণ্য বিক্রয় এর মুনাফা এর (০-৭০ %) একক। তাই সকল পণ্য এর পয়েন্ট সমান নয় । এই রিওয়ার্ড পয়েন্টের উপর ভিত্তি করে কোম্পানী তার ক্রেতা-পরিবেশকদের কমিশন প্রদান করে থাকেন।</string>
+    <string name="confirm_order_terms6">* আপনার যেকোনো কমিশন সরাসরি মোবাইল রিচার্জ ,মোবাইল ব্যাংকিং বা অ্যাফিলিয়েট কার্ড এর মাধ্যমে যেকোনো সময় উত্তোলন করতে পারবেন।</string>
+    <string name="confirm_order_terms7">* পণ্য ডেলিভারি এর সময় ভ্যাট প্রদান করুন ও ভ্যাট চালান বুঝে নিন ।</string>
+
+
+    <string name="termforcheckout"> I Have Read And Agree With <font color='#FE0000'>Terms &amp; Conditions</font>.</string>
+
+    <string name="loading">Loading ....</string>
+    <string name="Uploading">UpLoading ....</string>
+    <string name="logingIn">Loging In ....</string>
+    <string name="pleaseWait">Please Wait</string>
+    <string name="katherine">Filmmaker Ivan Malekin breaks down how independent filmmakers can use improvisation in their own work to creatively collaborate with actors, speed up production, make more films, and ultimately save time and money by working efficiently at all stages of the production process.</string>
+    <string name="MissionVision">
+        Mission:-\n1. To enhance quality of life and the leading the model community where all can live, work and joy.\n\n
+        2. We lead positive social change deliver value to members information, advocacy service and income procedure activities.\n\nVision:-\nTo be the pioneer network marketing company in Bangladesh and worldwide.\n\nCore Value: TRUST is our main ethics and values.\n\nTEAM WORK is the Foundation of all we do.\n\nRESPECT for the dignity and rights of our customers.\n\nUNDERSTANDING our community to our customers and build them for self employment.\n\nSATISFACTORY service provide as per our commitment.\n\nTRANSPARENCY at everywhere and all time.</string>
+
+
+    <array name="genderArray">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </array>
+    <array name="bloodArray">
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </array>
+
+    <string-array name="user_Country">
+        <item>Select Country</item>
+    </string-array>
+    <string-array name="user_Division">
+        <item>Select Zone</item>
+    </string-array>
+
+
+    <string-array name="user_District">
+        <item>Select District</item>
+    </string-array>
+    <string-array name="user_thana">
+        <item>Select Thana</item>
+    </string-array>
+    <string-array name="user_Union">
+        <item>Select Union</item>
+    </string-array>
+    <string-array name="user_Word">
+        <item>Select Word</item>
+    </string-array>
 
 
 </resources>

@@ -1,21 +1,23 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnTSNFApplyClickListener;
-import com.wm21ltd.wm21.networks.Models.TSNFCategoryDetailsListModel;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TSNFCategoryDetailsListModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnTSNFApplyClickListener;
 
 public class TSNFCategoryDetailsAdapter extends RecyclerView.Adapter<TSNFCategoryDetailsAdapter.TSNFCategoryDetailsViewHolder> {
 

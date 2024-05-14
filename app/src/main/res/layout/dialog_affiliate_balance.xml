@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="?attr/materialCardViewElevatedStyle"
     android:layout_width="340dp"
     android:layout_height="wrap_content">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
@@ -320,4 +321,4 @@
 
     </ScrollView>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

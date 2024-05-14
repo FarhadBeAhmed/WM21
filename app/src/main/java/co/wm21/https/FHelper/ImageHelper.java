@@ -1,4 +1,6 @@
-package com.wm21ltd.wm21.helpers;
+package co.wm21.https.FHelper;
+
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -12,8 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class ImageHelper {

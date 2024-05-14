@@ -1,7 +1,7 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +10,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.RecycleViewItemClickListener;
-import com.wm21ltd.wm21.interfaces.SearchSmsCallListener;
-import com.wm21ltd.wm21.networks.Models.SearchDataModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.Models.SearchDataModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.RecycleViewItemClickListener;
+import co.wm21.https.interfaces.SearchSmsCallListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -34,7 +36,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private RecycleViewItemClickListener itemClickListener;
 
     public SearchAdapter(Context mContext, List<SearchDataModel> searchDataList
-            ,int formType, SearchSmsCallListener searchSmsCallListener, RecycleViewItemClickListener itemClickListener) {
+            , int formType, SearchSmsCallListener searchSmsCallListener, RecycleViewItemClickListener itemClickListener) {
         this.mContext = mContext;
         this.searchDataList = searchDataList;
         this.searchSmsCallListener = searchSmsCallListener;
@@ -45,40 +47,40 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.search_user_id)
-        TextView textViewUserID;
-        @BindView(R.id.search_user_name)
-        TextView textViewUserName;
-        @BindView(R.id.search_user_rank)
-        TextView textViewUserRank;
-        @BindView(R.id.search_user_image)
-        CircleImageView userImage;
-        @BindView(R.id.search_user_call)
-        ImageView callToMember;
-        @BindView(R.id.search_user_sms)
-        ImageView smsToMember;
-        @BindView(R.id.search_user_info)
-        LinearLayout userInfo;
 
+        TextView textViewUserID;
+
+        TextView textViewUserName;
+        TextView textViewUserRank;
+        CircleImageView userImage;
+        ImageView callToMember;
+        ImageView smsToMember;
+        LinearLayout userInfo;
         MyViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            userInfo= view.findViewById(R.id.search_user_info);
+            smsToMember= view.findViewById(R.id.search_user_sms);
+            callToMember= view.findViewById(R.id.search_user_call);
+            userImage= view.findViewById(R.id.search_user_image);
+            textViewUserRank= view.findViewById(R.id.search_user_rank);
+            textViewUserName= view.findViewById(R.id.search_user_name);
+            textViewUserID= view.findViewById(R.id.search_user_id);
         }
     }
 
     @Override
-    public SearchAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_search_view, parent, false);
-        return new SearchAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(SearchAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final SearchDataModel mModel = searchDataList.get(position);
         holder.textViewUserID.setText("ID: " + mModel.getId());
         holder.textViewUserName.setText("Name: " + mModel.getName());
         holder.textViewUserRank.setText("Rank: " + mModel.getRank());
-        String userImage = ConstantValues.URL + mModel.getImage();
+        String userImage = ConstantValues.web_url + mModel.getImage();
 
 
         Glide.with(mContext).load(userImage).apply(new RequestOptions().placeholder(R.mipmap.ic_launcher)

@@ -1,37 +1,36 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.interfaces.OnAddToCartRequestComplete;
+import co.wm21.https.interfaces.OnAddToCartView;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.serviceapis.InvokeAddToCartApi;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class AddToCartPresenter {
+    OnAddToCartView addToCartView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public AddToCartPresenter(OnAddToCartView addToCartView) {
+        this.addToCartView = addToCartView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
+        addToCartView.onAddToCartStartLoading();
+        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onAddToCartRequestComplete(Object obj) {
+                addToCartView.onAddToCartStopLoading();
+                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onAddToCartRequestError(String errMsg) {
+                addToCartView.onAddToCartStopLoading();
+                addToCartView.onAddToCartShowMessage(errMsg);
             }
         });
     }

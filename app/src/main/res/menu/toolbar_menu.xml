@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home_menu_search"
-        android:icon="@drawable/ic_baseline_notifications_24"
-        android:title="@string/notification"
+        android:id="@+id/menu_cart"
+        android:icon="@drawable/selector_cart"
+        android:title="@string/cart"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
 
@@ -14,4 +14,5 @@
         android:title="@string/sign_out"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom" />
+
 </menu>

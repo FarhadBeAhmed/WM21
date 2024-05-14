@@ -1,11 +1,12 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnRewardGalleryRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnRewardGalleryView;
-import com.wm21ltd.wm21.networks.Models.RewardGalleryDataListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeRewardGalleryApi;
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.RewardGalleryDataListModel;
+import co.wm21.https.interfaces.OnRewardGalleryRequestComplete;
+import co.wm21.https.interfaces.OnRewardGalleryView;
+import co.wm21.https.serviceapis.InvokeRewardGalleryApi;
 
 public class RewardGalleryPresenter {
     OnRewardGalleryView mView;

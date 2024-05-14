@@ -1,36 +1,35 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.SignupModel;
+import co.wm21.https.FHelper.networks.Models.SignupNumberVerifyModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnSignupNumberVerifyRequestComplete;
+import co.wm21.https.interfaces.OnSignupNumberVerifyView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeSignupNumberVerifyApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class SignupNumberVerifyPresenter {
+    OnSignupNumberVerifyView signupNumberVerifyView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public SignupNumberVerifyPresenter(OnSignupNumberVerifyView signupNumberVerifyView) {
+        this.signupNumberVerifyView = signupNumberVerifyView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void signupNumberVerifyDataLoad(String mobile,String country,String code) {
+        signupNumberVerifyView.onSignupNumberVerifyStartLoading();
+        new InvokeSignupNumberVerifyApi(mobile,country,code, new OnSignupNumberVerifyRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onSignupNumberVerifyRequestComplete(Object obj) {
+                signupNumberVerifyView.onSignupNumberVerifyStopLoading();
+                signupNumberVerifyView.onSignupNumberVerifyDataLoad((SignupNumberVerifyModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onSignupNumberVerifyRequestError(String errMsg) {
+                signupNumberVerifyView.onSignupNumberVerifyStopLoading();
+                signupNumberVerifyView.onSignupNumberVerifyShowMessage(errMsg);
             }
         });
     }

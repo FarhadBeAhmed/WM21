@@ -1,5 +1,6 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,51 +13,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.activities.IncomeDetailsActivity;
-import com.wm21ltd.wm21.networks.Models.IncomeBalaceReportDataListModel;
-
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.databinding.LayoutItemBlogBinding;
+import co.wm21.https.databinding.RowAccountIncomeBinding;
+import co.wm21.https.model.IncomeBalaceReportDataListModel;
 
 public class AccountIncomeAdapter extends RecyclerView.Adapter<AccountIncomeAdapter.MyViewHolder> {
 
     private List<IncomeBalaceReportDataListModel> iList;
     private Context context;
     private int type;
+    RowAccountIncomeBinding binding;
 
-    public AccountIncomeAdapter(List<IncomeBalaceReportDataListModel> iList, Context context,int type) {
+    public AccountIncomeAdapter(List<IncomeBalaceReportDataListModel> iList, Context context, int type) {
         this.iList = iList;
         this.context = context;
         this.type = type;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_rowAccountIncome_Name)
-        TextView textViewName;
-        @BindView(R.id.txt_rowAccountIncome_Balance)
-        TextView textViewBalance;
-        @BindView(R.id.view_rowAccountIncome)
-        View viewMiddle;
-        @BindView(R.id.view_rowAccountIncome_bottom)
-        View viewBottom;
-
-        @BindView(R.id.linearLayout_AccountIncome)
-        LinearLayout linearLayoutFullRow;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_account_income, parent, false);
-        return new MyViewHolder(mView);
+        binding = RowAccountIncomeBinding.inflate(LayoutInflater.from(context), parent, false);
+      //  View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_account_income, parent, false);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -67,7 +52,7 @@ public class AccountIncomeAdapter extends RecyclerView.Adapter<AccountIncomeAdap
 
         if (iModel.getBold() != null){
             if (iModel.getBold().equals("1")) {
-                holder.linearLayoutFullRow.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+                holder.linearLayoutFullRow.setBackgroundColor(context.getResources().getColor(R.color.primary_red));
                 holder.textViewName.setTextColor(context.getResources().getColor(R.color.white));
                 holder.textViewBalance.setTextColor(context.getResources().getColor(R.color.white));
                 holder.viewMiddle.setBackgroundColor(context.getResources().getColor(R.color.white));
@@ -80,16 +65,13 @@ public class AccountIncomeAdapter extends RecyclerView.Adapter<AccountIncomeAdap
                 holder.viewBottom.setBackgroundColor(context.getResources().getColor(R.color.black));
             }}
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!iModel.getBold().equals("1")){
-                        Intent intent = new Intent(context, IncomeDetailsActivity.class);
-                        intent.putExtra("title",iModel.getTitle().replace("_", " "));
-                        intent.putExtra("type",String.valueOf(type));
-                        context.startActivity(intent);
+        holder.itemView.setOnClickListener(v -> {
+            if (!iModel.getBold().equals("1")){
+                  /*  Intent intent = new Intent(context, IncomeDetailsActivity.class);
+                    intent.putExtra("title",iModel.getTitle().replace("_", " "));
+                    intent.putExtra("type",String.valueOf(type));
+                    context.startActivity(intent);*/
 
-                }
             }
         });
 
@@ -98,5 +80,24 @@ public class AccountIncomeAdapter extends RecyclerView.Adapter<AccountIncomeAdap
     @Override
     public int getItemCount() {
         return iList.size();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView textViewName;
+        TextView textViewBalance;
+        View viewMiddle;
+        View viewBottom;
+        LinearLayout linearLayoutFullRow;
+
+        public MyViewHolder(@NonNull RowAccountIncomeBinding itemView) {
+            super(itemView.getRoot());
+            textViewName=itemView.txtRowAccountIncomeName;
+            textViewBalance=itemView.txtRowAccountIncomeBalance;
+            viewMiddle=itemView.viewRowAccountIncome;
+            viewBottom=itemView.viewRowAccountIncomeBottom;
+            linearLayoutFullRow=itemView.linearLayoutAccountIncome;
+
+        }
     }
 }

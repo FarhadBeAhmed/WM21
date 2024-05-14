@@ -3,34 +3,32 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.adapters.product.ProductView;
-import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
-import co.wm21.https.interfaces.OnHomeCategoryView;
 import co.wm21.https.interfaces.OnHomePopularProductComplete;
 import co.wm21.https.interfaces.OnHomePopularProductView;
-import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
+import co.wm21.https.interfaces.OnHotProductRequestComplete;
+import co.wm21.https.interfaces.OnHotProductView;
 import co.wm21.https.serviceapis.InvokeHomePopularProductApi;
+import co.wm21.https.serviceapis.InvokeHotProductApi;
 
-public class HomePopularProductPresenter {
-    private OnHomePopularProductView onHomePopularProductView;
+public class HotProductPresenter {
+    private OnHotProductView onHotProductView;
 
-    public HomePopularProductPresenter(OnHomePopularProductView onHomePopularProductView) {
-        this.onHomePopularProductView = onHomePopularProductView;
+    public HotProductPresenter(OnHotProductView onHotProductView) {
+        this.onHotProductView = onHotProductView;
     }
-    public void getHomePopularProduct(String value){
-        onHomePopularProductView.onHomePopularProductStartLoading();
-        new InvokeHomePopularProductApi(value, new OnHomePopularProductComplete() {
+    public void getHotProduct(int value){
+        onHotProductView.onHotProductStartLoading();
+        new InvokeHotProductApi(value, new OnHotProductRequestComplete() {
             @Override
-            public void onHomePopularProductSuccess(Object obj) {
-                onHomePopularProductView.onHomePopularProductStopLoading();
-                onHomePopularProductView.onHomePopularProductLoaded((List<ProductModel>)obj);
+            public void onHotProductSuccess(Object obj) {
+                onHotProductView.onHotProductStopLoading();
+                onHotProductView.onHotProductDataLoaded((List<ProductModel>)obj);
             }
 
             @Override
-            public void onHomePopularProductError(String errMsg) {
-                onHomePopularProductView.onHomePopularProductStopLoading();
-                onHomePopularProductView.onHomePopularProductShowMessage(errMsg);
+            public void onHotProductError(String errMsg) {
+                onHotProductView.onHotProductStopLoading();
+                onHotProductView.onHotProductShowMessage(errMsg);
             }
         });
 

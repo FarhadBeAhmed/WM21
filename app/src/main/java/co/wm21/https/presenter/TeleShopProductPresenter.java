@@ -3,32 +3,32 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.interfaces.OnHomePopularProductComplete;
-import co.wm21.https.interfaces.OnHomePopularProductView;
 import co.wm21.https.interfaces.OnHotProductRequestComplete;
 import co.wm21.https.interfaces.OnHotProductView;
-import co.wm21.https.serviceapis.InvokeHomePopularProductApi;
+import co.wm21.https.interfaces.OnTeleShopProductRequestComplete;
+import co.wm21.https.interfaces.OnTeleShopProductView;
 import co.wm21.https.serviceapis.InvokeHotProductApi;
+import co.wm21.https.serviceapis.InvokeTeleShopProductApi;
 
-public class HotProductPresenter {
-    private OnHotProductView onHotProductView;
+public class TeleShopProductPresenter {
+    private OnTeleShopProductView onTeleShopProductView;
 
-    public HotProductPresenter(OnHotProductView onHotProductView) {
-        this.onHotProductView = onHotProductView;
+    public TeleShopProductPresenter(OnTeleShopProductView onTeleShopProductView) {
+        this.onTeleShopProductView = onTeleShopProductView;
     }
-    public void getHotProduct(int value){
-        onHotProductView.onHotProductStartLoading();
-        new InvokeHotProductApi(value, new OnHotProductRequestComplete() {
+    public void getTeleShopProduct(String value){
+        onTeleShopProductView.onTeleShopProductStartLoading();
+        new InvokeTeleShopProductApi(value, new OnTeleShopProductRequestComplete() {
             @Override
-            public void onHotProductSuccess(Object obj) {
-                onHotProductView.onHotProductStopLoading();
-                onHotProductView.onHotProductDataLoaded((List<ProductModel>)obj);
+            public void onTeleShopProductSuccess(Object obj) {
+                onTeleShopProductView.onTeleShopProductDataLoaded((List<ProductModel>)obj);
+                onTeleShopProductView.onTeleShopProductStopLoading();
             }
 
             @Override
-            public void onHotProductError(String errMsg) {
-                onHotProductView.onHotProductStopLoading();
-                onHotProductView.onHotProductShowMessage(errMsg);
+            public void onTeleShopProductError(String errMsg) {
+                onTeleShopProductView.onTeleShopProductShowMessage(errMsg);
+                onTeleShopProductView.onTeleShopProductStopLoading();
             }
         });
 

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent"
-    android:paddingHorizontal="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -13,22 +12,24 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
-                android:src="@drawable/warning" />
+                android:src="@drawable/trolley" />
 
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="Warning"
+                android:text=" Added To the Cart"
+                android:paddingStart="10dp"
                 android:textColor="@color/black"
                 android:textSize="19sp"
                 android:textStyle="bold"
@@ -40,9 +41,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Do you want to remove this Item??"
+            android:paddingVertical="5dp"
+            android:text="The item is successfully added to the cart.."
             android:textColor="@color/black"
-            android:textSize="13sp"
+            android:textSize="@dimen/_12ssp"
             tools:ignore="HardcodedText" />
 
         <LinearLayout
@@ -50,12 +52,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingVertical="20dp">
+            android:paddingVertical="@dimen/_13sdp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="4dp"
                 app:cardMaxElevation="6dp">
@@ -67,14 +68,43 @@
                     android:background="@color/light_red">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="30dp"
-                        android:paddingVertical="5dp"
+                        android:paddingVertical="@dimen/_4sdp"
                         android:text="OK"
+                        android:gravity="center"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="HardcodedText" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="4dp"
+                app:cardMaxElevation="6dp">
+
+                <RelativeLayout
+                    android:id="@+id/goBtnId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green">
+
+                    <TextView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingHorizontal="30dp"
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:text="To Cart"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
                         tools:ignore="HardcodedText" />
 
                 </RelativeLayout>

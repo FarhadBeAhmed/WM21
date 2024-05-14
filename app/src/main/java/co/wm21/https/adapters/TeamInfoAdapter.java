@@ -1,23 +1,24 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.activities.MemberDetailsActivity;
-import com.wm21ltd.wm21.networks.Models.TeamInfoDataListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.TeamInfoDataListModel;
+import co.wm21.https.R;
+import co.wm21.https.activities.MemberDetailsActivity;
 
 public class TeamInfoAdapter extends RecyclerView.Adapter<TeamInfoAdapter.MyViewHolder> {
 
@@ -30,7 +31,8 @@ public class TeamInfoAdapter extends RecyclerView.Adapter<TeamInfoAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_rowTeamInfo_SL)
+        @BindView(
+                R.id.txt_rowTeamInfo_SL)
         TextView textViewSl;
         @BindView(R.id.txt_rowTeamInfo_Name)
         TextView textViewName;

@@ -2,8 +2,9 @@ package co.wm21.https.FHelper.networks.ApiUtil;
 
 import android.util.Log;
 
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.networks.Remote.RetroClient;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.FHelper.networks.Remote.RetroClient;
+
 
 public class ApiUtils {
     public static APIService getApiService(String baseURL){

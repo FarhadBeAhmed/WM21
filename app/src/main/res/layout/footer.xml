@@ -1,6 +1,833 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="#FE0000"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:src="@drawable/ic_mail_outline_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Subscribe to our newsletter"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Get all the latest information on Event, Sales &amp; Offers"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                tools:ignore="HardcodedText" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:hint="Your E-mail Address"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:textAlignment="center"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_25sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_3sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="subscribe"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        tools:ignore="HardcodedText" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:src="@drawable/right_arrow"
+                        app:tint="@color/white"
+
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_10sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="#FE0000"
+                android:paddingVertical="@dimen/_2sdp"
+                android:src="@drawable/img_logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="World Mission 21 Limited \nMail: info@wm21.co \nMobile: +8801983212121, +8801990333666"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:lineSpacingMultiplier="1.5"
+                android:textSize="@dimen/_10ssp"
+                tools:ignore="HardcodedText" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Address: AK Tower(5th floor), House# 113/C,  Road # 07, Sector# 04, Uttara Model Town, Dhaka-1230"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                android:lineSpacingMultiplier="1.3"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/facebook" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/twitter" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/instagram" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/youtube" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/pinterest" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/footerCompany"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:text="Company"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            tools:ignore="HardcodedText" />
+
+                        <LinearLayout
+                            android:id="@+id/infoExpandButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
+
+
+                            <ImageView
+                                android:id="@+id/infExpandIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@color/transparent"
+                                android:paddingVertical="4dp"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                                tools:ignore="ContentDescription" />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                        android:id="@+id/infoExpandableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ael_duration="500"
+                        app:ael_expanded="false"
+                        app:ael_interpolator="accelerate"
+                        app:ael_orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/aboutUs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="About us"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Team Member"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Career"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:id="@+id/contactUs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Contact Us"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Affiliate"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Order History"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/footerMyAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:text="My Account"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            tools:ignore="HardcodedText" />
+
+                        <LinearLayout
+                            android:id="@+id/MyAccExpandButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
+
+
+                            <ImageView
+                                android:id="@+id/MyAccExpandIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@color/transparent"
+                                android:paddingVertical="4dp"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                                tools:ignore="ContentDescription" />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                        android:id="@+id/MyAccExpandableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ael_duration="500"
+                        app:ael_expanded="false"
+                        app:ael_interpolator="accelerate"
+                        app:ael_orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Track My Order"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="View Cart"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Sign In"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Help"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="My Wishlist"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Privacy Policy"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/footerCustomer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:text="Customer Service"
+                            android:textColor="@color/black"
+                            android:textAllCaps="true"
+                            android:textSize="@dimen/_12ssp"
+                            tools:ignore="HardcodedText" />
+
+                        <LinearLayout
+                            android:id="@+id/CustomerExpandButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:orientation="horizontal"
+                            tools:ignore="UseCompoundDrawables">
+
+
+                            <ImageView
+                                android:id="@+id/CustomerExpandIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@color/transparent"
+                                android:paddingVertical="4dp"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                                tools:ignore="ContentDescription" />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                        android:id="@+id/CustomerExpandableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ael_duration="500"
+                        app:ael_expanded="false"
+                        app:ael_interpolator="accelerate"
+                        app:ael_orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Payment Methods"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Money-back guarantee!"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Product Returns"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Support Center"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Shipping"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height=".5dp"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_1sdp"
+                                    android:background="@color/drawerLineColor" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_15sdp"
+                                    android:paddingEnd="0dp"
+                                    android:text="Term and Conditions"
+                                    android:textColor="@color/profileTxtColor"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/copyRightText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="© 2012-2022. WM21. All Rights Reserved."
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_9ssp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/copyRightText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="We're using safe payment for"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_9ssp"
+                tools:ignore="HardcodedText" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".8dp"
+                android:background="@color/gray"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/payment_icon" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

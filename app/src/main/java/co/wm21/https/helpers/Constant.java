@@ -12,6 +12,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.chaos.view.PinView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -27,8 +28,6 @@ import java.util.HashMap;
 
 import co.wm21.https.ProjectApp;
 import co.wm21.https.annotations.*;
-import co.wm21.https.api_request.JsonArrayResponse;
-import co.wm21.https.api_request.JsonObjectResponse;
 
 /**
  * Requires a {@link Constant} and other things and api.
@@ -51,7 +50,7 @@ public final class Constant implements ConstantValues {
      */
     @NotNull
     public static String getFileName(@NonNull String... strings) {
-        return getFixedImageUrl(new Joiner<>("/", web_url, "", strings).toString());
+        return getFixedImageUrl(new Joiner<>("/", URL, "", strings).toString());
     }
 
     /**
@@ -62,7 +61,7 @@ public final class Constant implements ConstantValues {
      */
     @NotNull
     public static String getFileName(FileType extension, @NonNull String... strings) {
-        return getFixedUrl(new Joiner<>("/", web_url, "." + extension.getFileType(), strings).toString());
+        return getFixedUrl(new Joiner<>("/", URL, "." + extension.getFileType(), strings).toString());
     }
 
     public static Drawable getDrawableFromUrl(@NonNull String... strings) {
@@ -127,6 +126,18 @@ public final class Constant implements ConstantValues {
         return result;
     }
 
+    public static boolean validation2(PinView... textInputLayouts) {
+        boolean result = true;
+        for (PinView til : textInputLayouts) {
+            if (!til.getText().toString().isEmpty()) til.setError("");
+            if (til.getText().toString().isEmpty()) {
+                til.setError("Field can't be empty.");
+                result = false;
+            }
+        }
+        return result;
+    }
+
     @NonNull
     public static String getTextFromTIL(@NonNull TextInputLayout textInputLayout) {
         return textInputLayout.getEditText().getText().toString();
@@ -143,8 +154,8 @@ public final class Constant implements ConstantValues {
 
     /**
      * You get the url with submit value.
-     * @param variable enter your variable name on String ... [0] <br>
-     *                 Then enter your variable on String ... [1]
+     * @param variable enter your variable name on _String ... [0] <br>
+     *                 Then enter your variable on _String ... [1]
      * @param strings enter strings
      * @return you get the url with submit value.
      */
@@ -159,7 +170,7 @@ public final class Constant implements ConstantValues {
     /**
      * Requires this method for using {@link API}.
      */
-    @NonNull
+  /*  @NonNull
     @SuppressWarnings("unchecked")
     public static API getAPI() {
         return (API) Proxy.newProxyInstance(API.class.getClassLoader(), new Class<?>[]{ API.class }, (proxy, method, args) -> {
@@ -167,9 +178,11 @@ public final class Constant implements ConstantValues {
             for (int i = 0; i < args.length; i++) jo.put(((Field) method.getParameterAnnotations()[i][0]).value(), args[i]);
             int methodType = method.getAnnotation(SendMethod.class).value();
             String url = getFileName(FileType.PHP, method.getAnnotation(RequestUrl.class).value());
-            return method.getReturnType() == JsonObjectResponse.class ? new JsonObjectResponse(methodType, url, jo) : new JsonArrayResponse(methodType, url, jo);
+            return method.getReturnType() == JsonObjectResponse.class ? new JsonObjectResponse(methodType, url, jo)
+                 : method.getReturnType() == JsonArrayResponse.class ? new JsonArrayResponse(methodType, url, jo)
+                 : new StringResponse(methodType, url, jo);
         });
-    }
+    }*/
 
     public static Drawable getDFR(@DrawableRes int drawable) {
         return ResourcesCompat.getDrawable(ProjectApp.getContext().getResources(), drawable, ProjectApp.getContext().getTheme());

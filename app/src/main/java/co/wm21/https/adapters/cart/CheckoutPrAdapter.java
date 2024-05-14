@@ -1,4 +1,4 @@
-package https.macuva.com.macuva.Adapter.uddRecycler.Cart;
+package co.wm21.https.adapters.cart;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import https.macuva.com.R;
+import co.wm21.https.R;
 
 public class CheckoutPrAdapter extends RecyclerView.Adapter<CheckoutPrAdapter.CheckoutPrViewHolder> {
-    List<CartViewsModel> cartList;
+    List<CartModel> cartList;
     LayoutInflater layoutInflater;
-    CartAdapter.ItemClickListener1 itemClickListener1;
+
     Context context;
 
-    public CheckoutPrAdapter(List<CartViewsModel> cartList,Context context) {
+    public CheckoutPrAdapter(List<CartModel> cartList, Context context) {
         this.cartList = cartList;
         layoutInflater = LayoutInflater.from(context);
         this.context = context;
@@ -28,17 +28,17 @@ public class CheckoutPrAdapter extends RecyclerView.Adapter<CheckoutPrAdapter.Ch
     @NonNull
     @Override
     public CheckoutPrViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CheckoutPrAdapter.CheckoutPrViewHolder(layoutInflater.inflate(R.layout.checkout_pr_single_row, parent, false));
+        return new CheckoutPrViewHolder(layoutInflater.inflate(R.layout.checkout_pr_single_row, parent, false));
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull CheckoutPrViewHolder holder, int position) {
-        CartViewsModel cartViewsModel= cartList.get(position);
-        holder.chPrName.setText(cartViewsModel.getpName());
-        holder.chPrPrice.setText(cartViewsModel.getPrice());
-        holder.chPrQty.setText(cartViewsModel.getQty());
-        holder.chPrT.setText(cartViewsModel.getProTotal());
+        CartModel cartViewsModel= cartList.get(position);
+        holder.chPrName.setText(cartViewsModel.getProductName());
+        holder.chPrPrice.setText(String.valueOf(cartViewsModel.getPrice()));
+        holder.chPrQty.setText(String.valueOf(cartViewsModel.getQty()));
+        holder.chPrT.setText(String.valueOf(cartViewsModel.getSubTotal()));
 
     }
 

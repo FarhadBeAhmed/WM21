@@ -1,10 +1,11 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnTrainingRequestFormRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnTrainingRequestFormView;
-import com.wm21ltd.wm21.serviceapis.InvokeTrainerRequestApi;
 
 import java.util.HashMap;
+
+import co.wm21.https.interfaces.OnTrainingRequestFormRequestComplete;
+import co.wm21.https.interfaces.OnTrainingRequestFormView;
+import co.wm21.https.serviceapis.InvokeTrainerRequestApi;
 
 public class TrainerRequestPresenter {
     OnTrainingRequestFormView mView;

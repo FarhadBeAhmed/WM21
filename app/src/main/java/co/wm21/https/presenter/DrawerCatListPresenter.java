@@ -2,30 +2,36 @@ package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
 
+import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
 import co.wm21.https.interfaces.OnDivisionListRequestComplete;
 import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnDrawerCatListRequestComplete;
+import co.wm21.https.interfaces.OnDrawerCatListView;
 import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.serviceapis.InvokeDrawerCatListApi;
 
-public class DivisionListPresenter {
-    OnDivisionListView mView;
+public class DrawerCatListPresenter {
+    OnDrawerCatListView mView;
 
-    public DivisionListPresenter(OnDivisionListView mView) {
+    public DrawerCatListPresenter(OnDrawerCatListView mView) {
         this.mView = mView;
     }
 
-    public void onDivisionDataLoad(String counrtyID) {
-        mView.onDivisionListStartLoading();
-        new InvokeDivisionListApi(counrtyID, new OnDivisionListRequestComplete() {
+    public void onDrawerCatDataLoad(int id,String cat_id) {
+        mView.onDrawerCatListStartLoading();
+        new InvokeDrawerCatListApi(id,cat_id, new OnDrawerCatListRequestComplete() {
             @Override
-            public void onDivisionListRequestComplete(Object obj) {
-                mView.onDivisionListStopLoading();
-                mView.onDivisionListDataLoad((JsonArray) obj);
+            public void onDrawerCatListRequestComplete(Object obj) {
+                mView.onDrawerCatListStopLoading();
+                mView.onDrawerCatListDataLoad((List<DrawerCatModel>) obj);
             }
 
             @Override
-            public void onDevisionListRequestError(String errMsg) {
-                mView.onDivisionListStopLoading();
-                mView.onDivisionListShowMessage(errMsg);
+            public void onDrawerCatListRequestError(String errMsg) {
+                mView.onDrawerCatListStopLoading();
+                mView.onDrawerCatListShowMessage(errMsg);
             }
         });
     }

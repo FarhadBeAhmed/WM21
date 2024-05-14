@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PopularProductViewModelHead {
+public class HotProductModelHead {
     @SerializedName("error")
     @Expose
     private Integer error;
@@ -14,7 +14,7 @@ public class PopularProductViewModelHead {
     private String errorReport;
     @SerializedName("data")
     @Expose
-    private List<ProductModel> productViews = null;
+    private List<ProductModel> hotProduct = null;
     private final static long serialVersionUID = 8482563432836191883L;
 
     public Integer getError() {
@@ -33,11 +33,11 @@ public class PopularProductViewModelHead {
         this.errorReport = errorReport;
     }
 
-    public List<ProductModel> getProductViews() {
-        return productViews;
+    public List<ProductModel> getHotProduct() {
+        return hotProduct;
     }
 
-    public void setProductViews(List<ProductModel> productViews) {
-        this.productViews = productViews;
+    public void setHotProduct(List<ProductModel> hotProduct) {
+        this.hotProduct = hotProduct;
     }
 }

@@ -1,37 +1,36 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.DeliveryItemsModel;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnDeliveryItemsRequestComplete;
+import co.wm21.https.interfaces.OnDeliveryItemsView;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.serviceapis.InvokeDeliveryItemsApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class DeliveryItemsPresenter {
+    OnDeliveryItemsView deliveryItemsView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public DeliveryItemsPresenter(OnDeliveryItemsView deliveryItemsView) {
+        this.deliveryItemsView = deliveryItemsView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void deliveryItemsDataLoad(String user_id) {
+        deliveryItemsView.onDeliveryItemsStartLoading();
+        new InvokeDeliveryItemsApi(user_id, new OnDeliveryItemsRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onDeliveryItemsRequestComplete(Object obj) {
+                deliveryItemsView.onDeliveryItemsStopLoading();
+                deliveryItemsView.onDeliveryItemsDataLoad((List<DeliveryItemsModel>) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onDeliveryItemsRequestError(String errMsg) {
+                deliveryItemsView.onDeliveryItemsStopLoading();
+                deliveryItemsView.onDeliveryItemsShowMessage(errMsg);
             }
         });
     }

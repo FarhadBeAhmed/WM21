@@ -51,7 +51,8 @@
                         android:text="WM21 LTD."
                         android:textColor="@color/black"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/incomeTitle"
@@ -64,7 +65,8 @@
                         android:text="INCOME BALANCE STATUS"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/txt_IncomeStatusDate"
@@ -77,7 +79,8 @@
                         android:text="FOR THE MONTH OF 10 NOV, 2018"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -101,7 +104,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/primary_red"
                     android:padding="8dp"
                     android:text="Income"
                     android:textColor="@color/white"
@@ -127,12 +130,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/primary_red"
                     android:padding="8dp"
                     android:text="Expense"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    tools:ignore="HardcodedText" />
 
                 <View
                     android:layout_width="match_parent"
@@ -153,12 +157,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/primary_red"
                     android:padding="8dp"
                     android:text="Balance"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    tools:ignore="HardcodedText" />
 
                 <View
                     android:layout_width="match_parent"

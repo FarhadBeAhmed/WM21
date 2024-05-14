@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.UpdateQty;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnUpdateQtyRequestComplete;
+import co.wm21.https.interfaces.OnUpdateQtyView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeUpdateQtyApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class UpdateQtyPresenter {
+    OnUpdateQtyView updateQtyView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public UpdateQtyPresenter(OnUpdateQtyView updateQtyView) {
+        this.updateQtyView = updateQtyView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void UpdateQtyDataLoad(String userId,String pId,String color,String size,int qty,int type) {
+        updateQtyView.onUpdateQtyStartLoading();
+        new InvokeUpdateQtyApi(userId,pId,color,size,qty,type, new OnUpdateQtyRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onUpdateQtyRequestComplete(Object obj) {
+                updateQtyView.onUpdateQtyStopLoading();
+                updateQtyView.onUpdateQtyDataLoad((UpdateQty) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onUpdateQtyRequestError(String errMsg) {
+                updateQtyView.onUpdateQtyStopLoading();
+                updateQtyView.onUpdateQtyShowMessage(errMsg);
             }
         });
     }

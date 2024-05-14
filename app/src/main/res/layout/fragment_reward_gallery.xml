@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F7F5F5"
-    tools:context=".fragments.RewardGalleryFragment">
+    tools:context=".fragments.member.RewardGalleryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rewardGallery"

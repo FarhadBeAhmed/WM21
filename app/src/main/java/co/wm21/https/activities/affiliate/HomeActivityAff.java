@@ -27,20 +27,18 @@ import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.R;
 import co.wm21.https.SliderItem;
-import co.wm21.https.activities.MainActivity;
 import co.wm21.https.activities.mlm.ProfileActivity;
 import co.wm21.https.adapters.SliderAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.ActivityHomeAffiliateBinding;
 import co.wm21.https.fragments.member.FlexiloadFragment;
-import co.wm21.https.fragments.member.ProfileFragment;
 import co.wm21.https.fragments.member.mlm.MlmFragment;
 import co.wm21.https.fragments.member.verifications.VerifyAccountFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivityAff extends AppCompatActivity {
 
     ActivityHomeAffiliateBinding binding;
     List<SliderItem> sliderItemList;

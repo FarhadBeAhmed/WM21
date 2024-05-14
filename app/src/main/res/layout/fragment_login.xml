@@ -4,36 +4,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <ScrollView
         android:id="@+id/loginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".fragments.LoginFragment">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="50dp">
+                android:padding="30dp">
 
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/img_logo_red"
-                    android:layout_marginVertical="10dp"/>
+                    android:src="@drawable/img_logo_red"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:paddingVertical="10dp"
                     android:text="@string/sign_in"
                     android:textAlignment="center"
                     android:textAllCaps="true"
@@ -42,27 +38,32 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/username"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    app:hintEnabled="false">
+                    android:background="@drawable/bg_login_btn"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:paddingBottom="5dp"
+                    android:hint="User id"
+                    app:boxStrokeWidth="1.5dp"
+                    app:boxStrokeWidthFocused=".5dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_btn"
-                        android:backgroundTint="#FFC9C9"
                         android:drawableStart="@drawable/ic_user"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="5dp"
                         android:drawableTint="@color/primary_red"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Username"
-                        android:paddingVertical="13dp"
                         android:inputType="textWebEditText"
                         android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/text_color" />
+                        android:paddingStart="10dp"
+                        android:textColor="@color/text_color"
+                        tools:ignore="RtlSymmetry,UnusedAttribute" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -70,29 +71,34 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_login_btn"
+                    app:boxStrokeColor="@color/primary_red"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    android:hint="Password"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused=".5dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:passwordToggleEnabled="true"
+                    tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_btn"
-                        android:backgroundTint="#FFC9C9"
                         android:drawableStart="@drawable/ic_lock"
                         android:drawablePadding="16dp"
                         android:drawableTint="@color/primary_red"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Password"
                         android:inputType="textPassword"
-                        android:paddingVertical="12dp"
-                        android:paddingStart="25dp"
+                        android:paddingStart="10dp"
                         android:paddingEnd="20dp"
                         android:maxLines="1"
                         android:textColor="@color/text_color"
-                        tools:ignore="RtlSymmetry" />
+                        tools:ignore="RtlSymmetry,UnusedAttribute" />
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <!--android:backgroundTint="#FFC9C9"-->
 
 
                 <RelativeLayout
@@ -107,7 +113,8 @@
                         android:checked="true"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Remember me"
-                        android:layout_alignParentStart="true"/>
+                        android:layout_alignParentStart="true"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -116,7 +123,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:textColor="@color/primary_red"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:fontFamily="@font/poppins_medium"
+                        tools:ignore="HardcodedText" />
                 </RelativeLayout>
 
 
@@ -124,8 +132,7 @@
                     android:id="@+id/btnSignIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:background="@drawable/bg_round_btn"
+                    android:background="@drawable/bg_login_btn"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:text="Sign In"
@@ -141,9 +148,10 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/poppins_medium"
-                        android:paddingStart="8dp"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center"
                         android:text="@string/don_t_have_account"
                         android:textColor="@color/text_color" />
 
@@ -153,8 +161,10 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:padding="8dp"
+                        android:gravity="center"
                         android:text="Register"
-                        android:textColor="@color/primary_red" />
+                        android:textColor="@color/primary_red"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -216,6 +226,5 @@
 
                 <!--                </LinearLayout>-->
             </LinearLayout>
-        </ScrollView>
-    </FrameLayout>
+    </ScrollView>
 </layout>

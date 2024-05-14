@@ -1,11 +1,13 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnTSNFCategoryDetailsListView;
-import com.wm21ltd.wm21.interfaces.OnTSNFCategoryDetailsRequestComplete;
-import com.wm21ltd.wm21.networks.Models.TSNFCategoryDetailsListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeTSNFCategoryDetailsApi;
+
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TSNFCategoryDetailsListModel;
+import co.wm21.https.interfaces.OnTSNFCategoryDetailsListView;
+import co.wm21.https.interfaces.OnTSNFCategoryDetailsRequestComplete;
+import co.wm21.https.serviceapis.InvokeTSNFCategoryDetailsApi;
 
 public class TSNFCategoryDetailsPresenter {
     private OnTSNFCategoryDetailsListView onTSNFCategoryDetailsListView;

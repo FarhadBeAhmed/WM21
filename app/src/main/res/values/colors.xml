@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_red">#FE0000</color>
+    <color name="colorPrimaryDark">#7E0303</color>
     <color name="primary_blue">#0061A3</color>
 
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="semi_trans">#46FFFFFF</color>
+    <color name="semi_gray">#D5D5D5</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="gray">#939393</color>
-<!--    <color name="light_gray">#DEDEDE</color>-->
+    <color name="gray_light">#DADADA</color>
+    <color name="gray_text">#636363</color>
     <color name="light_gray">#BCBCBC</color>
+    <color name="lightGrey">#858585</color>
     <color name="ice_blue">#E2E7EB</color>
-
-    <!--    <color name="background_color">#6F6F6F</color>-->
-    <!--    <color name="text_color">@color/white</color>-->
-    <!--    <color name="card_background_color">@color/black</color>-->
-    <!--    <color name="background_color">#FAFDFA</color>-->
+    <color name="green">#14B100</color>
+    <color name="orange">#f6ac00</color>
+    <color name="drawerLineColor">#94797878</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <color name="background_color">#FAFDFA</color>
     <color name="text_color">@color/black</color>
+    <color name="text_color2">#545454</color>
     <color name="text_color_invert">@color/white</color>
     <color name="card_background_color">@color/white</color>
+    <color name="status_bar_shadow">#E82C0C</color>
+    <color name="light_red2">#E87979</color>
+    <color name="drawerBg">#404040</color>
 
     <color name="light_red">#F14242</color>
     <color name="purple_200">#FFBB86FC</color>
@@ -30,4 +39,11 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="profileTxtColor">#323232</color>
+
+    <color name="pending">#DE00FF</color>
+    <color name="success">#60C36A</color>
+    <color name="cancelled">#FF0000</color>
+    <color name="failed">#FF00C0</color>
+    <color name="waiting">#FF8000</color>
 </resources>

@@ -1,9 +1,10 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
-import com.wm21ltd.wm21.interfaces.OnDivisionListRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnDivisionListView;
-import com.wm21ltd.wm21.serviceapis.InvokeDivisionListApi;
+
+import co.wm21.https.interfaces.OnDivisionListRequestComplete;
+import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
 public class DivisionListPresenter {
     OnDivisionListView mView;

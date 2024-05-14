@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:paddingHorizontal="@dimen/_10ssp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/bloggerImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:src="@drawable/pjimage_4_3"
+        android:scaleType="fitCenter"
+        />
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingVertical="@dimen/_5sdp"
+        tools:ignore="HardcodedText" />
+
+    <io.github.glailton.expandabletextview.ExpandableTextView
+        android:id="@+id/text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/black"
+        expandableTextView:collapsedLines="3"
+        expandableTextView:animDuration="500"
+        expandableTextView:readMoreText="see more"
+        expandableTextView:readLessText="see less"
+        expandableTextView:textMode="line"
+        expandableTextView:isExpanded="false"
+        android:text="@string/katherine" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            android:paddingHorizontal="@dimen/_5ssp"
+            />
+        <TextView
+            android:id="@+id/bloggerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Md. X Sarker"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/blogDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12-11-2022"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            android:paddingHorizontal="@dimen/_5ssp"
+            />
+
+    </LinearLayout>
+</LinearLayout>

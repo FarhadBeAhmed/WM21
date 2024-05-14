@@ -1,6 +1,4 @@
-package com.wm21ltd.wm21.interfaces;
-
-import java.util.List;
+package co.wm21.https.interfaces;
 
 public interface OnMemberDetailsView {
     void onResponseData(Object object);

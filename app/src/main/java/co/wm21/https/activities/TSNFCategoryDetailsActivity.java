@@ -1,30 +1,32 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.TSNFCategoryDetailsAdapter;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnTSNFApplyClickListener;
-import com.wm21ltd.wm21.interfaces.OnTSNFCategoryDetailsListView;
-import com.wm21ltd.wm21.networks.Models.TSNFCategoryDetailsListModel;
-import com.wm21ltd.wm21.presenters.TSNFCategoryDetailsPresenter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TSNFCategoryDetailsListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.TSNFCategoryDetailsAdapter;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnTSNFApplyClickListener;
+import co.wm21.https.interfaces.OnTSNFCategoryDetailsListView;
+import co.wm21.https.presenter.TSNFCategoryDetailsPresenter;
 
 public class TSNFCategoryDetailsActivity extends AppCompatActivity implements OnTSNFCategoryDetailsListView, OnTSNFApplyClickListener {
 

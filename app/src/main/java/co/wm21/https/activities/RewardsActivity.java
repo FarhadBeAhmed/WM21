@@ -1,23 +1,25 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.ViewPagerAdapter;
-import com.wm21ltd.wm21.fragments.RewardAchievementFragment;
-import com.wm21ltd.wm21.fragments.RewardFundFragment;
-import com.wm21ltd.wm21.fragments.RewardGalleryFragment;
-import com.wm21ltd.wm21.fragments.RewardPolicyFragment;
-import com.wm21ltd.wm21.fragments.RewardRegistrationFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import co.wm21.https.R;
+import co.wm21.https.adapters.ViewPagerAdapter;
+import co.wm21.https.fragments.member.RewardAchievementFragment;
+import co.wm21.https.fragments.member.RewardFundFragment;
+import co.wm21.https.fragments.member.RewardGalleryFragment;
+import co.wm21.https.fragments.member.RewardPolicyFragment;
+import co.wm21.https.fragments.member.RewardRegistrationFragment;
 
 public class RewardsActivity extends AppCompatActivity {
 
@@ -32,9 +34,10 @@ public class RewardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reward);
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar_shadow));
         }
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_reward);
         setSupportActionBar(myToolbar);

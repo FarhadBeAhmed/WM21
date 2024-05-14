@@ -1,4 +1,4 @@
-package com.app_99recharge.view.adaptars;
+package co.wm21.https.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,10 +10,10 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app_99recharge.R;
-import com.app_99recharge.service.model.responseBody.RechargeHistoryData;
-
 import java.util.ArrayList;
+
+import co.wm21.https.FHelper.networks.Models.RechargeHistoryData;
+import co.wm21.https.R;
 
 public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistoryAdapter.ViewHolder> {
 

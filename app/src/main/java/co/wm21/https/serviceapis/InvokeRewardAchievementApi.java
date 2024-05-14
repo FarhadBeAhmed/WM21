@@ -1,11 +1,12 @@
-package com.wm21ltd.wm21.serviceapis;
+package co.wm21.https.serviceapis;
 
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnRewardAchievementRequestComplete;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.RewardAchievementDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
 
+
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.RewardAchievementDataModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.interfaces.OnRewardAchievementRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,7 +17,7 @@ public class InvokeRewardAchievementApi {
     public InvokeRewardAchievementApi(String userID, final OnRewardAchievementRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
         mApiService.getRewardAchievementList(userID).enqueue(new Callback<RewardAchievementDataModel>() {
             @Override
             public void onResponse(Call<RewardAchievementDataModel> call, Response<RewardAchievementDataModel> response) {

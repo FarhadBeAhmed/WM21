@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.OrderConfirmModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnOrderConfirmRequestComplete;
+import co.wm21.https.interfaces.OnOrderConfirmView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeOrderConfirmApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class OrderConfirmPresenter {
+    OnOrderConfirmView onOrderConfirmView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public OrderConfirmPresenter(OnOrderConfirmView onOrderConfirmView) {
+        this.onOrderConfirmView = onOrderConfirmView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void orderConfirmDataLoad(String userId, String eshop,String shipping,String address,int adjust) {
+        onOrderConfirmView.onOrderConfirmStartLoading();
+        new InvokeOrderConfirmApi(userId,eshop,shipping,address,adjust, new OnOrderConfirmRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onOrderConfirmRequestComplete(Object obj) {
+                onOrderConfirmView.onOrderConfirmStopLoading();
+                onOrderConfirmView.onOrderConfirmDataLoad((OrderConfirmModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onOrderConfirmRequestError(String errMsg) {
+                onOrderConfirmView.onOrderConfirmStopLoading();
+                onOrderConfirmView.onOrderConfirmShowMessage(errMsg);
             }
         });
     }

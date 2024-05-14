@@ -6,11 +6,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.RegisterFragment">
+        tools:context=".fragments.registration.RegisterFragment">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -20,49 +21,116 @@
                 android:paddingHorizontal="40dp"
                 android:paddingVertical="16dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/verificationCode"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_logo_red"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingTop="10dp"
+                    android:text="@string/sign_up"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_color"
+                    android:textSize="35sp" />
+
+                
+
+                <com.chaos.view.PinView
+                    android:visibility="gone"
+                    android:id="@+id/pinView"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:hint="00000"
+                    android:inputType="number"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/text_color2"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:cursorColor="@color/primary_red"
+                    app:cursorWidth="2dp"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="5"
+                    app:itemHeight="@dimen/_38sdp"
+                    app:itemRadius="@dimen/_5sdp"
+                    app:itemSpacing="@dimen/_5sdp"
+                    app:itemWidth="@dimen/_38sdp"
+                    app:lineColor="@color/primary_red"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/verificationCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:paddingVertical="5dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
                     android:layout_marginVertical="10dp"
                     android:visibility="gone">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/verEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="Validation Code"
                         android:inputType="numberSigned"
-                        android:maxLength="5" />
+                        android:maxLength="5"
+                        tools:ignore="HardcodedText" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused=".5dp"
+                    android:background="@drawable/bg_login_btn"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:paddingVertical="5dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
                     android:layout_marginVertical="10dp">
 
                     <AutoCompleteTextView
                         android:id="@+id/selectCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_btn"
-                        android:backgroundTint="#FFC9C9"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="Country"
+                        android:inputType="none"
+                        android:layout_marginTop="5dp"
                         android:paddingVertical="16dp"
                         android:paddingStart="20dp"
-                        android:paddingEnd="20dp" />
+                        android:paddingEnd="20dp"
+                        tools:ignore="HardcodedText" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/referId"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                    android:layout_width="match_parent"
+                    app:boxCornerRadiusTopStart="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:paddingVertical="3dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:visibility="gone">
@@ -71,33 +139,49 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Refer ID" />
+                        android:hint="Refer ID"
+                        tools:ignore="HardcodedText" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/applicantName"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    app:boxCornerRadiusTopStart="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:paddingVertical="3dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Applicant Name" />
+                        android:hint="Applicant Name"
+                        tools:ignore="HardcodedText" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/applicantMobile"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:visibility="gone">
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused=".5dp"
+                    android:background="@drawable/bg_login_btn"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:paddingVertical="5dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    android:visibility="gone"
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -110,9 +194,14 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/applicantEmail"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxCornerRadiusTopStart="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:paddingVertical="3dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
                     android:layout_marginVertical="10dp"
                     android:visibility="gone">
 
@@ -126,36 +215,29 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/division"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    app:boxCornerRadiusTopStart="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:paddingVertical="3dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    >
 
                     <AutoCompleteTextView
                         android:id="@+id/selectDivision"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Division/State/Province/Zone" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:visibility="gone"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:hint="Desire Password"
-                        android:inputType="textPassword" />
+                        android:hint="Division/State/Province/Zone"
+                        android:inputType="none"
+                        android:layout_marginTop="5dp"
+                        android:paddingVertical="16dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,7 +251,8 @@
                     android:paddingVertical="5dp"
                     android:text="Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy."
                     android:visibility="gone"
-                    app:lineHeight="20dp" />
+                    app:lineHeight="20dp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/agreePrivacyPolicy"
@@ -187,7 +270,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:background="@drawable/bg_round_btn"
+                    android:background="@drawable/bg_login_btn"
                     android:backgroundTint="@color/primary_blue"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
@@ -223,65 +306,7 @@
                         android:textColor="@color/primary_red" />
                 </LinearLayout>
 
-                <!--                <TextView-->
-                <!--                    android:id="@+id/signUpWithSocial"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginVertical="10dp"-->
-                <!--                    android:fontFamily="@font/poppins_medium"-->
-                <!--                    android:gravity="center_horizontal"-->
-                <!--                    android:text="@string/sign_up_with_social_account"-->
-                <!--                    android:textAlignment="center" />-->
 
-                <!--                <LinearLayout-->
-                <!--                    android:id="@+id/socials"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginVertical="10dp"-->
-                <!--                    android:orientation="horizontal">-->
-
-                <!--                    <Space-->
-                <!--                        android:layout_width="0dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_weight="1" />-->
-
-                <!--                    <ImageView-->
-                <!--                        android:layout_width="50dp"-->
-                <!--                        android:layout_height="50dp"-->
-                <!--                        android:background="@drawable/bg_facebook_circle"-->
-                <!--                        android:padding="13dp"-->
-                <!--                        app:srcCompat="@drawable/ic_facebook"-->
-                <!--                        app:tint="#1b4f9b" />-->
-
-                <!--                    <Space-->
-                <!--                        android:layout_width="13dp"-->
-                <!--                        android:layout_height="wrap_content" />-->
-
-                <!--                    <ImageView-->
-                <!--                        android:layout_width="50dp"-->
-                <!--                        android:layout_height="50dp"-->
-                <!--                        android:background="@drawable/bg_twitter_circle_outline"-->
-                <!--                        android:padding="13dp"-->
-                <!--                        app:srcCompat="@drawable/ic_twitter"-->
-                <!--                        app:tint="#00adef" />-->
-
-                <!--                    <Space-->
-                <!--                        android:layout_width="13dp"-->
-                <!--                        android:layout_height="wrap_content" />-->
-
-                <!--                    <ImageView-->
-                <!--                        android:layout_width="50dp"-->
-                <!--                        android:layout_height="50dp"-->
-                <!--                        android:background="@drawable/bg_google_circle"-->
-                <!--                        android:padding="13dp"-->
-                <!--                        app:srcCompat="@drawable/ic_google"-->
-                <!--                        app:tint="#dd4b39" />-->
-
-                <!--                    <Space-->
-                <!--                        android:layout_width="0dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_weight="1" />-->
-                <!--                </LinearLayout>-->
             </LinearLayout>
         </ScrollView>
     </FrameLayout>

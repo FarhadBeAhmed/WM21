@@ -3,34 +3,34 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.AppliedProductModelHead;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.TopSellingProModel;
 import co.wm21.https.interfaces.OnAppliedProductsRequestComplete;
 import co.wm21.https.interfaces.OnAppliedProductsView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnTopSellingProRequestComplete;
+import co.wm21.https.interfaces.OnTopSellingProView;
 import co.wm21.https.serviceapis.InvokeAppliedProductsApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeTopSellingProApi;
 
-public class AppliedProductsPresenter {
-    OnAppliedProductsView productsView;
+public class TopSellingProPresenter {
+    OnTopSellingProView topSellingProView;
 
-    public AppliedProductsPresenter(OnAppliedProductsView productsView) {
-        this.productsView = productsView;
+    public TopSellingProPresenter(OnTopSellingProView topSellingProView) {
+        this.topSellingProView = topSellingProView;
     }
 
-    public void appliedProductsDataLoad(String user_id) {
-        productsView.onAppliedProductsStartLoading();
-        new InvokeAppliedProductsApi(user_id, new OnAppliedProductsRequestComplete() {
+    public void topSellingProDataLoad() {
+        topSellingProView.onTopSellingProStartLoading();
+        new InvokeTopSellingProApi( new OnTopSellingProRequestComplete() {
             @Override
-            public void onAppliedProductsRequestComplete(Object obj) {
-                productsView.onAppliedProductsStopLoading();
-                productsView.onAppliedProductsDataLoad((AppliedProductModelHead) obj);
+            public void onTopSellingProRequestComplete(Object obj) {
+                topSellingProView.onTopSellingProStopLoading();
+                topSellingProView.onTopSellingProDataLoad((List<TopSellingProModel>) obj);
             }
 
             @Override
-            public void onAppliedProductsRequestError(String errMsg) {
-                productsView.onAppliedProductsStopLoading();
-                productsView.onAppliedProductsShowMessage(errMsg);
+            public void onTopSellingProRequestError(String errMsg) {
+                topSellingProView.onTopSellingProStopLoading();
+                topSellingProView.onTopSellingProShowMessage(errMsg);
             }
         });
     }

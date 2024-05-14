@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import co.wm21.https.R;
+
 public class ManageOrdersActivity extends AppCompatActivity {
 
     @Override

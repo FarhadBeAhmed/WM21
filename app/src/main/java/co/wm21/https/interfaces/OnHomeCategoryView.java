@@ -1,17 +1,16 @@
 package co.wm21.https.interfaces;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.SliderItem;
+import co.wm21.https.adapters.category.CategoryView;
 
-public interface OnHomeTopSliderImageView {
-    void onHomeSliderDataLoaded(List<SliderItem> sliderItem);
+public interface OnHomeCategoryView {
+    void onHomeCategoryDataLoaded(List<CategoryView> sliderItem);
 
-    void onHomeSliderDataStartLoading();
+    void onHomeCategoryDataStartLoading();
 
-    void onHomeSliderDataStopLoading();
+    void onHomeCategoryDataStopLoading();
 
-    void onHomeSliderDataShowMessage(String errMsg);
+    void onHomeCategoryDataShowMessage(String errMsg);
 }

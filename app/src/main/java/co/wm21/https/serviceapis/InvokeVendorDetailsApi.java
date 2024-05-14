@@ -1,43 +1,41 @@
 package co.wm21.https.serviceapis;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
+import co.wm21.https.FHelper.networks.Models.VendorDetailsModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
+import co.wm21.https.interfaces.OnVendorDetailsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeBlogListApi {
-    OnBlogListRequestComplete requestComplete;
+public class InvokeVendorDetailsApi {
+    OnVendorDetailsRequestComplete requestComplete;
 
-    public InvokeBlogListApi(int limit, final OnBlogListRequestComplete requestComplete) {
+    public InvokeVendorDetailsApi(String id, final OnVendorDetailsRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.getAllBlogs(limit).enqueue(new Callback<BlogsModelHead>() {
+        mApiService.getVendorDetails(id).enqueue(new Callback<VendorDetailsModelHead>() {
             @Override
-            public void onResponse(Call<BlogsModelHead> call, Response<BlogsModelHead> response) {
+            public void onResponse(Call<VendorDetailsModelHead> call, Response<VendorDetailsModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onBlogListRequestComplete(response.body().getBlogsModelList());
+                        requestComplete.onVendorDetailsRequestComplete(response.body().getData());
                     } else {
-                        requestComplete.onBlogListRequestError(response.body().getErrorReport());
+                        requestComplete.onVendorDetailsRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onBlogListRequestError("Something Went Wrong!");
+                    requestComplete.onVendorDetailsRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
-            public void onFailure(Call<BlogsModelHead> call, Throwable t) {
-                requestComplete.onBlogListRequestError("Something Went Wrong!");
+            public void onFailure(Call<VendorDetailsModelHead> call, Throwable t) {
+                requestComplete.onVendorDetailsRequestError("Something Went Wrong!");
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.FHelper.networks.Models;
 
 import java.io.Serializable;
 

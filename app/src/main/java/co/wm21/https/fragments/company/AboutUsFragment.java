@@ -1,66 +1,194 @@
 package co.wm21.https.fragments.company;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import co.wm21.https.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AboutUsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.R;
+import co.wm21.https.adapters.TeamLeadersAdapter;
+import co.wm21.https.databinding.FragmentAboutUsBinding;
+import co.wm21.https.model.TeamLeadersModel;
+
+
 public class AboutUsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FragmentAboutUsBinding binding;
+    ArrayList<TeamLeadersModel> teamLeaders;
 
-    public AboutUsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AboutUsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AboutUsFragment newInstance(String param1, String param2) {
-        AboutUsFragment fragment = new AboutUsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentAboutUsBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Picasso.get().load(ConstantValues.web_url + "assets/images/shop/banner2.jpg").into(binding.header.headImage);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
+
+        binding.footerId.MyAccExpandableLayout.collapse();
+        binding.footerId.CustomerExpandableLayout.collapse();
+        binding.footerId.infoExpandableLayout.collapse();
+
+        binding.whoWeAreExpandableLayout.collapse();
+        binding.omExpandableLayout.collapse();
+        binding.ovExpandableLayout.collapse();
+        binding.oevExpandableLayout.collapse();
+        binding.osExpandableLayout.collapse();
+        binding.olExpandableLayout.collapse();
+        binding.ompExpandableLayout.collapse();
+        binding.smExpandableLayout.collapse();
+
+        binding.footerId.footerCompany.setOnClickListener(v -> {
+            if (binding.footerId.infoExpandableLayout.isExpanded()) {
+                binding.footerId.infoExpandableLayout.collapse();
+                binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.footerId.infoExpandableLayout.expand();
+                binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.footerId.footerMyAccount.setOnClickListener(v -> {
+            if (binding.footerId.MyAccExpandableLayout.isExpanded()) {
+                binding.footerId.MyAccExpandableLayout.collapse();
+                binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.footerId.MyAccExpandableLayout.expand();
+                binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.footerId.footerCustomer.setOnClickListener(v -> {
+            if (binding.footerId.CustomerExpandableLayout.isExpanded()) {
+                binding.footerId.CustomerExpandableLayout.collapse();
+                binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.footerId.CustomerExpandableLayout.expand();
+                binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+
+        binding.whoWeAre.setOnClickListener(v -> {
+            if (binding.whoWeAreExpandableLayout.isExpanded()) {
+                binding.whoWeAreExpandableLayout.collapse();
+                binding.whoWeAreExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.whoWeAreExpandableLayout.expand();
+                binding.whoWeAreExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.ourMission.setOnClickListener(v -> {
+            if (binding.omExpandableLayout.isExpanded()) {
+                binding.omExpandableLayout.collapse();
+                binding.omExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.omExpandableLayout.expand();
+                binding.omExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.ourVision.setOnClickListener(v -> {
+            if (binding.ovExpandableLayout.isExpanded()) {
+                binding.ovExpandableLayout.collapse();
+                binding.ovExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.ovExpandableLayout.expand();
+                binding.ovExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.ethicsAndValues.setOnClickListener(v -> {
+            if (binding.oevExpandableLayout.isExpanded()) {
+                binding.oevExpandableLayout.collapse();
+                binding.oevExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.oevExpandableLayout.expand();
+                binding.oevExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.ourSpeciality.setOnClickListener(v -> {
+            if (binding.osExpandableLayout.isExpanded()) {
+                binding.osExpandableLayout.collapse();
+                binding.osExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.osExpandableLayout.expand();
+                binding.osExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.ourLegality.setOnClickListener(v -> {
+            if (binding.olExpandableLayout.isExpanded()) {
+                binding.olExpandableLayout.collapse();
+                binding.olExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.olExpandableLayout.expand();
+                binding.olExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.onlineMarketPlace.setOnClickListener(v -> {
+            if (binding.ompExpandableLayout.isExpanded()) {
+                binding.ompExpandableLayout.collapse();
+                binding.ompExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.ompExpandableLayout.expand();
+                binding.ompExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+        binding.salesManagement.setOnClickListener(v -> {
+            if (binding.smExpandableLayout.isExpanded()) {
+                binding.smExpandableLayout.collapse();
+                binding.smExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+            } else {
+                binding.smExpandableLayout.expand();
+                binding.smExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+            }
+        });
+
+
+        teamLeaders = new ArrayList<>(Arrays.asList(
+                new TeamLeadersModel("Uttam kumar", "Chief Coordinator", "9.jpg"),
+                new TeamLeadersModel("Feroz al Mamun", "Coordinator, Tour", "10.jpg"),
+                new TeamLeadersModel("Anowar Hossain", "Coordinator, Finance", "11.jpg"),
+                new TeamLeadersModel("Md Saogat Hossain", "Coordinator, Marketing", "3.jpg"),
+                new TeamLeadersModel("Alamgir Hossain", "Zonal Admin, Dhaka", "4.jpg"),
+                new TeamLeadersModel("Jakariea Chowdhury", "Zonal Admin, Rajshahi", "5.jpg"),
+                new TeamLeadersModel("Akbar Hussain", "Zonal Admin, Sylhet", "6.jpg"),
+                new TeamLeadersModel("MD Abu Sayed", "Zonal Admin, Chittagong", "7.jpg"),
+                new TeamLeadersModel("Khalid Hasan", "Zonal Admin, Khulna", "8.jpg"),
+                new TeamLeadersModel("Mazharul Islam", "Zonal Admin, Cumilla", "12.jpg"),
+                new TeamLeadersModel("Biplop Hossain", "Zonal Admin, Faridpur", "13.jpg"),
+                new TeamLeadersModel("Mizanur Rahman", "Zonal Admin, Mymensingh", "14.jpg"),
+                new TeamLeadersModel("Hamidul Islam Jewel", "Zonal Admin, Bogura", "15.jpg"),
+                new TeamLeadersModel("Humayun Kabir", "Zonal Admin, Rangpur", "16.jpg"),
+                new TeamLeadersModel("Md Azadul Haque", "Zonal Admin, Barisal", "17.jpg")
+        ));
+        binding.teamLeadersRecView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        binding.teamLeadersRecView.setAdapter(new TeamLeadersAdapter(getContext(),teamLeaders, R.layout.layout_item_team_leader));
+
+        binding.footerId.aboutUs.setOnClickListener(view1 -> {
+            switchFragment(new AboutUsFragment(),"AboutUsFragment");
+        });
+        binding.footerId.contactUs.setOnClickListener(view1 -> {
+            switchFragment(new ContactUsFragment(),"ContactUsFragment");
+        });
+
+
+    }
+    public void switchFragment(Fragment fragment, String tag) {
+        FragmentManager fm = getFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();
+        fm.beginTransaction().replace(R.id.fragmentContainer, fragment, tag).addToBackStack(tag).commit();
     }
 }

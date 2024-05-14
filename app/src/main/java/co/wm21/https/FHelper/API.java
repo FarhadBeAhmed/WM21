@@ -1,460 +1,538 @@
-package https.outsourcingvilla.com;
+package co.wm21.https.FHelper;
 
 import androidx.annotation.NonNull;
 
-import com.android.volley.*;
+import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-import https.outsourcingvilla.com.Annotations.*;
+import co.wm21.https.FHelper.Annotations.Field;
+import co.wm21.https.FHelper.Annotations.RequestUrl;
+import co.wm21.https.FHelper.Annotations.SendMethod;
+import co.wm21.https.FHelper.networks.Models.AccountIncomeDataModel;
+import retrofit2.Call;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+
 
 public interface API {
+    @RequestUrl("apps/signUpFirstStep.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest signUpFirstStep(
+            @Field(ConstantValues.SignUp.MOBILE) String mobile,
+            @Field(ConstantValues.SignUp.COUNTRY) int country,
+            Response.Listener<JSONObject> listener);
 
     @RequestUrl("apps/login.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest login(@Field(ConstantValues.Login.USERNAME) String username,
-                            @Field(ConstantValues.Login.PASSWORD) String password,
-                            Response.Listener<JSONObject> listener);
+    JsonObjectRequest login(
+            @Field(ConstantValues.USERNAME) String username,
+            @Field(ConstantValues.PASSWORD) String password,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/signup.php")
+    @RequestUrl("apps/trees.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest signup(@Field(ConstantValues.ID) int id,
-                             @Field(ConstantValues.PASSWORD) String pass,
-                             @Field(ConstantValues.SignUp.COUNTRY) String country,
-                             @Field(ConstantValues.SignUp.PIN_CODE) String pinCode,
-                             @Field(ConstantValues.SignUp.REFERRAL) String referral,
-                             @Field(ConstantValues.SignUp.PLACEMENT) String placement,
-                             @Field(ConstantValues.SignUp.POSITION) String position,
-                             @Field(ConstantValues.SignUp.USER_ID) String userID,
-                             @Field(ConstantValues.SignUp.NAME) String name,
-                             @Field(ConstantValues.SignUp.PASSWORD) String password,
-                             @Field(ConstantValues.SignUp.PIN) String pin,
-                             @Field(ConstantValues.SignUp.MOBILE) String mobile,
-                             @Field(ConstantValues.SignUp.EMAIL) String email,
-                             Response.Listener<JSONObject> listener);
+    JsonObjectRequest getTreesData(
+            @Field(ConstantValues.ID) String id,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/product.php")
+    @RequestUrl("apps/generation.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest product(Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/buy_product.php")
+    JsonObjectRequest getGeneration(
+            @Field(ConstantValues.ID) String id,
+            Response.Listener<JSONObject> listener);
+    @RequestUrl("apps/reward_policy.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest buyProduct(@Field(ConstantValues.ID) int id,
-                                 @Field(ConstantValues.PASSWORD) String pass,
-                                 @Field(ConstantValues.Product.QUANTITY) String quantity,
-                                 @Field(ConstantValues.Product.PIN) String pin,
-                                 @Field(ConstantValues.Product.SERIAL) String serial,
-                                 Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/notice.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest notice(@Field(ConstantValues.ID) int id,
-                             @Field(ConstantValues.PASSWORD) String pass,
-                             Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/terms_and_condition.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest termsAndCondition(@Field(ConstantValues.ID) int id,
-                                        @Field(ConstantValues.PASSWORD) String pass,
-                                        Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/bal_info.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest balance(@Field(ConstantValues.ID) int id,
-                              @Field(ConstantValues.PASSWORD) String pass,
-                              Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/profile.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest profile(@Field(ConstantValues.ID) int id,
-                              @Field(ConstantValues.PASSWORD) String pass,
-                              Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/upload_photo.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest uploadPhoto(@Field(ConstantValues.ID) int id,
-                                  @Field(ConstantValues.PASSWORD) String pass,
-                                  @Field(ConstantValues.Profile.IMAGE) String image,
-                                  Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/profile_update.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest updateProfile(@Field(ConstantValues.ID) int id,
-                                    @Field(ConstantValues.PASSWORD) String pass,
-                                    @Field(ConstantValues.Profile.FULL_NAME) String fullName,
-                                    @Field(ConstantValues.Profile.FATHER_NAME) String fatherName,
-                                    @Field(ConstantValues.Profile.MOTHER_NAME) String motherName,
-                                    @Field(ConstantValues.Profile.MOBILE_NUMBER) String mobile,
-                                    @Field(ConstantValues.Profile.EMAIL_ADDRESS) String email,
-                                    @Field(ConstantValues.Profile.UNION) String union,
-                                    @Field(ConstantValues.Profile.THANA) String thana,
-                                    @Field(ConstantValues.Profile.DISTRICT) String district,
-                                    @Field(ConstantValues.Profile.DIVISION) String division,
-                                    @Field(ConstantValues.Profile.POST_CODE) String postCode,
-                                    @Field(ConstantValues.Profile.BIRTH) String birthDate,
-                                    @Field(ConstantValues.Profile.TYPE) String type,
-                                    @Field(ConstantValues.Profile.ADDRESS) String address,
-                                    @Field(ConstantValues.Profile.COUNTRY) String country,
-                                    @Field(ConstantValues.Profile.BANK_NAME) String bankName,
-                                    @Field(ConstantValues.Profile.BRANCH_NAME) String bankBranch,
-                                    @Field(ConstantValues.Profile.BANK_ACCOUNT_NO) String bankAccountNo,
-                                    @Field(ConstantValues.Profile.BANK_ACCOUNT_NAME) String bankaccountName,
-                                    @Field(ConstantValues.Profile.BKASH) String bKash,
-                                    @Field(ConstantValues.Profile.ROCKET) String rocket,
-                                    @Field(ConstantValues.Profile.NAGAD) String nagad,
-                                    Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/mobile_verification.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest mobileVerify(@Field(ConstantValues.ID) int id,
-                                   @Field(ConstantValues.PASSWORD) String pass,
-                                   @Field(ConstantValues.Profile.VEF) int vef,
-                                   @Field(ConstantValues.Profile.MOB) int mob,
-                                   @Field(ConstantValues.Profile.CODE2) String code2,
-                                   Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/package_details.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest packageDetails(@Field(ConstantValues.ID) int id,
-                                     @Field(ConstantValues.PASSWORD) String pass,
-                                     Response.Listener<JSONObject> listener);
-
-
-    @RequestUrl("apps/package_details.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest packageSubmit(@Field(ConstantValues.ID) int id,
-                                    @Field(ConstantValues.PASSWORD) String pass,
-                                    @Field(ConstantValues.SignUp.PIN) String pin,
-                                    @Field(ConstantValues.PACK) String pack,
-                                    Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/update_password.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest updateSecurity(@Field(ConstantValues.ID) int id,
-                                     @Field(ConstantValues.PASSWORD) String pass,
-                                     @Field(ConstantValues.Profile.PASSWORD_0) String currentPassword,
-                                     @Field(ConstantValues.Profile.PASSWORD_1) String newPassword,
-                                     @Field(ConstantValues.Profile.PASSWORD_2) String confirmPassword,
-                                     Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/update_pin.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest updatePin(@Field(ConstantValues.ID) int id,
-                                @Field(ConstantValues.PASSWORD) String pass,
-                                @Field(ConstantValues.Profile.PASSWORD_0) String currentPassword,
-                                @Field(ConstantValues.Profile.PASSWORD_1) String newPassword,
-                                @Field(ConstantValues.Profile.PASSWORD_2) String confirmPassword,
-                                Response.Listener<JSONObject> listener);
-
-   /* @NonNull
-    default JsonObjectRequest updateSecurity(int id,
-                                             String pass,
-                                             String currentPassword,
-                                             String newPassword,
-                                             String confirmPassword,
-                                             String updateType,
-                                             Response.Listener<JSONObject> listener) {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put(ConstantValues.ID, id)
-                      .put(ConstantValues.PASSWORD, pass)
-                      .put(ConstantValues.Profile.PASSWORD_0, currentPassword)
-                      .put(ConstantValues.Profile.PASSWORD_1, newPassword)
-                      .put(ConstantValues.Profile.PASSWORD_2, confirmPassword);
-        } catch (Exception e) { e.printStackTrace(); }
-        return new JsonObjectRequest(Request.Method.POST, ConstantValues.getFileNameAsHost("apps", "update_"+updateType + ".php"),
-                jsonObject, listener, Throwable::printStackTrace);
-    }*/
-
-    @RequestUrl("apps/verification.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest verification(@Field(ConstantValues.ID) int id,
-                                   @Field(ConstantValues.PASSWORD) String pass,
-                                   Response.Listener<JSONObject> listener);
+    JsonObjectRequest getRewardPolicy(Response.Listener<JSONObject> listener);
 
     @RequestUrl("apps/tree.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest teamTree(@Field(ConstantValues.ID) int id,
-                               @Field(ConstantValues.PASSWORD) String pass,
-                               @Field(ConstantValues.USER_ID) String userid,
-                               Response.Listener<JSONObject> listener);
+    JsonObjectRequest getTreeData(
+            @Field(ConstantValues.ID) String id,
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/agreement.php")
+
+    @RequestUrl("apps/accounts_income.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest agreement(@Field(ConstantValues.ID) int id,
-                                @Field(ConstantValues.PASSWORD) String pass,
-                                Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/signUp_reports_apps.php")
+    JsonObjectRequest getIncomeBalanceReportStatus(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+    
+    @RequestUrl("apps/accounts_expense.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest signUp_reports(@Field(ConstantValues.ID) int id,
-                                     @Field(ConstantValues.PASSWORD) String pass,
+    JsonObjectRequest getExpenseBalanceReportStatus(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/accounts.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest getIncomeStatus(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+    @RequestUrl("apps/accounts_income2.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest getIncomeBalanceReportStatus2(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/accounts_expense2.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest getExpenseBalanceReportStatus2(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/accounts2.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest getIncomeStatus2(
+            @Field(ConstantValues.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/tele_shop.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest teleShop(
+            @Field(ConstantValues.SHOP) int shop,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/more_products.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest moreProducts(
+            @Field(ConstantValues.VALUE) int value,
+            @Field(ConstantValues.ID) int id,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/blog_get.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest blogs(
+            @Field(ConstantValues.VALUE) int value,
+            Response.Listener<JSONObject> listener);
+    @RequestUrl("apps/blog_single.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest singleBlog(
+            @Field(ConstantValues.ID) String id,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/blog_get.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest allBlogs(Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/shops.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest premiumShop(
+            @Field(ConstantValues.SHOP) int shop,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/category.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest category(Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/signUpNumberVerify.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest signUpNumberVerify(
+            @Field(ConstantValues.SignUp.MOBILE) String mobile,
+            @Field(ConstantValues.SignUp.COUNTRY) int country,
+            @Field(ConstantValues.SignUp.CODE) int code,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/verification.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest verification(
+            @Field(ConstantValues.Login.USERNAME) String username,
+            @Field(ConstantValues.PASSWORD) String password,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/review_product.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest ratingReview(
+            @Field(ConstantValues.Login.USERNAME) String username,
+            @Field(ConstantValues.Product.PRODUCT_ID) String serial,
+            @Field(ConstantValues.Product.RATING) float rating,
+            @Field(ConstantValues.Product.REVIEW) String review,
+            Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/signUpFinal.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest signUpFinal(
+            @Field(ConstantValues.SignUp.MOBILE) String mobile,
+            @Field(ConstantValues.SignUp.NAME) String name,
+            @Field(ConstantValues.SignUp.REFER) String refer,
+            @Field(ConstantValues.SignUp.EMAIL) String email,
+            @Field(ConstantValues.SignUp.DIVISION) String division,
+            @Field(ConstantValues.SignUp.COUNTRY) String country,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/popularProduct.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest popularProduct(@Field(ConstantValues.PopularProduct.VALUES) int value,
+                                     Response.Listener<JSONObject> listener);
+    @RequestUrl("apps/shops_products.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest shopsProducts(@Field(ConstantValues.SHOP) int shop,
+                                    @Field(ConstantValues.Product.S_ID) int s_id,
                                      Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/agent_sign_report_apps.php")
+    @RequestUrl("apps/popularCategoryProduct.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest agent_sign_report(@Field(ConstantValues.ID) int id,
-                                        @Field(ConstantValues.PASSWORD) String pass,
-                                        Response.Listener<JSONObject> listener);
-
-
-    @RequestUrl("apps/withdrawDetails.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest withdrawDetails(@Field(ConstantValues.ID) int id,
-                                      @Field(ConstantValues.PASSWORD) String pass,
-                                      Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/fund.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest addFund(@Field(ConstantValues.ID) int id,
-                              @Field(ConstantValues.PASSWORD) String pass,
-                              @Field(ConstantValues.AddFund.PIN) String pin,
-                              @Field(ConstantValues.AddFund.METHOD) String method,
-                              @Field(ConstantValues.AddFund.AMOUNT) String amount,
-                              @Field(ConstantValues.AddFund.PDATE) String pdate,
-                              @Field(ConstantValues.AddFund.BANK_NAME) String bankname,
-                              @Field(ConstantValues.AddFund.BRANCH_NAME) String branchName,
-                              @Field(ConstantValues.AddFund.ACCOUNT_NO) String accountNum,
-                              @Field(ConstantValues.AddFund.ACCOUNT_NAME) String accountName,
-                              @Field(ConstantValues.AddFund.BKASH) String bkash,
-                              @Field(ConstantValues.AddFund.ROCKET) String rocket,
-                              @Field(ConstantValues.AddFund.NAGAD) String nagad,
-                              @Field(ConstantValues.AddFund.NETTLER) String nettler,
-                              @Field(ConstantValues.AddFund.PAYZA) String payza,
-                              @Field(ConstantValues.AddFund.SKRILL) String skrill,
-                              @Field(ConstantValues.AddFund.PAYPAL) String paypal,
-                              @Field(ConstantValues.AddFund.TRX) String trx,
-                              @Field(ConstantValues.AddFund.RECEIPT) String receipt,
-                              @Field(ConstantValues.AddFund.GATEWAY) String gateway,
-                              Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/transfer_bal.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest transfer(@Field(ConstantValues.ID) int id,
-                               @Field(ConstantValues.PASSWORD) String pass,
-                               @Field(ConstantValues.Transfer.TYPE) int type,
-                               @Field(ConstantValues.Transfer.AMOUNT) String amount,
-                               @Field(ConstantValues.Transfer.PIN) String pin,
-                               @Field(ConstantValues.Transfer.USER_ID) String userId,
-                               Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/withdraw.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest withdraw(@Field(ConstantValues.ID) int id,
-                               @Field(ConstantValues.PASSWORD) String pass,
-                               @Field(ConstantValues.Withdraw.METHOD) String method,
-                               @Field(ConstantValues.Withdraw.AGENT) String agent,
-                               @Field(ConstantValues.Withdraw.BANK_NAME) String bankname,
-                               @Field(ConstantValues.Withdraw.BRANCH_NAME) String branchName,
-                               @Field(ConstantValues.Withdraw.ACCOUNT_NO) String accountNum,
-                               @Field(ConstantValues.Withdraw.ACCOUNT_NAME) String accountName,
-                               @Field(ConstantValues.Withdraw.BKASH) String bKash,
-                               @Field(ConstantValues.Withdraw.ROCKET) String rocket,
-                               @Field(ConstantValues.Withdraw.NAGAD) String nagad,
-                               @Field(ConstantValues.Withdraw.AMOUNT) String amount,
-                               @Field(ConstantValues.Withdraw.PIN) String pin,
-                               Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/flexiload.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest flexiload(@Field(ConstantValues.ID) int id,
-                                @Field(ConstantValues.PASSWORD) String pass,
-                                @Field(ConstantValues.Flexiload.TYPE) String type,
-                                @Field(ConstantValues.Flexiload.MOBILE) String mobile,
-                                @Field(ConstantValues.Flexiload.AMOUNT) String amount,
-                                @Field(ConstantValues.Flexiload.PIN) String pin,
-                                Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/withdraw_agent.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest withdrawAgent(@Field(ConstantValues.ID) int id,
-                                    @Field(ConstantValues.PASSWORD) String pass,
-                                    Response.Listener<JSONObject> listener);
-
-    /*-------------------------ECOMMERCE FRAGMENT---------------------------*/
-
-    @RequestUrl("apps/ecommerce_invite.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest ecommerceInvite(@Field(ConstantValues.ID) int id,
-                                      @Field(ConstantValues.PASSWORD) String pass,
-                                      Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/ecommerce_guest_invite.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest ecommerceGuestInvite(@Field(ConstantValues.ID) int id,
-                                           @Field(ConstantValues.PASSWORD) String password,
-                                           @Field(ConstantValues.EcommerceInvite.GUEST_MOBILE) String mobile,
-                                           @Field(ConstantValues.EcommerceInvite.GUEST_NAME) String name,
-                                           @Field(ConstantValues.EcommerceInvite.PIN) String pincode,
-                                           Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/invitation_sms_confirm.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest invitation_sms_confirm(@Field(ConstantValues.ID) int id,
-                                             @Field(ConstantValues.PASSWORD) String password,
-                                             @Field(ConstantValues.EcommerceInvite.GUEST_MOBILE) String mobile,
-                                             @Field(ConstantValues.EcommerceInvite.GUEST_NAME) String name,
-                                             @Field(ConstantValues.EcommerceInvite.PIN) String pincode,
+    JsonObjectRequest popularCategoryProduct(@Field(ConstantValues.PopularProduct.VALUES) String value,
                                              Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/ecommerce_commission.php")
+    @RequestUrl("apps/top_selling_product.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest ecommerceCommission(@Field(ConstantValues.ID) int id,
-                                          @Field(ConstantValues.PASSWORD) String pass,
-                                          Response.Listener<JSONObject> listener);
+    JsonObjectRequest topSellingProduct(Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/invitation_deleteOrResend.php")
+    @RequestUrl("apps/hotProducts.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest invitation_delete(@Field(ConstantValues.ID) int id,
-                                        @Field(ConstantValues.PASSWORD) String pass,
-                                        @Field(ConstantValues.EcommerceInvite.GUEST_MOBILE) String mobile,
-                                        @Field(ConstantValues.EcommerceInvite.MESSAGE) String message,
-                                        Response.Listener<JSONObject> listener);
+    JsonObjectRequest hotProduct(Response.Listener<JSONObject> listener);
 
 
-    /*---------------------------GALLERY FRAGMENT---------------------------*/
-
-    @RequestUrl("apps/gallery_photo.php")
+    @RequestUrl("apps/apps_products.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest loadPhotoGallery(@Field(ConstantValues.ID) int id,
-                                       @Field(ConstantValues.PASSWORD) String pass,
-                                       Response.Listener<JSONObject> listener);
+    JsonObjectRequest apps_products(
+            @Field(ConstantValues.Categories.CAT_ID) String cat_id,
+            @Field(ConstantValues.Categories.SCAT_ID) String scat_id,
+            @Field(ConstantValues.Categories.BRAND_ID) String brand_id,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/gallery_video.php")
+    @RequestUrl("apps/apps_products.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest loadVideoGallery(@Field(ConstantValues.ID) int id,
-                                       @Field(ConstantValues.PASSWORD) String pass,
-                                       Response.Listener<JSONObject> listener);
+    JsonObjectRequest related_products(
+            @Field(ConstantValues.Categories.CAT_ID) String cat_id,
+            @Field(ConstantValues.Categories.SCAT_ID) String scat_id,
+            @Field(ConstantValues.Categories.BRAND_ID) String brand_id,
+            @Field(ConstantValues.VALUE) int value,
+            Response.Listener<JSONObject> listener);
 
-    /*-------------------------------REPORT-----------------------------------*/
-
-    @RequestUrl("apps/report/report_receive.php")
+    @RequestUrl("apps/ven_products.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest receiveReport(@Field(ConstantValues.ID) int id,
-                                    @Field(ConstantValues.PASSWORD) String pass,
-                                    Response.Listener<JSONObject> listener);
+    JsonObjectRequest ven_products(
+            @Field(ConstantValues.Login.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/fund_report.php")
+    @RequestUrl("apps/cart_items.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest addFundReport(@Field(ConstantValues.ID) int id,
-                                    @Field(ConstantValues.PASSWORD) String pass,
-                                    Response.Listener<JSONObject> listener);
+    JsonObjectRequest cartItems(
+            @Field(ConstantValues.Cart.DEVICE_ID) String u_id,
+            Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/transfer.php")
+    @RequestUrl("apps/balance.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest transferReport(@Field(ConstantValues.ID) int id,
-                                     @Field(ConstantValues.PASSWORD) String pass,
+    JsonObjectRequest allBalances(
+            @Field(ConstantValues.Login.USERNAME) String username,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/add_to_cart.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest addToCart(@Field(ConstantValues.Cart.PRODUCT_ID) String p_id,
+                                @Field(ConstantValues.Cart.DEVICE_ID) String u_id,
+                                @Field(ConstantValues.Cart.COLOR) String color,
+                                @Field(ConstantValues.Cart.SIZE) String size,
+                                @Field(ConstantValues.Cart.QUANTITY) int qty,
+                                Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/delete_cart_item.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest deleteFromCart(@Field(ConstantValues.Cart.SERIAL) String serial,
+                                     @Field(ConstantValues.Cart.TYPE) String type,
                                      Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/withdrawal.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest withdrawalReport(@Field(ConstantValues.ID) int id,
-                                       @Field(ConstantValues.PASSWORD) String pass,
-                                       Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/flexi.php")
+    @RequestUrl("apps/update_quantity.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest flexiloadReport(@Field(ConstantValues.ID) int id,
-                                      @Field(ConstantValues.PASSWORD) String pass,
-                                      @Field(ConstantValues.Report.Flexiload.OPERATOR) String operator,
-                                      @Field(ConstantValues.Report.Flexiload.STATUS) String status,
-                                      @Field(ConstantValues.Report.Flexiload.SEARCH) String search,
-                                      @Field(ConstantValues.Report.Flexiload.START_DATE) String startDate,
-                                      @Field(ConstantValues.Report.Flexiload.END_DATE) String endDate,
-                                      Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/referral_report.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest referralReport(@Field(ConstantValues.ID) int id,
-                                     @Field(ConstantValues.PASSWORD) String pass,
-                                     Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/refer_pool.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest referralProductReport(@Field(ConstantValues.ID) int id,
-                                            @Field(ConstantValues.PASSWORD) String pass,
-                                            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/global_pool.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest globalProductReport(@Field(ConstantValues.ID) int id,
-                                          @Field(ConstantValues.PASSWORD) String pass,
-                                          Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/salary_report.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest salaryReport(@Field(ConstantValues.ID) int id,
-                                   @Field(ConstantValues.PASSWORD) String pass,
-                                   Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/geminate_income.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest geminateIncomeReport(@Field(ConstantValues.ID) int id,
-                                           @Field(ConstantValues.PASSWORD) String pass,
-                                           Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/report/rank.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest rankReport(@Field(ConstantValues.ID) int id,
-                                 @Field(ConstantValues.PASSWORD) String pass,
+    JsonObjectRequest updateCart(@Field(ConstantValues.Cart.PRODUCT_ID) String p_id,
+                                 @Field(ConstantValues.Cart.DEVICE_ID) String u_id,
+                                 @Field(ConstantValues.Cart.COLOR) String color,
+                                 @Field(ConstantValues.Cart.SIZE) String size,
+                                 @Field(ConstantValues.Cart.QUANTITY) int qty,
+                                 @Field(ConstantValues.Cart.TYPE) int type,
                                  Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/promotional_incentive.php")
+    @RequestUrl("apps/app_checkout.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest promotionalIncentiveReport(@Field(ConstantValues.ID) int id,
-                                                 @Field(ConstantValues.PASSWORD) String pass,
-                                                 Response.Listener<JSONObject> listener);
+    JsonObjectRequest appCheckout(@Field(ConstantValues.USERNAME) String username,
+                                  @Field(ConstantValues.Cart.DEVICE_ID) String u_id,
+                                  Response.Listener<JSONObject> listener);
 
-    @RequestUrl("apps/report/marketing_incentive.php")
+    @RequestUrl("apps/categories.php")
     @SendMethod(Request.Method.POST)
     @NonNull
-    JsonObjectRequest marketingIncentiveReport(@Field(ConstantValues.ID) int id,
-                                               @Field(ConstantValues.PASSWORD) String pass,
-                                               Response.Listener<JSONObject> listener);
+    JsonObjectRequest categories(@Field(ConstantValues.Categories.ID) int id,
+                                 @Field(ConstantValues.Categories.CAT_ID) String cat_id,
+                                 Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/product_details.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest product_details(@Field(ConstantValues.Product.PRODUCT_ID) long serial,
+                                      Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/vendor_details.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest vendor_details(@Field(ConstantValues.vendor.VEN_ID) String id,
+                                     Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/customer_product_review.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest review(@Field(ConstantValues.Product.PRODUCT_ID) long serial,
+                                     Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/user_profile.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest profile(@Field(ConstantValues.USERNAME) String username,
+                              @Field(ConstantValues.PASSWORD) String password,
+                              Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/verify_number.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest mobileVerify(@Field(ConstantValues.USERNAME) String username,
+                                   @Field(ConstantValues.Verification.mobile.MOB) int mob,
+                                   @Field(ConstantValues.Verification.mobile.CODE2) String code2,
+                                   Response.Listener<JSONObject> listener
+    );
+
+    @RequestUrl("apps/update_password.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest updatePassword(@Field(ConstantValues.USERNAME) String username,
+                                     @Field(ConstantValues.PASSWORD) String password,
+                                     @Field(ConstantValues.NEW_PASSWORD) String new_password,
+                                     Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/all_locations.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest addresses(@Field(ConstantValues.ID) String id,
+                                @Field(ConstantValues.VALUE) String value,
+                                Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/slide.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest slide(Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/shopType.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest shopType(@Field(ConstantValues.Login.USERNAME) String username,
+                               @Field(ConstantValues.PASSWORD) String password,
+                               Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/order_eshop.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest order_eshop(@Field(ConstantValues.Login.USERNAME) String username,
+                                  @Field(ConstantValues.PASSWORD) String password,
+                                  @Field(ConstantValues.location.LOCATION) String location,
+                                  @Field(ConstantValues.location.LOCATION_TYPE) String locationType,
+                                  Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/order_placing.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest orderedProduct(@Field(ConstantValues.Login.USERNAME) String username,
+                                     @Field(ConstantValues.PASSWORD) String password,
+                                     Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/apply_datas.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest appliedProduct(@Field(ConstantValues.Login.USERNAME) String username,
+                                     @Field(ConstantValues.PASSWORD) String password,
+                                     Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/delivery_datas.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest deliveryProduct(@Field(ConstantValues.Login.USERNAME) String username,
+                                      @Field(ConstantValues.PASSWORD) String password,
+                                      Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/received_datas.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest receivedPro(@Field(ConstantValues.Login.USERNAME) String username,
+                                  @Field(ConstantValues.PASSWORD) String password,
+                                  Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/received_eCom_sign.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest eCom_sign(@Field(ConstantValues.Login.USERNAME) String username,
+                                @Field(ConstantValues.PASSWORD) String password,
+                                @Field(ConstantValues.Login.PIN) String pin,
+                                @Field(ConstantValues.applied.SERIAL) String serial,
+                                @Field(ConstantValues.applied.POSITION) int position,
+                                @Field(ConstantValues.applied.UPLINK) String uplink,
+                                Response.Listener<JSONObject> listener);
+    @RequestUrl("apps/receive_action.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest receive_action(@Field(ConstantValues.Login.USERNAME) String username,
+                                @Field(ConstantValues.PASSWORD) String password,
+                                @Field(ConstantValues.Login.PIN) String pin,
+                                @Field(ConstantValues.applied.SERIAL) String serial,
+                                @Field(ConstantValues.applied.ACTION) String action,
+                                Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/delivery_receive.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest deliveryReceive(@Field(ConstantValues.Login.USERNAME) String username,
+                                      @Field(ConstantValues.PASSWORD) String password,
+                                      @Field(ConstantValues.Login.PIN) String pin,
+                                      @Field(ConstantValues.applied.ACTION) String action,
+                                      @Field(ConstantValues.applied.SERIAL) String serial,
+                                      Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/delivery_receive.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest deliveryReturn(@Field(ConstantValues.Login.USERNAME) String username,
+                                     @Field(ConstantValues.PASSWORD) String password,
+                                     @Field(ConstantValues.applied.ACTION) String action,
+                                     @Field(ConstantValues.applied.SERIAL) String serial,
+                                     Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/delete_cart_item.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest deleteFromOrder(@Field(ConstantValues.Cart.SERIAL) String serial,
+                                      @Field(ConstantValues.Cart.TYPE) String type,
+                                      Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/order_update_quantity.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest updateOrder(@Field(ConstantValues.Cart.PRODUCT_ID) String p_id,
+                                  @Field(ConstantValues.USERNAME) String username,
+                                  @Field(ConstantValues.Cart.COLOR) String color,
+                                  @Field(ConstantValues.Cart.SIZE) String size,
+                                  @Field(ConstantValues.Cart.QUANTITY) int qty,
+                                  @Field(ConstantValues.Cart.TYPE) int type,
+                                  Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/order_confirm.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest orderConfirm(@Field(ConstantValues.USERNAME) String username,
+                                   @Field(ConstantValues.PASSWORD) String password,
+                                   @Field(ConstantValues.order.ESHOP) String eshop,
+                                   @Field(ConstantValues.order.SHIPPING) String shipping,
+                                   @Field(ConstantValues.order.ADDRESS) String address,
+                                   @Field(ConstantValues.order.ADJUST) int adjust,
+                                   Response.Listener<JSONObject> listener);
+
+
+    @RequestUrl("apps/update_profile.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest profileUpdateForVar(
+            @Field(ConstantValues.USERNAME) String username,
+            @Field(ConstantValues.PASSWORD) String password,
+            @Field(ConstantValues.profile.FATHER) String father,
+            @Field(ConstantValues.profile.MOTHER) String mother,
+            @Field(ConstantValues.profile.BIRTH) String birth,
+            @Field(ConstantValues.profile.GENDER) String gender,
+            @Field(ConstantValues.profile.BLOOD) String blood,
+            @Field(ConstantValues.profile.PROFESSION) String prof,
+            @Field(ConstantValues.profile.EDUCATION) String education,
+            @Field(ConstantValues.profile.RELIGION) String religion,
+            @Field(ConstantValues.profile.NOMINEE) String nominee,
+            @Field(ConstantValues.profile.NOMINEE_RELATION) String nomi_relation,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/update_contact.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest contactUpdateForVar(
+            @Field(ConstantValues.USERNAME) String username,
+            @Field(ConstantValues.PASSWORD) String password,
+            @Field(ConstantValues.profile.COUNTRY) String country,
+            @Field(ConstantValues.profile.DIVISION) String division,
+            @Field(ConstantValues.profile.DISTRICT) String district,
+            @Field(ConstantValues.profile.THANA) String thana,
+            @Field(ConstantValues.profile.UNION) String union,
+            @Field(ConstantValues.profile.WORD) String word,
+            @Field(ConstantValues.profile.ADDRESS) String address,
+            Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/send_OTP_code.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest sendOTPForGatewayVar(@Field(ConstantValues.USERNAME) String username,
+                                           @Field(ConstantValues.PASSWORD) String password,
+                                           Response.Listener<JSONObject> listener);
+
+    @RequestUrl("apps/update_gateway.php")
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonObjectRequest gatewayUpdateForVar(
+            @Field(ConstantValues.USERNAME) String username,
+            @Field(ConstantValues.PASSWORD) String password,
+            @Field(ConstantValues.profile.BKASH) String bkash,
+            @Field(ConstantValues.profile.ROCKET) String rocket,
+            @Field(ConstantValues.profile.NAGAD) String nagad,
+            @Field(ConstantValues.profile.BANK_NAME) String bankName,
+            @Field(ConstantValues.profile.ACCOUNT_NAME) String accountName,
+            @Field(ConstantValues.profile.ACCOUNT_NUMBER) String accountNo,
+            @Field(ConstantValues.profile.BRANCH_NAME) String branchName,
+            @Field(ConstantValues.profile.ROUTING) String routing,
+            @Field(ConstantValues.profile.CREDIT_CARD) String creditcard,
+            @Field(ConstantValues.profile.PAYPAL) String paypal,
+            @Field(ConstantValues.profile.SKRILL) String skrill,
+            @Field(ConstantValues.profile.BITCOIN) String bitcoin,
+            @Field(ConstantValues.profile.NETELLER) String neteller,
+            @Field(ConstantValues.profile.PIN) String pin,
+            Response.Listener<JSONObject> listener);
+
 }

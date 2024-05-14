@@ -1,43 +1,41 @@
 package co.wm21.https.serviceapis;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
+import co.wm21.https.FHelper.networks.Models.OrderItemModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
+import co.wm21.https.interfaces.OnOrderItemListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeBlogListApi {
-    OnBlogListRequestComplete requestComplete;
+public class InvokeOrderItemListApi {
+    OnOrderItemListRequestComplete requestComplete;
 
-    public InvokeBlogListApi(int limit, final OnBlogListRequestComplete requestComplete) {
+    public InvokeOrderItemListApi(String user_id, final OnOrderItemListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.getAllBlogs(limit).enqueue(new Callback<BlogsModelHead>() {
+        mApiService.orderItems(user_id).enqueue(new Callback<OrderItemModelHead>() {
             @Override
-            public void onResponse(Call<BlogsModelHead> call, Response<BlogsModelHead> response) {
+            public void onResponse(Call<OrderItemModelHead> call, Response<OrderItemModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onBlogListRequestComplete(response.body().getBlogsModelList());
+                        requestComplete.onOrderItemListRequestComplete(response.body());
                     } else {
-                        requestComplete.onBlogListRequestError(response.body().getErrorReport());
+                        requestComplete.onOrderItemListRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onBlogListRequestError("Something Went Wrong!");
+                    requestComplete.onOrderItemListRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
-            public void onFailure(Call<BlogsModelHead> call, Throwable t) {
-                requestComplete.onBlogListRequestError("Something Went Wrong!");
+            public void onFailure(Call<OrderItemModelHead> call, Throwable t) {
+                requestComplete.onOrderItemListRequestError("Something Went Wrong!");
             }
         });
     }

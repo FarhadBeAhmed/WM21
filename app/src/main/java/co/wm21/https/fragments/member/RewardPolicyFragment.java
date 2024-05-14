@@ -1,30 +1,33 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.RewardPolicyAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnRewardPolicyView;
-import com.wm21ltd.wm21.networks.Models.RewardPolicyDataListModel;
-import com.wm21ltd.wm21.presenters.RewardPolicyPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.adapters.RewardPolicyAdapter;
+import co.wm21.https.databinding.FragmentRewardPolicyBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnRewardPolicyView;
+import co.wm21.https.presenter.RewardPolicyPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,15 +35,15 @@ import butterknife.ButterKnife;
 public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     RewardPolicyPresenter rewardPolicyPresenter;
-    @BindView(R.id.rv_rewardPolicy)
-    RecyclerView recyclerViewRewardPolicy;
+
+   // RecyclerView recyclerViewRewardPolicy;
+    FragmentRewardPolicyBinding binding;
     private List<RewardPolicyDataListModel> rewardsModel = new ArrayList<>();
     private RewardPolicyAdapter rAdapter;
-    MaterialDialog dialog;
-
+  LoadingDialog loadingDialog;
     public RewardPolicyFragment() {
         // Required empty public constructor
     }
@@ -49,26 +52,24 @@ public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_reward_policy, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        //mView = inflater.inflate(R.layout.fragment_reward_policy, container, false);
+       // ButterKnife.bind(this, mView);
+        binding=FragmentRewardPolicyBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+        loadingDialog=new LoadingDialog(getActivity());
         rewardPolicyPresenter = new RewardPolicyPresenter(this);
         initializedFields();
-        return mView;
+        return binding.getRoot();
     }
 
     private void initializedFields() {
+        parseData();
         rAdapter = new RewardPolicyAdapter(rewardsModel, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewRewardPolicy.setAdapter(rAdapter);
-        recyclerViewRewardPolicy.setLayoutManager(layoutManager);
-        parseData();
+        binding.rvRewardPolicy.setAdapter(rAdapter);
+        binding.rvRewardPolicy.setLayoutManager(layoutManager);
+
     }
 
     private void parseData() {
@@ -88,12 +89,12 @@ public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView
 
     @Override
     public void onRewardPolicyStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onRewardPolicyStopLoading() {
-        dialog.dismiss();
+        loadingDialog.dismissDialog();
     }
 
     @Override

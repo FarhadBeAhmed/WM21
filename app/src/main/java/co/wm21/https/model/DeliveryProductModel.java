@@ -8,21 +8,18 @@ import androidx.core.content.res.ResourcesCompat;
 import co.wm21.https.ProjectApp;
 import co.wm21.https.helpers.Constant;
 
-public class AppliedProductModel {
+public class DeliveryProductModel {
 
-    private String serial,productID,productName, imageUrl,color,size,model,invoice;
+    private String serial,productID,productName, imageUrl,invoice,paid,received;
     private String shopName,shopMobile;
     private Drawable image;
     private double price, total, point,adjust;
     int qty;
 
-    public AppliedProductModel(String serial, String productName, String imageUrl, String color, String size, String model, double price, double total, double point, int qty, String productID, String invoice, double adjust, String shopName, String shopMobile) {
+    public DeliveryProductModel(String serial, String productName, String imageUrl, double price, double total, double point, int qty, String productID, String invoice, double adjust, String shopName, String shopMobile, String paid, String received) {
         this.serial = serial;
         this.productName = productName;
         this.imageUrl = imageUrl;
-        this.color = color;
-        this.size = size;
-        this.model = model;
         this.image = image;
         this.price = price;
         this.total = total;
@@ -33,6 +30,8 @@ public class AppliedProductModel {
         this.adjust = adjust;
         this.shopName = shopName;
         this.shopMobile = shopMobile;
+        this.paid = paid;
+        this.received = received;
     }
 
     public String getSerial() {
@@ -83,29 +82,7 @@ public class AppliedProductModel {
         this.price = price;
     }
 
-    public String getColor() {
-        return color;
-    }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 
     public double getTotal() {
         return total;
@@ -169,5 +146,21 @@ public class AppliedProductModel {
 
     public void setShopMobile(String shopMobile) {
         this.shopMobile = shopMobile;
+    }
+
+    public String getPaid() {
+        return paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
+    public String getReceived() {
+        return received;
+    }
+
+    public void setReceived(String received) {
+        this.received = received;
     }
 }

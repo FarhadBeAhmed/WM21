@@ -11,6 +11,8 @@
         android:layout_height="80dp"
         android:layout_margin="4dp"
         android:minWidth="100dp"
+        android:clickable="true"
+        android:focusable="true"
         android:padding="5dp"
         app:cardBackgroundColor="@color/primary_red"
         app:cardCornerRadius="@dimen/card_corner_radius">

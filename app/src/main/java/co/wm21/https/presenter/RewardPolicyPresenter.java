@@ -1,11 +1,13 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnRewardPolicyRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnRewardPolicyView;
-import com.wm21ltd.wm21.networks.Models.RewardPolicyDataListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeRewardPolicyApi;
+
 
 import java.util.List;
+
+import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
+import co.wm21.https.interfaces.OnRewardPolicyRequestComplete;
+import co.wm21.https.interfaces.OnRewardPolicyView;
+import co.wm21.https.serviceapis.InvokeRewardPolicyApi;
 
 public class RewardPolicyPresenter {
     OnRewardPolicyView mView;

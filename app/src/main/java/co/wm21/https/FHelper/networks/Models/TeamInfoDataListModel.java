@@ -1,9 +1,10 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.FHelper.networks.Models;
 
 import com.google.gson.annotations.SerializedName;
 
 public class TeamInfoDataListModel {
     @SerializedName("Serial")
+
     private String serial;
     @SerializedName("Type")
     private String type;

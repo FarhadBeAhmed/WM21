@@ -1,9 +1,7 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +13,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnDistrictListView;
-import com.wm21ltd.wm21.interfaces.OnDivisionListView;
-import com.wm21ltd.wm21.interfaces.OnFranchiseApplicationView;
-import com.wm21ltd.wm21.interfaces.OnThanaListView;
-import com.wm21ltd.wm21.presenters.DistrictListPresenter;
-import com.wm21ltd.wm21.presenters.DivisionListPresenter;
-import com.wm21ltd.wm21.presenters.FranchiseApplicationPresenter;
-import com.wm21ltd.wm21.presenters.ThanaListPersenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,21 +27,35 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.databinding.FragmentFranchiseApplicationBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnDistrictListView;
+import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnFranchiseApplicationView;
+import co.wm21.https.interfaces.OnThanaListView;
+import co.wm21.https.presenter.DistrictListPresenter;
+import co.wm21.https.presenter.DivisionListPresenter;
+import co.wm21.https.presenter.FranchiseApplicationPresenter;
+import co.wm21.https.presenter.ThanaListPersenter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FranchiseApplicationFragment extends Fragment implements OnDivisionListView, OnDistrictListView, OnThanaListView, View.OnClickListener, OnFranchiseApplicationView {
 
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     DivisionListPresenter divisionListPresenter;
     DistrictListPresenter districtListPresenter;
     ThanaListPersenter thanaListPersenter;
     FranchiseApplicationPresenter franchiseApplicationPresenter;
-    View mView;
-    MaterialDialog dialog;
 
+    LoadingDialog loadingDialog;
+
+/*
     @BindView(R.id.spnr_FranApp_Division)
     Spinner spinnerDivision;
     @BindView(R.id.spnr_Franchise_District)
@@ -67,6 +72,8 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
 
     @BindView(R.id.btn_FranApp_Submit)
     Button buttonSubmit;
+*/
+    FragmentFranchiseApplicationBinding binding;
 
     private List<String> divisionList = new ArrayList<>();
     private List<String> divisionIDList = new ArrayList<>();
@@ -85,24 +92,19 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_franchise_application, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentFranchiseApplicationBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+        loadingDialog=new LoadingDialog(getActivity());
         divisionListPresenter = new DivisionListPresenter(this);
         districtListPresenter = new DistrictListPresenter(this);
         thanaListPersenter = new ThanaListPersenter(this);
         franchiseApplicationPresenter = new FranchiseApplicationPresenter(this);
         loadDivisionData();
-        spinnerDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnrFranAppDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                loadDistrictData("947", spinnerDivision.getSelectedItemPosition());
+                loadDistrictData("947", binding.spnrFranAppDivision.getSelectedItemPosition());
             }
 
             @Override
@@ -111,10 +113,10 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
             }
         });
 
-        spinnerDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spnrFranchiseDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                loadThanaData("947", spinnerDivision.getSelectedItemPosition(), spinnerDistrict.getSelectedItemPosition());
+                loadThanaData("947", binding.spnrFranAppDivision.getSelectedItemPosition(), binding.spnrFranchiseDistrict.getSelectedItemPosition());
             }
 
             @Override
@@ -122,9 +124,9 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
 
             }
         });
-        buttonSubmit.setOnClickListener(this);
+        binding.btnFranAppSubmit.setOnClickListener(this);
 
-        return mView;
+        return binding.getRoot();
     }
 
 
@@ -149,18 +151,18 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
                 divisionList.add(divisionObj.get("Name").getAsString());
             }
         }
-        spinnerDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
+        binding.spnrFranAppDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
 
     }
 
     @Override
     public void onDivisionListStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onDivisionListStopLoading() {
-        dialog.dismiss();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
@@ -169,7 +171,7 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
         divisionList.add("Select Zone");
         divisionIDList.clear();
         divisionIDList.add("0");
-        spinnerDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
+        binding.spnrFranAppDivision.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, divisionList));
         Toast.makeText(getActivity(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -186,7 +188,7 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
             districtList.clear();
             districtList.add("Select District");
             districtIDList.add("0");
-            spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+            binding.spnrFranchiseDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
         }
     }
 
@@ -202,18 +204,18 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
                 districtList.add(districtObj.get("Name").getAsString());
             }
         }
-        spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+        binding.spnrFranchiseDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
 
     }
 
     @Override
     public void onDistrictListStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onDistrictListStopLoading() {
-        dialog.dismiss();
+       loadingDialog.dismissDialog();
     }
 
     @Override
@@ -221,7 +223,7 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
         districtList.clear();
         districtList.add("Select District");
         districtIDList.add("0");
-        spinnerDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
+        binding.spnrFranchiseDistrict.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtList));
         Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -240,7 +242,7 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
             thanaIDList.clear();
             thanaList.add("Select Thana");
             thanaIDList.add("0");
-            spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+            binding.spnrFranAppThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
         }
     }
 
@@ -256,18 +258,18 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
                 thanaList.add(thanaObj.get("Name").getAsString());
             }
         }
-        spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+        binding.spnrFranAppThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
 
     }
 
     @Override
     public void onThanaListStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onThanaListStopLoading() {
-        dialog.dismiss();
+        loadingDialog.dismissDialog();
     }
 
     @Override
@@ -276,7 +278,7 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
         thanaIDList.clear();
         thanaList.add("Select Thana");
         thanaIDList.add("0");
-        spinnerThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
+        binding.spnrFranAppThana.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, thanaList));
         Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 
@@ -287,45 +289,45 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
                 String divisionID;
                 String districtID = "";
                 String thanaID = "";
-                if (spinnerDivision.getSelectedItemPosition() > 0) {
-                    divisionID = divisionIDList.get(spinnerDivision.getSelectedItemPosition() - 1);
+                if (binding.spnrFranAppThana.getSelectedItemPosition() > 0) {
+                    divisionID = divisionIDList.get(binding.spnrFranAppDivision.getSelectedItemPosition() - 1);
                 } else {
-                    ((TextView) spinnerDivision.getSelectedView()).setError("Country field not selected!");
+                    ((TextView) binding.spnrFranAppDivision.getSelectedView()).setError("Country field not selected!");
                     return;
                 }
 
-                if (spinnerDistrict.getSelectedItemPosition() > 0) {
-                    districtID = districtIDList.get(spinnerDistrict.getSelectedItemPosition() - 1);
+                if (binding.spnrFranchiseDistrict.getSelectedItemPosition() > 0) {
+                    districtID = districtIDList.get(binding.spnrFranchiseDistrict.getSelectedItemPosition() - 1);
                 } else {
                     districtID = "";
                 }
 
-                if (spinnerThana.getSelectedItemPosition() > 0) {
-                    thanaID = thanaIDList.get(spinnerThana.getSelectedItemPosition() - 1);
+                if (binding.spnrFranAppThana.getSelectedItemPosition() > 0) {
+                    thanaID = thanaIDList.get(binding.spnrFranAppThana.getSelectedItemPosition() - 1);
                 } else {
                     thanaID = "";
                 }
 
-                String tempFranName = editTextName.getText().toString().trim();
-                String tempFranAddress = editTextAddress.getText().toString().trim();
-                String tempFranLicense = editTextTradeLicense.getText().toString().trim();
+                String tempFranName = binding.etFranAppName.getText().toString().trim();
+                String tempFranAddress = binding.etFranAppAddress.getText().toString().trim();
+                String tempFranLicense = binding.etFranAppLicenseNo.getText().toString().trim();
                 if (tempFranName.length() == 0) {
-                    editTextName.setError("Blank!");
+                    binding.etFranAppName.setError("Blank!");
                     return;
                 }
 
                 if (tempFranAddress.length() == 0) {
-                    editTextAddress.setError("Blank!");
+                    binding.etFranAppAddress.setError("Blank!");
                     return;
                 }
 
                 if (tempFranLicense.length() < 3) {
-                    editTextTradeLicense.setError("Invalid!");
+                    binding.etFranAppLicenseNo.setError("Invalid!");
                     return;
                 }
 
                 if (checkInternetConnection.isInternetAvailable(getActivity())) {
-                    franchiseApplicationPresenter.onFranchiseApplicationResponseData("0", appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+                    franchiseApplicationPresenter.onFranchiseApplicationResponseData("0", appSessionManager.getUserDetails().getUsername(),
                             "4", divisionID, districtID, thanaID, tempFranName, tempFranAddress, tempFranLicense, "");
                 } else {
                     Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
@@ -340,21 +342,21 @@ public class FranchiseApplicationFragment extends Fragment implements OnDivision
         String errCode = hashMap.get("error").toString();
         if (errCode.equals("0")) {
             Toast.makeText(getActivity(), hashMap.get("error_report").toString(), Toast.LENGTH_SHORT).show();
-            spinnerDivision.setSelection(0);
-            editTextName.setText("");
-            editTextAddress.setText("");
-            editTextTradeLicense.setText("");
+            binding.spnrFranAppDivision.setSelection(0);
+            binding.etFranAppName.setText("");
+            binding.etFranAppAddress.setText("");
+            binding.etFranAppLicenseNo.setText("");
         }
     }
 
     @Override
     public void onFranchiseApplicationStartLoading() {
-        dialog.show();
+       loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onFranchiseApplicationStopLoading() {
-        dialog.dismiss();
+        loadingDialog.dismissDialog();
     }
 
     @Override

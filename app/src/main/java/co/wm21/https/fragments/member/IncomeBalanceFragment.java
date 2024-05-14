@@ -1,4 +1,4 @@
-package co.wm21.https.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.annotation.SuppressLint;

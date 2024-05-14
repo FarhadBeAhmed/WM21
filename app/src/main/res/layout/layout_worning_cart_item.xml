@@ -10,91 +10,68 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingVertical="20dp"
-        >
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:src="@drawable/close_red"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Remove Item"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
-
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Do you want to remove this Item??"
-            android:gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            tools:ignore="HardcodedText" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:orientation="horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:src="@drawable/warning" />
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Warning"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            >
+            android:text="Do you want to remove this Item??"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="20dp">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardMaxElevation="6dp"
                 android:layout_marginHorizontal="10dp"
-                app:cardElevation="4dp"
                 app:cardCornerRadius="5dp"
-                >
+                app:cardElevation="4dp"
+                app:cardMaxElevation="6dp">
+
                 <RelativeLayout
-                    android:id="@+id/closeId"
+                    android:id="@+id/okBtnId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/teal_700"
-                    >
+                    android:background="@color/light_red">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
+                        android:paddingHorizontal="30dp"
                         android:paddingVertical="5dp"
-                        android:text="Close"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="16dp"
-                        tools:ignore="HardcodedText" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardMaxElevation="6dp"
-                app:cardElevation="4dp"
-                android:layout_marginHorizontal="10dp"
-                app:cardCornerRadius="5dp"
-                >
-                <RelativeLayout
-                    android:id="@+id/deleteId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_red"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="5dp"
-                        android:text="Delete"
+                        android:text="OK"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="16dp"

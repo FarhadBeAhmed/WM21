@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.helpers;
+package co.wm21.https.helpers;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

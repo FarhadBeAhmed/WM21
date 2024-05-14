@@ -1,112 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.CartFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/emptyCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_empty_cart" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:paddingTop="30dp"
-            android:text="Empty Cart"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartProducts"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/checkoutLayout"
-        android:layout_alignParentTop="true"
-        android:visibility="gone"
-        tools:listitem="@layout/layout_item_cart">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <include layout="@layout/layout_item_cart"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#D1D1D1"
-            android:layout_marginHorizontal="10dp"/>
-
-        <include layout="@layout/layout_item_cart"/><View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#D1D1D1"
-            android:layout_marginHorizontal="10dp"/>
-
-        <include layout="@layout/layout_item_cart"/><View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#D1D1D1"
-            android:layout_marginHorizontal="10dp"/>
-
-        <include layout="@layout/layout_item_cart"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/checkoutLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:id="@+id/cartFragmentLayout"
+        tools:context=".fragments.CartFragment">
 
         <LinearLayout
+            android:id="@+id/emptyCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables">
+
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_empty_cart"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingTop="30dp"
+                android:text="Empty Cart"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/checkoutLayout"
+            android:layout_alignParentTop="true"
+            tools:listitem="@layout/layout_item_cart">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp">
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/NormalText"
-                android:text="Subtotal"
-                android:textSize="16sp" />
+            <include layout="@layout/layout_item_cart" />
 
-            <TextView
-                style="@style/NormalText"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tk 4400.0"
-                android:textAlignment="textEnd"
-                android:textSize="18sp" />
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="#D1D1D1" />
+
+            <include layout="@layout/layout_item_cart" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="#D1D1D1" />
+
+            <include layout="@layout/layout_item_cart" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="#D1D1D1" />
+
+            <include layout="@layout/layout_item_cart" />
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/checkoutLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_cart_btn"
-            android:backgroundTint="@color/light_red"
-            android:fontFamily="@font/poppins_bold"
-            android:gravity="center"
-            android:paddingVertical="8dp"
-            android:text="Checkout"
-            android:textAllCaps="true"
-            android:textColor="@color/white" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_8sdp">
+
+                <TextView
+
+                    style="@style/NormalText"
+                    android:text="Subtotal"
+                    android:layout_alignParentStart="true"
+                    android:textSize="@dimen/_13ssp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/totalRP"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RP 00.0"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/_14ssp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/totalPrice"
+                    style="@style/NormalText"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content"
+                    android:text="Tk 00.0"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/_14ssp"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/checkOutBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/bg_cart_btn"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Checkout"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

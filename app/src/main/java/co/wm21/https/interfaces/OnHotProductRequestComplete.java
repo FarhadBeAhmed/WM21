@@ -1,8 +1,8 @@
 package co.wm21.https.interfaces;
 
-public interface OnMemberDetailsRequestComplete {
+public interface OnHotProductRequestComplete {
 
-    void onMemberDetailsRequestSuccess(Object obj);
+    void onHotProductSuccess(Object obj);
 
-    void onMemberDetailsRequestError(String errMsg);
+    void onHotProductError(String errMsg);
 }

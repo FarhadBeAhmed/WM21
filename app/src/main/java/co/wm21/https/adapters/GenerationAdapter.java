@@ -1,21 +1,22 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.interfaces.GenerationItemClickListner;
-import com.wm21ltd.wm21.networks.Models.GenerationDataListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.fragments.member.model.GenerationDataListModel;
+import co.wm21.https.interfaces.GenerationItemClickListner;
 
 public class GenerationAdapter extends RecyclerView.Adapter<GenerationAdapter.MyViewHolder> {
 

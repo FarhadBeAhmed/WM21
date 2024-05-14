@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/activityLayout"
     tools:context=".activities.ShopsActivity">
+    <include android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/appBarLayout"
+        layout="@layout/app_bar"
+        />
+    <!--
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    >
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <RadioButton
+                            android:id="@+id/eShop1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:button="@color/transparent"
+                            android:paddingHorizontal="10dp"
+                            android:text="Tele Shop"
+                            android:textColor="@drawable/radio_text_color"
+                            tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/eShop2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:button="@color/transparent"
+                            android:paddingHorizontal="10dp"
+                            android:text="Showroom"
+                            android:textColor="@drawable/radio_text_color"
+                            tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/eShop3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:button="@color/transparent"
+                            android:paddingHorizontal="10dp"
+                            android:text="Mission Bazar"
+                            android:textColor="@drawable/radio_text_color"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/eShop4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:button="@color/transparent"
+                            android:paddingHorizontal="10dp"
+                            android:text="Brand Shop"
+                            android:textColor="@drawable/radio_text_color"
+                            tools:ignore="TouchTargetSizeCheck" />
+                        <RadioButton
+
+                            android:id="@+id/eShop5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Premier Shop"
+                            android:button="@color/transparent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:textColor="@drawable/radio_text_color"
+                            android:paddingHorizontal="10dp"
+                            />
+                        <RadioButton
+
+                            android:id="@+id/eShop6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Vendor"
+                            android:button="@color/transparent"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_home_page_selector_btn"
+                            android:textColor="@drawable/radio_text_color"
+                            android:paddingHorizontal="10dp"
+                            />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </HorizontalScrollView>-->
+    <FrameLayout
+        android:id="@+id/child_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+</LinearLayout>
+</layout>

@@ -1,4 +1,4 @@
-package co.wm21.https.fragments;
+package co.wm21.https.fragments.shops;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -99,7 +99,7 @@ public class ShopsProductsFragment extends Fragment {
                     ));
 
                 }
-                binding.productRecyclerView.setAdapter(new ProductAdapter(getContext(), productViews).addOnClickListener((View, position2) -> {
+              /*  binding.productRecyclerView.setAdapter(new ProductAdapter(getContext(), productViews).addOnClickListener((View, position2) -> {
                     ProductView productView = productViews.get(position2);
                     Activity activity = getActivity();
                     if (activity != null) {
@@ -108,7 +108,7 @@ public class ShopsProductsFragment extends Fragment {
                         startActivityForResult(intent, 2);
 
                     }
-                }));
+                }));*/
                 binding.shimmerProduct.setVisibility(View.GONE);
                 binding.productRecyclerView.setVisibility(View.VISIBLE);
             } catch (JSONException e) {

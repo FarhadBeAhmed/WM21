@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.Manifest;
@@ -7,23 +7,25 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.CustomerCareListAdapter;
-import com.wm21ltd.wm21.interfaces.OnCustomerCareItemClickListner;
-import com.wm21ltd.wm21.networks.Models.ContactListModel;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.ArrayList;
+
+import co.wm21.https.FHelper.networks.Models.ContactListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.CustomerCareListAdapter;
+import co.wm21.https.interfaces.OnCustomerCareItemClickListner;
 
 /**
  * A simple {@link Fragment} subclass.

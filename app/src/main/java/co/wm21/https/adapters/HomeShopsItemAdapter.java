@@ -1,4 +1,4 @@
-package co.wm21.https.adapters.item_menu;
+package co.wm21.https.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,30 +10,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.R;
 import co.wm21.https.activities.CompanyProfileActivity;
 import co.wm21.https.activities.EarningActivity;
 import co.wm21.https.activities.FranchiseActivity;
 import co.wm21.https.activities.GenealogyActivity;
-import co.wm21.https.activities.MainActivity;
 import co.wm21.https.activities.RewardsActivity;
+import co.wm21.https.activities.ShopsActivity;
 import co.wm21.https.activities.SmsCallActivity;
 import co.wm21.https.activities.TrainingActivity;
-import co.wm21.https.adapters.ItemClickListener;
-import co.wm21.https.R;
-import co.wm21.https.fragments.CartFragment;
-import co.wm21.https.fragments.member.FlexiloadFragment;
+import co.wm21.https.adapters.item_menu.ItemMenuView;
 
-public class ItemMenuAdapter extends RecyclerView.Adapter {
+public class HomeShopsItemAdapter extends RecyclerView.Adapter {
 
     ArrayList<ItemMenuView> mList;
     LayoutInflater mInflater;
@@ -43,7 +40,7 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
     Context context;
     int offerLayout=0;
 
-    public ItemMenuAdapter(Context context, ArrayList<ItemMenuView> itemMenuViews, @LayoutRes int layout) {
+    public HomeShopsItemAdapter(Context context, ArrayList<ItemMenuView> itemMenuViews, @LayoutRes int layout) {
         mList = itemMenuViews;
         mInflater = LayoutInflater.from(context);
         this.layout = layout;
@@ -85,56 +82,9 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
 
           ((ItemMenuHolder) holder).cardItem.setOnClickListener(view -> {
              // Toast.makeText(context, "Position: " + position, Toast.LENGTH_SHORT).show();
-              switch (position) {
-                  case 5:
-                  case 6:
-                  case 7:
-                  case 8:
-                  case 11:
-                  case 12:
-                  case 13:
-
-                  case 14:
-                      AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                      ViewGroup viewGroup = view.findViewById(android.R.id.content);
-                      View dialogView = LayoutInflater.from(context).inflate(R.layout.layout_under_progress, viewGroup, false);
-                      RelativeLayout ok = dialogView.findViewById(R.id.okBtnId);
-                      TextView msg = dialogView.findViewById(R.id.textMsg);
-                      msg.setText("");
-                      builder.setView(dialogView);
-                      AlertDialog alertDialog = builder.create();
-                      alertDialog.show();
-                      ok.setOnClickListener(view1 -> {
-                          alertDialog.dismiss();
-
-                      });
-
-                      break;
-                  case 0:
-                      context.startActivity(new Intent(context, CompanyProfileActivity.class));
-
-                      break;
-                  case 1:
-                      context.startActivity(new Intent(context, FranchiseActivity.class));
-
-                      break;
-                  case 2:
-                      context.startActivity(new Intent(context, SmsCallActivity.class));
-                      break;
-                  case 3:
-                      context.startActivity(new Intent(context, GenealogyActivity.class));
-                      break;
-                  case 4:
-                      context.startActivity(new Intent(context, TrainingActivity.class));
-                      break;
-                  case 9:
-                      context.startActivity(new Intent(context, RewardsActivity.class));
-                      break;
-                  case 10:
-                    context.startActivity(new Intent(context, EarningActivity.class));
-                      break;
-                  default:
-              }
+              Intent intent=new Intent(context, ShopsActivity.class);
+              intent.putExtra(ConstantValues.ARGUMENT1,position);
+              context.startActivity(intent);
           });
 
         }
@@ -154,7 +104,7 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
         return mList.size();
     }
 
-    public ItemMenuAdapter addOnClickListener(ItemClickListener mListener) {
+    public HomeShopsItemAdapter addOnClickListener(ItemClickListener mListener) {
         this.mListener = mListener;
         return this;
     }

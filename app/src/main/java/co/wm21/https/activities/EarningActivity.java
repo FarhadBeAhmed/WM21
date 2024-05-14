@@ -1,20 +1,28 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.ViewPagerAdapter;
-import com.wm21ltd.wm21.fragments.IncomeBalanceFragment;
-import com.wm21ltd.wm21.fragments.ShopBalanceFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import co.wm21.https.R;
+import co.wm21.https.adapters.ViewPagerAdapter;
+import co.wm21.https.fragments.member.CurrentMonthFragment;
+import co.wm21.https.fragments.member.DetailsFragment;
+import co.wm21.https.fragments.member.IncomeBalanceFragment;
+import co.wm21.https.fragments.member.LastMonthFragment;
+import co.wm21.https.fragments.member.LastStatusFragment;
+import co.wm21.https.fragments.member.MyLoanFragment;
+import co.wm21.https.fragments.member.ShopBalanceFragment;
 
 public class EarningActivity extends AppCompatActivity {
 
@@ -24,6 +32,7 @@ public class EarningActivity extends AppCompatActivity {
     private ArrayList<String> fragmentTitleList;
     private TabLayout tabLayout;
 
+    @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +40,7 @@ public class EarningActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar_shadow));
         }
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_earning);
         setSupportActionBar(myToolbar);
@@ -57,22 +66,23 @@ public class EarningActivity extends AppCompatActivity {
         fragmentTitleList = new ArrayList<>();
         fragmentTitleList.add("E-Wallet Status");
         fragmentTitleList.add("E-Account Status");
-        /*fragmentTitleList.add("Last Status");
+        fragmentTitleList.add("Last Status");
         fragmentTitleList.add("Details");
         fragmentTitleList.add("Last Month");
         fragmentTitleList.add("Current Month");
-        fragmentTitleList.add("My Loan");*/
+        fragmentTitleList.add("My Loan");
     }
 
     private void getFragmentList() {
         fragmentList = new ArrayList<>();
         fragmentList.add(new IncomeBalanceFragment());
         fragmentList.add(new ShopBalanceFragment());
-        /*fragmentList.add(new LastStatusFragment());
+
+        fragmentList.add(new LastStatusFragment());
         fragmentList.add(new DetailsFragment());
         fragmentList.add(new LastMonthFragment());
         fragmentList.add(new CurrentMonthFragment());
-        fragmentList.add(new MyLoanFragment());*/
+        fragmentList.add(new MyLoanFragment());
     }
     @Override
     public boolean onSupportNavigateUp() {

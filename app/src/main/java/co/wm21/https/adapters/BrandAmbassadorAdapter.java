@@ -1,8 +1,6 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -13,19 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.SearchSmsCallListener;
-import com.wm21ltd.wm21.networks.Models.BrandAmbassadorListModel;
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.Models.BrandAmbassadorListModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.SearchSmsCallListener;
 import de.hdodenhof.circleimageview.CircleImageView;
+//import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class BrandAmbassadorAdapter extends RecyclerView.Adapter<BrandAmbassadorAdapter.MyViewHolder> {
@@ -48,33 +50,33 @@ public class BrandAmbassadorAdapter extends RecyclerView.Adapter<BrandAmbassador
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.brand_ambassador_id)
-        TextView textViewAmassadorID;
-        @BindView(R.id.brand_ambassador_name)
-        TextView textViewUserName;
-        @BindView(R.id.brand_ambassador_rank)
-        TextView textViewUserRank;
-        @BindView(R.id.brand_ambassador_image)
-        CircleImageView AmbassadorImage;
-        @BindView(R.id.brand_ambassador_call)
-        ImageView callToAmassador;
-        @BindView(R.id.smsToAmbassador)
-        ImageView smsToAmbassador;
 
+        TextView textViewAmassadorID;
+
+        TextView textViewUserName;
+        TextView textViewUserRank;
+        CircleImageView AmbassadorImage;
+        ImageView callToAmassador;
+        ImageView smsToAmbassador;
         MyViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            smsToAmbassador=view.findViewById(R.id.smsToAmbassador);
+            callToAmassador=view.findViewById(R.id.brand_ambassador_call);
+            AmbassadorImage=view.findViewById(R.id.brand_ambassador_image);
+            textViewUserRank=view.findViewById(R.id.brand_ambassador_rank);
+            textViewUserName=view.findViewById(R.id.brand_ambassador_name);
+            textViewAmassadorID=view.findViewById(R.id.brand_ambassador_id);
         }
     }
 
     @Override
-    public BrandAmbassadorAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand_ambassador_layout, parent, false);
-        return new BrandAmbassadorAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(BrandAmbassadorAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         if (position == brandAmbassadorList.size() -1){
             onBottomReachedListener.onBottomReached(position);

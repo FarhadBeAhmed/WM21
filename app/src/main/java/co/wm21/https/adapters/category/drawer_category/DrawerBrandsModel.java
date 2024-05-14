@@ -1,38 +1,27 @@
 package co.wm21.https.adapters.category.drawer_category;
 
-public class DrawerSubCatModel {
-    String catId;
-    String name;
-    boolean isExpanded;
+public class DrawerBrandsModel {
+    String brandId;
+    String brandName;
 
-    public DrawerSubCatModel(String catId, String name ) {
-        this.catId = catId;
-        this.name = name;
-        this.isExpanded=false;
+    public DrawerBrandsModel(String brandId, String brandName) {
+        this.brandId = brandId;
+        this.brandName = brandName;
     }
 
-    public boolean isExpanded() {
-        return isExpanded;
+    public String getBrandId() {
+        return brandId;
     }
 
-    public void setExpanded(boolean expanded) {
-        isExpanded = expanded;
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
     }
 
-    public String getCatId() {
-        return catId;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setCatId(String catId) {
-        this.catId = catId;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

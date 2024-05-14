@@ -1,11 +1,11 @@
-package com.wm21ltd.wm21.presenters;
-
-import com.wm21ltd.wm21.interfaces.OnRewardFundRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnRewardFundView;
-import com.wm21ltd.wm21.networks.Models.RewardFundDataListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeRewardFundApi;
+package co.wm21.https.presenter;
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.RewardFundDataListModel;
+import co.wm21.https.interfaces.OnRewardFundRequestComplete;
+import co.wm21.https.interfaces.OnRewardFundView;
+import co.wm21.https.serviceapis.InvokeRewardFundApi;
 
 public class RewardFundPresenter {
     OnRewardFundView mView;

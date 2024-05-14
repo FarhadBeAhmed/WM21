@@ -1,31 +1,34 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.activities.TSNFCategoryDetailsActivity;
-import com.wm21ltd.wm21.adapters.TrainingServiceNewsAdapter;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsClickListener;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsListView;
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsListModel;
-import com.wm21ltd.wm21.presenters.TrainingServiceNewsPresenter;
+import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
+import co.wm21.https.R;
+import co.wm21.https.activities.TSNFCategoryDetailsActivity;
+import co.wm21.https.adapters.TrainingServiceNewsAdapter;
+import co.wm21.https.interfaces.OnBottomReachedListener;
+import co.wm21.https.interfaces.OnTrainingServiceNewsClickListener;
+import co.wm21.https.interfaces.OnTrainingServiceNewsListView;
+import co.wm21.https.presenter.TrainingServiceNewsPresenter;
 
 /**
  * A simple {@link Fragment} subclass.

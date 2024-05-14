@@ -1,12 +1,11 @@
-package https.outsourcingvilla.com;
+package co.wm21.https;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -18,14 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 public class PanelView extends LinearLayout {
     int deviceWidth;
     ViewGroup viewGroup;
-    TextView textView;
+    public static TextView textView;
     TypedArray a;
 
     public void setTitle(String title) {
@@ -45,6 +44,11 @@ public class PanelView extends LinearLayout {
         invalidate();
         requestLayout();
     }
+   /* public void setTitleColor(int titleColor) {
+        textView.setTextColor(titleColor);
+        invalidate();
+        requestLayout();
+    }*/
 
     public String getTitle() {
         return textView.getText().toString();
@@ -76,6 +80,7 @@ public class PanelView extends LinearLayout {
         this.setOrientation(VERTICAL);
         this.addView(textView, 0);
         this.setPaddingRelative(0, 0, 0, dpFormat(10));
+        textView.setTextColor(a.getColor(R.styleable.PanelView_textColor,0xFF000000));
         makeRoundCorner(panelColor, getResources().getDimensionPixelSize(R.dimen.radius), this, dpFormat(2), a.getColor(R.styleable.PanelView_baseColor, 0xFF000000));
         makeTopRoundCorner(a.getColor(R.styleable.PanelView_baseColor, 0xFF000000), dpFormat(0), dpFormat(0), textView, dpFormat(5), a.getColor(R.styleable.PanelView_baseColor, 0xFF000000));
     }
@@ -115,6 +120,7 @@ public class PanelView extends LinearLayout {
     {
         GradientDrawable gdDefault = new GradientDrawable();
         gdDefault.setColor(bgcolor);
+
         gdDefault.setCornerRadius(radius);
         gdDefault.setStroke(strokeWidth, strokeColor);
         v.setBackgroundDrawable(gdDefault);

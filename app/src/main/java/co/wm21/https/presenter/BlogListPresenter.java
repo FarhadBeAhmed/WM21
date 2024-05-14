@@ -2,30 +2,36 @@ package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
 
+import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.interfaces.OnBlogListRequestComplete;
+import co.wm21.https.interfaces.OnBlogListView;
 import co.wm21.https.interfaces.OnDivisionListRequestComplete;
 import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.serviceapis.InvokeBlogListApi;
 import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
-public class DivisionListPresenter {
-    OnDivisionListView mView;
+public class BlogListPresenter {
+    OnBlogListView mView;
 
-    public DivisionListPresenter(OnDivisionListView mView) {
+    public BlogListPresenter(OnBlogListView mView) {
         this.mView = mView;
     }
 
-    public void onDivisionDataLoad(String counrtyID) {
-        mView.onDivisionListStartLoading();
-        new InvokeDivisionListApi(counrtyID, new OnDivisionListRequestComplete() {
+    public void BlogDataLoad(int limit) {
+        mView.onBlogListStartLoading();
+        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
             @Override
-            public void onDivisionListRequestComplete(Object obj) {
-                mView.onDivisionListStopLoading();
-                mView.onDivisionListDataLoad((JsonArray) obj);
+            public void onBlogListRequestComplete(Object obj) {
+                mView.onBlogListStopLoading();
+                mView.onBlogListDataLoad((List<BlogsModel>) obj);
             }
 
             @Override
-            public void onDevisionListRequestError(String errMsg) {
-                mView.onDivisionListStopLoading();
-                mView.onDivisionListShowMessage(errMsg);
+            public void onBlogListRequestError(String errMsg) {
+                mView.onBlogListStopLoading();
+                mView.onBlogListShowMessage(errMsg);
             }
         });
     }

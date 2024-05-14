@@ -41,7 +41,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Profile Information"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/white"
                             android:textSize="15dp" />
                     </LinearLayout>
 
@@ -61,7 +61,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Name: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="User: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Gender: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="normal" />
 
@@ -100,7 +100,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Join: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="normal" />
 
@@ -113,7 +113,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Rank: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="normal" />
 
@@ -126,7 +126,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="ID Status: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="normal" />
 
@@ -139,7 +139,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Refer ID: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             android:textStyle="normal" />
 
@@ -152,7 +152,7 @@
                             android:maxLines="1"
                             android:minLines="1"
                             android:text="Team Member: "
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/black"
                             android:textSize="15sp" />
 <!--
                         <TextView
@@ -196,7 +196,7 @@
                                 android:maxLines="1"
                                 android:minLines="1"
                                 android:text="Carry Point: "
-                                android:textColor="@color/colorBlack"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
 <!--
@@ -243,7 +243,7 @@
                                 android:maxLines="1"
                                 android:minLines="1"
                                 android:text="Sponsor's: "
-                                android:textColor="@color/colorBlack"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
 <!--
@@ -291,7 +291,7 @@
                                 android:maxLines="1"
                                 android:minLines="1"
                                 android:text="Current Point: "
-                                android:textColor="@color/colorBlack"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
 
@@ -328,7 +328,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cancel"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -338,7 +338,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@color/colorWhite" />
+                            android:background="@color/white" />
 
                         <LinearLayout
                             android:id="@+id/lnr_popup_profile_UserTree"
@@ -352,7 +352,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="User's Tree"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold" />
                         </LinearLayout>

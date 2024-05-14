@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home_solid"
-        android:title="@string/home" />
+        android:title=  "@string/home" />
 
     <item
         android:id="@+id/menu_shop"
@@ -22,7 +22,8 @@
         android:icon="@drawable/ic_heart_solid"
         android:title="@string/wishlist" />
 
-    <item android:title="Account">
+    <item android:title="Account"
+        tools:ignore="HardcodedText">
         <menu>
             <item
                 android:id="@+id/menu_affiliate"
@@ -36,7 +37,8 @@
         </menu>
     </item>
 
-    <item android:title="Profile">
+    <item android:title="Profile"
+        tools:ignore="HardcodedText">
         <menu>
             <item
                 android:id="@+id/menu_profile"
@@ -45,17 +47,20 @@
 
         </menu>
     </item>
-    <item android:title="Sign In">
+    <item android:title="Sign In"
+        tools:ignore="HardcodedText">
         <menu>
             <item
                 android:id="@+id/menu_login"
                 android:icon="@drawable/ic_user"
-                android:title="Log In" />
+                android:title="Log In"
+                tools:ignore="HardcodedText" />
 
             <item
                 android:id="@+id/menu_register"
                 android:icon="@drawable/ic_user"
-                android:title="Register" />
+                android:title="Register"
+                tools:ignore="HardcodedText" />
         </menu>
 
     </item>

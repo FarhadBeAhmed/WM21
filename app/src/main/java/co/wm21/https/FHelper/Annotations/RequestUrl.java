@@ -1,4 +1,4 @@
-package https.outsourcingvilla.com.Annotations;
+package co.wm21.https.FHelper.Annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

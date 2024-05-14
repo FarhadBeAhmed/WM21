@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.RewardRegistrationFragment">
+    tools:context=".fragments.member.RewardRegistrationFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

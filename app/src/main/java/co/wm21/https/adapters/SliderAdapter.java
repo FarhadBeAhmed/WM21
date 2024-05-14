@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.SliderItem;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.R;
@@ -23,8 +26,9 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     private Context context;
     private List<SliderItem> mSliderItems = new ArrayList<>();
 
-    public SliderAdapter(Context context) {
+    public SliderAdapter(Context context, List<SliderItem> mSliderItems) {
         this.context = context;
+        this.mSliderItems = mSliderItems;
     }
 
     public void renewItems(List<SliderItem> sliderItems) {
@@ -53,15 +57,19 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         SliderItem sliderItem = mSliderItems.get(position);
 
-        viewHolder.textViewDescription.setText(Constant.getRealStringEscape(sliderItem.getDescription()));
-        viewHolder.textViewDescription.setTextSize(16);
-        viewHolder.textViewDescription.setTextColor(Color.WHITE);
-        viewHolder.imageViewBackground.setImageDrawable(Constant.getDrawableFromUrl("image", "slide", sliderItem.getImageUrl()));
-
-//        Glide.with(viewHolder.itemView)
-//                .load(sliderItem.getImageUrl())
-//                .fitCenter()
-//                .into(viewHolder.imageViewBackground);
+        if (sliderItem.getDescription()!=null) {
+            viewHolder.textViewDescription.setText(Constant.getRealStringEscape(sliderItem.getDescription()));
+            viewHolder.textViewDescription.setTextSize(16);
+            viewHolder.textViewDescription.setTextColor(Color.WHITE);
+        }else {
+            viewHolder.textViewDescription.setText("");
+        }
+       // viewHolder.imageViewBackground.setImageDrawable(Constant.getDrawableFromUrl("image", "slide", sliderItem.getImageUrl()));
+        Picasso.get().load(ConstantValues.URL+"image/slide/"+sliderItem.getImageUrl()).into(viewHolder.imageViewBackground);
+       /* Glide.with(viewHolder.itemView)
+                .load(sliderItem.getImageUrl())
+                .fitCenter()
+                .into(viewHolder.imageViewBackground);*/
 //
 //        viewHolder.itemView.setOnClickListener(v -> Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show());
     }

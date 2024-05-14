@@ -1,37 +1,37 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
+import co.wm21.https.FHelper.Annotations.VendorProductModel;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.interfaces.OnBlogListRequestComplete;
 import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.interfaces.OnVendorProductListRequestComplete;
+import co.wm21.https.interfaces.OnVendorProductListView;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.serviceapis.InvokeVendorProductListApi;
 
-public class BlogListPresenter {
-    OnBlogListView mView;
+public class VendorProductListPresenter {
+    OnVendorProductListView vendorProductListView;
 
-    public BlogListPresenter(OnBlogListView mView) {
-        this.mView = mView;
+    public VendorProductListPresenter(OnVendorProductListView vendorProductListView) {
+        this.vendorProductListView = vendorProductListView;
     }
 
-    public void BlogDataLoad(int limit) {
-        mView.onBlogListStartLoading();
-        new InvokeBlogListApi(limit, new OnBlogListRequestComplete() {
+    public void VendorProductDataLoad(String id,String limit) {
+        vendorProductListView.onVendorProductListStartLoading();
+        new InvokeVendorProductListApi(id,limit, new OnVendorProductListRequestComplete() {
             @Override
-            public void onBlogListRequestComplete(Object obj) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListDataLoad((List<BlogsModel>) obj);
+            public void onVendorProductListRequestComplete(Object obj) {
+                vendorProductListView.onVendorProductListStopLoading();
+                vendorProductListView.onVendorProductListDataLoad((List<ProductModel>) obj);
             }
 
             @Override
-            public void onBlogListRequestError(String errMsg) {
-                mView.onBlogListStopLoading();
-                mView.onBlogListShowMessage(errMsg);
+            public void onVendorProductListRequestError(String errMsg) {
+                vendorProductListView.onVendorProductListStopLoading();
+                vendorProductListView.onVendorProductListShowMessage(errMsg);
             }
         });
     }

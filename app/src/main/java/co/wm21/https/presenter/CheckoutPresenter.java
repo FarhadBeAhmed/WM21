@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.CheckoutModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnCheckoutRequestComplete;
+import co.wm21.https.interfaces.OnCheckoutView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeCheckoutApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class CheckoutPresenter {
+    OnCheckoutView checkoutView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public CheckoutPresenter(OnCheckoutView checkoutView) {
+        this.checkoutView = checkoutView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void checkoutDataLoad(String deviceID,String userId) {
+        checkoutView.onCheckoutStartLoading();
+        new InvokeCheckoutApi(deviceID,userId, new OnCheckoutRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onCheckoutRequestComplete(Object obj) {
+                checkoutView.onCheckoutStopLoading();
+                checkoutView.onCheckoutDataLoad((CheckoutModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onCheckoutRequestError(String errMsg) {
+                checkoutView.onCheckoutStopLoading();
+                checkoutView.onCheckoutShowMessage(errMsg);
             }
         });
     }

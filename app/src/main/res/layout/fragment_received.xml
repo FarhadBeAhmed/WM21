@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.manageOrder.ReceivedFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/contextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".fragments.manageOrder.ReceivedFragment">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
-</FrameLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingVertical="5dp"
+                    android:text="Manage point"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    tools:ignore="HardcodedText" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sponsor"
+                            android:paddingStart="10dp"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+                        <TextView
+                            android:id="@+id/sponsorName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MR. X"
+                            android:paddingStart="10dp"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/black"
+
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile"
+                            android:paddingStart="10dp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+                        <TextView
+                            android:id="@+id/sponsorNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="016XXXXXXX"
+                            android:paddingStart="10dp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/receivedRecId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingHorizontal="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_receive_page_single_row" />
+
+                <include
+                    android:id="@+id/footerId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/footer2"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

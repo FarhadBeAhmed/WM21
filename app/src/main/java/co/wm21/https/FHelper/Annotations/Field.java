@@ -1,6 +1,9 @@
-package https.outsourcingvilla.com.Annotations;
+package co.wm21.https.FHelper.Annotations;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Using this annotation at parameters on less body - method

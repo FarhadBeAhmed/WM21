@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.TeamInfoFragment">
+    tools:context=".fragments.member.TeamInfoFragment">
 
     <ScrollView
         android:layout_width="match_parent"

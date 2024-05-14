@@ -1,30 +1,33 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.RewardFundAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnRewardFundView;
-import com.wm21ltd.wm21.networks.Models.RewardFundDataListModel;
-import com.wm21ltd.wm21.presenters.RewardFundPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.RewardFundDataListModel;
+import co.wm21.https.R;
+import co.wm21.https.adapters.RewardFundAdapter;
+import co.wm21.https.databinding.FragmentRewardFundBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnRewardFundView;
+import co.wm21.https.presenter.RewardFundPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,16 +35,17 @@ import butterknife.ButterKnife;
 public class RewardFundFragment extends Fragment implements OnRewardFundView {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     RewardFundPresenter rewardFundPresenter;
 
-    @BindView(R.id.rv_rewardFund)
-    RecyclerView recyclerViewRewardFund;
+    FragmentRewardFundBinding binding;
+
+
 
     private List<RewardFundDataListModel> rewardModel = new ArrayList<>();
     private RewardFundAdapter rAdapter;
-    MaterialDialog dialog;
+    LoadingDialog loadingDialog;
 
     public RewardFundFragment() {
         // Required empty public constructor
@@ -51,31 +55,27 @@ public class RewardFundFragment extends Fragment implements OnRewardFundView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_reward_fund, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentRewardFundBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+       loadingDialog=new LoadingDialog(getActivity());
         rewardFundPresenter = new RewardFundPresenter(this);
         initializedFields();
-        return mView;
+        return binding.rvRewardFund;
     }
 
     private void initializedFields() {
+        parseData();
         rAdapter = new RewardFundAdapter(rewardModel, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewRewardFund.setAdapter(rAdapter);
-        recyclerViewRewardFund.setLayoutManager(layoutManager);
-        parseData();
+        binding.rvRewardFund.setAdapter(rAdapter);
+        binding.rvRewardFund.setLayoutManager(layoutManager);
+
     }
 
     private void parseData() {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            rewardFundPresenter.onRewardFundRequestData(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID));
+            rewardFundPresenter.onRewardFundRequestData(appSessionManager.getUserDetails().getUsername());
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
         }
@@ -90,12 +90,12 @@ public class RewardFundFragment extends Fragment implements OnRewardFundView {
 
     @Override
     public void onRewardFundStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onRewardFundStopLoading() {
-        dialog.dismiss();
+       loadingDialog.dismissDialog();
     }
 
     @Override

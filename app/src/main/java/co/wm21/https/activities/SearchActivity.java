@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -11,17 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.cursoradapter.widget.CursorAdapter;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,17 +21,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.SearchAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.RecycleViewItemClickListener;
-import com.wm21ltd.wm21.interfaces.SearchSmsCallListener;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.SearchDataModel;
-import com.wm21ltd.wm21.networks.Models.SearchModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.cursoradapter.widget.CursorAdapter;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 
 import java.util.ArrayList;
@@ -50,14 +40,25 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.SearchDataModel;
+import co.wm21.https.FHelper.networks.Models.SearchModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.R;
+import co.wm21.https.adapters.SearchAdapter;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.RecycleViewItemClickListener;
+import co.wm21.https.interfaces.SearchSmsCallListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity implements SearchSmsCallListener,RecycleViewItemClickListener {
+public class SearchActivity extends AppCompatActivity implements SearchSmsCallListener, RecycleViewItemClickListener {
 
     private static final int CALL_PHONE_PERMISSION_CODE = 1;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
 
     @BindView(R.id.search_view)
@@ -97,7 +98,7 @@ public class SearchActivity extends AppCompatActivity implements SearchSmsCallLi
         }
         getSupportActionBar().setTitle("Search User");
         ButterKnife.bind(this);
-        appSessionManager = new AppSessionManager(SearchActivity.this);
+        appSessionManager = new SessionHandler(SearchActivity.this);
         getData = getIntent();
         formType = getData.getIntExtra("backResult", 0);
         createSearchCatagorySpinner(formType);
@@ -186,7 +187,7 @@ public class SearchActivity extends AppCompatActivity implements SearchSmsCallLi
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText et = (EditText) findViewById(R.id.search_src_text);
+                EditText et = (EditText) findViewById(R.id.search_view);
                 et.setText("");
                 finalSearchList.clear();
                 mSearchAdapter.notifyDataSetChanged();
@@ -196,7 +197,7 @@ public class SearchActivity extends AppCompatActivity implements SearchSmsCallLi
 
     void getSearchList(String suggestionStr, final Boolean suggestoinClicked) {
 
-        final APIService mService = ApiUtils.getApiService(ConstantValues.URL);
+        final APIService mService = ApiUtils.getApiService(ConstantValues.web_url);
         mService.searchUser(suggestionStr, selectedUserCatagory)
                 .enqueue(new Callback<SearchModel>() {
 
@@ -307,12 +308,12 @@ public class SearchActivity extends AppCompatActivity implements SearchSmsCallLi
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case CALL_PHONE_PERMISSION_CODE:
-                if (grantResults.length>0 && grantResults[0] ==PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(this, "Perission Denied", Toast.LENGTH_SHORT).show();
                 }
         }

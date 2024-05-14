@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.interfaces;
+package co.wm21.https.interfaces;
 
 import java.util.HashMap;
 

@@ -1,66 +1,137 @@
 package co.wm21.https.fragments.manageOrder;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import co.wm21.https.FHelper.API;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.FHelper.networks.Models.ReceivedItemsModel;
+import co.wm21.https.FHelper.networks.Models.ReceivedItemsModelHead;
 import co.wm21.https.R;
+import co.wm21.https.activities.MainActivity;
+import co.wm21.https.adapters.OrderAdapter;
+import co.wm21.https.adapters.RecievedAdapter;
+import co.wm21.https.databinding.FragmentReceivedBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.User;
+import co.wm21.https.interfaces.OnReceivedItemsView;
+import co.wm21.https.model.OrderProductModel;
+import co.wm21.https.model.ReceivedProModel;
+import co.wm21.https.presenter.ReceivedItemsPresenter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReceivedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ReceivedFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class ReceivedFragment extends Fragment implements OnReceivedItemsView {
+    FragmentReceivedBinding binding;
+    private API api;
+    private User user;
+    ArrayList<ReceivedItemsModel> receivedProModels;
+    String sponsorName,sponsorNumber;
+    RecievedAdapter recievedAdapter;
+    LoadingDialog loadingDialog;
+    ReceivedItemsPresenter receivedItemsPresenter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ReceivedFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReceivedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ReceivedFragment newInstance(String param1, String param2) {
-        ReceivedFragment fragment = new ReceivedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_received, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_received, container, false);
+        api = ConstantValues.getAPI();
+        user = new User(getContext());
+        loadingDialog=new LoadingDialog(getActivity());
+        receivedItemsPresenter=new ReceivedItemsPresenter(this);
+
+        allReceivedPro();
+
+        return binding.getRoot();
+    }
+
+    private void allReceivedPro() {
+        receivedProModels = new ArrayList<>();
+        binding.receivedRecId.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recievedAdapter = new RecievedAdapter(R.layout.item_receive_page_single_row, getContext(), receivedProModels, binding.contextView);
+        binding.receivedRecId.setAdapter(recievedAdapter);
+        receivedItemsPresenter.receivedItemsDataLoad(user.getUsername());
+    }
+    public void switchFragment(Fragment fragment, String tag) {
+        FragmentManager fm = getParentFragmentManager();
+       /* for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();*/
+        fm.beginTransaction().replace(R.id.fragmentContainer, fragment, tag).addToBackStack(tag).commit();
+    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.manage_order, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_orders:
+                switchFragment(new OrderFragment(),"OrderFragment");
+                break;
+
+            case R.id.menu_applied:
+                switchFragment(new AppliedFragment(),"AppliedFragment");
+                break;
+            case R.id.menu_delivered:
+                switchFragment(new DeliveredFragment(),"DeliveredFragment");
+                break;
+            case R.id.menu_received:
+                switchFragment(new ReceivedFragment(),"ReceivedFragment");
+                break;
+        }
+        return true;
+
+    }
+
+    @Override
+    public void onReceivedItemsDataLoad(ReceivedItemsModelHead receivedItemsModelHead) {
+        receivedProModels.addAll(receivedItemsModelHead.getData());
+        recievedAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onReceivedItemsStartLoading() {
+        binding.receivedRecId.setVisibility(View.GONE);
+        loadingDialog.startLoadingAlertDialog();
+    }
+
+    @Override
+    public void onReceivedItemsStopLoading() {
+        binding.receivedRecId.setVisibility(View.VISIBLE);
+        loadingDialog.dismissDialog();
+    }
+
+    @Override
+    public void onReceivedItemsShowMessage(String errmsg) {
+        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
     }
 }

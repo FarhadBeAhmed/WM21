@@ -1,20 +1,21 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.networks.Models.RewardAchievementDataListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.RewardAchievementDataListModel;
+import co.wm21.https.R;
 
 public class RewardAchievementAdapter extends RecyclerView.Adapter<RewardAchievementAdapter.MyViewHolder> {
 
@@ -27,19 +28,20 @@ public class RewardAchievementAdapter extends RecyclerView.Adapter<RewardAchieve
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.txt_row_rewardAchievement_Sl)
         TextView textViewSL;
-        @BindView(R.id.txt_row_rewardAchievement_Rank)
         TextView textViewRank;
-        @BindView(R.id.txt_row_rewardAchievement_Date)
         TextView textViewDate;
-        @BindView(R.id.txt_row_rewardAchievement_Status)
+
         TextView textViewStatus;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+
+            textViewStatus=itemView.findViewById(R.id.txt_row_rewardAchievement_Status);
+            textViewDate=itemView.findViewById(R.id.txt_row_rewardAchievement_Date);
+            textViewRank=itemView.findViewById(R.id.txt_row_rewardAchievement_Rank);
+            textViewSL=itemView.findViewById(R.id.txt_row_rewardAchievement_Sl);
+
         }
     }
 

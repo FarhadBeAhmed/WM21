@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        tools:context=".fragments.AboutUsFragment">
+        tools:context=".fragments.company.AboutUsFragment">
 
         <ImageView
             android:id="@+id/imageView15"
@@ -37,5 +37,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView15"
-        app:layout_constraintVertical_bias="0.072" />
+        app:layout_constraintVertical_bias="0.072"
+        tools:targetApi="o" />
 </androidx.constraintlayout.widget.ConstraintLayout>

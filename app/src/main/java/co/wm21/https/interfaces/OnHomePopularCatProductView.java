@@ -3,15 +3,13 @@ package co.wm21.https.interfaces;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.adapters.product.ProductView;
 
-public interface OnHomePopularProductView {
-    void onHomePopularProductLoaded(List<ProductModel> productViews);
+public interface OnHomePopularCatProductView {
+    void onHomePopularCatProductLoaded(List<ProductModel> productViews);
 
-    void onHomePopularProductStartLoading();
+    void onHomePopularCatProductStartLoading();
 
-    void onHomePopularProductStopLoading();
+    void onHomePopularCatProductStopLoading();
 
-    void onHomePopularProductShowMessage(String errMsg);
+    void onHomePopularCatProductShowMessage(String errMsg);
 }

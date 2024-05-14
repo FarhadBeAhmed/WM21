@@ -1,32 +1,32 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.os.Build;
-
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnFranchiseApplicationView;
-import com.wm21ltd.wm21.presenters.FranchiseApplicationPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnFranchiseApplicationView;
+import co.wm21.https.presenter.FranchiseApplicationPresenter;
 
 public class TSNFApplyActivity extends AppCompatActivity implements View.OnClickListener, OnFranchiseApplicationView {
 
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     private MaterialDialog dialog;
     FranchiseApplicationPresenter franchiseApplicationPresenter;
@@ -61,7 +61,7 @@ public class TSNFApplyActivity extends AppCompatActivity implements View.OnClick
         }
 
         ButterKnife.bind(this);
-        appSessionManager = new AppSessionManager(TSNFApplyActivity.this);
+        appSessionManager = new SessionHandler(TSNFApplyActivity.this);
         checkInternetConnection = new CheckInternetConnection();
         dialog = new MaterialDialog.Builder(this).title(getResources().getString(R.string.loading))
                 .content(getResources().getString(R.string.pleaseWait))
@@ -94,7 +94,7 @@ public class TSNFApplyActivity extends AppCompatActivity implements View.OnClick
                 }
 
                 if (checkInternetConnection.isInternetAvailable(TSNFApplyActivity.this)) {
-                    franchiseApplicationPresenter.onFranchiseApplicationResponseData(serviceId, appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+                    franchiseApplicationPresenter.onFranchiseApplicationResponseData(serviceId, appSessionManager.getUserDetails().getUsername(),
                             type, "", "", "", tempFranName, tempFranAddress, "", "");
                 } else {
                     Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();

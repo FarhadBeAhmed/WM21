@@ -1,22 +1,24 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.ViewPagerAdapter;
-import com.wm21ltd.wm21.fragments.FranchiseAccountsFragment;
-import com.wm21ltd.wm21.fragments.FranchiseAddressFragment;
-import com.wm21ltd.wm21.fragments.FranchiseApplicationFragment;
-import com.wm21ltd.wm21.fragments.MyFranchiseFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import co.wm21.https.R;
+import co.wm21.https.adapters.ViewPagerAdapter;
+import co.wm21.https.fragments.member.FranchiseAccountsFragment;
+import co.wm21.https.fragments.member.FranchiseAddressFragment;
+import co.wm21.https.fragments.member.FranchiseApplicationFragment;
+import co.wm21.https.fragments.member.MyFranchiseFragment;
 
 public class FranchiseActivity extends AppCompatActivity {
 

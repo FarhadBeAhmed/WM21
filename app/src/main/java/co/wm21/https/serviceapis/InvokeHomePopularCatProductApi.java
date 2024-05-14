@@ -2,37 +2,39 @@ package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.PopularCatProductModelHead;
 import co.wm21.https.FHelper.networks.Models.PopularProductViewModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.interfaces.OnHomePopularCatProductComplete;
 import co.wm21.https.interfaces.OnHomePopularProductComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeHomePopularProductApi {
-    private OnHomePopularProductComplete onHomePopularProductComplete;
+public class InvokeHomePopularCatProductApi {
+    private OnHomePopularCatProductComplete onHomePopularCatProductComplete;
 
-    public InvokeHomePopularProductApi(String value, final OnHomePopularProductComplete onHomePopularProductComplete) {
-        this.onHomePopularProductComplete = onHomePopularProductComplete;
+    public InvokeHomePopularCatProductApi(String value1,String value2,String value3,String value4, final OnHomePopularCatProductComplete onHomePopularCatProductComplete) {
+        this.onHomePopularCatProductComplete = onHomePopularCatProductComplete;
         APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getPopularProductList(value).enqueue(new Callback<PopularProductViewModelHead>() {
+        apiService.getPopularCatProductList(value1, value2, value3, value4).enqueue(new Callback<PopularCatProductModelHead>() {
             @Override
-            public void onResponse(Call<PopularProductViewModelHead> call, Response<PopularProductViewModelHead> response) {
+            public void onResponse(Call<PopularCatProductModelHead> call, Response<PopularCatProductModelHead> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0){
-                        onHomePopularProductComplete.onHomePopularProductSuccess(response.body().getProductViews());
+                        onHomePopularCatProductComplete.onHomePopularCatProductSuccess(response.body().getPopCatProduct());
                     }else {
-                        onHomePopularProductComplete.onHomePopularProductError(response.body().getErrorReport());
+                        onHomePopularCatProductComplete.onHomePopularCatProductError(response.body().getErrorReport());
                     }
 
                 }else {
-                    onHomePopularProductComplete.onHomePopularProductError("Something went wrong!");
+                    onHomePopularCatProductComplete.onHomePopularCatProductError("Something went wrong!");
                 }
             }
 
             @Override
-            public void onFailure(Call<PopularProductViewModelHead> call, Throwable t) {
+            public void onFailure(Call<PopularCatProductModelHead> call, Throwable t) {
 
             }
         });

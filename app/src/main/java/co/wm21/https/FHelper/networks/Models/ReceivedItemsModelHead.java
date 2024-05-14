@@ -3,7 +3,9 @@ package co.wm21.https.FHelper.networks.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ReceivedItemsModel {
+import java.util.List;
+
+public class ReceivedItemsModelHead {
     @SerializedName("error")
     @Expose
     private Integer error;
@@ -18,7 +20,7 @@ public class ReceivedItemsModel {
     private String sponsor_mobile;
     @SerializedName("data")
     @Expose
-    private String data;
+    private List<ReceivedItemsModel> data;
 
     public Integer getError() {
         return error;
@@ -36,11 +38,27 @@ public class ReceivedItemsModel {
         this.errorReport = errorReport;
     }
 
-    public String getData() {
+    public String getSponsor_name() {
+        return sponsor_name;
+    }
+
+    public void setSponsor_name(String sponsor_name) {
+        this.sponsor_name = sponsor_name;
+    }
+
+    public String getSponsor_mobile() {
+        return sponsor_mobile;
+    }
+
+    public void setSponsor_mobile(String sponsor_mobile) {
+        this.sponsor_mobile = sponsor_mobile;
+    }
+
+    public List<ReceivedItemsModel> getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(List<ReceivedItemsModel> data) {
         this.data = data;
     }
 }

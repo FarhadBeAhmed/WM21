@@ -2,12 +2,16 @@ package co.wm21.https.interfaces;
 
 import com.google.gson.JsonArray;
 
-public interface OnDivisionListView {
-    void onDivisionListDataLoad(JsonArray jsonArray);
+import java.util.List;
 
-    void onDivisionListStartLoading();
+import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
 
-    void onDivisionListStopLoading();
+public interface OnDrawerCatListView {
+    void onDrawerCatListDataLoad(List<DrawerCatModel> drawerCatModels);
 
-    void onDivisionListShowMessage(String errmsg);
+    void onDrawerCatListStartLoading();
+
+    void onDrawerCatListStopLoading();
+
+    void onDrawerCatListShowMessage(String errmsg);
 }

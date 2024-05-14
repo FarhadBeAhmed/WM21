@@ -13,15 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import co.wm21.https.*;
+import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.adapters.ItemClickListener;
+import co.wm21.https.adapters.product.ProductAdapter;
 import co.wm21.https.helpers.Constant;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private ArrayList<CategoryView> categoryList;
-    private LayoutInflater mInflater;
+    private final ArrayList<CategoryView> categoryList;
+    private final LayoutInflater mInflater;
     public ItemClickListener listener;
-    private String layoutType;
+    private final String layoutType;
 
     public CategoryAdapter(Context context, ArrayList<CategoryView> categoryList, String layoutType) {
         this.categoryList = categoryList;
@@ -41,6 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.image.setImageDrawable(Constant.getDrawableFromUrl("image", "cat", category.getCategoryImageUrl()));
         holder.text.setText(category.getCategoryName());
     }
+    
 
     @Override
     public int getItemViewType(int position) {
@@ -51,6 +54,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public int getItemCount() { return categoryList.size(); }
+
+    public void setOnClickListener(ItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public CategoryAdapter addOnClickListener(ItemClickListener listener) {
+        this.listener = listener;
+        return this;
+    }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView image;

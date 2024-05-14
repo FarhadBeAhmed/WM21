@@ -1,17 +1,16 @@
 package co.wm21.https.interfaces;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.VendorDetailsModel;
 
-public interface OnBlogListView {
-    void onBlogListDataLoad(List<BlogsModel> blogs);
+public interface OnVendorDetailsView {
+    void onVendorDetailsDataLoad(VendorDetailsModel vendorDetailsModels);
 
-    void onBlogListStartLoading();
+    void onVendorDetailsStartLoading();
 
-    void onBlogListStopLoading();
+    void onVendorDetailsStopLoading();
 
-    void onBlogListShowMessage(String errmsg);
+    void onVendorDetailsShowMessage(String errmsg);
 }

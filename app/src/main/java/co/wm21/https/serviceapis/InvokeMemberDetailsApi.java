@@ -1,11 +1,11 @@
-package com.wm21ltd.wm21.serviceapis;
+package co.wm21.https.serviceapis;
 
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnMemberDetailsRequestComplete;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.MemberDetailsModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
 
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.MemberDetailsModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.interfaces.OnMemberDetailsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,10 +13,10 @@ import retrofit2.Response;
 public class InvokeMemberDetailsApi {
     private OnMemberDetailsRequestComplete onMemberDetailsRequestComplete;
 
-    public InvokeMemberDetailsApi(String userId, String rank, String limit,OnMemberDetailsRequestComplete onMemberDetailsRequestComplete) {
+    public InvokeMemberDetailsApi(String userId, String rank, String limit, OnMemberDetailsRequestComplete onMemberDetailsRequestComplete) {
         this.onMemberDetailsRequestComplete = onMemberDetailsRequestComplete;
 
-        APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService apiService = ApiUtils.getApiService(ConstantValues.web_url);
         apiService.getMemberDetails(userId, rank, limit).enqueue(new Callback<MemberDetailsModel>() {
             @Override
             public void onResponse(Call<MemberDetailsModel> call, Response<MemberDetailsModel> response) {

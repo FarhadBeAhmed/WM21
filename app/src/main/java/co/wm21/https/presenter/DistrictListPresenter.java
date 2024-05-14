@@ -1,9 +1,10 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
-import com.wm21ltd.wm21.interfaces.OnDistrictListRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnDistrictListView;
-import com.wm21ltd.wm21.serviceapis.InvokeDistrictListApi;
+
+import co.wm21.https.interfaces.OnDistrictListRequestComplete;
+import co.wm21.https.interfaces.OnDistrictListView;
+import co.wm21.https.serviceapis.InvokeDistrictListApi;
 
 public class DistrictListPresenter {
     OnDistrictListView mView;

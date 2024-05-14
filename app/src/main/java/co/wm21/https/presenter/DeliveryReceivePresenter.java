@@ -1,36 +1,34 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.DeliveryReceiveModel;
 import co.wm21.https.interfaces.OnAddToCartRequestComplete;
 import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
+import co.wm21.https.interfaces.OnDeliveryReceiveRequestComplete;
+import co.wm21.https.interfaces.OnDeliveryReceiveView;
 import co.wm21.https.serviceapis.InvokeAddToCartApi;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.serviceapis.InvokeDeliveryReceiveApi;
 
-public class AddToCartPresenter {
-    OnAddToCartView addToCartView;
+public class DeliveryReceivePresenter {
+    OnDeliveryReceiveView deliveryReceiveView;
 
-    public AddToCartPresenter(OnAddToCartView addToCartView) {
-        this.addToCartView = addToCartView;
+    public DeliveryReceivePresenter(OnDeliveryReceiveView deliveryReceiveView) {
+        this.deliveryReceiveView = deliveryReceiveView;
     }
 
-    public void AddToCartDataLoad(String pId,String userId,String color,String size,int qty) {
-        addToCartView.onAddToCartStartLoading();
-        new InvokeAddToCartApi(pId,userId,color,size,qty, new OnAddToCartRequestComplete() {
+    public void deliveryReceiveDataLoad(String userId,String pin,String action,String serial) {
+        deliveryReceiveView.onDeliveryReceiveStartLoading();
+        new InvokeDeliveryReceiveApi(userId, pin, action, serial, new OnDeliveryReceiveRequestComplete() {
             @Override
-            public void onAddToCartRequestComplete(Object obj) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartDataLoad((AddToCartModel) obj);
+            public void onDeliveryReceiveRequestComplete(Object obj) {
+                deliveryReceiveView.onDeliveryReceiveStopLoading();
+                deliveryReceiveView.onDeliveryReceiveDataLoad((DeliveryReceiveModel) obj);
             }
 
             @Override
-            public void onAddToCartRequestError(String errMsg) {
-                addToCartView.onAddToCartStopLoading();
-                addToCartView.onAddToCartShowMessage(errMsg);
+            public void onDeliveryReceiveRequestError(String errMsg) {
+                deliveryReceiveView.onDeliveryReceiveStopLoading();
+                deliveryReceiveView.onDeliveryReceiveShowMessage(errMsg);
             }
         });
     }

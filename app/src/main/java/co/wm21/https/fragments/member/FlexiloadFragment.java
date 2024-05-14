@@ -99,8 +99,8 @@ public class FlexiloadFragment extends Fragment {
 //                    try {
 //                        openSnackbar(view, R.id.fragment_accounts_flexiload, response.getString("msg"), Snackbar.LENGTH_LONG);
 //                        loadFlexiloadReport();
-//                        HomeActivity.updateBalance(getContext());
-//                        HomeActivity.updateVerificationStatus(getContext());
+//                        HomeActivityAff.updateBalance(getContext());
+//                        HomeActivityAff.updateVerificationStatus(getContext());
 //                    } catch (Exception e) { e.printStackTrace(); }
 //                }));
 //            }

@@ -1,9 +1,7 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnFranchiseApplicationView;
-import com.wm21ltd.wm21.presenters.FranchiseApplicationPresenter;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.databinding.FragmentRewardRegistrationBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnFranchiseApplicationView;
+import co.wm21.https.presenter.FranchiseApplicationPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,67 +33,54 @@ import butterknife.ButterKnife;
 public class RewardRegistrationFragment extends Fragment implements OnFranchiseApplicationView, View.OnClickListener {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
-    private MaterialDialog dialog;
-    FranchiseApplicationPresenter franchiseApplicationPresenter;
 
-    @BindView(R.id.et_rewardRegistation_Category)
-    EditText editTextCategory;
-    @BindView(R.id.et_rewardRegistation_Name)
-    EditText editTextName;
-    @BindView(R.id.et_rewardRegistation_Address)
-    EditText editTextAddress;
-    @BindView(R.id.btn_rewardRegistation_Apply)
-    Button buttonApply;
+    FranchiseApplicationPresenter franchiseApplicationPresenter;
+    FragmentRewardRegistrationBinding binding;
 
     public RewardRegistrationFragment() {
         // Required empty public constructor
     }
-
+    LoadingDialog loadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_reward_registration, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentRewardRegistrationBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
 
+        loadingDialog=new LoadingDialog(getActivity());
         franchiseApplicationPresenter = new FranchiseApplicationPresenter(this);
-        buttonApply.setOnClickListener(this);
-        return mView;
+        binding.btnRewardRegistationApply.setOnClickListener(this);
+        return binding.getRoot();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_rewardRegistation_Apply:
-                String tempCategory = editTextCategory.getText().toString().trim();
-                String tempFranName = editTextName.getText().toString().trim();
-                String tempFranAddress = editTextAddress.getText().toString().trim();
+                String tempCategory = binding.etRewardRegistationCategory.getText().toString().trim();
+                String tempFranName = binding.etRewardRegistationName.getText().toString().trim();
+                String tempFranAddress = binding.etRewardRegistationAddress.getText().toString().trim();
                 if (tempCategory.length() == 0) {
-                    editTextCategory.setError("Blank!");
+                    binding.etRewardRegistationCategory.setError("Blank!");
                     return;
                 }
 
                 if (tempFranName.length() == 0) {
-                    editTextName.setError("Blank!");
+                    binding.etRewardRegistationName.setError("Blank!");
                     return;
                 }
 
                 if (tempFranAddress.length() == 0) {
-                    editTextAddress.setError("Blank!");
+                    binding.etRewardRegistationAddress.setError("Blank!");
                     return;
                 }
 
                 if (checkInternetConnection.isInternetAvailable(getActivity())) {
-                    franchiseApplicationPresenter.onFranchiseApplicationResponseData("0", appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID),
+                    franchiseApplicationPresenter.onFranchiseApplicationResponseData("0", appSessionManager.getUserDetails().getUsername(),
                             "6", "", "", "", tempFranName, tempFranAddress, "", tempCategory);
                 } else {
                     Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
@@ -103,9 +94,9 @@ public class RewardRegistrationFragment extends Fragment implements OnFranchiseA
         String errCode = hashMap.get("error").toString();
         if (errCode.equals("0")) {
             Toast.makeText(getActivity(), hashMap.get("error_report").toString(), Toast.LENGTH_SHORT).show();
-            editTextCategory.setText("");
-            editTextName.setText("");
-            editTextAddress.setText("");
+            binding.etRewardRegistationCategory.setText("");
+            binding.etRewardRegistationName.setText("");
+            binding.etRewardRegistationAddress.setText("");
         } else {
             Toast.makeText(getActivity(), hashMap.get("error_report").toString(), Toast.LENGTH_SHORT).show();
         }
@@ -113,12 +104,12 @@ public class RewardRegistrationFragment extends Fragment implements OnFranchiseA
 
     @Override
     public void onFranchiseApplicationStartLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void onFranchiseApplicationStopLoading() {
-        dialog.dismiss();
+       loadingDialog.dismissDialog();
     }
 
     @Override

@@ -1,11 +1,12 @@
-package com.wm21ltd.wm21.serviceapis;
+package co.wm21.https.serviceapis;
 
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnRewardGalleryRequestComplete;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.RewardGalleryDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
 
+
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.RewardGalleryDataModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.interfaces.OnRewardGalleryRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

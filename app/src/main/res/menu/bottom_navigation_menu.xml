@@ -4,7 +4,8 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/selector_home"
-        android:title="@string/home" />
+        android:title="@string/home"
+        />
 
     <item
         android:id="@+id/menu_shop"
@@ -16,10 +17,13 @@
         android:icon="@drawable/selector_person"
         android:title="@string/account" />
 
+
     <item
-        android:id="@+id/menu_cart"
-        android:icon="@drawable/selector_cart"
-        android:title="@string/cart" />
+        android:id="@+id/menu_notification"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="@string/notification"
+
+         />
 
     <item
         android:id="@+id/menu_wishlist"

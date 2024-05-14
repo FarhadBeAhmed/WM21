@@ -7,31 +7,11 @@ import com.android.volley.Request;
 import org.json.JSONObject;
 
 import co.wm21.https.annotations.*;
-import co.wm21.https.api_request.JsonArrayResponse;
-import co.wm21.https.api_request.JsonObjectResponse;
 
-/**
- * <p>To use API interface add a return method and type to JsonResponse and add
- * {@link RequestUrl}, {@link SendMethod} and {@link NonNull} to method and add parameters and add
- * {@link Field} to parameters and make the method as non-static.<br/>
- * For Example</p><br/>
- *
- * <pre>
- * &#64;{@link RequestUrl}(&#123;"apps", "link"&#125;)
- * &#64;{@link SendMethod}({@link Request.Method}.POST)
- * &#64;{@link NonNull}
- * {@link JsonObjectResponse} methodName(&#64;{@link Field}("Field") {@link Object} field,
- *                         &#64;{@link Field}("Field2") {@link Object} field2);
- * </pre>
- *
- * @see Constant#getAPI()
- * @see JsonObjectResponse
- * @see com.android.volley.toolbox.Volley
- * @see JSONObject
- */
+
 public interface API {
 
-    @RequestUrl({"apps", "login"})
+  /*  @RequestUrl({"apps", "login"})
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectResponse login(@Field(Constant.USERNAME) String username,
@@ -78,6 +58,12 @@ public interface API {
     @NonNull
     JsonArrayResponse product(@Field(ConstantValues.Product.LIMIT) int limit);
 
+
+    @RequestUrl({"apps", "popularProduct"})
+    @SendMethod(Request.Method.POST)
+    @NonNull
+    JsonArrayResponse popularProduct(@Field(ConstantValues.Product.VALUE) int value);
+
     @RequestUrl({"apps", "product"})
     @SendMethod(Request.Method.POST)
     @NonNull
@@ -106,5 +92,7 @@ public interface API {
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectResponse affiliate_profile(@Field(Constant.USERNAME) String username,
-                                         @Field(Constant.PASSWORD) String password);
+                                         @Field(Constant.PASSWORD) String password);*/
+
+
 }

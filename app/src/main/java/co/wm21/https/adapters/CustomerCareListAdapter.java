@@ -1,10 +1,8 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +10,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.interfaces.OnCustomerCareItemClickListner;
-import com.wm21ltd.wm21.networks.Models.ContactListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import co.wm21.https.FHelper.networks.Models.ContactListModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.OnCustomerCareItemClickListner;
+
 
 public class CustomerCareListAdapter extends RecyclerView.Adapter<CustomerCareListAdapter.ContactListViewHolder> {
     private Context context;
     private ArrayList<ContactListModel> contactList;
     private OnCustomerCareItemClickListner onCustomerCareItemClickListner;
 
-    public CustomerCareListAdapter(Context context, ArrayList<ContactListModel> contactList,OnCustomerCareItemClickListner onCustomerCareItemClickListner) {
+    public CustomerCareListAdapter(Context context, ArrayList<ContactListModel> contactList, OnCustomerCareItemClickListner onCustomerCareItemClickListner) {
         this.context = context;
         this.contactList = contactList;
         this.onCustomerCareItemClickListner = onCustomerCareItemClickListner;

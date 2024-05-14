@@ -3,14 +3,15 @@ package co.wm21.https.interfaces;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.AppliedProductModelHead;
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
+import co.wm21.https.FHelper.networks.Models.TopSellingProModel;
+import co.wm21.https.FHelper.networks.Models.TopSellingProModelHead;
 
-public interface OnAppliedProductsView {
-    void onAppliedProductsDataLoad(AppliedProductModelHead appliedProductModelHeads);
+public interface OnTopSellingProView {
+    void onTopSellingProDataLoad(List<TopSellingProModel> topSellingProModel);
 
-    void onAppliedProductsStartLoading();
+    void onTopSellingProStartLoading();
 
-    void onAppliedProductsStopLoading();
+    void onTopSellingProStopLoading();
 
-    void onAppliedProductsShowMessage(String errmsg);
+    void onTopSellingProShowMessage(String errmsg);
 }

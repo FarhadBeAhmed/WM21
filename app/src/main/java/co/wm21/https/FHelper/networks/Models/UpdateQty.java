@@ -3,7 +3,7 @@ package co.wm21.https.FHelper.networks.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UpdateQuantity {
+public class UpdateQty {
     @SerializedName("error")
     @Expose
     private Integer error;

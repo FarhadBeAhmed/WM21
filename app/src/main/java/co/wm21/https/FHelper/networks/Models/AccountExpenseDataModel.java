@@ -1,8 +1,10 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.FHelper.networks.Models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import co.wm21.https.model.IncomeBalaceReportDataListModel;
 
 public class AccountExpenseDataModel {
     @SerializedName("error")

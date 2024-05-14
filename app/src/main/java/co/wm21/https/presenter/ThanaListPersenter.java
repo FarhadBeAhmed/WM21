@@ -1,9 +1,10 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
-import com.wm21ltd.wm21.interfaces.OnThanaListRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnThanaListView;
-import com.wm21ltd.wm21.serviceapis.InvokeThanaListApi;
+
+import co.wm21.https.interfaces.OnThanaListRequestComplete;
+import co.wm21.https.interfaces.OnThanaListView;
+import co.wm21.https.serviceapis.InvokeThanaListApi;
 
 public class ThanaListPersenter {
     OnThanaListView mView;

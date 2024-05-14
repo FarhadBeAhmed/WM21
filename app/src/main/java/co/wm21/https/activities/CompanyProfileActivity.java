@@ -1,23 +1,22 @@
-package com.wm21ltd.wm21.activities;
+package co.wm21.https.activities;
 
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.ViewPagerAdapter;
-import com.wm21ltd.wm21.fragments.AboutUsFragment;
-import com.wm21ltd.wm21.fragments.BusinessOpportunityFragment;
-import com.wm21ltd.wm21.fragments.CompanyManagementFragment;
-import com.wm21ltd.wm21.fragments.FuturePlanFragment;
-import com.wm21ltd.wm21.fragments.MissionVisionFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+
+import co.wm21.https.R;
+import co.wm21.https.adapters.ViewPagerAdapter;
+import co.wm21.https.fragments.company.AboutUsFragment;
+import co.wm21.https.fragments.company.MissionVisionFragment;
 
 public class CompanyProfileActivity extends AppCompatActivity {
 
@@ -60,9 +59,9 @@ public class CompanyProfileActivity extends AppCompatActivity {
         fragmentTitleList = new ArrayList<>();
         fragmentTitleList.add("About Us");
         fragmentTitleList.add("Mission & Vision");
-        fragmentTitleList.add("Management");
+        /*fragmentTitleList.add("Management");
         fragmentTitleList.add("Business Opportunity");
-        fragmentTitleList.add("Future Plan");
+        fragmentTitleList.add("Future Plan");*/
 
     }
 
@@ -70,9 +69,9 @@ public class CompanyProfileActivity extends AppCompatActivity {
         fragmentList = new ArrayList<>();
         fragmentList.add(new AboutUsFragment());
         fragmentList.add(new MissionVisionFragment());
-        fragmentList.add(new CompanyManagementFragment());
+        /*fragmentList.add(new CompanyManagementFragment());
         fragmentList.add(new BusinessOpportunityFragment());
-        fragmentList.add(new FuturePlanFragment());
+        fragmentList.add(new FuturePlanFragment());*/
     }
 
     @Override

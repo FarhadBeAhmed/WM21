@@ -1,24 +1,55 @@
-package co.wm21.https.adapters.category.drawer_category;
+package co.wm21.https.adapters.category;
 
-public class DrawerSubCatModel {
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.content.res.ResourcesCompat;
+
+import co.wm21.https.ProjectApp;
+import co.wm21.https.helpers.Constant;
+
+public class SubCatModel {
+
     String subCatId;
+    String catId;
     String name;
-    boolean isExpanded;
+    String imageUrl;
+    Drawable image;
 
-    public DrawerSubCatModel(String subCatId, String name ) {
+    public SubCatModel(String subCatId, String name, String image,String catId) {
         this.subCatId = subCatId;
+        this.catId = catId;
         this.name = name;
-        this.isExpanded=false;
+        imageUrl = image;
     }
 
-    public boolean isExpanded() {
-        return isExpanded;
+    public String getCatId() {
+        return catId;
     }
 
-    public void setExpanded(boolean expanded) {
-        isExpanded = expanded;
+    public void setCatId(String catId) {
+        this.catId = catId;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Drawable getImage() {
+        return image;
+    }
+
+    public void setImage(Drawable image) {
+        this.image = image;
+    }
+
+    public void setImage(@DrawableRes int image) {
+        this.image = ResourcesCompat.getDrawable(ProjectApp.getContext().getResources(), image, ProjectApp.getContext().getTheme());
+    }
+
+    public void setImage(String image) {
+        this.image = Constant.getDrawableFromUrl("image", "scat", image);
+    }
     public String getSubCatId() {
         return subCatId;
     }

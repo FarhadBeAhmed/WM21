@@ -5,17 +5,19 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.DrawableRes;
 import androidx.core.content.res.ResourcesCompat;
 
+import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.ProjectApp;
 import co.wm21.https.helpers.Constant;
 
-public class OrderProductModel {
+public class AppliedProductModel {
 
-    private String serial,productID,productName, imageUrl,color,size,model;
+    private String serial,productID,productName, imageUrl,color,size,model,invoice;
+    private String shopName,shopMobile,date;
     private Drawable image;
-    private double price, total, point;
+    private double price, total, point,adjust;
     int qty;
 
-    public OrderProductModel(String serial,String productName, String imageUrl, String color, String size, String model, double price, double total, double point, int qty,String productID) {
+    public AppliedProductModel(String serial, String productName, String imageUrl, String color, String size, String model, double price, double total, double point, int qty, String productID, String invoice, double adjust, String shopName, String shopMobile, String date) {
         this.serial = serial;
         this.productName = productName;
         this.imageUrl = imageUrl;
@@ -28,6 +30,11 @@ public class OrderProductModel {
         this.point = point;
         this.qty = qty;
         this.productID = productID;
+        this.invoice = invoice;
+        this.adjust = adjust;
+        this.shopName = shopName;
+        this.shopMobile = shopMobile;
+        this.date = date;
     }
 
     public String getSerial() {
@@ -132,5 +139,45 @@ public class OrderProductModel {
 
     public void setProductID(String productID) {
         this.productID = productID;
+    }
+
+    public String getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(String invoice) {
+        this.invoice = invoice;
+    }
+
+    public double getAdjust() {
+        return adjust;
+    }
+
+    public void setAdjust(double adjust) {
+        this.adjust = adjust;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public String getShopMobile() {
+        return shopMobile;
+    }
+
+    public void setShopMobile(String shopMobile) {
+        this.shopMobile = shopMobile;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

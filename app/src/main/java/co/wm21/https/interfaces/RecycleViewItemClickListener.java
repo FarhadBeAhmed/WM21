@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.interfaces;
+package co.wm21.https.interfaces;
 
 /**
  * Created by Babu on 1/24/2018.

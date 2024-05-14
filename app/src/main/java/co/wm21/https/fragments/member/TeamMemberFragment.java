@@ -1,13 +1,8 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
 import android.graphics.Color;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,24 +11,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.adapters.TeamInfoAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.TeamInfoDataListModel;
-import com.wm21ltd.wm21.networks.Models.TeamInfoDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.TeamInfoDataListModel;
+import co.wm21.https.FHelper.networks.Models.TeamInfoDataModel;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.R;
+import co.wm21.https.adapters.TeamInfoAdapter;
+import co.wm21.https.databinding.FragmentTeamInfoBinding;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,11 +45,12 @@ import retrofit2.Response;
  */
 public class TeamMemberFragment extends Fragment {
 
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     View mView;
+    FragmentTeamInfoBinding binding;
 
-    @BindView(R.id.rv_teamInfo)
+   /* @BindView(R.id.rv_teamInfo)
     RecyclerView recyclerViewTeamInfo;
     @BindView(R.id.img_teamInfo_CompanyLogo)
     ImageView imageViewCompanyLogo;
@@ -67,7 +70,7 @@ public class TeamMemberFragment extends Fragment {
     @BindView(R.id.txt_teamInfoReport_TeamB)
     TextView textViewHeaderTeamB;
     @BindView(R.id.view_teamInfoReport_TeamB)
-    View viewHeaderTeamB;
+    View viewHeaderTeamB;*/
 
     private List<TeamInfoDataListModel> dataModel = new ArrayList<>();
     private TeamInfoAdapter teamInfoAdapter;
@@ -80,28 +83,29 @@ public class TeamMemberFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_team_info, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentTeamInfoBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
 
-        Glide.with(getActivity()).load(ConstantValues.URL + "s/"
-                + appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYLOGO)).apply(new RequestOptions().error(R.mipmap.ic_launcher)
-                .placeholder(R.mipmap.ic_launcher).fitCenter()).into(imageViewCompanyLogo);
-        textViewCompanyName.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERFULLNAME));
-        textViewCompanyAddress.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYFULLADDRESS));
-        textViewCompanyPhone.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_PHONEDETAILS));
-        textViewCompanyEmail.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYEMAIL));
+    /*        Glide.with(getActivity()).load(ConstantValues.web_url + "s/"
+                    + appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYLOGO)).apply(new RequestOptions().error(R.mipmap.ic_launcher)
+                    .placeholder(R.mipmap.ic_launcher).fitCenter()).into(imageViewCompanyLogo);
+            textViewCompanyName.setText(appSessionManager.getUserDetails().getUsername());
+            textViewCompanyAddress.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYFULLADDRESS));
+            textViewCompanyPhone.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_PHONEDETAILS));
+            textViewCompanyEmail.setText(appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYEMAIL));
+
+      */
         initializedFields();
-        return mView;
+        return binding.getRoot();
     }
 
     private void initializedFields() {
         teamInfoAdapter = new TeamInfoAdapter(dataModel, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewTeamInfo.setLayoutManager(layoutManager);
-        recyclerViewTeamInfo.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewTeamInfo.setAdapter(teamInfoAdapter);
+        binding.rvTeamInfo.setLayoutManager(layoutManager);
+        binding.rvTeamInfo.setItemAnimator(new DefaultItemAnimator());
+        binding.rvTeamInfo.setAdapter(teamInfoAdapter);
         loadData();
     }
 
@@ -112,8 +116,8 @@ public class TeamMemberFragment extends Fragment {
                     .progress(true, 0)
                     .cancelable(false)
                     .show();
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTeamInfoData(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID)).enqueue(new Callback<TeamInfoDataModel>() {
+            APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
+            mApiService.getTeamInfoData(appSessionManager.getUserDetails().getUsername()).enqueue(new Callback<TeamInfoDataModel>() {
                 @Override
                 public void onResponse(Call<TeamInfoDataModel> call, Response<TeamInfoDataModel> response) {
                     if (response.isSuccessful()) {
@@ -125,11 +129,12 @@ public class TeamMemberFragment extends Fragment {
                             String teamAData = response.body().getTeamInfo().get(0).getTeamA();
                             String teamBData = response.body().getTeamInfo().get(0).getTeamB();
                             if (teamAData == null || teamAData.length() <= 0) {
-                                textViewHeaderTeamA.setVisibility(View.GONE);
-                                viewHeaderTeamA.setVisibility(View.GONE);
+                                binding.txtTeamInfoReportTeamA.setVisibility(View.GONE);
+                                binding.viewTeamInfoReportTeamA.setVisibility(View.GONE);
                             } else if (teamBData == null || teamBData.length() <= 0) {
-                                textViewHeaderTeamB.setVisibility(View.GONE);
-                                viewHeaderTeamB.setVisibility(View.GONE);
+                                binding.txtTeamInfoReportTeamB.setVisibility(View.GONE);
+
+                                binding.viewTeamInfoReportTeamB.setVisibility(View.GONE);
                             }
                         } else {
                             Toast.makeText(getActivity(), response.body().getErrorReport(), Toast.LENGTH_SHORT).show();

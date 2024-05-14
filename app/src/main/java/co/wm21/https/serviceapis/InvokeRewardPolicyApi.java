@@ -1,11 +1,13 @@
-package com.wm21ltd.wm21.serviceapis;
+package co.wm21.https.serviceapis;
 
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.OnRewardPolicyRequestComplete;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.RewardPolicyDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
 
+import co.wm21.https.FHelper.API;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.fragments.member.model.RewardPolicyDataModel;
+import co.wm21.https.interfaces.OnRewardPolicyRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,10 +15,14 @@ import retrofit2.Response;
 public class InvokeRewardPolicyApi {
     OnRewardPolicyRequestComplete requestComplete;
 
+    API api;
+
     public InvokeRewardPolicyApi(final OnRewardPolicyRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
+        api=ConstantValues.getAPI();
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+
+        APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
         mApiService.getRewardPolicy().enqueue(new Callback<RewardPolicyDataModel>() {
             @Override
             public void onResponse(Call<RewardPolicyDataModel> call, Response<RewardPolicyDataModel> response) {

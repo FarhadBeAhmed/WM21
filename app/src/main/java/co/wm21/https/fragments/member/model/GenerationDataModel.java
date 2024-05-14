@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.fragments.member.model;
 
 import com.google.gson.annotations.SerializedName;
 

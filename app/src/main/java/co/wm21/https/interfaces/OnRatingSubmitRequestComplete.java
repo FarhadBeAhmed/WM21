@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnRewardAchievementRequestComplete {
-    void onRewardAchievementRequestSuccess(Object obj);
+public interface OnRatingSubmitRequestComplete {
+    void onRatingSubmitRequestComplete(Object obj);
 
-    void onRewardAchievementRequestError(String errMsg);
+    void onRatingSubmitRequestError(String errMsg);
 }

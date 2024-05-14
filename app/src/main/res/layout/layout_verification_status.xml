@@ -1,20 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingHorizontal="15dp"
+    android:layout_marginTop="10dp"
+    android:id="@+id/varif"
+    android:orientation="horizontal"
+    android:paddingHorizontal="10dp"
     android:paddingBottom="7.5dp">
 
-    <https.outsourcingvilla.com.PanelView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:baseColor="#bce8f1"
-        app:title="Current Verification Status">
+        app:cardCornerRadius="8dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/verification_card_bg"
+            android:orientation="vertical"
+            android:paddingBottom="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/primary_red"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:paddingLeft="10dp"
+                    android:paddingVertical="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Verification Status" />
+
+
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/verification_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:progress="0"
+                app:indicatorColor="#2e83df"
+                app:trackCornerRadius="15dp"
+                app:trackThickness="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:background="@color/white"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/percent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0% Complete"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/next_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_bg"
+                    android:backgroundTint="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:textColor="@color/black"
+                    android:text="Next Task: Not Verified"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,UnusedAttribute,TouchTargetSizeCheck" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <co.wm21.https.PanelView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:baseColor="@color/primary_red"
+        app:textColor="@color/white"
+        app:title="Verification Status">
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/verification_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -29,7 +113,6 @@
             android:paddingTop="15dp">
 
             <TextView
-                android:id="@+id/percent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,22 +121,21 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/next_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Next Task: Not Verified"
                 android:background="@drawable/round_bg"
                 android:backgroundTint="@color/white"
-                android:foreground="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
-                tools:ignore="HardcodedText,UnusedAttribute" />
+                android:text="Next Task: Not Verified"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,UnusedAttribute,TouchTargetSizeCheck" />
         </LinearLayout>
 
 
-    </https.outsourcingvilla.com.PanelView>
+    </co.wm21.https.PanelView>
 
 </LinearLayout>

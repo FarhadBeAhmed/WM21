@@ -1,4 +1,4 @@
-package co.wm21.https.fragments;
+package co.wm21.https.fragments.member;
 
 import android.graphics.Color;
 import android.os.Bundle;

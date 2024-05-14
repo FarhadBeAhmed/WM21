@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,6 +11,13 @@ public class IncomeBalaceReportDataListModel {
     private String title;
     @SerializedName("Money")
     private String money;
+
+    public IncomeBalaceReportDataListModel(String serial, String bold, String title, String money) {
+        this.serial = serial;
+        this.bold = bold;
+        this.title = title;
+        this.money = money;
+    }
 
     public String getSerial() {
         return serial;

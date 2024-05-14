@@ -1,9 +1,15 @@
 package co.wm21.https;
 
-public class SliderItem {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public String imageUrl;
-    public String description;
+public class SliderItem {
+    @SerializedName("img1")
+    @Expose
+    private String imageUrl;
+    @SerializedName("info")
+    @Expose
+    private String description;
 
     public SliderItem(String imageUrl, String description) {
         this.imageUrl = imageUrl;

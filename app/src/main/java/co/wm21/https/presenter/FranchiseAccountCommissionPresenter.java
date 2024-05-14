@@ -1,11 +1,12 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnFranchiseAccountRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnFranchiseAccountView;
-import com.wm21ltd.wm21.networks.Models.FranchiseAccountDataListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeFranchiseAccountApi;
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
+import co.wm21.https.interfaces.OnFranchiseAccountRequestComplete;
+import co.wm21.https.interfaces.OnFranchiseAccountView;
+import co.wm21.https.serviceapis.InvokeFranchiseAccountApi;
 
 public class FranchiseAccountCommissionPresenter {
     OnFranchiseAccountView mView;

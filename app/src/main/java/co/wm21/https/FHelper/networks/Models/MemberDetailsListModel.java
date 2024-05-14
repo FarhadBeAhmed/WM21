@@ -1,10 +1,9 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.FHelper.networks.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 public class MemberDetailsListModel implements Serializable {
 

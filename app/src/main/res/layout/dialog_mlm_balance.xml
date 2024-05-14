@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="?attr/materialCardViewElevatedStyle"
     android:layout_width="340dp"
     android:layout_height="wrap_content">
@@ -25,7 +26,7 @@
     </androidx.cardview.widget.CardView>
 
     <ScrollView
-        android:id="@+id/affiliate_balance_dialog_scroll"
+        android:id="@+id/mlm_balance_dialog_scroll"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginHorizontal="18dp"
@@ -50,8 +51,9 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="My Promotional Earning"
-                    android:textColor="@color/text_color" />
+                    android:text="Before 2021-08-01 Balance"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/affiliate_balance_dialog_1"
@@ -61,10 +63,10 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
                     android:hint="0.00"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -78,8 +80,9 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Own Primary Earning"
-                    android:textColor="@color/text_color" />
+                    android:text="Direct Referral Commission"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/affiliate_balance_dialog_2"
@@ -89,10 +92,10 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
                     android:hint="0.00"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -100,15 +103,14 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="5dp"
                 app:cardElevation="0dp">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Own Advance Earning"
-                    android:textColor="@color/text_color" />
-
+                    android:text="Daily Matching Commission"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
                 <TextView
                     android:id="@+id/affiliate_balance_dialog_3"
                     android:layout_width="wrap_content"
@@ -117,10 +119,10 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
                     android:hint="0.00"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -134,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Team Primary Earning"
+                    android:text="Brand Promoter Incentive"
                     android:textColor="@color/text_color" />
 
                 <TextView
@@ -148,7 +150,6 @@
                     android:textColor="@color/text_color" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -162,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Team Advance Earning"
+                    android:text="Brand Ambassador Royalty"
                     android:textColor="@color/text_color" />
 
                 <TextView
@@ -176,7 +177,6 @@
                     android:textColor="@color/text_color" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Team Extra Earning"
+                    android:text="Executive Royalty"
                     android:textColor="@color/text_color" />
 
                 <TextView
@@ -204,7 +204,6 @@
                     android:textColor="@color/text_color" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -218,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Total Affiliate Earning"
+                    android:text="Franchise Commission"
                     android:textColor="@color/text_color" />
 
                 <TextView
@@ -232,7 +231,6 @@
                     android:textColor="@color/text_color" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -246,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Total Mobile Recharge"
+                    android:text="Business Develop (BDP)"
                     android:textColor="@color/text_color" />
 
                 <TextView
@@ -260,7 +258,6 @@
                     android:textColor="@color/text_color" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
@@ -274,11 +271,38 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Total Withdrawal Balance"
+                    android:text="Promotional Incentive (SDP)"
                     android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/affiliate_balance_dialog_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:hint="0.00"
+                    android:textColor="@color/text_color" />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Top Earner Incentive"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/affiliate_balance_dialog_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -302,11 +326,11 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="10dp"
-                    android:text="Current Wallet Balance"
+                    android:text="Shop Refer Commission"
                     android:textColor="@color/text_color" />
 
                 <TextView
-                    android:id="@+id/affiliate_balance_dialog_10"
+                    android:id="@+id/affiliate_balance_dialog_11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -314,6 +338,172 @@
                     android:paddingVertical="10dp"
                     android:hint="0.00"
                     android:textColor="@color/text_color" />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+            style="?attr/materialCardViewElevatedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="5dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:text="ICT Lab Commission"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/affiliate_balance_dialog_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:hint="0.00"
+                android:textColor="@color/text_color" />
+
+        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+            style="?attr/materialCardViewElevatedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="5dp"
+            app:cardElevation="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:text="Total_Income"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/affiliate_balance_dialog_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:hint="0.00"
+                android:textColor="@color/text_color" />
+
+        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Withdrawal"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/affiliate_balance_dialog_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:hint="0.00"
+                    android:textColor="@color/text_color" />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Expenses"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/affiliate_balance_dialog_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:hint="0.00"
+                    android:textColor="@color/text_color" />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Total Expense"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/affiliate_balance_dialog_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:hint="0.00"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:text="Net Balance"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/affiliate_balance_dialog_17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="10dp"
+                    android:hint="0.00"
+                    android:textColor="@color/text_color"
+                    tools:ignore="HardcodedText" />
 
             </androidx.cardview.widget.CardView>
 

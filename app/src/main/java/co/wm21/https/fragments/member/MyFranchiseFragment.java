@@ -1,27 +1,32 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
 
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.interfaces.OnMyFranchiseView;
-import com.wm21ltd.wm21.presenters.MyFranchiseInfoPresenterr;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.R;
+import co.wm21.https.databinding.FragmentMyFranchiseBinding;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnMyFranchiseView;
+import co.wm21.https.presenter.MyFranchiseInfoPresenterr;
 
 
 /**
@@ -30,20 +35,13 @@ import butterknife.ButterKnife;
 public class MyFranchiseFragment extends Fragment implements OnMyFranchiseView {
 
     View mView;
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
-    @BindView(R.id.txt_myFranchise_Type)
-    TextView textViewFranchiseType;
-    @BindView(R.id.txt_myFranchise_Name)
-    TextView textViewFranchiseName;
-    @BindView(R.id.txt_myFranchise_MobileNo)
-    TextView textViewFranchiseMobileNo;
-    @BindView(R.id.txt_myFranchise_Address)
-    TextView textViewFranchiseAddress;
-    @BindView(R.id.txt_myFranchise_Email)
-    TextView textViewFranchiseEmail;
 
-    MaterialDialog dialog;
+    FragmentMyFranchiseBinding binding;
+
+    //MaterialDialog dialog;
+    LoadingDialog loadingDialog;
     MyFranchiseInfoPresenterr myFranchiseInfoPresenterr;
 
 
@@ -55,23 +53,18 @@ public class MyFranchiseFragment extends Fragment implements OnMyFranchiseView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_my_franchise, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentMyFranchiseBinding.inflate(getLayoutInflater());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
-        dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                .content(getResources().getString(R.string.pleaseWait))
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
+       loadingDialog=new LoadingDialog(getActivity());
         myFranchiseInfoPresenterr = new MyFranchiseInfoPresenterr(this);
         loadInitialData();
-        return mView;
+        return binding.getRoot();
     }
 
     private void loadInitialData() {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            myFranchiseInfoPresenterr.onMyFranchiseInfoResponseData(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID));
+            myFranchiseInfoPresenterr.onMyFranchiseInfoResponseData(appSessionManager.getUserDetails().getUserId());
         } else {
             Snackbar snackbar = Snackbar.make(getActivity().getWindow().getDecorView().getRootView(), "No internet connection!", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY", new View.OnClickListener() {
@@ -88,23 +81,24 @@ public class MyFranchiseFragment extends Fragment implements OnMyFranchiseView {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onResponseData(HashMap hashMap) {
-        textViewFranchiseType.setText("Franchise Type: " + hashMap.get("title").toString());
-        textViewFranchiseName.setText("Franchise Name: " + hashMap.get("name").toString());
-        textViewFranchiseMobileNo.setText("Mobile No: " + hashMap.get("mobile").toString());
-        textViewFranchiseEmail.setText("Email: " + hashMap.get("email").toString());
-        textViewFranchiseAddress.setText("Address: " + hashMap.get("addrss").toString());
+        binding.txtMyFranchiseType.setText("Franchise Type: " + hashMap.get("title").toString());
+        binding.txtMyFranchiseName.setText("Franchise Name: " + hashMap.get("name").toString());
+        binding.txtMyFranchiseMobileNo.setText("Mobile No: " + hashMap.get("mobile").toString());
+        binding.txtMyFranchiseEmail.setText("Email: " + hashMap.get("email").toString());
+        binding.txtMyFranchiseAddress.setText("Address: " + hashMap.get("addrss").toString());
     }
 
     @Override
     public void startLoading() {
-        dialog.show();
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
     public void stopLoading() {
-        dialog.dismiss();
+        loadingDialog.dismissDialog();
     }
 
     @Override

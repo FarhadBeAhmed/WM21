@@ -18,21 +18,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:src="@drawable/warning" />
-
-            <TextView
-                android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Warning"
-                android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:layout_height="@dimen/_100sdp"
+                android:padding="5dp"
+                android:src="@drawable/work_in_progress" />
+
         </LinearLayout>
 
         <TextView
@@ -40,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Do you want to remove this Item??"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="13sp"
             tools:ignore="HardcodedText" />
@@ -69,8 +59,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="30dp"
-                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="@dimen/_30sdp"
+                        android:paddingVertical="@dimen/_5sdp"
                         android:text="OK"
                         android:textAllCaps="true"
                         android:textColor="@color/white"

@@ -1,7 +1,7 @@
 package co.wm21.https.interfaces;
 
-public interface OnProductReviewListRequestComplete {
-    void onProductReviewListRequestComplete(Object obj);
+public interface OnProductDetailsRequestComplete {
+    void onProductDetailsRequestComplete(Object obj);
 
-    void onProductReviewListRequestError(String errMsg);
+    void onProductDetailsRequestError(String errMsg);
 }

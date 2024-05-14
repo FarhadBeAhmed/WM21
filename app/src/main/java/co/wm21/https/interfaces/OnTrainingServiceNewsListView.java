@@ -1,8 +1,10 @@
-package com.wm21ltd.wm21.interfaces;
+package co.wm21.https.interfaces;
 
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsListModel;
+
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
 
 public interface OnTrainingServiceNewsListView {
 

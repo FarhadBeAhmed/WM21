@@ -1,24 +1,16 @@
 package co.wm21.https.adapters.category.drawer_category;
 
-public class DrawerCatModel {
+public class DrawerSubCatModel {
     String catId;
+    String subCatId;
     String name;
-    String icon;
     boolean isExpanded;
 
-    public DrawerCatModel(String id, String name, String icon) {
-        this.catId = catId;
+    public DrawerSubCatModel(String subCatId, String name, String catId ) {
+        this.subCatId = subCatId;
         this.name = name;
-        this.icon = icon;
-        isExpanded=false;
-    }
-
-    public boolean isExpanded() {
-        return isExpanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        isExpanded = expanded;
+        this.catId = catId;
+        this.isExpanded=false;
     }
 
     public String getCatId() {
@@ -29,6 +21,22 @@ public class DrawerCatModel {
         this.catId = catId;
     }
 
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    public String getSubCatId() {
+        return subCatId;
+    }
+
+    public void setSubCatId(String subCatId) {
+        this.subCatId = subCatId;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,11 +45,4 @@ public class DrawerCatModel {
         this.name = name;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
 }

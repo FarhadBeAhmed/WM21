@@ -1,11 +1,13 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsListView;
-import com.wm21ltd.wm21.interfaces.OnTrainingServiceNewsRequestComplete;
-import com.wm21ltd.wm21.networks.Models.TrainingServiceNewsListModel;
-import com.wm21ltd.wm21.serviceapis.InvokeTrainingServiceNewsApi;
+
 
 import java.util.List;
+
+import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
+import co.wm21.https.interfaces.OnTrainingServiceNewsListView;
+import co.wm21.https.interfaces.OnTrainingServiceNewsRequestComplete;
+import co.wm21.https.serviceapis.InvokeTrainingServiceNewsApi;
 
 public class TrainingServiceNewsPresenter {
     private OnTrainingServiceNewsListView onTrainingServiceNewsListView;

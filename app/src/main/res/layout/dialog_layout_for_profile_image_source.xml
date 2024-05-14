@@ -11,14 +11,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#FE0000"
             android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Choose file location"
-                android:textColor="@color/colorWhite"
+                android:textColor="#FFFFFF"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Gallery"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="#000000"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Camera"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="#000000"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -79,6 +79,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorPrimaryDark" />
+            android:background="#FE0000" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

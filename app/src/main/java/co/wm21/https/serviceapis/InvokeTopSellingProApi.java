@@ -3,39 +3,39 @@ package co.wm21.https.serviceapis;
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.AppliedProductModelHead;
-import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
+import co.wm21.https.FHelper.networks.Models.TopSellingProModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.interfaces.OnAppliedProductsRequestComplete;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
+import co.wm21.https.interfaces.OnTopSellingProRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvokeAppliedProductsApi {
-    OnAppliedProductsRequestComplete requestComplete;
+public class InvokeTopSellingProApi {
+    OnTopSellingProRequestComplete requestComplete;
 
-    public InvokeAppliedProductsApi(String user_id, final OnAppliedProductsRequestComplete requestComplete) {
+    public InvokeTopSellingProApi(final OnTopSellingProRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.appliedProducts(user_id).enqueue(new Callback<AppliedProductModelHead>() {
+        mApiService.topSelling().enqueue(new Callback<TopSellingProModelHead>() {
             @Override
-            public void onResponse(Call<AppliedProductModelHead> call, Response<AppliedProductModelHead> response) {
+            public void onResponse(Call<TopSellingProModelHead> call, Response<TopSellingProModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onAppliedProductsRequestComplete(response.body());
+                        requestComplete.onTopSellingProRequestComplete(response.body().getData());
                     } else {
-                        requestComplete.onAppliedProductsRequestError(response.body().getError_report());
+                        requestComplete.onTopSellingProRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onAppliedProductsRequestError("Something Went Wrong!");
+                    requestComplete.onTopSellingProRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
-            public void onFailure(Call<AppliedProductModelHead> call, Throwable t) {
-                requestComplete.onAppliedProductsRequestError("Something Went Wrong!");
+            public void onFailure(Call<TopSellingProModelHead> call, Throwable t) {
+                requestComplete.onTopSellingProRequestError("Something Went Wrong!");
             }
         });
     }

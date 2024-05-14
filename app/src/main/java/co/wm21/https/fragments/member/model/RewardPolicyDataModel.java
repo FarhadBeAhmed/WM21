@@ -1,4 +1,4 @@
-package com.wm21ltd.wm21.networks.Models;
+package co.wm21.https.fragments.member.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +10,7 @@ public class RewardPolicyDataModel {
     @SerializedName("error_report")
     private String errorReport;
     @SerializedName("team_info")
-    private List<RewardPolicyDataListModel> teamInfo = null;
+    private List<RewardPolicyDataListModel> teamInfo;
 
     public Integer getError() {
         return error;

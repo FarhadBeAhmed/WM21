@@ -19,6 +19,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -68,7 +69,7 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
                                 android:text="Invoice: "
-                                android:textColor="@color/primary_red"
+                                android:textColor="@color/black"
                                 android:textSize="11sp"
                                 tools:ignore="HardcodedText" />
 
@@ -80,7 +81,7 @@
                                 android:gravity="center"
                                 android:paddingStart="5dp"
                                 android:text="110523420"
-                                android:textColor="@color/primary_red"
+                                android:textColor="@color/black"
                                 android:textSize="11sp"
                                 tools:ignore="HardcodedText,RtlSymmetry" />
                         </LinearLayout>
@@ -91,30 +92,108 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/prNameLayoutID"
                         android:layout_toEndOf="@id/productImage">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:id="@+id/shopName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:paddingStart="10dp"
+                                android:text="Future Vision Enterprise"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
 
-                        <TextView
-                            android:id="@+id/shopName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:paddingStart="10dp"
-                            android:text="Future Vision Enterprise"
-                            android:textColor="@color/green"
-                            android:textSize="12sp"
+                                tools:ignore="HardcodedText,RtlSymmetry" />
 
-                            tools:ignore="HardcodedText,RtlSymmetry" />
+                            <TextView
+                                android:id="@+id/mobileNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:paddingStart="10dp"
+                                android:text="01XXXXXXXXX"
+                                android:textColor="@color/black"
+                                android:textSize="13sp"
 
-                        <TextView
-                            android:id="@+id/mobileNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:paddingStart="10dp"
-                            android:text="01XXXXXXXXX"
-                            android:textColor="@color/green"
-                            android:textSize="13sp"
+                                tools:ignore="HardcodedText,RtlSymmetry" />
 
-                            tools:ignore="HardcodedText,RtlSymmetry" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Action"
+                                android:gravity="center"
+                                android:paddingHorizontal="2dp"
+                                android:visibility="gone"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                tools:ignore="HardcodedText,RtlSymmetry" />
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/received_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:cardElevation="5dp"
+                                app:cardMaxElevation="8dp"
+                                app:cardCornerRadius="7dp"
+
+                                >
+                                <LinearLayout
+                                    android:id="@+id/received_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <TextView
+                                        android:id="@+id/acText"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Pending..."
+                                        android:gravity="center"
+                                        android:paddingVertical="4dp"
+                                        android:paddingHorizontal="@dimen/_10sdp"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_10ssp"
+                                        tools:ignore="HardcodedText,RtlSymmetry" />
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:visibility="gone"
+                                android:id="@+id/actionText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:paddingStart="10dp"
+                                android:text="Pending..."
+                                android:gravity="center"
+                                android:paddingVertical="4dp"
+                                android:paddingHorizontal="10dp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+
+                        </LinearLayout>
+
+
 
                     </LinearLayout>
 
@@ -123,8 +202,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -236,9 +314,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="Tk. "
-                            android:textColor="#FE0000"
+                            android:textColor="@color/black"
                             android:textSize="13sp"
 
                             tools:ignore="HardcodedText" />
@@ -247,9 +325,9 @@
                             android:id="@+id/singleProductTotalPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="100.00"
-                            android:textColor="#FE0000"
+                            android:textColor="@color/black"
                             android:textSize="13sp"
 
                             tools:ignore="HardcodedText" />

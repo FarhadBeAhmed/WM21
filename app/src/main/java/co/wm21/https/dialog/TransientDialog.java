@@ -1,8 +1,9 @@
-package com.wm21ltd.wm21.dialog;
+package co.wm21.https.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
+
 import androidx.appcompat.app.AlertDialog;
 
 

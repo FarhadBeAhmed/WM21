@@ -1,14 +1,9 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments;
 
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,23 +11,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.activities.GenerationDetailsActivity;
-import com.wm21ltd.wm21.adapters.GenerationAdapter;
-import com.wm21ltd.wm21.helpers.CheckInternetConnection;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.interfaces.GenerationItemClickListner;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Models.GenerationDataListModel;
-import com.wm21ltd.wm21.networks.Models.GenerationDataModel;
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.stores.AppSessionManager;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.API;
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.R;
+import co.wm21.https.adapters.GenerationAdapter;
+import co.wm21.https.databinding.FragmentGenerationBinding;
+import co.wm21.https.fragments.member.model.GenerationDataListModel;
+import co.wm21.https.fragments.member.model.GenerationDataModel;
+import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.helpers.User;
+import co.wm21.https.interfaces.GenerationItemClickListner;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,11 +48,11 @@ import retrofit2.Response;
  */
 public class GenerationFragment extends Fragment implements GenerationItemClickListner {
 
-    AppSessionManager appSessionManager;
+    SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
-
-    @BindView(R.id.rv_generation)
-    RecyclerView recyclerViewGen;
+    API api;
+    User user;
+    FragmentGenerationBinding binding;
     private List<GenerationDataListModel> genList = new ArrayList<>();
     private GenerationAdapter gAdapter;
     View mView;
@@ -59,32 +65,37 @@ public class GenerationFragment extends Fragment implements GenerationItemClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_generation, container, false);
-        ButterKnife.bind(this, mView);
-        appSessionManager = new AppSessionManager(getActivity());
+        binding=FragmentGenerationBinding.inflate(getLayoutInflater());
+
+
+
+        api= ConstantValues.getAPI();
+        user=new User(getContext());
+        appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
         initializedList();
-        return mView;
+        return binding.getRoot();
     }
 
     private void initializedList() {
         gAdapter = new GenerationAdapter(genList, getActivity(), this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewGen.setLayoutManager(layoutManager);
-        recyclerViewGen.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewGen.setAdapter(gAdapter);
+        binding.rvGeneration.setLayoutManager(layoutManager);
+        binding.rvGeneration.setItemAnimator(new DefaultItemAnimator());
+        binding.rvGeneration.setAdapter(gAdapter);
         loadListData();
     }
 
     private void loadListData() {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
            /* final MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).title(getResources().getString(R.string.loading))
-                    .content(getResources().getString(R.string.pleaseWait))
+                    .content(getResources()
+                    .getString(R.string.pleaseWait))
                     .progress(true, 0)
                     .cancelable(false)
                     .show();*/
             APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getGeneration(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERID)).enqueue(new Callback<GenerationDataModel>() {
+            mApiService.getGeneration(appSessionManager.getUserDetails().getUsername()).enqueue(new Callback<GenerationDataModel>() {
                 @Override
                 public void onResponse(Call<GenerationDataModel> call, Response<GenerationDataModel> response) {
                     if (response.isSuccessful()) {
@@ -100,7 +111,7 @@ public class GenerationFragment extends Fragment implements GenerationItemClickL
                         Log.e("GENERATION", "Error :" + response.code());
                         Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
                     }
-                   // dialog.dismiss();
+                    // dialog.dismiss();
                 }
 
                 @Override
@@ -128,8 +139,8 @@ public class GenerationFragment extends Fragment implements GenerationItemClickL
 
     @Override
     public void onItemClickListner(String slNumber) {
-        Intent goGenerationDetailsActivity = new Intent(getActivity(), GenerationDetailsActivity.class);
-        goGenerationDetailsActivity.putExtra("SLNUMBER", slNumber);
-        startActivity(goGenerationDetailsActivity);
+        //Intent goGenerationDetailsActivity = new Intent(getActivity(), GenerationDetailsActivity.class);
+    //    goGenerationDetailsActivity.putExtra("SLNUMBER", slNumber);
+      //  startActivity(goGenerationDetailsActivity);
     }
 }

@@ -1,21 +1,22 @@
-package com.wm21ltd.wm21.adapters;
+package co.wm21.https.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.interfaces.OnBottomReachedListener;
-import com.wm21ltd.wm21.networks.Models.FranchiseAccountDataListModel;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
+import co.wm21.https.R;
+import co.wm21.https.interfaces.OnBottomReachedListener;
 
 public class FranchiseAccountCommissionAdapter extends RecyclerView.Adapter<FranchiseAccountCommissionAdapter.MyViewHolder> {
 
@@ -33,15 +34,20 @@ public class FranchiseAccountCommissionAdapter extends RecyclerView.Adapter<Fran
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_rowFranchiseCommission_SL)TextView textViewSerial;
-        @BindView(R.id.tv_rowFranchiseCommission_User)TextView textViewUser;
-        @BindView(R.id.tv_rowFranchiseCommission_Date)TextView textViewDate;
-        @BindView(R.id.tv_rowFranchiseCommission_Unit)TextView textViewUnit;
-        @BindView(R.id.tv_rowFranchiseCommission_Amount)TextView textViewAmount;
-        @BindView(R.id.tv_rowFranchiseCommission_Status)TextView textViewStatus;
+      TextView textViewSerial;
+        TextView textViewUser;
+        TextView textViewDate;
+        TextView textViewUnit;
+        TextView textViewAmount;
+      TextView textViewStatus;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            textViewSerial=itemView.findViewById(R.id.tv_rowFranchiseCommission_SL);
+            textViewUser=itemView.findViewById(R.id.tv_rowFranchiseCommission_User);
+            textViewDate=itemView.findViewById(R.id.tv_rowFranchiseCommission_Date);
+            textViewUnit=itemView.findViewById(R.id.tv_rowFranchiseCommission_Unit);
+            textViewAmount=itemView.findViewById(R.id.tv_rowFranchiseCommission_Amount);
+            textViewStatus=itemView.findViewById(R.id.tv_rowFranchiseCommission_Status);
         }
     }
 

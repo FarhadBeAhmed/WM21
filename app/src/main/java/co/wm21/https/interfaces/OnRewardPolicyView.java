@@ -1,8 +1,9 @@
-package com.wm21ltd.wm21.interfaces;
+package co.wm21.https.interfaces;
 
-import com.wm21ltd.wm21.networks.Models.RewardPolicyDataListModel;
 
 import java.util.List;
+
+import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
 
 public interface OnRewardPolicyView {
     void onRewardPolicyData(List<RewardPolicyDataListModel> rewardModel);

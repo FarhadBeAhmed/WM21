@@ -1,115 +1,203 @@
 package co.wm21.https.adapters.category.drawer_category;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
 import co.wm21.https.R;
+import co.wm21.https.activities.MainActivity;
 import co.wm21.https.adapters.ItemClickListener;
-import co.wm21.https.adapters.category.CategoryAdapter;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.fragments.products.CategoryProductFragment;
+import co.wm21.https.interfaces.OnDrawerCatListView;
+import co.wm21.https.presenter.DrawerCatListPresenter;
 
-public class DrawerCatAdapter extends RecyclerView.Adapter<DrawerCatAdapter.viewHolder> {
-    private ArrayList<DrawerCatModel> categoryList;
-    private LayoutInflater mInflater;
+public class DrawerSubCatAdapter extends RecyclerView.Adapter<DrawerSubCatAdapter.viewHolder>implements OnDrawerCatListView {
+    private final ArrayList<DrawerCatModel> categoryList;
+    private final ArrayList<DrawerCatModel> brandsModels = new ArrayList<>();
+    private final LayoutInflater mInflater;
     public ItemClickListener listener;
+    private DrawerCatListPresenter drawerCatListPresenter;
+    DrawerBrandAdapter adapter;
     private String layoutType;
     Context context;
+    int id = 0;
     @LayoutRes
     int res;
 
-    public DrawerCatAdapter(Context context, ArrayList<DrawerCatModel> categoryList, @LayoutRes int res) {
+    public DrawerSubCatAdapter(Context context, ArrayList<DrawerCatModel> categoryList, @LayoutRes int res) {
         this.categoryList = categoryList;
         this.mInflater = LayoutInflater.from(context);
         this.layoutType = layoutType;
-        this.context=context;
-        this.res=res;
+        this.context = context;
+        this.res = res;
     }
+
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return new viewHolder(mInflater.inflate(res, parent, false));
+
     }
 
+    @SuppressLint({"NotifyDataSetChanged", "RtlHardcoded"})
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         DrawerCatModel category = categoryList.get(position);
-        //Picasso.get().load("http://www.wm21.net/image/cat/"+category.getCategoryImageUrl()).into(holder.image);
-       // Picasso.get().load(Constant.getDrawableFromUrl("http://www.wm21.net/image/cat/"+category.getCategoryImageUrl()).toString()).into(holder.image);
-       holder.image.setImageDrawable(Constant.getDrawableFromUrl("image", "cat", category.getIcon()));
         holder.text.setText(category.getName());
-        holder.btn.setOnClickListener(view -> {
 
-            int id=0;
-            ArrayList<CategoryView> categoryViews = new ArrayList<>();
+        boolean isExpanded = categoryList.get(position).isExpanded();
+        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
-            co.wm21.https.FHelper.API api2= co.wm21.https.FHelper.ConstantValues.getAPI();
-           // binding.shimmerProduct.setVisibility(View.VISIBLE);
-          //  binding.parentCategoriesRecyclerView.setVisibility(View.GONE);
-            MySingleton.getInstance(context).addToRequestQueue(api2.categories(id,category.getId(), response -> {
-                try {
-                    JSONArray jsonArray=response.getJSONArray("sub_cat");
-                    for (int i=0;i<jsonArray.length();i++){
-                        JSONObject json=jsonArray.getJSONObject(i);
-                        categoryViews.add(new CategoryView(
-                                json.getString(ConstantValues.Categories.CAT_NAME),
-                                json.getString(ConstantValues.Categories.CAT_ICON)));
+        if (categoryList.get(position).isExpanded()) {
+            holder.text.setTextColor(Color.parseColor("#FE0000"));
+            holder.expandBtn.setImageResource(R.drawable.ic_arrow_down_red);
+        } else {
+            holder.text.setTextColor(Color.parseColor("#FFFFFF"));
+            holder.expandBtn.setImageResource(R.drawable.ic_arrow_right_white);
+            //holder.notifyAll();
 
-                    }
-                    holder.subcatRecView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false));
-                    holder.subcatRecView.setAdapter(new DrawerCatAdapter(context, categoryViews, R.layout.layout_item_drawer_subcat));
-                  //  binding.shimmerProduct.setVisibility(View.GONE);
-                  //  binding.parentCategoriesRecyclerView.setVisibility(View.VISIBLE);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        }
+
+
+        int id = 2;
+        brandsModels.clear();
+        holder.RecView.removeAllViews();
+
+        holder.RecView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+       adapter = new DrawerBrandAdapter(context, brandsModels, R.layout.layout_item_drawer_brands);
+        holder.RecView.setHasFixedSize(true);
+        holder.RecView.setAdapter(adapter);
+        drawerCatListPresenter=new DrawerCatListPresenter(this);
+
+        drawerCatListPresenter.onDrawerCatDataLoad(id, category.getId());
+
+       /* co.wm21.https.FHelper.API api2 = co.wm21.https.FHelper.ConstantValues.getAPI();
+        MySingleton.getInstance(context).addToRequestQueue(api2.categories(id, category.getId(), response -> {
+            try {
+
+                JSONArray jsonArray = response.getJSONArray("brands");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject json = jsonArray.getJSONObject(i);
+                    brandsModels.add(new DrawerBrandsModel(
+                            json.getString(ConstantValues.Categories.BRAND_ID),
+                            json.getString(ConstantValues.Categories.BRAND_NAME)));
                 }
-            }));
+                holder.RecView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+                DrawerBrandAdapter adapter = new DrawerBrandAdapter(context, brandsModels, R.layout.layout_item_drawer_brands);
+                holder.RecView.setHasFixedSize(true);
+                holder.RecView.setAdapter(adapter);
 
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }));
+*/
+
+        holder.btn.setOnClickListener(view -> {
+            ((MainActivity)context).binding.drawerLayout.closeDrawer(Gravity.LEFT);
+            Bundle bundle = new Bundle();
+            bundle.putString(ConstantValues.SUB_CAT_ID, category.getId());
+            bundle.putString(ConstantValues.NAME, category.getName());
+            CategoryProductFragment categoryProductFragment = new CategoryProductFragment();
+            categoryProductFragment.setArguments(bundle);
+            //((FragmentActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.main_home_contain, subSubCategoryFragment, "SubCategoryFragment").addToBackStack("SubCategory").commit();
+            switchFragment(categoryProductFragment,"CategoryProductFragment");
         });
 
     }
 
+    public void switchFragment(Fragment fragment,String tag) {
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();
+        fm.beginTransaction().replace(((MainActivity)context).binding.fragmentContainer.getId(), fragment,tag).addToBackStack(tag).commit();
+    }
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        if (categoryList != null) {
+            return categoryList.size();
+        } else return 0;
+
     }
 
+    @Override
+    public void onDrawerCatListDataLoad(List<DrawerCatModel> drawerCatModels) {
+        brandsModels.addAll(drawerCatModels);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDrawerCatListStartLoading() {
+
+    }
+
+    @Override
+    public void onDrawerCatListStopLoading() {
+
+    }
+
+    @Override
+    public void onDrawerCatListShowMessage(String errmsg) {
+        Toast.makeText(context.getApplicationContext(), errmsg, Toast.LENGTH_SHORT).show();
+    }
+
+
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
         TextView text;
-        LinearLayout btn;
-        RecyclerView subcatRecView;
+        RelativeLayout btn;
+        LinearLayout expandableLayout;
+        ImageView expandBtn;
+        RecyclerView RecView;
+
+        @SuppressLint("NotifyDataSetChanged")
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.drCategory_icon);
-            text = itemView.findViewById(R.id.drCategory_name);
+            text = itemView.findViewById(R.id.drSubCategory_name);
             btn = itemView.findViewById(R.id.categoryBtn);
-            subcatRecView = itemView.findViewById(R.id.subCatRecView);
+            expandableLayout = itemView.findViewById(R.id.expandableSubLayout);
+            expandBtn = itemView.findViewById(R.id.expandSubBtn_icon);
+            RecView = itemView.findViewById(R.id.drawerBrandRecView);
+            expandBtn.setOnClickListener(view -> {
+                DrawerCatModel catModel = categoryList.get(getAdapterPosition());
+                catModel.setExpanded(!catModel.isExpanded());
+                notifyItemChanged(getAdapterPosition());
+            });
             itemView.setOnClickListener(v -> {
                 if (listener != null) listener.OnClick(v, getAdapterPosition());
             });
         }
     }
+
+
 }

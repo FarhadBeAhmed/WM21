@@ -1,8 +1,8 @@
-package com.wm21ltd.wm21.presenters;
+package co.wm21.https.presenter;
 
-import com.wm21ltd.wm21.interfaces.OnMemberDetailsRequestComplete;
-import com.wm21ltd.wm21.interfaces.OnMemberDetailsView;
-import com.wm21ltd.wm21.serviceapis.InvokeMemberDetailsApi;
+import co.wm21.https.interfaces.OnMemberDetailsRequestComplete;
+import co.wm21.https.interfaces.OnMemberDetailsView;
+import co.wm21.https.serviceapis.InvokeMemberDetailsApi;
 
 public class MemberDetailsPresenter {
     private OnMemberDetailsView onMemberDetailsView;
@@ -26,5 +26,6 @@ public class MemberDetailsPresenter {
                 onMemberDetailsView.onShowMessage(errMsg);
             }
         });
+
     }
 }

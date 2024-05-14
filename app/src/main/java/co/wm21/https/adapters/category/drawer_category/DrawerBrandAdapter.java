@@ -2,6 +2,8 @@ package co.wm21.https.adapters.category.drawer_category;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,9 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,23 +27,24 @@ import java.util.ArrayList;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
+import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
 import co.wm21.https.R;
+import co.wm21.https.activities.MainActivity;
 import co.wm21.https.adapters.ItemClickListener;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.fragments.products.CategoryProductFragment;
 
-public class DrawerSubCatAdapter extends RecyclerView.Adapter<DrawerSubCatAdapter.viewHolder> {
-    private final ArrayList<DrawerSubCatModel> categoryList ;
-    private final ArrayList<DrawerBrandsModel> brandsModels = new ArrayList<>();
+public class DrawerBrandAdapter extends RecyclerView.Adapter<DrawerBrandAdapter.viewHolder> {
+    private final ArrayList<DrawerCatModel> brandsList;
     private final LayoutInflater mInflater;
     public ItemClickListener listener;
     private String layoutType;
+
     Context context;
     @LayoutRes
     int res;
 
-    public DrawerSubCatAdapter(Context context, ArrayList<DrawerSubCatModel> categoryList, @LayoutRes int res) {
-        this.categoryList = categoryList;
+    public DrawerBrandAdapter(Context context, ArrayList<DrawerCatModel> brandsList, @LayoutRes int res) {
+        this.brandsList = brandsList;
         this.mInflater = LayoutInflater.from(context);
         this.layoutType = layoutType;
         this.context=context;
@@ -52,63 +58,45 @@ public class DrawerSubCatAdapter extends RecyclerView.Adapter<DrawerSubCatAdapte
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        DrawerSubCatModel category = categoryList.get(position);
+        DrawerCatModel category = brandsList.get(position);
         holder.text.setText(category.getName());
 
-        boolean isExpanded = categoryList.get(position).isExpanded();
-        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
 
-        if(categoryList.get(position).isExpanded()) {
-            holder.text.setTextColor(Color.parseColor("#FE0000"));
-        }else {
-            holder.text.setTextColor(Color.parseColor("#000000"));
-        }
 
 
-        int id = 1;
-        brandsModels.clear();
-        holder.subcatRecView.removeAllViews();
-        co.wm21.https.FHelper.API api2 = co.wm21.https.FHelper.ConstantValues.getAPI();
-        MySingleton.getInstance(context).addToRequestQueue(api2.categories(id, category.getCatId(), response -> {
-            try {
-
-                JSONArray jsonArray = response.getJSONArray("sub_cat");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject json = jsonArray.getJSONObject(i);
-                    brandsModels.add(new DrawerBrandsModel(
-                            json.getString(ConstantValues.Categories.BRAND_ID),
-                            json.getString(ConstantValues.Categories.BRAND_NAME)));
-                }
-                holder.subcatRecView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-                DrawerSubCatAdapter adapter=new DrawerSubCatAdapter(context, brandsModels, R.layout.layout_item_drawer_brands);
-                holder.subcatRecView.setHasFixedSize(true);
-                holder.subcatRecView.setAdapter(adapter);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }));
+        holder.btn.setOnClickListener(view -> {
+            ((MainActivity)context).binding.drawerLayout.closeDrawer(Gravity.LEFT);
+            Bundle bundle = new Bundle();
+            bundle.putString(ConstantValues.BRAND_ID, category.getId());
+            bundle.putString(ConstantValues.NAME, category.getName());
+            CategoryProductFragment categoryProductFragment = new CategoryProductFragment();
+            categoryProductFragment.setArguments(bundle);
+            //((FragmentActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.main_home_contain, subSubCategoryFragment, "SubCategoryFragment").addToBackStack("SubCategory").commit();
+            switchFragment(categoryProductFragment,"CategoryProductFragment");
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        if(categoryList !=null) {
-            return categoryList.size();
+        if(brandsList !=null) {
+            return brandsList.size();
         }
         else return 0;
     }
-
+    public void switchFragment(Fragment fragment,String tag) {
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();
+        fm.beginTransaction().replace(((MainActivity)context).binding.fragmentContainer.getId(), fragment,tag).addToBackStack(tag).commit();
+    }
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
         TextView text;
         LinearLayout btn;
         RecyclerView subcatRecView;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.drSubCategory_icon);
             text = itemView.findViewById(R.id.drSubCategory_name);
             btn = itemView.findViewById(R.id.categoryBtn);
             btn = itemView.findViewById(R.id.categoryBtn);

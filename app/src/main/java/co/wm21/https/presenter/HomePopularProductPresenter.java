@@ -2,33 +2,35 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.HomeCategoryHead;
-import co.wm21.https.SliderItem;
+import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.adapters.category.CategoryView;
+import co.wm21.https.adapters.product.ProductView;
 import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
 import co.wm21.https.interfaces.OnHomeCategoryView;
+import co.wm21.https.interfaces.OnHomePopularProductComplete;
+import co.wm21.https.interfaces.OnHomePopularProductView;
 import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
-import co.wm21.https.serviceapis.InvokeHomeTopSliderImageApi;
+import co.wm21.https.serviceapis.InvokeHomePopularProductApi;
 
-public class HomeCategoryPresenter {
-    private OnHomeCategoryView onHomeCategoryView;
+public class HomePopularProductPresenter {
+    private OnHomePopularProductView onHomePopularProductView;
 
-    public HomeCategoryPresenter(OnHomeCategoryView onHomeCategoryView) {
-        this.onHomeCategoryView = onHomeCategoryView;
+    public HomePopularProductPresenter(OnHomePopularProductView onHomePopularProductView) {
+        this.onHomePopularProductView = onHomePopularProductView;
     }
-    public void getCategoryDataResponse(String limit){
-        onHomeCategoryView.onHomeCategoryDataStartLoading();
-        new InvokeHomeCategoryApi(limit, new OnHomeCategoryRequestComplete() {
+    public void getHomePopularProduct(String value){
+        onHomePopularProductView.onHomePopularProductStartLoading();
+        new InvokeHomePopularProductApi(value, new OnHomePopularProductComplete() {
             @Override
-            public void onHomeCategoryRequestSuccess(Object obj) {
-                onHomeCategoryView.onHomeCategoryDataStopLoading();
-                onHomeCategoryView.onHomeCategoryDataLoaded((List<CategoryView>)obj);
+            public void onHomePopularProductSuccess(Object obj) {
+                onHomePopularProductView.onHomePopularProductStopLoading();
+                onHomePopularProductView.onHomePopularProductLoaded((List<ProductModel>)obj);
             }
 
             @Override
-            public void onHomeCategoryRequestError(String errMsg) {
-                onHomeCategoryView.onHomeCategoryDataStopLoading();
-                onHomeCategoryView.onHomeCategoryDataShowMessage(errMsg);
+            public void onHomePopularProductError(String errMsg) {
+                onHomePopularProductView.onHomePopularProductStopLoading();
+                onHomePopularProductView.onHomePopularProductShowMessage(errMsg);
             }
         });
 

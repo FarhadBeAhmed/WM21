@@ -1,8 +1,9 @@
-package com.wm21ltd.wm21.fragments;
+package co.wm21.https.fragments.member;
+
+
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +12,17 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.JsonObject;
-import com.wm21ltd.wm21.R;
-import com.wm21ltd.wm21.helpers.ConstantValues;
-import com.wm21ltd.wm21.networks.ApiUtil.ApiUtils;
-import com.wm21ltd.wm21.networks.Remote.APIService;
-import com.wm21ltd.wm21.stores.AppSessionManager;
 
+
+import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Remote.APIService;
+import co.wm21.https.R;
+import co.wm21.https.helpers.SessionHandler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +33,7 @@ import retrofit2.Response;
 public class CommonBloodFragment extends Fragment {
 
 
-    private AppSessionManager appSessionManager;
+    private SessionHandler appSessionManager;
 
     public CommonBloodFragment() {
         // Required empty public constructor
@@ -42,7 +46,7 @@ public class CommonBloodFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_common_blood, container, false);
 
-        appSessionManager = new AppSessionManager(getContext());
+        appSessionManager = new SessionHandler(getContext());
 
         final Spinner bloodGroupSpnr = (Spinner) view.findViewById(R.id.spnr_BloodGroup);
         Button btnSubmitRequest = (Button) view.findViewById(R.id.btn_bloodRequest);
@@ -66,9 +70,9 @@ public class CommonBloodFragment extends Fragment {
                 .cancelable(false)
                 .show();
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.submitBloodRequest(appSessionManager.getUserDetails().get(AppSessionManager.KEY_USERNAME),
-                appSessionManager.getUserDetails().get(AppSessionManager.KEY_CATEGORY),
+        APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
+        mApiService.submitBloodRequest(appSessionManager.getUserDetails().getUsername(),
+                    appSessionManager.getUserDetails().getMemberType(),
                 bloodName).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
