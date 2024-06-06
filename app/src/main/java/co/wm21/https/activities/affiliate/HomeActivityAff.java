@@ -33,7 +33,6 @@ import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.ActivityHomeAffiliateBinding;
 import co.wm21.https.fragments.member.FlexiloadFragment;
-import co.wm21.https.fragments.member.mlm.MlmFragment;
 import co.wm21.https.fragments.member.verifications.VerifyAccountFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
@@ -319,7 +318,7 @@ public class HomeActivityAff extends AppCompatActivity {
         });
 
         binding.downgradeAccountLayout.setVisibility(View.GONE);
-        binding.upgradeAccountLayout.setOnClickListener(view -> switchFragment(new MlmFragment(), "MlmFragment"));
+       // binding.upgradeAccountLayout.setOnClickListener(view -> switchFragment(new MlmFragment(), "MlmFragment"));
 
 
     }
@@ -374,7 +373,7 @@ public class HomeActivityAff extends AppCompatActivity {
 
     }
 
-    public class thread extends Thread {
+   /* public class thread extends Thread {
         @SuppressLint("SetTextI18n")
         @Override
         public void run() {
@@ -396,7 +395,7 @@ public class HomeActivityAff extends AppCompatActivity {
             });
         }
     }
-
+*/
     public void switchFragment(Fragment fragment,String tag) {
         FragmentManager fm = getSupportFragmentManager();
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i)

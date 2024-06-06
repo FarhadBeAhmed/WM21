@@ -14,11 +14,11 @@ import retrofit2.Response;
 public class InvokeTopSellingProApi {
     OnTopSellingProRequestComplete requestComplete;
 
-    public InvokeTopSellingProApi(final OnTopSellingProRequestComplete requestComplete) {
+    public InvokeTopSellingProApi(int limit,final OnTopSellingProRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-        mApiService.topSelling().enqueue(new Callback<TopSellingProModelHead>() {
+        mApiService.topSelling(limit).enqueue(new Callback<TopSellingProModelHead>() {
             @Override
             public void onResponse(Call<TopSellingProModelHead> call, Response<TopSellingProModelHead> response) {
                 if (response.isSuccessful()) {

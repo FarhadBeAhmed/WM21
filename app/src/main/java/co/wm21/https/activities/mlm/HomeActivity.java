@@ -1,14 +1,11 @@
 package co.wm21.https.activities.mlm;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +26,7 @@ import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
+import co.wm21.https.FHelper.networks.Models.balanceResponse.BalanceModel;
 import co.wm21.https.R;
 import co.wm21.https.SliderItem;
 import co.wm21.https.activities.MainActivity;
@@ -37,25 +35,20 @@ import co.wm21.https.adapters.SliderAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.ActivityHomeMlmBinding;
-import co.wm21.https.databinding.ActivityMainBinding;
 import co.wm21.https.dialog.LoadingDialog;
-import co.wm21.https.fragments.member.ProfileFragment;
-import co.wm21.https.fragments.member.affiliate.AffiliateFragment;
-import co.wm21.https.fragments.member.mlm.MlmFragment;
-import co.wm21.https.fragments.member.verifications.VerifyAccountFragment;
-import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
+import co.wm21.https.interfaces.OnBalancesView;
 import co.wm21.https.interfaces.OnProfileDetailsView;
 import co.wm21.https.interfaces.OnVerificationView;
+import co.wm21.https.presenter.BalancesPresenter;
 import co.wm21.https.presenter.ProfileDetailsPresenter;
 import co.wm21.https.presenter.VerificationPresenter;
 
-public class HomeActivity extends AppCompatActivity implements OnProfileDetailsView, OnVerificationView {
+public class HomeActivity extends AppCompatActivity implements OnProfileDetailsView, OnVerificationView, OnBalancesView {
     ActivityHomeMlmBinding binding;
     List<SliderItem> sliderItemList;
     SliderAdapter adapter;
 
-    public static co.wm21.https.helpers.API API;
     public static co.wm21.https.helpers.User user;
     View view;
     int progress = 0;
@@ -64,6 +57,7 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
     final Handler handler2 = new Handler();
     Runnable runnable, runnable2;
     int taskNumber;
+    int balanceTaskNumber=0;
     private Double before2021_08_01, direct_Referral_Commission, daily_Matching_Commission, brand_Promoter_Incentive, brand_Ambassador_Royalty;
     private Double executive_Royalty, franchise_Commission, businessDevelop, promotionalIncentive, topEarnerIncentive;
     private Double shopReferCommission, ICTLabCommission, total_Income, withdrawal, expenses, totalExpense;
@@ -72,6 +66,7 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
     ProfileDetailsPresenter profileDetailsPresenter;
     VerificationPresenter verificationPresenter;
+    BalancesPresenter balancesPresenter;
     LoadingDialog loadingDialog;
 
     @Override
@@ -118,6 +113,9 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
         profileDetailsPresenter=new ProfileDetailsPresenter(this);
         verificationPresenter=new VerificationPresenter(this);
+        balancesPresenter= new BalancesPresenter(this);
+
+
         loadingDialog=new LoadingDialog(this);
         binding.userInfo.setText(user.getUsername());
 
@@ -226,43 +224,20 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
     public void loadVerificationData() {
         verificationPresenter.verificationDataLoad(user.getUsername());
-
-
-      /*  co.wm21.https.FHelper.API api = ConstantValues.getAPI();
-        MySingleton.getInstance(this).addToRequestQueue(api.verification(user.getUsername(), user.getPassword(), response -> {
-            try {
-                progress = (int) response.get(ConstantValues.Verification.PERCENT);
-                if (progress < 100) {
-                    nextTask = response.getString(ConstantValues.Verification.TASK);
-                    taskNumber = response.getInt(ConstantValues.Verification.TASK_NUMBER);
-
-                }
-                ((LinearProgressIndicator) view.findViewById(R.id.verification_progress)).setProgress(progress);
-                ((TextView) view.findViewById(R.id.percent)).setText(MessageFormat.format("{0}% Complete", progress));
-                ((TextView) view.findViewById(R.id.next_task)).setText(MessageFormat.format("Next Task: {0}", nextTask));
-                loadBalanceInfo();
-                binding.verificationStatus.varif.setVisibility(progress < 100 ? View.VISIBLE : View.GONE);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }));*/
     }
 
     private void loadBalanceInfo() {
-        co.wm21.https.FHelper.API api = ConstantValues.getAPI();
-        MySingleton.getInstance(this).addToRequestQueue(api.allBalances(user.getUsername(), response -> {
-            try {
-                netBalance = response.getString(ConstantValues.balance.NetBalance);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }));
+        balanceTaskNumber=1;
+        balancesPresenter.BalancesDataLoad(user.getUsername());
+
 
     }
 
     @SuppressLint("SetTextI18n")
     private void loadBalanceInfo2() {
-        co.wm21.https.FHelper.API api = ConstantValues.getAPI();
+        balanceTaskNumber=2;
+        balancesPresenter.BalancesDataLoad(user.getUsername());
+     /*   co.wm21.https.FHelper.API api = ConstantValues.getAPI();
         MySingleton.getInstance(this).addToRequestQueue(api.allBalances(user.getUsername(), response -> {
             try {
                 netBalance = response.getString(ConstantValues.balance.NetBalance);
@@ -273,7 +248,7 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }));
+        }));*/
 
     }
 
@@ -293,7 +268,7 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
     @Override
     public void onProfileDetailsStopLoading() {
-
+        loadingDialog.dismissDialog();
 
     }
 
@@ -314,12 +289,13 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
         ((TextView) view.findViewById(R.id.percent)).setText(MessageFormat.format("{0}% Complete", progress));
         ((TextView) view.findViewById(R.id.next_task)).setText(MessageFormat.format("Next Task: {0}", nextTask));
         loadBalanceInfo();
+
         binding.verificationStatus.varif.setVisibility(progress < 100 ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public void onVerificationStartLoading() {
-
+        loadingDialog.startLoadingAlertDialog();
     }
 
     @Override
@@ -330,6 +306,37 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
     @Override
     public void onVerificationShowMessage(String errmsg) {
         Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onBalancesDataLoad(BalanceModel balanceModel) {
+        //netBalance = response.getString(ConstantValues.balance.NetBalance);
+        if (balanceTaskNumber == 1) {
+            netBalance = balanceModel.getBalanceData().getBalance();
+        } else if (balanceTaskNumber==2) {
+            netBalance =  balanceModel.getBalanceData().getBalance();
+            binding.tapForBalanceTxt.setText("Tk" + netBalance);
+            binding.animationView.setVisibility(View.GONE);
+            binding.tapForBalanceTxt.setVisibility(View.VISIBLE);
+            handler.postDelayed(runnable, 3000);
+        }
+
+    }
+
+    @Override
+    public void onBalancesStartLoading() {
+
+    }
+
+    @Override
+    public void onBalancesStopLoading() {
+
+    }
+
+    @Override
+    public void onBalancesShowMessage(String errMsg) {
+
     }
 
 

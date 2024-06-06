@@ -201,7 +201,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
-                                                android:text="Tap for balance"
+                                                android:text="Activity balance"
                                                 android:textColor="@color/light_red"
                                                 android:textSize="14sp"
                                                 tools:ignore="HardcodedText" />

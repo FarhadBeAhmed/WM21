@@ -58,10 +58,13 @@ import co.wm21.https.FHelper.networks.Models.TeamInfoDataModel;
 import co.wm21.https.FHelper.networks.Models.TeleShopProductModelHead;
 import co.wm21.https.FHelper.networks.Models.TopSellingProModelHead;
 import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsDataModel;
+import co.wm21.https.FHelper.networks.Models.TreeModel;
+import co.wm21.https.FHelper.networks.Models.TreesModel;
 import co.wm21.https.FHelper.networks.Models.UpdateQty;
 import co.wm21.https.FHelper.networks.Models.VendorDetailsModelHead;
 import co.wm21.https.FHelper.networks.Models.VendorProductModelHead;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
+import co.wm21.https.FHelper.networks.Models.balanceResponse.BalanceModel;
 import co.wm21.https.fragments.member.model.GenerationDataModel;
 import co.wm21.https.fragments.member.model.RewardPolicyDataModel;
 import okhttp3.MultipartBody;
@@ -140,6 +143,8 @@ public interface APIService {
                                         @Field("category") String userCategory,
                                         @Field("blood") String bloodGroup);
 
+
+
     @POST("apps/team_info.php")
     @FormUrlEncoded
     Call<TeamInfoDataModel> getTeamInfoData(@Field("id") String userID);
@@ -192,13 +197,21 @@ public interface APIService {
                                      @Field("Division_ID") String divisionID,
                                      @Field("Country_ID") String countryID);
 
-    @POST("api/trees.php")
+    @POST("apps/trees.php")
     @FormUrlEncoded
-    Call<JsonObject> getTreesData(@Field("id") String userID);
+    Call<TreesModel> getTreesData(@Field("id") String userID);
+
+    /* @POST("api/trees.php")
+     @FormUrlEncoded
+     Call<TreesModel> getTreesData(@Field("id") String userID);*/
     //for load tree
-    @POST("api/tree.php")
+    @POST("apps/tree.php")
     @FormUrlEncoded
-    Call<JsonObject> getTreeData(@Field("id") String ID, @Field("user_id") String userID);
+    Call<TreeModel> getTreeData(@Field("id") String ID, @Field("user_id") String userID);
+
+    @POST("apps/balance.php")
+    @FormUrlEncoded
+    Call<BalanceModel> allBalances(@Field("user_id") String userID);
 
 
     //for get generation List
@@ -231,6 +244,10 @@ public interface APIService {
     @POST("apps/all_blogs.php")
     @FormUrlEncoded
     Call<BlogsModelHead> getAllBlogs(@Field("limit") int limit);
+
+    @POST("apps/top_selling_product.php")
+    @FormUrlEncoded
+    Call<TopSellingProModelHead> topSelling(@Field("limit") int limit);
 
     @POST("apps/customer_product_review.php")
     @FormUrlEncoded
@@ -375,23 +392,26 @@ public interface APIService {
             @Field("address") String address,
             @Field("adjust") int adjust
     );
+
     @POST("apps/delivery_items.php")
     @FormUrlEncoded
     Call<DeliveryItemsModelHead> delivery_items(
             @Field("user_id") String user_id
     );
+
     @POST("apps/received_items.php")
     @FormUrlEncoded
     Call<ReceivedItemsModelHead> receivedItems(
             @Field("user_id") String user_id
     );
+
     @POST("apps/apply_datas.php")
     @FormUrlEncoded
     Call<AppliedProductModelHead> appliedProducts(
             @Field("user_id") String user_id
     );
-    @GET("apps/top_selling_product.php")
-    Call<TopSellingProModelHead> topSelling();
+
+
     @POST("apps/delivery_receive.php")
     @FormUrlEncoded
     Call<DeliveryReceiveModel> deliveryReceive(

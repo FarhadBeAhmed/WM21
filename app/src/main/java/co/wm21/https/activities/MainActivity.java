@@ -35,18 +35,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
-import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.Models.CartItemsHead;
 import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
 import co.wm21.https.R;
@@ -60,9 +55,8 @@ import co.wm21.https.fragments.CartFragment;
 import co.wm21.https.fragments.HomeFragment;
 import co.wm21.https.fragments.LoginFragment;
 import co.wm21.https.fragments.WishlistFragment;
-import co.wm21.https.fragments.member.ProfileFragment;
+import co.wm21.https.fragments.member.profile.ProfileFragment;
 import co.wm21.https.fragments.member.affiliate.AffiliateFragment;
-import co.wm21.https.fragments.member.mlm.MlmFragment;
 import co.wm21.https.fragments.registration.RegisterFragment;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
@@ -148,7 +142,7 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
                             break;
                         case R.id.menu_mlm:
                         case R.id.menu_affiliate:
-                            switchFragment(new MlmFragment(), "MlmFragment");
+                            //switchFragment(new MlmFragment(), "MlmFragment");
                             break;
                         case R.id.menu_logout:
                             sessionHandler.logoutUser();
@@ -466,7 +460,7 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
                     switchFragment(new RegisterFragment(), "RegisterFragment");
                     break;
                 case R.id.menu_mlm:
-                    switchFragment(new MlmFragment(), "MlmFragment");
+                    //switchFragment(new MlmFragment(), "MlmFragment");
                     break;
                 case R.id.menu_affiliate:
                     switchFragment(new AffiliateFragment(), "AffiliateFragment");

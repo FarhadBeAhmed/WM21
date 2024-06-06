@@ -17,7 +17,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/lnr_Franchise_Division"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -38,7 +37,7 @@
                     android:src="@drawable/ic_countrys" />
 
                 <Spinner
-                    android:id="@+id/spnr_Franchise_Division"
+                    android:id="@+id/spnrFranchiseDivision"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
@@ -47,7 +46,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lnr_Franchise_District"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -67,7 +65,7 @@
                     android:src="@drawable/ic_countrys" />
 
                 <Spinner
-                    android:id="@+id/spnr_Franchise_District"
+                    android:id="@+id/spnrFranchiseDistrict"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
@@ -76,7 +74,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lnr_Franchise_Thana"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -96,7 +93,7 @@
                     android:src="@drawable/ic_countrys" />
 
                 <Spinner
-                    android:id="@+id/spnr_Franchise_Thana"
+                    android:id="@+id/spnrFranchiseThana"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
@@ -134,14 +131,14 @@
                 android:background="@color/black" />
 
             <LinearLayout
-                android:id="@+id/lnr_FranchiseInfo_SearchResult"
+                android:id="@+id/lnrFranchiseInfoSearchResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/txt_myFranchise_Type"
+                    android:id="@+id/txtMyFranchiseType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -157,7 +154,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txt_myFranchise_Name"
+                        android:id="@+id/txtMyFranchiseName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Franchise Name: "
@@ -165,7 +162,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_myFranchise_MobileNo"
+                        android:id="@+id/txtMyFranchiseMobileNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -174,7 +171,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_myFranchise_Email"
+                        android:id="@+id/txtMyFranchiseEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -183,7 +180,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_myFranchise_Address"
+                        android:id="@+id/txtMyFranchiseAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"

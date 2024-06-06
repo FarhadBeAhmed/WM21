@@ -51,7 +51,6 @@
             android:background="@color/drawerLineColor" />
 
         <LinearLayout
-            android:id="@+id/menu_aboutUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_18sdp"
@@ -331,7 +330,6 @@
 
 
             <LinearLayout
-                android:id="@+id/menu_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -367,7 +365,6 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:background="@color/drawerLineColor" />
         <LinearLayout
-            android:id="@+id/blogLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -376,7 +373,6 @@
 
 
             <LinearLayout
-                android:id="@+id/menu_blog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -412,7 +408,6 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:background="@color/drawerLineColor" />
         <LinearLayout
-            android:id="@+id/faqLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -421,7 +416,6 @@
 
 
             <LinearLayout
-                android:id="@+id/menu_faq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

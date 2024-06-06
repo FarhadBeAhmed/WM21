@@ -27,9 +27,8 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/news_event_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark"
-        android:elevation="4dp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@color/primary_red50"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -40,7 +39,7 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextAppearance="@style/MyCustomTextAppearance"
-        app:tabTextColor="#C4C3C3">
+        app:tabTextColor="#000000">
 
     </com.google.android.material.tabs.TabLayout>
 

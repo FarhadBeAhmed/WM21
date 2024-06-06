@@ -19,7 +19,6 @@ public class HomeTopSliderImagePresenter {
         new InvokeHomeTopSliderImageApi(limit, new OnHomeTopSliderImageRequestComplete() {
             @Override
             public void onHomeTopSliderImageRequestSuccess(Object obj) {
-
                 onHomeTopSliderImageView.onHomeSliderDataLoaded((List<SliderItem>)obj);
                 onHomeTopSliderImageView.onHomeSliderDataStopLoading();
             }

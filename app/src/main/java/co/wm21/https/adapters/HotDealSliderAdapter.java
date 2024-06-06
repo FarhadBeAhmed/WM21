@@ -2,11 +2,14 @@ package co.wm21.https.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +17,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -33,14 +39,20 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import co.wm21.https.FHelper.ConstantValues;
+import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.R;
+import co.wm21.https.activities.MainActivity;
 import co.wm21.https.adapters.product.ProductView;
 import co.wm21.https.activities.ProductDetailsActivity;
+import co.wm21.https.dialog.LoadingDialog;
+import co.wm21.https.fragments.CartFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.interfaces.OnAddToCartView;
+import co.wm21.https.presenter.AddToCartPresenter;
 
-public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter.HotDealViewHolder> {
+public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter.HotDealViewHolder>implements OnAddToCartView {
     Context context;
     public List<ProductModel> productList;
     private final LayoutInflater mInflater;
@@ -51,7 +63,13 @@ public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter
     int pos;
     private ViewPager2 viewPager2;
     ProductModel product;
+    private AddToCartPresenter addToCartPresenter;
 
+    LoadingDialog loadingDialog;
+    int temp=0;
+    View clickView;
+    private final String selectedColor = "";
+    private final String selectedSize = "";
     private final Handler mHandler = new Handler();
     private final List<HotDealViewHolder> lstHolders= new ArrayList<>();
 
@@ -129,10 +147,20 @@ public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter
         Picasso.get().load(ConstantValues.URL+"image/product/small/"+product.getImg()).into(holder.productImage);
 
         //holder.productImage.setImageDrawable(product.getImg());
-        holder.button.setOnClickListener(view -> {
-           /* context.startActivity(new Intent(context, ProductDetailsActivity.class)
+        holder.layoutBtn.setOnClickListener(view -> {
+            Log.d("pp", "product: "+product.getName());
+            context.startActivity(new Intent(context, ProductDetailsActivity.class)
                     .putExtra(Constant.Product.PARCEL, productList.get(position)));
-*/
+        });
+        holder.btnAddToCart.setOnClickListener(view -> {
+            addToCartPresenter=new AddToCartPresenter(this);
+            loadingDialog=new LoadingDialog((Activity) context);
+            @SuppressLint("HardwareIds") String val = Settings.Secure.getString(((FragmentActivity) context).getContentResolver(), Settings.Secure.ANDROID_ID);
+            String uId = val.replaceAll("[\\D]", "");
+            int qty = 1;
+            clickView=view;
+            addToCartPresenter.AddToCartDataLoad(String.valueOf(productList.get(position).getSerial()), uId,selectedColor,selectedSize,qty);
+            Log.d("pp", "product: "+productList.get(position).getName());
         });
 
         holder.setData(product);
@@ -154,15 +182,63 @@ public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter
         return this;
     }
 
+    @Override
+    public void onAddToCartDataLoad(AddToCartModel addToCartModel) {
+        String status = addToCartModel.getData();
+        String error = String.valueOf(addToCartModel.getError());
+        if (error.equals("0") || error.equals("2")) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            ViewGroup viewGroup = clickView.findViewById(android.R.id.content);
+            View dialogView = ((FragmentActivity) context).getLayoutInflater().inflate(R.layout.layout_add_to_cart_item, viewGroup, false);
+            RelativeLayout ok = dialogView.findViewById(R.id.okBtnId);
+            RelativeLayout goToCart = dialogView.findViewById(R.id.goBtnId);
+            TextView msg = dialogView.findViewById(R.id.textMsg);
+            msg.setText(addToCartModel.getData());
+            builder.setView(dialogView);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            ok.setOnClickListener(view1 -> {
+                alertDialog.dismiss();
+            });
+            goToCart.setOnClickListener(view1 -> {
+                alertDialog.dismiss();
+
+                ((MainActivity) context).switchFragment(new CartFragment(), "CartFragment");
+            });
+
+            ((MainActivity) context).getCartItems();
+
+        }
+        Snackbar.make(((MainActivity)context).findViewById(R.id.fragmentContainer), status, Snackbar.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onAddToCartStartLoading() {
+        loadingDialog.startLoadingAlertDialog();
+    }
+
+    @Override
+    public void onAddToCartStopLoading() {
+        loadingDialog.dismissDialog();
+    }
+
+    @Override
+    public void onAddToCartShowMessage(String errmsg) {
+        Toast.makeText(context, errmsg, Toast.LENGTH_SHORT).show();
+    }
+
 
     public class HotDealViewHolder extends ViewHolder {
         ImageView productImage;
         TextView productName, productPrice, previousPrice, btnAddToCart, productRPTV,shopName,eshopTV;
-        LinearLayout productRPLayout;
+        LinearLayout productRPLayout, layoutBtn ;
         TextView day, hour, min, sec, offerPercent;
         RelativeLayout button;
         LinearLayout hasDate, expiredDate, offerLayout,rpLayout;
         ProductModel mProduct;
+        TextView addToCartBtn;
 
 
         public void setData(ProductModel item) {
@@ -209,11 +285,12 @@ public class HotDealSliderAdapter extends SliderViewAdapter<HotDealSliderAdapter
             previousPrice = itemView.findViewById(R.id.h_previousPrice);
             btnAddToCart = itemView.findViewById(R.id.h_addToCart);
             button = itemView.findViewById(R.id.h_prButton);
+            layoutBtn = itemView.findViewById(R.id.LayoutBtn);
             day = itemView.findViewById(R.id.daysId);
             offerPercent = itemView.findViewById(R.id.offerPercent);
             hour = itemView.findViewById(R.id.hourId);
             min = itemView.findViewById(R.id.minID);
-              sec = itemView.findViewById(R.id.secID);
+            sec = itemView.findViewById(R.id.secID);
             hasDate = itemView.findViewById(R.id.hasDates);
             expiredDate = itemView.findViewById(R.id.dateExpired);
             offerLayout = itemView.findViewById(R.id.offerLayout);

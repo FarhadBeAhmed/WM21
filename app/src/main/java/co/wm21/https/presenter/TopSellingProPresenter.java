@@ -18,9 +18,9 @@ public class TopSellingProPresenter {
         this.topSellingProView = topSellingProView;
     }
 
-    public void topSellingProDataLoad() {
+    public void topSellingProDataLoad(int limit) {
         topSellingProView.onTopSellingProStartLoading();
-        new InvokeTopSellingProApi( new OnTopSellingProRequestComplete() {
+        new InvokeTopSellingProApi(limit, new OnTopSellingProRequestComplete() {
             @Override
             public void onTopSellingProRequestComplete(Object obj) {
                 topSellingProView.onTopSellingProStopLoading();

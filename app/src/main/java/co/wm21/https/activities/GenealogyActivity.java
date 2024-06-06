@@ -34,7 +34,7 @@ public class GenealogyActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.primary_red));
         }
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_news_event);
         setSupportActionBar(myToolbar);

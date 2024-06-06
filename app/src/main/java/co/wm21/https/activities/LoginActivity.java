@@ -3,6 +3,7 @@ package co.wm21.https.activities;
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     String userType = "", mobile = "", user_id = "", tree_id = "";
 
 
+    @SuppressLint("SuspiciousIndentation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

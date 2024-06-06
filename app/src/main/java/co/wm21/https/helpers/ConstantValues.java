@@ -28,18 +28,11 @@ import android.net.Uri;
 interface ConstantValues {
     String web_url = "https://wm21.net/";
     String URL = "https://www.wm21.co/";
-    String KEY_EMPTY = "";
     String APP_VER = VERSION_NAME;
     String ID = "id";
-    String DATE = "date";
-    String TIME = "time";
-    String USERNAME = "username";
-    String PASSWORD = "password";
-    String NOTICE = "notice";
+
     String GRID_LAYOUT = "grid";
-    String MENU_LAYOUT = "menu";
-    String RESULT = "result";
-    String LIMIT = "limit";
+
 
     interface Login {
         String STATUS = "error";

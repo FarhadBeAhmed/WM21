@@ -56,7 +56,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/whoWeAreExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -130,7 +129,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/omExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -204,7 +202,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/ovExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -278,7 +275,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/oevExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -353,7 +349,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/osExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -427,7 +422,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/olExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -501,7 +495,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/ompExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -575,7 +568,6 @@
                         tools:ignore="HardcodedText" />
 
                     <LinearLayout
-                        android:id="@+id/smExpandButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

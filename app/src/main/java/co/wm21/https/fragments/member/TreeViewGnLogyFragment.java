@@ -1,5 +1,6 @@
 package co.wm21.https.fragments.member;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
@@ -33,27 +34,38 @@ import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.Models.TreeModel;
+import co.wm21.https.FHelper.networks.Models.TreesModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentTreeViewGnLogyBinding;
+import co.wm21.https.dialog.LoadingDialog;
 import co.wm21.https.helpers.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
+import co.wm21.https.interfaces.OnTreeDataView;
+import co.wm21.https.interfaces.OnTreesListView;
+import co.wm21.https.presenter.TreeDataPresenter;
+import co.wm21.https.presenter.TreesListPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TreeViewGnLogyFragment extends Fragment implements View.OnClickListener {
+public class TreeViewGnLogyFragment extends Fragment implements View.OnClickListener, OnTreesListView, OnTreeDataView {
     private static final String TAG = "treetrack";
     SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     View mView;
   //  private BridgeDatabaseAdapter dbAdapter;
     FragmentTreeViewGnLogyBinding binding;
+    TreesListPresenter treesListPresenter;
+    TreeDataPresenter treeDataPresenter;
     API api;
     User user;
+    String userID,userIdForPopUp;
+    int apiCallStatus=0;
 
-
+    LoadingDialog loadingDialog;
     private ArrayList<String> IDs = new ArrayList<>();
     private ArrayList<String> subIDs = new ArrayList<>();
     private ArrayList<String> handPosition = new ArrayList<>();
@@ -76,6 +88,10 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
         appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
         String currentUserID = appSessionManager.getUserDetails().getUserId();
+
+        treesListPresenter=new TreesListPresenter(this);
+        treeDataPresenter=new TreeDataPresenter(this);
+        loadingDialog=new LoadingDialog(getActivity());
        // dbAdapter = new BridgeDatabaseAdapter(getContext());
         loadTreeData(currentUserID);
         binding.imgTreeOne.setOnClickListener(this);
@@ -93,6 +109,7 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
         binding.imgTreeThirteen.setOnClickListener(this);
         binding.imgTreeFifteen.setOnClickListener(this);
         binding.imgTreeFifteen.setOnClickListener(this);
+
 
     }
 
@@ -345,6 +362,7 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -545,98 +563,20 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
     }
 
     private void loadRootProfileInfoPopup(final String userProfileID, String subID) {
+        apiCallStatus=1;
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                    .title("Sending ....")
-                    .content("Please Wait")
-                    .progress(true, 0)
-                    .show();
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTreesData(subID).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        int errCount = response.body().get("error").getAsInt();
-                        if (errCount == 0) {
-                            JsonArray treeArr = response.body().get("tree_info").getAsJsonArray();
-                            JsonObject treeInfo = treeArr.get(0).getAsJsonObject();
-                            String treeUser = treeInfo.get("user").getAsString();
-                            String treeUserName = treeInfo.get("name").getAsString();
-                            String treeGender = treeInfo.get("gender").getAsString();
-                            String treeJoin = treeInfo.get("join").getAsString();
-                            String treeRank = treeInfo.get("rank").getAsString();
-                            String treeStatus = treeInfo.get("status").getAsString();
-                            String treeRefer = treeInfo.get("refer").getAsString();
-                            String treeATeam = treeInfo.get("A_Team_Member").getAsString();
-                            String treeBTeam = treeInfo.get("B_Team_Member").getAsString();
-                            String treeACarry = treeInfo.get("A_team_carry").getAsString();
-                            String treeBCarry = treeInfo.get("B_team_carry").getAsString();
-                            String treeAPoint = treeInfo.get("A_Team_Point").getAsString();
-                            String treeBPoint = treeInfo.get("B_Team_Point").getAsString();
-                            String treeProfileImage = treeInfo.get("photo").getAsString();
-                            String sponsorsAteam = treeInfo.get("A_Team_spot").getAsString();
-                            String sponsorsBteam = treeInfo.get("B_Team_spot").getAsString();
 
+            treesListPresenter.TreesDataLoad(subID);
+            userID=userProfileID;
 
-                            showProfileInfoPopup(userProfileID, treeUser, treeUserName, treeGender, treeJoin, treeRank,
-                                    treeStatus, treeRefer, treeATeam, treeBTeam, treeACarry, treeBCarry, treeAPoint, treeBPoint,
-                                    treeProfileImage, "root",sponsorsAteam,sponsorsBteam);
-                        } else {
-                            Toast.makeText(getActivity(), response.body().get("error_report").getAsString(), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("BINARY TREE", "Error :" + response.code());
-                        Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    dialog.dismiss();
-                    Log.e("BINARY TREE", "Error :" + t.getMessage().toString());
-                }
-            });
         }
     }
     //go for create new account from tree fragment
     private void getUpperInfoForNew(String upID, String upHand) {
+        apiCallStatus=2;
         Log.d(TAG, "getUpperInfoForNew: upID:" + upID + " upHand:" + upHand);
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                    .title("Sending ....")
-                    .content("Please Wait")
-                    .progress(true, 0)
-                    .show();
-
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTreesData(upID).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        int errCount = response.body().get("error").getAsInt();
-                        if (errCount == 0) {
-                            JsonArray treeArr = response.body().get("tree_info").getAsJsonArray();
-                            JsonObject treeInfo = treeArr.get(0).getAsJsonObject();
-                            String treeUser = treeInfo.get("user").getAsString();
-                            //goForNewAcc(treeUser, upHand);
-                        } else {
-                            Toast.makeText(getActivity(), response.body().get("error_report").getAsString(), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        dialog.dismiss();
-                        Log.e("BINARY TREE", "Error :" + response.code());
-                        Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    dialog.dismiss();
-                    Log.e("BINARY_TREE", "Something went wrong!");
-                }
-            });
+            treesListPresenter.TreesDataLoad(upID);
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
         }
@@ -651,410 +591,25 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
         gender.clear();
         names.clear();
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                    .title("Sending ....")
-                    .content("Please Wait")
-                    .cancelable(false)
-                    .progress(true, 0)
-                    .show();
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTreeData(loadUserID,appSessionManager.getUserDetails().getUsername()).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response){
-                    if (response.isSuccessful()) {
-                        int errCount = response.body().get("error").getAsInt();
-                        if (errCount == 0) {
-                            JsonArray dataArr = response.body().get("tree").getAsJsonArray();
-                            //JsonObject firstObj = dataArr.get(0).getAsJsonObject();
-
-                            for (int i = 0; i < dataArr.size(); i++) {
-                                JsonObject dataOBj = dataArr.get(i).getAsJsonObject();
-                                String rootsIDs = dataOBj.get("id").getAsString();
-                                String subID = dataOBj.get("sub_id").getAsString();
-                                String handPos = dataOBj.get("hand").getAsString();
-                                String userGender = dataOBj.get("gender").getAsString();
-                                String name = dataOBj.get("name").getAsString();
-                                IDs.add(rootsIDs);
-                                subIDs.add(subID);
-                                handPosition.add(handPos);
-                                gender.add(userGender);
-                                names.add(name);
-                            }
-
-                            //for client one
-                            if (IDs.get(0).equals("0") && null != IDs.get(0)) {
-                                binding.nameOne.setText(names.get(0));
-                                if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
-                                } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
-                                }
-                            } else if (!IDs.get(0).equals("0")) {
-
-                                binding.nameOne.setText(names.get(0));
-                                if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
-                                } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
-                                }
-                            }
-
-                            //for client tow
-                            if (!IDs.get(1).equals("") && null != IDs.get(1)) {
-
-                                binding.nameTwo.setText(names.get(1));
-                                if (!subIDs.get(1).equals("") && null != subIDs.get(1)) {
-                                    if (gender.get(1).equals("Male") || gender.get(1).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
-                                    } else if (gender.get(1).equals("Female") || gender.get(1).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
-                                }
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
-                            }
-
-                            //for client three
-                            if (!IDs.get(2).equals("") && null != IDs.get(2)) {
-
-                                binding.nameTwo.setText(names.get(2));
-                                if (!subIDs.get(2).equals("") && null != subIDs.get(2)) {
-                                    if (gender.get(2).equals("Male") || gender.get(2).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
-                                    } else if (gender.get(2).equals("Female") || gender.get(2).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
-                                }
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
-                            }
-
-                            //for client four
-                            if (!IDs.get(3).equals("") && null != IDs.get(3)) {
-                                if (!subIDs.get(3).equals("") && null != subIDs.get(3)) {
-                                    if (gender.get(3).equals("Male") || gender.get(3).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
-                                    } else if (gender.get(3).equals("Female") || gender.get(3).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
-                                }
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
-                            }
-
-                            //for client five
-                            if (!IDs.get(4).equals("") && null != IDs.get(4)) {
-                                if (!subIDs.get(4).equals("") && null != subIDs.get(4)) {
-                                    if (gender.get(4).equals("Male") || gender.get(4).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
-                                    } else if (gender.get(4).equals("Female") || gender.get(4).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
-                                }
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
-                            }
-
-                            //for client six
-                            if (!IDs.get(5).equals("") && null != IDs.get(5)) {
-                                if (!subIDs.get(5).equals("") && null != subIDs.get(5)) {
-                                    if (gender.get(5).equals("Male") || gender.get(5).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
-                                    } else if (gender.get(5).equals("Female") || gender.get(5).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
-                            }
-
-                            //for client seven
-                            if (!IDs.get(6).equals("") && null != IDs.get(6)) {
-                                if (!subIDs.get(6).equals("") && null != subIDs.get(6)) {
-                                    if (gender.get(6).equals("Male") || gender.get(6).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
-                                    } else if (gender.get(6).equals("Female") || gender.get(6).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
-                            }
-
-                            //for client eight
-                            if (!IDs.get(7).equals("") && null != IDs.get(7)) {
-                                if (!subIDs.get(7).equals("") && null != subIDs.get(7)) {
-                                    if (gender.get(7).equals("Male") || gender.get(7).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
-                                    } else if (gender.get(7).equals("Female") || gender.get(7).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
-                            }
-
-                            //for client nine
-                            if (!IDs.get(8).equals("") && null != IDs.get(8)) {
-                                if (!subIDs.get(8).equals("") && null != subIDs.get(8)) {
-                                    if (gender.get(8).equals("Male") || gender.get(8).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
-                                    } else if (gender.get(8).equals("Female") || gender.get(8).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
-                            }
-
-                            //for client ten
-                            if (!IDs.get(9).equals("") && null != IDs.get(9)) {
-                                if (!subIDs.get(9).equals("") && null != subIDs.get(9)) {
-                                    if (gender.get(9).equals("Male") || gender.get(9).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
-                                    } else if (gender.get(9).equals("Female") || gender.get(9).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
-                            }
-
-                            //for client eleven
-                            if (!IDs.get(10).equals("") && null != IDs.get(10)) {
-                                if (!subIDs.get(10).equals("") && null != subIDs.get(10)) {
-                                    if (gender.get(10).equals("Male") || gender.get(10).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
-                                    } else if (gender.get(10).equals("Female") || gender.get(10).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
-                            }
-
-                            //for client twelve
-                            if (!IDs.get(11).equals("") && null != IDs.get(11)) {
-                                if (!subIDs.get(11).equals("") && null != subIDs.get(11)) {
-                                    if (gender.get(11).equals("Male") || gender.get(11).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
-                                    } else if (gender.get(11).equals("Female") || gender.get(11).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
-                            }
-                            //for client thirteen
-                            if (!IDs.get(12).equals("") && null != IDs.get(12)) {
-                                if (!subIDs.get(12).equals("") && null != subIDs.get(12)) {
-                                    if (gender.get(12).equals("Male") || gender.get(12).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
-                                    } else if (gender.get(12).equals("Female") || gender.get(12).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
-                            }
-
-                            //for client fourteen
-                            if (!IDs.get(13).equals("") && null != IDs.get(13)) {
-                                if (!subIDs.get(13).equals("") && null != subIDs.get(13)) {
-                                    if (gender.get(13).equals("Male") || gender.get(13).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
-                                    } else if (gender.get(13).equals("Female") || gender.get(13).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
-                            }
-
-                            //for client fifteen
-                            if (!IDs.get(14).equals("") && null != IDs.get(14)) {
-                                if (!subIDs.get(14).equals("") && null != subIDs.get(14)) {
-                                    if (gender.get(14).equals("Male") || gender.get(14).equals("male")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
-                                    } else if (gender.get(14).equals("Female") || gender.get(14).equals("female")) {
-                                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
-                                    }
-                                } else {
-                                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
-                                }
-
-                            } else {
-                                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), response.body().get("error_report").getAsString(), Toast.LENGTH_SHORT).show();
-                        }
-                        dialog.dismiss();
-                    } else {
-                        dialog.dismiss();
-                        Log.e("BINARY TREE", "Error :" + response.code());
-                        Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.e("LOG", t.toString());
-                    dialog.dismiss();
-                    Log.e("BINARY_TREE", "Something went wrong!");
-                }
-            });
+            treeDataPresenter.TreeDataLoad(loadUserID,loadUserID);
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
         }
     }
 
     private void loadProfileInfoPopup(final String userProfileID) {
+        apiCallStatus = 3;
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                    .title("Sending ....")
-                    .content("Please Wait")
-                    .progress(true, 0)
-                    .show();
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTreesData(userProfileID).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        int errCount = response.body().get("error").getAsInt();
-                        if (errCount == 0) {
-                            JsonArray treeArr = response.body().get("tree_info").getAsJsonArray();
-                            JsonObject treeInfo = treeArr.get(0).getAsJsonObject();
-                            String treeUser = treeInfo.get("user").getAsString();
-                            String treeUserName = treeInfo.get("name").getAsString();
-                            String treeGender = treeInfo.get("gender").getAsString();
-                            String treeJoin = treeInfo.get("join").getAsString();
-                            String treeRank = treeInfo.get("rank").getAsString();
-                            String treeStatus = treeInfo.get("status").getAsString();
-                            String treeRefer = treeInfo.get("refer").getAsString();
-                            String treeATeam = treeInfo.get("A_Team_Member").getAsString();
-                            String treeBTeam = treeInfo.get("B_Team_Member").getAsString();
-                            String treeACarry = treeInfo.get("A_team_carry").getAsString();
-                            String treeBCarry = treeInfo.get("B_team_carry").getAsString();
-                            String treeAPoint = treeInfo.get("A_Team_Point").getAsString();
-                            String treeBPoint = treeInfo.get("B_Team_Point").getAsString();
-                            String treeProfileImage = treeInfo.get("photo").getAsString();
-                            String sponsorsAteam = treeInfo.get("A_Team_spot").getAsString();
-                            String sponsorsBteam = treeInfo.get("B_Team_spot").getAsString();
-
-                            showProfileInfoPopup(userProfileID, treeUser, treeUserName, treeGender, treeJoin, treeRank,
-                                    treeStatus, treeRefer, treeATeam, treeBTeam, treeACarry, treeBCarry, treeAPoint, treeBPoint,
-                                    treeProfileImage, "normal",sponsorsAteam,sponsorsBteam);
-                        } else {
-                            Toast.makeText(getActivity(), response.body().get("error_report").getAsString(), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("BINARY TREE", "Error :" + response.code());
-                        Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    dialog.dismiss();
-                    Log.e("BINARY TREE", "Error :" + t.getMessage().toString());
-                }
-            });
+            userIdForPopUp=userProfileID;
+            treesListPresenter.TreesDataLoad(userProfileID);
         }
     }
 
-  /*  private void loadRootProfileInfoPopup(final String userProfileID, String subID) {
-        if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            final MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                    .title("Sending ....")
-                    .content("Please Wait")
-                    .progress(true, 0)
-                    .show();
-            APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
-            mApiService.getTreesData(subID).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    if (response.isSuccessful()) {
-                        int errCount = response.body().get("error").getAsInt();
-                        if (errCount == 0) {
-                            JsonArray treeArr = response.body().get("tree_info").getAsJsonArray();
-                            JsonObject treeInfo = treeArr.get(0).getAsJsonObject();
-                            String treeUser = treeInfo.get("user").getAsString();
-                            String treeUserName = treeInfo.get("name").getAsString();
-                            String treeGender = treeInfo.get("gender").getAsString();
-                            String treeJoin = treeInfo.get("join").getAsString();
-                            String treeRank = treeInfo.get("rank").getAsString();
-                            String treeStatus = treeInfo.get("status").getAsString();
-                            String treeRefer = treeInfo.get("refer").getAsString();
-                            String treeATeam = treeInfo.get("A_Team_Member").getAsString();
-                            String treeBTeam = treeInfo.get("B_Team_Member").getAsString();
-                            String treeACarry = treeInfo.get("A_team_carry").getAsString();
-                            String treeBCarry = treeInfo.get("B_team_carry").getAsString();
-                            String treeAPoint = treeInfo.get("A_Team_Point").getAsString();
-                            String treeBPoint = treeInfo.get("B_Team_Point").getAsString();
-                            String treeProfileImage = treeInfo.get("photo").getAsString();
 
-                            showProfileInfoPopup(userProfileID, treeUser, treeUserName, treeGender, treeJoin, treeRank,
-                                    treeStatus, treeRefer, treeATeam, treeBTeam, treeACarry, treeBCarry, treeAPoint, treeBPoint,
-                                    treeProfileImage, "root");
-                        } else {
-                            Toast.makeText(getActivity(), response.body().get("error_report").getAsString(), Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("BINARY TREE", "Error :" + response.code());
-                        Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    dialog.dismiss();
-                    Log.e("BINARY TREE", "Error :" + t.getMessage().toString());
-                }
-            });
-        }
-    }*/
-
+    @SuppressLint("SetTextI18n")
     private void showProfileInfoPopup(final String userProfileID, String user, String name, String gender, String join, String rank,
                                       String status, String refer, String aMember, String bMember, String aCarry, String bCarry,
-                                      String aPoint, String bPoint, String profileImage, String userType,String sponsorsAteam,String sponsorsBteam) {
+                                      String aPoint, String bPoint, String profileImage, String userType, String sponsorsAteam, String sponsorsBteam) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog adProfileInfo = builder.create();
@@ -1100,27 +655,6 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
         textViewAMember.setText("Team Member: " + aMember+" : "+bMember);
         textViewACarry.setText("Carry Point: " + aCarry+" : "+bCarry);
         textViewAPoint.setText("Today's Point: " + aPoint+" : "+bPoint);
-       /* if (aMember.equals("0") || aMember.equals("") && bMember.equals("0") || bMember.equals("")) {
-            //textViewAMember.setVisibility(View.GONE);
-            //textViewBMember.setVisibility(View.GONE);
-        } else {
-            //textViewAMember.setText("Team Member: " + aMember+" : "+bMember);
-            //textViewBMember.setText("B Team Member: " + bMember);
-        }
-
-        if (aCarry.equals("0") || aCarry.equals("") && bCarry.equals("0") || bCarry.equals("")) {
-            //linearLayoutCarry.setVisibility(View.GONE);
-        } else {
-           // textViewACarry.setText("Carry Point: " + aCarry+" : "+bCarry);
-           // textViewBCarry.setText("Team B: " + bCarry);
-        }
-
-        if (aPoint.equals("0") || aPoint.equals("") && aPoint.equals("")) {
-           // linearLayoutPoint.setVisibility(View.GONE);
-        } else {
-            //textViewAPoint.setText("Current Point: " + aPoint+" : "+bPoint);
-           // textViewBPoint.setText("Team B: " + bPoint);
-        }*/
 
         linearLayoutUserTree.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1148,4 +682,355 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
         adProfileInfo.show();
     }
 
+    @Override
+    public void onTreesListDataLoad(TreesModel treesModel) {
+        if (apiCallStatus==1){
+            String treeUser = treesModel.getData().get(0).getUser();
+            String treeUserName = treesModel.getData().get(0).getName();
+            String treeGender = treesModel.getData().get(0).getGender();
+            String treeJoin = treesModel.getData().get(0).getJoin();
+            String treeRank = treesModel.getData().get(0).getRank();
+            String treeStatus = treesModel.getData().get(0).getStatus();
+            String treeRefer = treesModel.getData().get(0).getRefer();
+            String treeATeam = treesModel.getData().get(0).getATeamMember();
+            String treeBTeam = treesModel.getData().get(0).getBTeamMember();
+            String treeACarry = treesModel.getData().get(0).getATeamCarry();
+            String treeBCarry = treesModel.getData().get(0).getBTeamCarry();
+            String treeAPoint = treesModel.getData().get(0).getATeamPoint();
+            String treeBPoint = treesModel.getData().get(0).getBTeamPoint();
+            String treeProfileImage = treesModel.getData().get(0).getPhoto();
+            String sponsorsAteam = treesModel.getData().get(0).getATeamSpot();
+            String sponsorsBteam = treesModel.getData().get(0).getBTeamSpot();
+
+
+            showProfileInfoPopup(userID, treeUser, treeUserName, treeGender, treeJoin, treeRank,
+                    treeStatus, treeRefer, treeATeam, treeBTeam, treeACarry, treeBCarry, treeAPoint, treeBPoint,
+                    treeProfileImage, "root",sponsorsAteam,sponsorsBteam);
+        } else if (apiCallStatus==2) {
+
+
+
+        } else if (apiCallStatus == 3) {
+            //JsonArray treeArr = response.body().get("tree_info").getAsJsonArray();
+            //JsonObject treeInfo = treeArr.get(0).getAsJsonObject();
+            String treeUser = treesModel.getData().get(0).getUser();
+            String treeUserName = treesModel.getData().get(0).getName();
+            String treeGender = treesModel.getData().get(0).getGender();
+            String treeJoin = treesModel.getData().get(0).getJoin();
+            String treeRank = treesModel.getData().get(0).getRank();
+            String treeStatus = treesModel.getData().get(0).getStatus();
+            String treeRefer = treesModel.getData().get(0).getRefer();
+            String treeATeam = treesModel.getData().get(0).getATeamMember();
+            String treeBTeam = treesModel.getData().get(0).getBTeamMember();
+            String treeACarry = treesModel.getData().get(0).getATeamCarry();
+            String treeBCarry = treesModel.getData().get(0).getBTeamCarry();
+            String treeAPoint = treesModel.getData().get(0).getATeamPoint();
+            String treeBPoint = treesModel.getData().get(0).getBTeamPoint();
+            String treeProfileImage = treesModel.getData().get(0).getPhoto();
+            String sponsorsAteam = treesModel.getData().get(0).getATeamSpot();
+            String sponsorsBteam = treesModel.getData().get(0).getBTeamSpot();
+
+            showProfileInfoPopup(userIdForPopUp, treeUser, treeUserName, treeGender, treeJoin, treeRank,
+                    treeStatus, treeRefer, treeATeam, treeBTeam, treeACarry, treeBCarry, treeAPoint, treeBPoint,
+                    treeProfileImage, "normal",sponsorsAteam,sponsorsBteam);
+
+        }
+
+
+    }
+
+    @Override
+    public void onTreesListStartLoading() {
+        loadingDialog.startLoadingAlertDialog();
+    }
+
+    @Override
+    public void onTreesListStopLoading() {
+        loadingDialog.dismissDialog();
+    }
+
+    @Override
+    public void onTreesListShowMessage(String errmsg) {
+        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTreeDataLoad(TreeModel treeModel) {
+        if (!treeModel.getTree().isEmpty()) {
+
+
+            for (int i = 0; i < treeModel.getTree().size(); i++) {
+
+                String rootsIDs = treeModel.getTree().get(i).getId();
+                String subID = treeModel.getTree().get(i).getSubId();
+                String handPos = treeModel.getTree().get(i).getHand();
+                String userGender = treeModel.getTree().get(i).getGender();
+                String name = treeModel.getTree().get(i).getName();
+                IDs.add(rootsIDs);
+                subIDs.add(subID);
+                handPosition.add(handPos);
+                gender.add(userGender);
+                names.add(name);
+            }
+
+            //for client one
+            if (IDs.get(0).equals("0") && null != IDs.get(0)) {
+                binding.nameOne.setText(names.get(0));
+                if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                }
+            } else if (!IDs.get(0).equals("0")) {
+
+                binding.nameOne.setText(names.get(0));
+                if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                }
+            }
+
+            //for client tow
+            if (!IDs.get(1).equals("") && null != IDs.get(1)) {
+
+                binding.nameTwo.setText(names.get(1));
+                if (!subIDs.get(1).equals("") && null != subIDs.get(1)) {
+                    if (gender.get(1).equals("Male") || gender.get(1).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                    } else if (gender.get(1).equals("Female") || gender.get(1).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                }
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+            }
+
+            //for client three
+            if (!IDs.get(2).equals("") && null != IDs.get(2)) {
+
+                binding.nameTwo.setText(names.get(2));
+                if (!subIDs.get(2).equals("") && null != subIDs.get(2)) {
+                    if (gender.get(2).equals("Male") || gender.get(2).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                    } else if (gender.get(2).equals("Female") || gender.get(2).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                }
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+            }
+
+            //for client four
+            if (!IDs.get(3).equals("") && null != IDs.get(3)) {
+                if (!subIDs.get(3).equals("") && null != subIDs.get(3)) {
+                    if (gender.get(3).equals("Male") || gender.get(3).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                    } else if (gender.get(3).equals("Female") || gender.get(3).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                }
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+            }
+
+            //for client five
+            if (!IDs.get(4).equals("") && null != IDs.get(4)) {
+                if (!subIDs.get(4).equals("") && null != subIDs.get(4)) {
+                    if (gender.get(4).equals("Male") || gender.get(4).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                    } else if (gender.get(4).equals("Female") || gender.get(4).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                }
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+            }
+
+            //for client six
+            if (!IDs.get(5).equals("") && null != IDs.get(5)) {
+                if (!subIDs.get(5).equals("") && null != subIDs.get(5)) {
+                    if (gender.get(5).equals("Male") || gender.get(5).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                    } else if (gender.get(5).equals("Female") || gender.get(5).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+            }
+
+            //for client seven
+            if (!IDs.get(6).equals("") && null != IDs.get(6)) {
+                if (!subIDs.get(6).equals("") && null != subIDs.get(6)) {
+                    if (gender.get(6).equals("Male") || gender.get(6).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                    } else if (gender.get(6).equals("Female") || gender.get(6).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+            }
+
+            //for client eight
+            if (!IDs.get(7).equals("") && null != IDs.get(7)) {
+                if (!subIDs.get(7).equals("") && null != subIDs.get(7)) {
+                    if (gender.get(7).equals("Male") || gender.get(7).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                    } else if (gender.get(7).equals("Female") || gender.get(7).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+            }
+
+            //for client nine
+            if (!IDs.get(8).equals("") && null != IDs.get(8)) {
+                if (!subIDs.get(8).equals("") && null != subIDs.get(8)) {
+                    if (gender.get(8).equals("Male") || gender.get(8).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                    } else if (gender.get(8).equals("Female") || gender.get(8).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+            }
+
+            //for client ten
+            if (!IDs.get(9).equals("") && null != IDs.get(9)) {
+                if (!subIDs.get(9).equals("") && null != subIDs.get(9)) {
+                    if (gender.get(9).equals("Male") || gender.get(9).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                    } else if (gender.get(9).equals("Female") || gender.get(9).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+            }
+
+            //for client eleven
+            if (!IDs.get(10).equals("") && null != IDs.get(10)) {
+                if (!subIDs.get(10).equals("") && null != subIDs.get(10)) {
+                    if (gender.get(10).equals("Male") || gender.get(10).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                    } else if (gender.get(10).equals("Female") || gender.get(10).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+            }
+
+            //for client twelve
+            if (!IDs.get(11).equals("") && null != IDs.get(11)) {
+                if (!subIDs.get(11).equals("") && null != subIDs.get(11)) {
+                    if (gender.get(11).equals("Male") || gender.get(11).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                    } else if (gender.get(11).equals("Female") || gender.get(11).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+            }
+            //for client thirteen
+            if (!IDs.get(12).equals("") && null != IDs.get(12)) {
+                if (!subIDs.get(12).equals("") && null != subIDs.get(12)) {
+                    if (gender.get(12).equals("Male") || gender.get(12).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                    } else if (gender.get(12).equals("Female") || gender.get(12).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+            }
+
+            //for client fourteen
+            if (!IDs.get(13).equals("") && null != IDs.get(13)) {
+                if (!subIDs.get(13).equals("") && null != subIDs.get(13)) {
+                    if (gender.get(13).equals("Male") || gender.get(13).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                    } else if (gender.get(13).equals("Female") || gender.get(13).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+            }
+
+            //for client fifteen
+            if (!IDs.get(14).equals("") && null != IDs.get(14)) {
+                if (!subIDs.get(14).equals("") && null != subIDs.get(14)) {
+                    if (gender.get(14).equals("Male") || gender.get(14).equals("male")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                    } else if (gender.get(14).equals("Female") || gender.get(14).equals("female")) {
+                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                    }
+                } else {
+                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                }
+
+            } else {
+                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+            }
+        }
+
+    }
+
+    @Override
+    public void onTreeDataStartLoading() {
+        loadingDialog.startLoadingAlertDialog();
+
+    }
+
+    @Override
+    public void onTreeDataStopLoading() {
+        loadingDialog.dismissDialog();
+
+    }
+
+    @Override
+    public void onTreeDataShowMessage(String errMsg) {
+
+    }
 }

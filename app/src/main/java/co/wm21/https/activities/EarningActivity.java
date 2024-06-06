@@ -16,12 +16,7 @@ import java.util.ArrayList;
 
 import co.wm21.https.R;
 import co.wm21.https.adapters.ViewPagerAdapter;
-import co.wm21.https.fragments.member.CurrentMonthFragment;
-import co.wm21.https.fragments.member.DetailsFragment;
 import co.wm21.https.fragments.member.IncomeBalanceFragment;
-import co.wm21.https.fragments.member.LastMonthFragment;
-import co.wm21.https.fragments.member.LastStatusFragment;
-import co.wm21.https.fragments.member.MyLoanFragment;
 import co.wm21.https.fragments.member.ShopBalanceFragment;
 
 public class EarningActivity extends AppCompatActivity {
@@ -77,12 +72,6 @@ public class EarningActivity extends AppCompatActivity {
         fragmentList = new ArrayList<>();
         fragmentList.add(new IncomeBalanceFragment());
         fragmentList.add(new ShopBalanceFragment());
-
-        fragmentList.add(new LastStatusFragment());
-        fragmentList.add(new DetailsFragment());
-        fragmentList.add(new LastMonthFragment());
-        fragmentList.add(new CurrentMonthFragment());
-        fragmentList.add(new MyLoanFragment());
     }
     @Override
     public boolean onSupportNavigateUp() {

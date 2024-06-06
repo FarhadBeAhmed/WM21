@@ -38,7 +38,7 @@
                     android:src="@drawable/ic_countrys" />
 
                 <Spinner
-                    android:id="@+id/spnr_FranApp_Division"
+                    android:id="@+id/spnrFranAppDivision"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
@@ -47,7 +47,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lnr_FranApp_District"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -96,7 +95,7 @@
                     android:src="@drawable/ic_countrys" />
 
                 <Spinner
-                    android:id="@+id/spnr_FranApp_Thana"
+                    android:id="@+id/spnrFranAppThana"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
@@ -105,7 +104,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lnr_Franchise_Name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -116,7 +114,7 @@
                 android:visibility="visible">
 
                 <EditText
-                    android:id="@+id/et_FranApp_Name"
+                    android:id="@+id/etFranAppName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/rounded_spinner"
@@ -139,7 +137,7 @@
                 android:visibility="visible">
 
                 <EditText
-                    android:id="@+id/et_FranApp_Address"
+                    android:id="@+id/etFranAppAddress"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/rounded_spinner"
@@ -156,7 +154,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lnr_Franchise_License"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
@@ -167,7 +164,7 @@
                 android:visibility="visible">
 
                 <EditText
-                    android:id="@+id/et_FranApp_LicenseNo"
+                    android:id="@+id/etFranAppLicenseNo"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/rounded_spinner"

@@ -1,14 +1,8 @@
 package co.wm21.https.fragments.member.affiliate;
 
-import static co.wm21.https.helpers.Constant.dp;
-
 import android.annotation.SuppressLint;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,11 +11,9 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -43,8 +35,7 @@ import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.FragmentMemberAffiliateBinding;
 import co.wm21.https.fragments.member.FlexiloadFragment;
-import co.wm21.https.fragments.member.ProfileFragment;
-import co.wm21.https.fragments.member.mlm.MlmFragment;
+import co.wm21.https.fragments.member.profile.ProfileFragment;
 import co.wm21.https.fragments.member.verifications.VerifyAccountFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.helpers.User;
@@ -339,7 +330,7 @@ public class AffiliateFragment extends Fragment {
         });
 
         binding.downgradeAccountLayout.setVisibility(View.GONE);
-        binding.upgradeAccountLayout.setOnClickListener(view -> switchFragment(new MlmFragment(), "MlmFragment"));
+       // binding.upgradeAccountLayout.setOnClickListener(view -> switchFragment(new MlmFragment(), "MlmFragment"));
 
         // new thread().start();
         return binding.getRoot();
@@ -394,7 +385,7 @@ public class AffiliateFragment extends Fragment {
 
     }
 
-    public class thread extends Thread {
+  /*  public class thread extends Thread {
         @SuppressLint("SetTextI18n")
         @Override
         public void run() {
@@ -415,7 +406,7 @@ public class AffiliateFragment extends Fragment {
                 });
             });
         }
-    }
+    }*/
 
     public void switchFragment(Fragment fragment,String tag) {
         FragmentManager fm = getParentFragmentManager();

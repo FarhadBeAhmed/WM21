@@ -425,7 +425,6 @@
                             tools:ignore="HardcodedText" />
 
                         <LinearLayout
-                            android:id="@+id/MyAccExpandButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -623,7 +622,6 @@
                             tools:ignore="HardcodedText" />
 
                         <LinearLayout
-                            android:id="@+id/CustomerExpandButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -795,7 +793,6 @@
             android:paddingVertical="@dimen/_10sdp">
 
             <TextView
-                android:id="@+id/copyRightText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -805,7 +802,6 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/copyRightText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

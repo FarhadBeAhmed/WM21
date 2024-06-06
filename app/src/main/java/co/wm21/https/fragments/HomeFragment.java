@@ -250,6 +250,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         //categories();
         popularProduct("2");
         //hotProduct();
+
+
+        topSellingProduct(8);
         return binding.getRoot();
     }
 
@@ -262,12 +265,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.imageSlider.startAutoCycle();
         binding.imageSlider.setSliderAdapter(adapter);
 
-        parseData("10");
-
-    }
-
-    private void parseData(String s) {
-        homeTopSliderImagePresenter.getSliderImageDataResponse(s);
+        homeTopSliderImagePresenter.getSliderImageDataResponse("10");
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -282,10 +280,6 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(0).getCategoryName());
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(getContext());
-//                bundle.putString(ConstantValues.ARGUMENT1, categoryList.get(0).getCatID());
-//                bundle.putString(ConstantValues.ARGUMENT2, categoryList.get(0).getCategoryName());
-//                fragment.setArguments(bundle);
-//                switchFragment(fragment, "ProductsFragment");
                 break;
             case R.id.moreElectronicsProduct:
                  intent=new Intent(getContext(), HomeMoreProductActivity.class);
@@ -293,9 +287,6 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(1).getCategoryName());
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(getContext());
-//                bundle.putString(ConstantValues.ARGUMENT1, categoryList.get(1).getCatID());
-//                fragment.setArguments(bundle);
-//                switchFragment(fragment, "ProductsFragment");
                 break;
             case R.id.beautyMoreProduct:
                 intent=new Intent(getContext(), HomeMoreProductActivity.class);
@@ -453,7 +444,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             if (activity != null) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra(Constant.Product.PARCEL, productView);
-                startActivityForResult(intent, 2);
+                activity.startActivityForResult(intent, 2);
             }
         });
 
@@ -468,18 +459,20 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         hotProductViews = new ArrayList<>();
         binding.hotDealSlider.setScrollTimeInSec(5);
         binding.hotDealSlider.startAutoCycle();
-        hotDealSliderAdapter=new HotDealSliderAdapter(getContext(), hotProductViews, R.layout.layout_item_product_hot_deal).addOnClickListener((View, position3) -> {
-            ProductModel productView = hotProductViews.get(position3);
-            Activity activity = getActivity();
-            if (activity != null) {
-                startActivity(new Intent(getContext(), ProductDetailsActivity.class)
-                        .putExtra(Constant.Product.PARCEL, productView));
-            }
-        });
+        hotDealSliderAdapter=new HotDealSliderAdapter(getContext(), hotProductViews, R.layout.layout_item_product_hot_deal);
+    /*.addOnClickListener((View, position3) -> {
+//            ProductModel productView = hotProductViews.get(position3);
+//            Activity activity = getActivity();
+//            if (activity != null) {
+//                startActivity(new Intent(getContext(), ProductDetailsActivity.class)
+//                        .putExtra(Constant.Product.PARCEL, productView));
+//            }
+        });*/
 
         binding.hotDealSlider.setSliderAdapter(hotDealSliderAdapter);
         hotProductPresenter.getHotProduct(30);
         fromOurBlog(5);
+
 
 
 
@@ -502,7 +495,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 if (activity != null) {
                     Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                     intent.putExtra(Constant.Product.PARCEL, productView);
-                    startActivityForResult(intent, 2);
+                    activity.startActivityForResult(intent, 2);
 
                 }
         });
@@ -515,7 +508,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             if (activity != null) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra(Constant.Product.PARCEL, productView);
-                startActivityForResult(intent, 2);
+                activity.startActivityForResult(intent, 2);
 
             }
         });
@@ -529,7 +522,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             if (activity != null) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra(Constant.Product.PARCEL, productView);
-                startActivityForResult(intent, 2);
+                activity.startActivityForResult(intent, 2);
 
             }
         });
@@ -543,7 +536,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             if (activity != null) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra(Constant.Product.PARCEL, productView);
-                startActivityForResult(intent, 2);
+                activity.startActivityForResult(intent, 2);
 
             }
         });
@@ -568,7 +561,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     }
 
-    private void topSellingProduct() {
+    private void topSellingProduct(int limit) {
 
         topSellingProList=new ArrayList<>();
 
@@ -579,47 +572,12 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             if (activity != null) {
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra(Constant.Product.PARCEL, productView);
-                startActivityForResult(intent, 2);
-
+                activity.startActivityForResult(intent, 2);
             }
         });
         binding.topRecyclerView4.setAdapter(topSellingAdapter);
 
-
-        topSellingProPresenter.topSellingProDataLoad();
-
-
-        ArrayList<ProductView> productViews = new ArrayList<>();
-
-      /*  binding.shimmertopSel.setVisibility(View.VISIBLE);
-        binding.topRecyclerView4.setVisibility(View.GONE);
-        MySingleton.getInstance(getContext()).addToRequestQueue(api.topSellingProduct(response -> {
-            try {
-                JSONArray jsonArray = response.getJSONArray("result");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject json = jsonArray.getJSONObject(i);
-                    productViews.add(new ProductView(
-                            json.getString(Constant.PopularProduct.NAME),
-                            json.getString(Constant.PopularProduct.IMAGE),
-                            json.getDouble(Constant.PopularProduct.PREVIOUS_PRICE),
-                            json.getDouble(Constant.PopularProduct.DISCOUNT), 4,
-                            json.getLong(Constant.Category.CATEGORY_ID),
-                            json.getLong(Constant.Category.SUB_CATEGORY_ID),
-                            json.getLong(Constant.Category.BRAND_ID),
-                            json.getLong(Constant.PopularProduct.PRODUCT_ID),
-                            json.getString(Constant.Product.OFFER_DATE),
-                            json.getString(Constant.Product.UPLOAD_BY),
-                            json.getDouble(Constant.Product.POINT)));
-                }
-
-                binding.shimmertopSel.setVisibility(View.GONE);
-                binding.topRecyclerView4.setVisibility(View.VISIBLE);
-                ((MainActivity) requireContext()).getCartItems();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }));
-*/
+        topSellingProPresenter.topSellingProDataLoad(limit);
     }
 
     @Override
@@ -648,6 +606,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onHomeCategoryDataLoaded(List<CategoryView> catList) {
         categoryList.addAll(catList);
@@ -704,6 +663,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onHomePopularProductLoaded(List<ProductModel> productViews) {
         popularProductList.addAll(productViews);
@@ -794,24 +754,25 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBlogListDataLoad(List<BlogsModel> blogs) {
         blogsModels.addAll(blogs);
         blogsAdapter.notifyDataSetChanged();
-        topSellingProduct();
+
 
     }
 
     @Override
     public void onBlogListStartLoading() {
-       // loadingDialog.startLoadingAlertDialog();
+        loadingDialog.startLoadingAlertDialog();
         binding.shimmerBlog.setVisibility(View.VISIBLE);
         binding.blogRecyclerView.setVisibility(View.GONE);
     }
 
     @Override
     public void onBlogListStopLoading() {
-        //loadingDialog.dismissDialog();
+        loadingDialog.dismissDialog();
         binding.shimmerBlog.setVisibility(View.GONE);
         binding.blogRecyclerView.setVisibility(View.VISIBLE);
     }
@@ -821,9 +782,10 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onTopSellingProDataLoad(List<TopSellingProModel> topSellingProModel) {
-        if (topSellingProModel.size()>0){
+        if (!topSellingProModel.isEmpty()){
             binding.shimmertopSel.setVisibility(View.GONE);
             binding.topRecyclerView4.setVisibility(View.VISIBLE);
         }
@@ -840,11 +802,20 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     @Override
     public void onTopSellingProStopLoading() {
-
+        loadingDialog.dismissDialog();
     }
 
     @Override
     public void onTopSellingProShowMessage(String errmsg) {
         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
     }
+
+    class MyThread extends Thread {
+        public void run() {
+         // topSellingProduct();
+        }
+    }
+
+
+
 }//worldmission3     123456
