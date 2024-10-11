@@ -26,7 +26,6 @@ import co.wm21.https.activities.affiliate.HomeActivityAff;
 import co.wm21.https.activities.mlm.HomeActivity;
 import co.wm21.https.databinding.FragmentLoginBinding;
 import co.wm21.https.dialog.LoadingDialog;
-import co.wm21.https.fragments.member.affiliate.AffiliateFragment;
 import co.wm21.https.fragments.registration.RegisterFragment;
 import co.wm21.https.helpers.User;
 import co.wm21.https.interfaces.OnLoginView;

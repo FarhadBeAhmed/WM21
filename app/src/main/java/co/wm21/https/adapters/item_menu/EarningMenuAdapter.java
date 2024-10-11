@@ -2,7 +2,6 @@ package co.wm21.https.adapters.item_menu;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +14,13 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
-import co.wm21.https.activities.mlm.company.CompanyProfileActivity;
-import co.wm21.https.activities.EarningActivity;
-import co.wm21.https.activities.FranchiseActivity;
-import co.wm21.https.activities.GenealogyActivity;
-import co.wm21.https.activities.RewardsActivity;
-import co.wm21.https.activities.SmsCallActivity;
-import co.wm21.https.activities.TrainingActivity;
-import co.wm21.https.adapters.ItemClickListener;
 import co.wm21.https.R;
+import co.wm21.https.adapters.ItemClickListener;
 
-public class ItemMenuAdapter extends RecyclerView.Adapter {
+public class EarningMenuAdapter extends RecyclerView.Adapter {
 
     ArrayList<ItemMenuView> mList;
     LayoutInflater mInflater;
@@ -37,7 +30,7 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
     Context context;
     int offerLayout=0;
 
-    public ItemMenuAdapter(Context context, ArrayList<ItemMenuView> itemMenuViews, @LayoutRes int layout) {
+    public EarningMenuAdapter(Context context, ArrayList<ItemMenuView> itemMenuViews, @LayoutRes int layout) {
         mList = itemMenuViews;
         mInflater = LayoutInflater.from(context);
         this.layout = layout;
@@ -75,15 +68,15 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
           ((ItemMenuHolder) holder).cardItem.setOnClickListener(view -> {
              // Toast.makeText(context, "Position: " + position, Toast.LENGTH_SHORT).show();
               switch (position) {
+                  case 1:
+                  case 2:
+                  case 3:
+                  case 4:
                   case 5:
                   case 6:
                   case 7:
-                  case 8:
-                  case 11:
-                  case 12:
-                  case 13:
 
-                  case 14:
+                  case 8:
                       AlertDialog.Builder builder = new AlertDialog.Builder(context);
                       ViewGroup viewGroup = view.findViewById(android.R.id.content);
                       View dialogView = LayoutInflater.from(context).inflate(R.layout.layout_under_progress, viewGroup, false);
@@ -98,29 +91,6 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
 
                       });
 
-                      break;
-                  case 0:
-                      context.startActivity(new Intent(context, CompanyProfileActivity.class));
-
-                      break;
-                  case 1:
-                      context.startActivity(new Intent(context, FranchiseActivity.class));
-
-                      break;
-                  case 2:
-                      context.startActivity(new Intent(context, SmsCallActivity.class));
-                      break;
-                  case 3:
-                      context.startActivity(new Intent(context, GenealogyActivity.class));
-                      break;
-                  case 4:
-                      context.startActivity(new Intent(context, TrainingActivity.class));
-                      break;
-                  case 9:
-                      context.startActivity(new Intent(context, RewardsActivity.class));
-                      break;
-                  case 10:
-                    context.startActivity(new Intent(context, EarningActivity.class));
                       break;
                   default:
               }
@@ -143,7 +113,7 @@ public class ItemMenuAdapter extends RecyclerView.Adapter {
         return mList.size();
     }
 
-    public ItemMenuAdapter addOnClickListener(ItemClickListener mListener) {
+    public EarningMenuAdapter addOnClickListener(ItemClickListener mListener) {
         this.mListener = mListener;
         return this;
     }

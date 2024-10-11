@@ -3,21 +3,23 @@ package co.wm21.https.FHelper.networks.Models;
 import com.google.gson.annotations.SerializedName;
 
 public class RewardAchievementDataListModel {
-    @SerializedName("SL")
-    private String sL;
+    @SerializedName("Serial")
+    private String serial;
     @SerializedName("Rank")
     private String rank;
-    @SerializedName("Date")
-    private String date;
-    @SerializedName("Status")
+    @SerializedName("Team_A")
+    private String teamA;
+    @SerializedName("Team_B")
+    private String teamB;
+    @SerializedName("status")
     private String status;
 
-    public String getSL() {
-        return sL;
+    public String getSerial() {
+        return serial;
     }
 
-    public void setSL(String sL) {
-        this.sL = sL;
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
 
     public String getRank() {
@@ -28,12 +30,20 @@ public class RewardAchievementDataListModel {
         this.rank = rank;
     }
 
-    public String getDate() {
-        return date;
+    public String getTeamA() {
+        return teamA;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTeamA(String teamA) {
+        this.teamA = teamA;
+    }
+
+    public String getTeamB() {
+        return teamB;
+    }
+
+    public void setTeamB(String teamB) {
+        this.teamB = teamB;
     }
 
     public String getStatus() {

@@ -1,5 +1,6 @@
 package co.wm21.https.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,15 +31,15 @@ public class RewardAchievementAdapter extends RecyclerView.Adapter<RewardAchieve
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewSL;
         TextView textViewRank;
-        TextView textViewDate;
+        TextView teamB;
 
-        TextView textViewStatus;
+        TextView teamA;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewStatus=itemView.findViewById(R.id.txt_row_rewardAchievement_Status);
-            textViewDate=itemView.findViewById(R.id.txt_row_rewardAchievement_Date);
+            teamA=itemView.findViewById(R.id.txt_row_rewardAchievement_team_a);
+            teamB=itemView.findViewById(R.id.txt_row_rewardAchievement_team_b);
             textViewRank=itemView.findViewById(R.id.txt_row_rewardAchievement_Rank);
             textViewSL=itemView.findViewById(R.id.txt_row_rewardAchievement_Sl);
 
@@ -52,13 +53,14 @@ public class RewardAchievementAdapter extends RecyclerView.Adapter<RewardAchieve
         return new MyViewHolder(mView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         RewardAchievementDataListModel model = aList.get(i);
-        myViewHolder.textViewSL.setText(model.getSL());
+        myViewHolder.textViewSL.setText(model.getSerial());
         myViewHolder.textViewRank.setText("Rank: " + model.getRank());
-        myViewHolder.textViewDate.setText("Date: " + model.getDate());
-        myViewHolder.textViewStatus.setText("Status: " + model.getStatus());
+        myViewHolder.teamA.setText("Team A: " + model.getTeamA());
+        myViewHolder.teamB.setText("Team B: " + model.getTeamB());
     }
 
     @Override

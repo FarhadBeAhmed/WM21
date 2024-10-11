@@ -26,6 +26,7 @@ import co.wm21.https.databinding.FragmentAchievementBinding;
 import co.wm21.https.dialog.LoadingDialog;
 import co.wm21.https.helpers.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.helpers.User;
 import co.wm21.https.interfaces.OnRewardAchievementView;
 import co.wm21.https.presenter.RewardAchievementPresenter;
 
@@ -36,8 +37,9 @@ public class RewardAchievementFragment extends Fragment implements OnRewardAchie
 
     View mView;
     CheckInternetConnection checkInternetConnection;
-    SessionHandler appSessionManager;
+    //SessionHandler appSessionManager;
     LoadingDialog loadingDialog;
+    User user;
 
     FragmentAchievementBinding binding;
 
@@ -55,7 +57,7 @@ public class RewardAchievementFragment extends Fragment implements OnRewardAchie
                              Bundle savedInstanceState) {
         binding=FragmentAchievementBinding.inflate(getLayoutInflater());
 
-        appSessionManager = new SessionHandler(getActivity());
+        user= new User(getContext());
         checkInternetConnection = new CheckInternetConnection();
         loadingDialog=new LoadingDialog(getActivity());
         rewardAchievementPresenter = new RewardAchievementPresenter(this);
@@ -73,7 +75,7 @@ public class RewardAchievementFragment extends Fragment implements OnRewardAchie
 
     private void parseData() {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            rewardAchievementPresenter.onRewardAchievementResponseData(appSessionManager.getUserDetails().getUsername());
+            rewardAchievementPresenter.onRewardAchievementResponseData(user.getUsername());
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
         }

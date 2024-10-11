@@ -36,8 +36,8 @@ import co.wm21.https.activities.ShopSearchScanActivity;
 import co.wm21.https.adapters.ShopsAdapter;
 import co.wm21.https.adapters.SliderAdapter;
 import co.wm21.https.databinding.FragmentVendorBinding;
-import co.wm21.https.fragments.company.AboutUsFragment;
-import co.wm21.https.fragments.company.ContactUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.ContactUsFragment;
 import co.wm21.https.helpers.Constant;
 import co.wm21.https.model.ShopsModel;
 

@@ -26,6 +26,7 @@ import co.wm21.https.dialog.LoadingDialog;
 import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
 import co.wm21.https.helpers.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.helpers.User;
 import co.wm21.https.interfaces.OnRewardPolicyView;
 import co.wm21.https.presenter.RewardPolicyPresenter;
 
@@ -38,7 +39,7 @@ public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView
     SessionHandler appSessionManager;
     CheckInternetConnection checkInternetConnection;
     RewardPolicyPresenter rewardPolicyPresenter;
-
+    User user;
    // RecyclerView recyclerViewRewardPolicy;
     FragmentRewardPolicyBinding binding;
     private List<RewardPolicyDataListModel> rewardsModel = new ArrayList<>();
@@ -58,6 +59,7 @@ public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView
         appSessionManager = new SessionHandler(getActivity());
         checkInternetConnection = new CheckInternetConnection();
         loadingDialog=new LoadingDialog(getActivity());
+        user = new User(getContext());
         rewardPolicyPresenter = new RewardPolicyPresenter(this);
         initializedFields();
         return binding.getRoot();
@@ -74,7 +76,7 @@ public class RewardPolicyFragment extends Fragment implements OnRewardPolicyView
 
     private void parseData() {
         if (checkInternetConnection.isInternetAvailable(getActivity())) {
-            rewardPolicyPresenter.onRewardPolicyRequestData();
+            rewardPolicyPresenter.onRewardPolicyRequestData(user.getUsername());
         } else {
             Snackbar.make(getView(), "(*_*) Internet connection problem!", Snackbar.LENGTH_SHORT).show();
         }

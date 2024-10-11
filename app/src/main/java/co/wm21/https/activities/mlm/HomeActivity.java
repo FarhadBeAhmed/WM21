@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
     List<SliderItem> sliderItemList;
     SliderAdapter adapter;
 
-    public static co.wm21.https.helpers.User user;
+    public static User user;
     View view;
     int progress = 0;
     String nextTask;
@@ -313,9 +313,9 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
     public void onBalancesDataLoad(BalanceModel balanceModel) {
         //netBalance = response.getString(ConstantValues.balance.NetBalance);
         if (balanceTaskNumber == 1) {
-            netBalance = balanceModel.getBalanceData().getBalance();
+            netBalance = balanceModel.getBalanceData().getNetBalance();
         } else if (balanceTaskNumber==2) {
-            netBalance =  balanceModel.getBalanceData().getBalance();
+            netBalance =  balanceModel.getBalanceData().getNetBalance();
             binding.tapForBalanceTxt.setText("Tk" + netBalance);
             binding.animationView.setVisibility(View.GONE);
             binding.tapForBalanceTxt.setVisibility(View.VISIBLE);

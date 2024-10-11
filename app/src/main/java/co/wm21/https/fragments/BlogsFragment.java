@@ -24,10 +24,9 @@ import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.R;
 import co.wm21.https.activities.MainActivity;
 import co.wm21.https.adapters.AllBlogsAdapter;
-import co.wm21.https.adapters.BlogsAdapter;
 import co.wm21.https.databinding.FragmentBlogsBinding;
-import co.wm21.https.fragments.company.AboutUsFragment;
-import co.wm21.https.fragments.company.ContactUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.ContactUsFragment;
 import co.wm21.https.model.Blogs;
 
 

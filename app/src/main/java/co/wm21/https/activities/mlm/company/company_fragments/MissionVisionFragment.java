@@ -1,4 +1,4 @@
-package co.wm21.https.fragments.company;
+package co.wm21.https.activities.mlm.company.company_fragments;
 
 
 import android.os.Bundle;

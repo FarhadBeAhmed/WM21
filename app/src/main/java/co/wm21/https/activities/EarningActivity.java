@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import co.wm21.https.R;
 import co.wm21.https.adapters.ViewPagerAdapter;
-import co.wm21.https.fragments.member.IncomeBalanceFragment;
+import co.wm21.https.fragments.member.MLMHistoryFragment;
 import co.wm21.https.fragments.member.ShopBalanceFragment;
 
 public class EarningActivity extends AppCompatActivity {
@@ -61,17 +61,12 @@ public class EarningActivity extends AppCompatActivity {
         fragmentTitleList = new ArrayList<>();
         fragmentTitleList.add("E-Wallet Status");
         fragmentTitleList.add("E-Account Status");
-        fragmentTitleList.add("Last Status");
-        fragmentTitleList.add("Details");
-        fragmentTitleList.add("Last Month");
-        fragmentTitleList.add("Current Month");
-        fragmentTitleList.add("My Loan");
     }
 
     private void getFragmentList() {
         fragmentList = new ArrayList<>();
-        fragmentList.add(new IncomeBalanceFragment());
-        fragmentList.add(new ShopBalanceFragment());
+        fragmentList.add(new MLMHistoryFragment());
+       // fragmentList.add(new ShopBalanceFragment());
     }
     @Override
     public boolean onSupportNavigateUp() {

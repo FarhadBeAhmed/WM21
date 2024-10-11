@@ -58,23 +58,15 @@ public class ShopBalanceFragment extends Fragment {
     SessionHandler appSessionManager;
     View mView;
 
-    @BindView(R.id.txt_IncomeStatusDate)
-    TextView textViewDate;
-    @BindView(R.id.incomeTitle)
-    TextView incomeTitle;
 
-    @BindView(R.id.rv_accountBlance)
-    RecyclerView recyclerViewAccountBalance;
     private List<IncomeBalaceReportDataListModel> iList = new ArrayList<>();
     private AccountIncomeAdapter accountAdapter;
 
-    @BindView(R.id.rv_incomeBlance)
-    RecyclerView recyclerViewIncomeBalace;
+
     private List<IncomeBalaceReportDataListModel> incomeBalanceReport = new ArrayList<>();
     private AccountIncomeAdapter incomeBalaceReportAdapter;
 
-    @BindView(R.id.rv_expenseBlance)
-    RecyclerView recyclerViewExpenseBalace;
+
     private List<IncomeBalaceReportDataListModel> expenseBalanceReportList = new ArrayList<>();
     private AccountIncomeAdapter expenseBalaceReportAdapter;
 
@@ -95,7 +87,6 @@ public class ShopBalanceFragment extends Fragment {
         fApi = ConstantValues.getAPI();
         user = new User(getContext());
         checkInternetConnection = new CheckInternetConnection();
-        ButterKnife.bind(this, mView);
         binding.incomeTitle.setText("E-ACCOUNT BALANCE STATUS");
        /* Glide.with(getActivity()).load(ConstantValues.URL
                 + appSessionManager.getUserDetails().get(AppSessionManager.KEY_COMPANYLOGO)).apply(new RequestOptions().error(R.mipmap.ic_launcher)

@@ -17,13 +17,13 @@ public class InvokeRewardAchievementApi {
     public InvokeRewardAchievementApi(String userID, final OnRewardAchievementRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
+        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
         mApiService.getRewardAchievementList(userID).enqueue(new Callback<RewardAchievementDataModel>() {
             @Override
             public void onResponse(Call<RewardAchievementDataModel> call, Response<RewardAchievementDataModel> response) {
                 if (response.isSuccessful()){
                     if (response.body().getError() == 0){
-                        requestComplete.onRewardAchievementRequestSuccess(response.body().getServiceTraining());
+                        requestComplete.onRewardAchievementRequestSuccess(response.body().getTeamInfo());
                     } else {
                         requestComplete.onRewardAchievementRequestError(response.body().getErrorReport());
                     }

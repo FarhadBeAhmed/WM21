@@ -190,13 +190,13 @@ public class ProfileFragment extends Fragment {
         getUserDetails();
         binding.profileImage.setOnClickListener(this::changeImage);
         binding.uploadImage.setOnClickListener(this::UpdateProfileImage);
-        binding.signatureView.setOnClickListener(this::signature);
+        binding.signView.setOnClickListener(this::signature);
 
         return binding.getRoot();
     }
 
     private void signature(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+      /*  final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         final AlertDialog adChangeImage = builder.create();
         LayoutInflater layoutInflater = this.getLayoutInflater();
         final View customView = layoutInflater.inflate(R.layout.signature_pad, null);
@@ -211,7 +211,7 @@ public class ProfileFragment extends Fragment {
 
         cancel.setOnClickListener(v -> {
             adChangeImage.dismiss();
-        });
+        });*/
     }
 
     private void submitBtnClicked(View view) {

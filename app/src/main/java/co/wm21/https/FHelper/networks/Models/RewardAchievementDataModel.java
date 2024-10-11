@@ -4,13 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
+
 public class RewardAchievementDataModel {
     @SerializedName("error")
     private Integer error;
     @SerializedName("error_report")
     private String errorReport;
-    @SerializedName("service_training")
-    private List<RewardAchievementDataListModel> serviceTraining = null;
+    @SerializedName("team_info")
+    private List<RewardAchievementDataListModel> teamInfo;
 
     public Integer getError() {
         return error;
@@ -28,11 +30,11 @@ public class RewardAchievementDataModel {
         this.errorReport = errorReport;
     }
 
-    public List<RewardAchievementDataListModel> getServiceTraining() {
-        return serviceTraining;
+    public List<RewardAchievementDataListModel> getTeamInfo() {
+        return teamInfo;
     }
 
-    public void setServiceTraining(List<RewardAchievementDataListModel> serviceTraining) {
-        this.serviceTraining = serviceTraining;
+    public void setTeamInfo(List<RewardAchievementDataListModel> teamInfo) {
+        this.teamInfo = teamInfo;
     }
 }

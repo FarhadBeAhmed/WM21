@@ -54,7 +54,7 @@ public class HomeActivityAff extends AppCompatActivity {
     int taskNumber;
     private Double before2021_08_01, direct_Referral_Commission, daily_Matching_Commission, brand_Promoter_Incentive, brand_Ambassador_Royalty;
     private Double executive_Royalty, franchise_Commission, businessDevelop, promotionalIncentive, topEarnerIncentive;
-    private Double shopReferCommission, ICTLabCommission, total_Income, withdrawal, expenses, totalExpense, netBalance;
+    private Double netBalance;
     ArrayList<ItemMenuView> socialsList,offerList, digitalServiceList, digitalBusinessList, communityWorkList;
 
 

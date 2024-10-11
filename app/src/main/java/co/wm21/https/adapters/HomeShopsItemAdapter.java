@@ -1,6 +1,5 @@
 package co.wm21.https.adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
@@ -20,14 +18,7 @@ import java.util.ArrayList;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.R;
-import co.wm21.https.activities.CompanyProfileActivity;
-import co.wm21.https.activities.EarningActivity;
-import co.wm21.https.activities.FranchiseActivity;
-import co.wm21.https.activities.GenealogyActivity;
-import co.wm21.https.activities.RewardsActivity;
 import co.wm21.https.activities.ShopsActivity;
-import co.wm21.https.activities.SmsCallActivity;
-import co.wm21.https.activities.TrainingActivity;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
 
 public class HomeShopsItemAdapter extends RecyclerView.Adapter {

@@ -1939,7 +1939,7 @@
                                                 tools:ignore="HardcodedText,RtlSymmetry" />
 
                                             <ImageView
-                                                android:id="@+id/signatureView"
+                                                android:id="@+id/signView"
                                                 android:clickable="true"
                                                 android:focusable="true"
                                                 android:layout_width="@dimen/_25sdp"

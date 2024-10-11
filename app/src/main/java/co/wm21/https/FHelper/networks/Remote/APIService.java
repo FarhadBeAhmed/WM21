@@ -98,8 +98,8 @@ public interface APIService {
     @FormUrlEncoded
     Call<IncomeBalaceReportDataModel> getIncomeStatus(@Field("id") String userID);
 
-    @GET("apps/reward_policy.php")
-    Call<RewardPolicyDataModel> getRewardPolicy();
+   /* @GET("apps/reward_policy.php")
+    Call<RewardPolicyDataModel> getRewardPolicy();*/
 
     @POST("apps/reward_fund.php")
     @FormUrlEncoded
@@ -142,7 +142,6 @@ public interface APIService {
     Call<JsonObject> submitBloodRequest(@Field("user_name") String userName,
                                         @Field("category") String userCategory,
                                         @Field("blood") String bloodGroup);
-
 
 
     @POST("apps/team_info.php")
@@ -212,6 +211,11 @@ public interface APIService {
     @POST("apps/balance.php")
     @FormUrlEncoded
     Call<BalanceModel> allBalances(@Field("user_id") String userID);
+
+
+    @POST("apps/reward_policy.php")
+    @FormUrlEncoded
+    Call<RewardPolicyDataModel> getRewardPolicy(@Field("user_id") String userID);
 
 
     //for get generation List

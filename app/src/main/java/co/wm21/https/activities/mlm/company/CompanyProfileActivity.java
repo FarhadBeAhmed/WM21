@@ -1,4 +1,4 @@
-package co.wm21.https.activities;
+package co.wm21.https.activities.mlm.company;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 import co.wm21.https.R;
 import co.wm21.https.adapters.ViewPagerAdapter;
-import co.wm21.https.fragments.company.AboutUsFragment;
-import co.wm21.https.fragments.company.MissionVisionFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.MissionVisionFragment;
 
 public class CompanyProfileActivity extends AppCompatActivity {
 

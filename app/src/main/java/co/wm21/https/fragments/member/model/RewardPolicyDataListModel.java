@@ -11,6 +11,8 @@ public class RewardPolicyDataListModel {
     private String teamA;
     @SerializedName("Team_B")
     private String teamB;
+    @SerializedName("status")
+    private String status;
 
     public String getSerial() {
         return serial;
@@ -42,5 +44,13 @@ public class RewardPolicyDataListModel {
 
     public void setTeamB(String teamB) {
         this.teamB = teamB;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

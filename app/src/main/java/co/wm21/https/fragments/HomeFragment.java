@@ -18,15 +18,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.google.gson.JsonArray;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +28,6 @@ import java.util.List;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
-import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.FHelper.networks.Models.TopSellingProModel;
@@ -43,7 +36,6 @@ import co.wm21.https.SliderItem;
 import co.wm21.https.activities.HomeMoreProductActivity;
 import co.wm21.https.activities.MainActivity;
 import co.wm21.https.activities.ProductDetailsActivity;
-import co.wm21.https.adapters.AllBlogsAdapter;
 import co.wm21.https.adapters.BlogsAdapter;
 import co.wm21.https.adapters.HomeShopsItemAdapter;
 import co.wm21.https.adapters.HotDealAdapter;
@@ -54,14 +46,11 @@ import co.wm21.https.adapters.SliderAdapter;
 import co.wm21.https.adapters.TopSellingAdapter;
 import co.wm21.https.adapters.category.CategoryAdapter;
 import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.adapters.item_menu.ItemMenuAdapter;
 import co.wm21.https.adapters.item_menu.ItemMenuView;
-import co.wm21.https.adapters.product.ProductAdapter;
-import co.wm21.https.adapters.product.ProductView;
 import co.wm21.https.databinding.FragmentMainHomeBinding;
 import co.wm21.https.dialog.LoadingDialog;
-import co.wm21.https.fragments.company.AboutUsFragment;
-import co.wm21.https.fragments.company.ContactUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.ContactUsFragment;
 import co.wm21.https.fragments.manageOrder.AppliedFragment;
 import co.wm21.https.fragments.manageOrder.DeliveredFragment;
 import co.wm21.https.fragments.manageOrder.OrderFragment;
@@ -82,7 +71,6 @@ import co.wm21.https.interfaces.OnHomePopularProductView;
 import co.wm21.https.interfaces.OnHomeTopSliderImageView;
 import co.wm21.https.interfaces.OnHotProductView;
 import co.wm21.https.interfaces.OnTopSellingProView;
-import co.wm21.https.model.Blogs;
 import co.wm21.https.presenter.BlogListPresenter;
 import co.wm21.https.presenter.HomeCategoryPresenter;
 import co.wm21.https.presenter.HomePopularCatProductPresenter;
@@ -818,4 +806,4 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
 
 
-}//worldmission3     123456
+}//wm20886455     123456@

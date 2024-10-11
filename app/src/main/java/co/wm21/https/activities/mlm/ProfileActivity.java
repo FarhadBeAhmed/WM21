@@ -201,7 +201,7 @@ public class ProfileActivity extends AppCompatActivity implements OnProfileDetai
 
         binding.profileImage.setOnClickListener(this::changeImage);
         binding.uploadImage.setOnClickListener(this::UpdateProfileImage);
-        binding.signatureView.setOnClickListener(this::signature);
+        binding.signView.setOnClickListener(this::signature);
 
         loadingDialog=new LoadingDialog(this);
         profileDetailsPresenter=new ProfileDetailsPresenter(this);
@@ -211,7 +211,7 @@ public class ProfileActivity extends AppCompatActivity implements OnProfileDetai
     }
 
     private void signature(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      /*  final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog adChangeImage = builder.create();
         LayoutInflater layoutInflater = this.getLayoutInflater();
         final View customView = layoutInflater.inflate(R.layout.signature_pad, null);
@@ -226,7 +226,7 @@ public class ProfileActivity extends AppCompatActivity implements OnProfileDetai
 
         cancel.setOnClickListener(v -> {
             adChangeImage.dismiss();
-        });
+        });*/
     }
 
     private void submitBtnClicked(View view) {

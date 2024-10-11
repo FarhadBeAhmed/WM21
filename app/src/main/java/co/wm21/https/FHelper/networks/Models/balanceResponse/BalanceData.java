@@ -4,36 +4,24 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class BalanceData {
-    @SerializedName("start")
+    @SerializedName("netBalance")
     @Expose
-    private String start;
-    @SerializedName("id")
-    @Expose
-    private String id;
+    private String netBalance;
     @SerializedName("withdraw")
     @Expose
     private String withdraw;
-    @SerializedName("balance")
-    @Expose
-    private String balance;
-    @SerializedName("balance2")
-    @Expose
-    private String balance2;
-    @SerializedName("balance3")
-    @Expose
-    private String balance3;
     @SerializedName("direct")
     @Expose
     private String direct;
-    @SerializedName("gen")
-    @Expose
-    private String gen;
     @SerializedName("match")
     @Expose
     private String match;
     @SerializedName("bpi")
     @Expose
     private String bpi;
+    @SerializedName("bdp")
+    @Expose
+    private String bdp;
     @SerializedName("bar")
     @Expose
     private String bar;
@@ -49,87 +37,28 @@ public class BalanceData {
     @SerializedName("cen_trx")
     @Expose
     private String cenTrx;
-    @SerializedName("share")
-    @Expose
-    private String share;
-    @SerializedName("sharewd")
-    @Expose
-    private String sharewd;
-    @SerializedName("club")
-    @Expose
-    private String club;
-    @SerializedName("clubwd")
-    @Expose
-    private String clubwd;
-    @SerializedName("tour")
-    @Expose
-    private String tour;
-    @SerializedName("tourwd")
-    @Expose
-    private String tourwd;
-    @SerializedName("cash")
-    @Expose
-    private String cash;
-    @SerializedName("cashwd")
-    @Expose
-    private String cashwd;
-    @SerializedName("car")
-    @Expose
-    private String car;
-    @SerializedName("carwd")
-    @Expose
-    private String carwd;
-    @SerializedName("agent")
-    @Expose
-    private String agent;
-    @SerializedName("agentwd")
-    @Expose
-    private String agentwd;
-    @SerializedName("transfer")
-    @Expose
-    private String transfer;
-    @SerializedName("transferwd")
-    @Expose
-    private String transferwd;
-    @SerializedName("salary")
-    @Expose
-    private String salary;
-    @SerializedName("salarywd")
-    @Expose
-    private String salarywd;
-    @SerializedName("upday")
-    @Expose
-    private String upday;
-    @SerializedName("upmonth")
-    @Expose
-    private String upmonth;
-    @SerializedName("upyear")
-    @Expose
-    private String upyear;
-    @SerializedName("tax")
-    @Expose
-    private String tax;
     @SerializedName("past")
     @Expose
     private String past;
-    @SerializedName("end")
+    @SerializedName("total_income")
     @Expose
-    private String end;
+    private String totalIncome;
+    @SerializedName("total_expense")
+    @Expose
+    private String totalExpense;
+    @SerializedName("top_earner_incentive")
+    @Expose
+    private String topEarnerIncentive;
+    @SerializedName("shop_refer_commission")
+    @Expose
+    private String shopReferCommission;
 
-    public String getStart() {
-        return start;
+    public String getNetBalance() {
+        return netBalance;
     }
 
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setNetBalance(String netBalance) {
+        this.netBalance = netBalance;
     }
 
     public String getWithdraw() {
@@ -140,44 +69,12 @@ public class BalanceData {
         this.withdraw = withdraw;
     }
 
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
-    public String getBalance2() {
-        return balance2;
-    }
-
-    public void setBalance2(String balance2) {
-        this.balance2 = balance2;
-    }
-
-    public String getBalance3() {
-        return balance3;
-    }
-
-    public void setBalance3(String balance3) {
-        this.balance3 = balance3;
-    }
-
     public String getDirect() {
         return direct;
     }
 
     public void setDirect(String direct) {
         this.direct = direct;
-    }
-
-    public String getGen() {
-        return gen;
-    }
-
-    public void setGen(String gen) {
-        this.gen = gen;
     }
 
     public String getMatch() {
@@ -194,6 +91,14 @@ public class BalanceData {
 
     public void setBpi(String bpi) {
         this.bpi = bpi;
+    }
+
+    public String getBdp() {
+        return bdp;
+    }
+
+    public void setBdp(String bdp) {
+        this.bdp = bdp;
     }
 
     public String getBar() {
@@ -236,166 +141,6 @@ public class BalanceData {
         this.cenTrx = cenTrx;
     }
 
-    public String getShare() {
-        return share;
-    }
-
-    public void setShare(String share) {
-        this.share = share;
-    }
-
-    public String getSharewd() {
-        return sharewd;
-    }
-
-    public void setSharewd(String sharewd) {
-        this.sharewd = sharewd;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
-    public void setClub(String club) {
-        this.club = club;
-    }
-
-    public String getClubwd() {
-        return clubwd;
-    }
-
-    public void setClubwd(String clubwd) {
-        this.clubwd = clubwd;
-    }
-
-    public String getTour() {
-        return tour;
-    }
-
-    public void setTour(String tour) {
-        this.tour = tour;
-    }
-
-    public String getTourwd() {
-        return tourwd;
-    }
-
-    public void setTourwd(String tourwd) {
-        this.tourwd = tourwd;
-    }
-
-    public String getCash() {
-        return cash;
-    }
-
-    public void setCash(String cash) {
-        this.cash = cash;
-    }
-
-    public String getCashwd() {
-        return cashwd;
-    }
-
-    public void setCashwd(String cashwd) {
-        this.cashwd = cashwd;
-    }
-
-    public String getCar() {
-        return car;
-    }
-
-    public void setCar(String car) {
-        this.car = car;
-    }
-
-    public String getCarwd() {
-        return carwd;
-    }
-
-    public void setCarwd(String carwd) {
-        this.carwd = carwd;
-    }
-
-    public String getAgent() {
-        return agent;
-    }
-
-    public void setAgent(String agent) {
-        this.agent = agent;
-    }
-
-    public String getAgentwd() {
-        return agentwd;
-    }
-
-    public void setAgentwd(String agentwd) {
-        this.agentwd = agentwd;
-    }
-
-    public String getTransfer() {
-        return transfer;
-    }
-
-    public void setTransfer(String transfer) {
-        this.transfer = transfer;
-    }
-
-    public String getTransferwd() {
-        return transferwd;
-    }
-
-    public void setTransferwd(String transferwd) {
-        this.transferwd = transferwd;
-    }
-
-    public String getSalary() {
-        return salary;
-    }
-
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
-
-    public String getSalarywd() {
-        return salarywd;
-    }
-
-    public void setSalarywd(String salarywd) {
-        this.salarywd = salarywd;
-    }
-
-    public String getUpday() {
-        return upday;
-    }
-
-    public void setUpday(String upday) {
-        this.upday = upday;
-    }
-
-    public String getUpmonth() {
-        return upmonth;
-    }
-
-    public void setUpmonth(String upmonth) {
-        this.upmonth = upmonth;
-    }
-
-    public String getUpyear() {
-        return upyear;
-    }
-
-    public void setUpyear(String upyear) {
-        this.upyear = upyear;
-    }
-
-    public String getTax() {
-        return tax;
-    }
-
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
-
     public String getPast() {
         return past;
     }
@@ -404,11 +149,35 @@ public class BalanceData {
         this.past = past;
     }
 
-    public String getEnd() {
-        return end;
+    public String getTotalIncome() {
+        return totalIncome;
     }
 
-    public void setEnd(String end) {
-        this.end = end;
+    public void setTotalIncome(String totalIncome) {
+        this.totalIncome = totalIncome;
+    }
+
+    public String getTotalExpense() {
+        return totalExpense;
+    }
+
+    public void setTotalExpense(String totalExpense) {
+        this.totalExpense = totalExpense;
+    }
+
+    public String getTopEarnerIncentive() {
+        return topEarnerIncentive;
+    }
+
+    public void setTopEarnerIncentive(String topEarnerIncentive) {
+        this.topEarnerIncentive = topEarnerIncentive;
+    }
+
+    public String getShopReferCommission() {
+        return shopReferCommission;
+    }
+
+    public void setShopReferCommission(String shopReferCommission) {
+        this.shopReferCommission = shopReferCommission;
     }
 }

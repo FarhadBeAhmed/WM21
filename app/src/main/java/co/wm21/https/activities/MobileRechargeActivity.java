@@ -28,7 +28,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
 
@@ -50,7 +49,7 @@ public class MobileRechargeActivity extends AppCompatActivity {
 
     ArrayList<RechargeHistoryData> historyResponseList = new ArrayList<>();
 
-    KProgressHUD kProgressHUD;
+   // KProgressHUD kProgressHUD;
     String packAmount="",packDescription="";
 
 
@@ -391,7 +390,6 @@ public class MobileRechargeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
-                controlProgressBar(true);
               //  mobileRechargeViewModel.recharge(user_id,flexiNumber,flexiAmount,NumberType,nmp);
 
 
@@ -521,26 +519,6 @@ public class MobileRechargeActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(event);
     }
-    public void controlProgressBar(boolean isShowProgressBar) {
 
-        if (isShowProgressBar) {
-            try {
-                if (this.kProgressHUD != null && this.kProgressHUD.isShowing()) {
-                    this.kProgressHUD.dismiss();
-                }
-                kProgressHUD= KProgressHUD.create(this)
-                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                        .setLabel("Please wait")
-                        .setCancellable(false)
-                        .setAnimationSpeed(2)
-                        .setDimAmount(0.5f)
-                        .show();
-            } catch (Exception e) {
-
-            }
-        } else if (this.kProgressHUD != null && this.kProgressHUD.isShowing()) {
-            this.kProgressHUD.dismiss();
-        }
-    }
 
 }

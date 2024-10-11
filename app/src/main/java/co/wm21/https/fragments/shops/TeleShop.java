@@ -1,7 +1,5 @@
 package co.wm21.https.fragments.shops;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,8 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -33,14 +29,13 @@ import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.R;
 import co.wm21.https.SliderItem;
 import co.wm21.https.activities.MainActivity;
-import co.wm21.https.activities.ProductDetailsActivity;
 import co.wm21.https.adapters.ShopsAdapter;
 import co.wm21.https.adapters.SliderAdapter;
 import co.wm21.https.adapters.product.ProductAdapter;
 import co.wm21.https.adapters.product.ProductView;
 import co.wm21.https.databinding.FragmentTeleShopBinding;
-import co.wm21.https.fragments.company.AboutUsFragment;
-import co.wm21.https.fragments.company.ContactUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.activities.mlm.company.company_fragments.ContactUsFragment;
 import co.wm21.https.helpers.Constant;
 
 public class TeleShop extends Fragment {

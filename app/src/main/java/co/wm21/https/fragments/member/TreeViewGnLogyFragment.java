@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
@@ -777,17 +778,17 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
             if (IDs.get(0).equals("0") && null != IDs.get(0)) {
                 binding.nameOne.setText(names.get(0));
                 if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
                 } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
                 }
             } else if (!IDs.get(0).equals("0")) {
 
                 binding.nameOne.setText(names.get(0));
                 if (gender.get(0).equals("Male") || gender.get(0).equals("male")) {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
                 } else if (gender.get(0).equals("Female") || gender.get(0).equals("female")) {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeOne);
                 }
             }
 
@@ -797,221 +798,221 @@ public class TreeViewGnLogyFragment extends Fragment implements View.OnClickList
                 binding.nameTwo.setText(names.get(1));
                 if (!subIDs.get(1).equals("") && null != subIDs.get(1)) {
                     if (gender.get(1).equals("Male") || gender.get(1).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
                     } else if (gender.get(1).equals("Female") || gender.get(1).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
                 }
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwo);
             }
 
             //for client three
             if (!IDs.get(2).equals("") && null != IDs.get(2)) {
 
-                binding.nameTwo.setText(names.get(2));
+                binding.nameThree.setText(names.get(2));
                 if (!subIDs.get(2).equals("") && null != subIDs.get(2)) {
                     if (gender.get(2).equals("Male") || gender.get(2).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
                     } else if (gender.get(2).equals("Female") || gender.get(2).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
                 }
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThree);
             }
 
             //for client four
             if (!IDs.get(3).equals("") && null != IDs.get(3)) {
                 if (!subIDs.get(3).equals("") && null != subIDs.get(3)) {
                     if (gender.get(3).equals("Male") || gender.get(3).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
                     } else if (gender.get(3).equals("Female") || gender.get(3).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
                 }
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFour);
             }
 
             //for client five
             if (!IDs.get(4).equals("") && null != IDs.get(4)) {
                 if (!subIDs.get(4).equals("") && null != subIDs.get(4)) {
                     if (gender.get(4).equals("Male") || gender.get(4).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
                     } else if (gender.get(4).equals("Female") || gender.get(4).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
                 }
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFive);
             }
 
             //for client six
             if (!IDs.get(5).equals("") && null != IDs.get(5)) {
                 if (!subIDs.get(5).equals("") && null != subIDs.get(5)) {
                     if (gender.get(5).equals("Male") || gender.get(5).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
                     } else if (gender.get(5).equals("Female") || gender.get(5).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSix);
             }
 
             //for client seven
             if (!IDs.get(6).equals("") && null != IDs.get(6)) {
                 if (!subIDs.get(6).equals("") && null != subIDs.get(6)) {
                     if (gender.get(6).equals("Male") || gender.get(6).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
                     } else if (gender.get(6).equals("Female") || gender.get(6).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeSeven);
             }
 
             //for client eight
             if (!IDs.get(7).equals("") && null != IDs.get(7)) {
                 if (!subIDs.get(7).equals("") && null != subIDs.get(7)) {
                     if (gender.get(7).equals("Male") || gender.get(7).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
                     } else if (gender.get(7).equals("Female") || gender.get(7).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEight);
             }
 
             //for client nine
             if (!IDs.get(8).equals("") && null != IDs.get(8)) {
                 if (!subIDs.get(8).equals("") && null != subIDs.get(8)) {
                     if (gender.get(8).equals("Male") || gender.get(8).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
                     } else if (gender.get(8).equals("Female") || gender.get(8).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeNine);
             }
 
             //for client ten
             if (!IDs.get(9).equals("") && null != IDs.get(9)) {
                 if (!subIDs.get(9).equals("") && null != subIDs.get(9)) {
                     if (gender.get(9).equals("Male") || gender.get(9).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
                     } else if (gender.get(9).equals("Female") || gender.get(9).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTen);
             }
 
             //for client eleven
             if (!IDs.get(10).equals("") && null != IDs.get(10)) {
                 if (!subIDs.get(10).equals("") && null != subIDs.get(10)) {
                     if (gender.get(10).equals("Male") || gender.get(10).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
                     } else if (gender.get(10).equals("Female") || gender.get(10).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeEleven);
             }
 
             //for client twelve
             if (!IDs.get(11).equals("") && null != IDs.get(11)) {
                 if (!subIDs.get(11).equals("") && null != subIDs.get(11)) {
                     if (gender.get(11).equals("Male") || gender.get(11).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
                     } else if (gender.get(11).equals("Female") || gender.get(11).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeTwelve);
             }
             //for client thirteen
             if (!IDs.get(12).equals("") && null != IDs.get(12)) {
                 if (!subIDs.get(12).equals("") && null != subIDs.get(12)) {
                     if (gender.get(12).equals("Male") || gender.get(12).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
                     } else if (gender.get(12).equals("Female") || gender.get(12).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeThirteen);
             }
 
             //for client fourteen
             if (!IDs.get(13).equals("") && null != IDs.get(13)) {
                 if (!subIDs.get(13).equals("") && null != subIDs.get(13)) {
                     if (gender.get(13).equals("Male") || gender.get(13).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
                     } else if (gender.get(13).equals("Female") || gender.get(13).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFourteen);
             }
 
             //for client fifteen
             if (!IDs.get(14).equals("") && null != IDs.get(14)) {
                 if (!subIDs.get(14).equals("") && null != subIDs.get(14)) {
                     if (gender.get(14).equals("Male") || gender.get(14).equals("male")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_male).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
                     } else if (gender.get(14).equals("Female") || gender.get(14).equals("female")) {
-                        Glide.with(getActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                        Glide.with(requireActivity()).load(R.drawable.ic_user_female).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
                     }
                 } else {
-                    Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                    Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
                 }
 
             } else {
-                Glide.with(getActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
+                Glide.with(requireActivity()).load(R.drawable.ic_user_cancel).apply(new RequestOptions().error((R.drawable.ic_user_cancel)).fitCenter()).into(binding.imgTreeFifteen);
             }
         }
 

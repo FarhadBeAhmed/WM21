@@ -5,11 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class RewardPolicyAdapter extends RecyclerView.Adapter<RewardPolicyAdapte
 
         TextView textViewTeamB;
         TextView notFoundTxt;
+        ImageView status;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,6 +51,7 @@ public class RewardPolicyAdapter extends RecyclerView.Adapter<RewardPolicyAdapte
             textViewTeamA=itemView.findViewById(R.id.txt_row_rewardPolicy_TeamA);
             textViewRank=itemView.findViewById(R.id.txt_row_rewardPolicy_Rank);
             textViewSL=itemView.findViewById(R.id.txt_row_rewardPolicy_Sl);
+            status=itemView.findViewById(R.id.rewardPolicy_status);
         }
     }
 
@@ -66,6 +71,17 @@ public class RewardPolicyAdapter extends RecyclerView.Adapter<RewardPolicyAdapte
             myViewHolder.textViewRank.setText("Rank: " + model.getRank());
             myViewHolder.textViewTeamA.setText("Team A: " + model.getTeamA());
             myViewHolder.textViewTeamB.setText("Team B: " + model.getTeamB());
+
+            String status= rList.get(i).getStatus();
+
+            if ((status.equals("right"))) {
+                Glide.with(context).load(R.drawable.right).into(myViewHolder.status);
+            } else  if ((status.equals("load"))){
+                Glide.with(context).load(R.drawable.load).into(myViewHolder.status);
+            }
+
+
+
         }else{
             myViewHolder.notFoundTxt.setText("No Data Found");
         }

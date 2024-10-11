@@ -16,9 +16,9 @@ public class RewardPolicyPresenter {
         this.mView = mView;
     }
 
-    public void onRewardPolicyRequestData(){
+    public void onRewardPolicyRequestData(String user_id){
         mView.onRewardPolicyStartLoading();
-        new InvokeRewardPolicyApi(new OnRewardPolicyRequestComplete() {
+        new InvokeRewardPolicyApi(user_id,new OnRewardPolicyRequestComplete() {
             @Override
             public void onRewardPolicyRequestSuccess(Object obj) {
                 mView.onRewardPolicyStopLoading();

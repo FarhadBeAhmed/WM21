@@ -56,7 +56,7 @@ import co.wm21.https.fragments.HomeFragment;
 import co.wm21.https.fragments.LoginFragment;
 import co.wm21.https.fragments.WishlistFragment;
 import co.wm21.https.fragments.member.profile.ProfileFragment;
-import co.wm21.https.fragments.member.affiliate.AffiliateFragment;
+
 import co.wm21.https.fragments.registration.RegisterFragment;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
@@ -220,7 +220,6 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
                                 break;
                             case "Aff":
                                 loadingDialog.dismissDialog();
-                                switchFragment(new AffiliateFragment(), "AffiliateFragment");
                                 break;
                             case "Eco": // Notification Button
                                 loadingDialog.dismissDialog();
@@ -463,7 +462,6 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
                     //switchFragment(new MlmFragment(), "MlmFragment");
                     break;
                 case R.id.menu_affiliate:
-                    switchFragment(new AffiliateFragment(), "AffiliateFragment");
                     break;
                 case R.id.menu_logout:
                     user.getSession().logoutUser();

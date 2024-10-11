@@ -66,15 +66,16 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/txt_row_rewardAchievement_Date"
+                    android:id="@+id/txt_row_rewardAchievement_team_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:layout_gravity="center"
                     android:maxLines="1"
                     android:minLines="1"
                     android:paddingLeft="8dp"
-                    android:text="Date: 10 Jan, 2019"
+                    android:text="Team A"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -93,15 +94,15 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/txt_row_rewardAchievement_Status"
+                    android:id="@+id/txt_row_rewardAchievement_team_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:layout_gravity="center"
                     android:minLines="1"
-                    android:paddingLeft="8dp"
-                    android:text="Status: Pending"
+                    android:text="Team B"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>

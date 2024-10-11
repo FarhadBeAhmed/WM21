@@ -19,13 +19,7 @@ import retrofit2.http.POST;
 
 
 public interface API {
-    @RequestUrl("apps/signUpFirstStep.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest signUpFirstStep(
-            @Field(ConstantValues.SignUp.MOBILE) String mobile,
-            @Field(ConstantValues.SignUp.COUNTRY) int country,
-            Response.Listener<JSONObject> listener);
+
 
     @RequestUrl("apps/login.php")
     @SendMethod(Request.Method.POST)
@@ -35,27 +29,6 @@ public interface API {
             @Field(ConstantValues.PASSWORD) String password,
             Response.Listener<JSONObject> listener);
 
-
-    @RequestUrl("apps/accounts_income.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getIncomeBalanceReportStatus(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
-    
-    @RequestUrl("apps/accounts_expense.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getExpenseBalanceReportStatus(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/accounts.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getIncomeStatus(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
     @RequestUrl("apps/accounts_income2.php")
     @SendMethod(Request.Method.POST)
     @NonNull
