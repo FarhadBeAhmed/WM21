@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.OrderConfirmModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnOrderConfirmRequestComplete;
+import co.wm21.https.presenter.interfaces.OnOrderConfirmRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +14,7 @@ public class InvokeOrderConfirmApi {
     public InvokeOrderConfirmApi( String userId, String eshop,String shipping,String address,int adjust, final OnOrderConfirmRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.orderConfirm(userId,eshop,shipping,address,adjust).enqueue(new Callback<OrderConfirmModel>() {
             @Override
             public void onResponse(Call<OrderConfirmModel> call, Response<OrderConfirmModel> response) {

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        tools:context=".activities.mlm.company.company_fragments.AboutUsFragment">
+        tools:context=".view.activities.mlm.company.company_fragments.AboutUsFragment">
 
         <ImageView
             android:id="@+id/imageView15"

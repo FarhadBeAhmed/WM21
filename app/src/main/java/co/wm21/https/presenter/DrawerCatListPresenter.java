@@ -1,15 +1,10 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.DrawerCatModel;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
-import co.wm21.https.interfaces.OnDrawerCatListRequestComplete;
-import co.wm21.https.interfaces.OnDrawerCatListView;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
+import co.wm21.https.presenter.interfaces.OnDrawerCatListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDrawerCatListView;
 import co.wm21.https.serviceapis.InvokeDrawerCatListApi;
 
 public class DrawerCatListPresenter {

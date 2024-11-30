@@ -1,14 +1,12 @@
 package co.wm21.https.serviceapis;
 
 
-
 import android.util.Log;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnTrainingServiceNewsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTrainingServiceNewsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,8 +17,8 @@ public class InvokeTrainingServiceNewsApi {
     public InvokeTrainingServiceNewsApi(String type, String limit, final OnTrainingServiceNewsRequestComplete onTrainingServiceNewsRequestComplete) {
         this.onTrainingServiceNewsRequestComplete = onTrainingServiceNewsRequestComplete;
 
-        APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getTrainingServiceNews(type,limit).enqueue(new Callback<TrainingServiceNewsDataModel>() {
+        APIService mApiService = ApiUtils.getApiService();
+        mApiService.getTrainingServiceNews(type,limit).enqueue(new Callback<TrainingServiceNewsDataModel>() {
             @Override
             public void onResponse(Call<TrainingServiceNewsDataModel> call, Response<TrainingServiceNewsDataModel> response) {
                 if (response.isSuccessful()){

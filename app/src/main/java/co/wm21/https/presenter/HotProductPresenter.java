@@ -3,11 +3,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.interfaces.OnHomePopularProductComplete;
-import co.wm21.https.interfaces.OnHomePopularProductView;
-import co.wm21.https.interfaces.OnHotProductRequestComplete;
-import co.wm21.https.interfaces.OnHotProductView;
-import co.wm21.https.serviceapis.InvokeHomePopularProductApi;
+import co.wm21.https.presenter.interfaces.OnHotProductRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHotProductView;
 import co.wm21.https.serviceapis.InvokeHotProductApi;
 
 public class HotProductPresenter {

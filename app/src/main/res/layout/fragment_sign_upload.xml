@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.member.verifications.VerifyAccountFragment$SignUploadFragment">
+    tools:context=".view.fragments.member.verifications.VerifyAccountFragment$SignUploadFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

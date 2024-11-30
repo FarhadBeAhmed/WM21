@@ -1,11 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.HomeTopSliderImageModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.SliderItem;
-import co.wm21.https.interfaces.OnHomeTopSliderImageRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,8 +13,8 @@ public class InvokeHomeTopSliderImageApi {
 
     public InvokeHomeTopSliderImageApi(String limit,final OnHomeTopSliderImageRequestComplete onHomeTopSliderImageRequestComplete) {
         this.onHomeTopSliderImageRequestComplete = onHomeTopSliderImageRequestComplete;
-        APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getHomeTopSlideImageList(limit).enqueue(new Callback<HomeTopSliderImageModelHead>() {
+        APIService mApiService = ApiUtils.getApiService();
+        mApiService.getHomeTopSlideImageList(limit).enqueue(new Callback<HomeTopSliderImageModelHead>() {
             @Override
             public void onResponse(Call<HomeTopSliderImageModelHead> call, Response<HomeTopSliderImageModelHead> response) {
                 if (response.isSuccessful()) {

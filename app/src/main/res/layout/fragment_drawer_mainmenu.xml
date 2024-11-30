@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/drawerBg"
-    tools:context=".activities.MainActivity$DrawerMainMenu">
+    tools:context=".view.activities.MainActivity$DrawerMainMenu">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

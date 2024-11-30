@@ -2,8 +2,8 @@ package co.wm21.https.presenter;
 
 import com.google.gson.JsonArray;
 
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.presenter.interfaces.OnDivisionListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDivisionListView;
 import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
 public class DivisionListPresenter {

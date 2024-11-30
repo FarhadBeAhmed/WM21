@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#D6D6D6"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.member.CommonBloodFragment">
+    tools:context=".view.fragments.member.CommonBloodFragment">
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

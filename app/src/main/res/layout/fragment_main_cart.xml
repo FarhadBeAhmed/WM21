@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/cartFragmentLayout"
-        tools:context=".fragments.CartFragment">
+        tools:context=".view.fragments.CartFragment">
 
         <LinearLayout
             android:id="@+id/emptyCart"

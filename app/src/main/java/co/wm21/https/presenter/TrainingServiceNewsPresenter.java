@@ -5,8 +5,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsListModel;
-import co.wm21.https.interfaces.OnTrainingServiceNewsListView;
-import co.wm21.https.interfaces.OnTrainingServiceNewsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTrainingServiceNewsListView;
+import co.wm21.https.presenter.interfaces.OnTrainingServiceNewsRequestComplete;
 import co.wm21.https.serviceapis.InvokeTrainingServiceNewsApi;
 
 public class TrainingServiceNewsPresenter {

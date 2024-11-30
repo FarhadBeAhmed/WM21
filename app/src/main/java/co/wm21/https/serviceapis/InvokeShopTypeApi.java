@@ -1,13 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.ShopTypeModel;
 import co.wm21.https.FHelper.networks.Models.ShopTypeModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnShopTypeRequestComplete;
+import co.wm21.https.presenter.interfaces.OnShopTypeRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +14,7 @@ public class InvokeShopTypeApi {
     public InvokeShopTypeApi(String userId, final OnShopTypeRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.shopType(userId).enqueue(new Callback<ShopTypeModelHead>() {
             @Override
             public void onResponse(Call<ShopTypeModelHead> call, Response<ShopTypeModelHead> response) {

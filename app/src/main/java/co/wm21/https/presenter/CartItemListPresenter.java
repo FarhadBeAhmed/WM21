@@ -1,15 +1,8 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
-import co.wm21.https.FHelper.networks.Models.CartItems;
 import co.wm21.https.FHelper.networks.Models.CartItemsHead;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnCartItemListRequestComplete;
-import co.wm21.https.interfaces.OnCartItemListView;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.presenter.interfaces.OnCartItemListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnCartItemListView;
 import co.wm21.https.serviceapis.InvokeCartItemListApi;
 
 public class CartItemListPresenter {

@@ -2,10 +2,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.HomeTopSliderImageModelHead;
 import co.wm21.https.SliderItem;
-import co.wm21.https.interfaces.OnHomeTopSliderImageRequestComplete;
-import co.wm21.https.interfaces.OnHomeTopSliderImageView;
+import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageView;
 import co.wm21.https.serviceapis.InvokeHomeTopSliderImageApi;
 
 public class HomeTopSliderImagePresenter {

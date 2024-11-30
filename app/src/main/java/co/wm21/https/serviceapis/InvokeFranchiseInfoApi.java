@@ -3,11 +3,10 @@ package co.wm21.https.serviceapis;
 
 import java.util.HashMap;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.FranchiseInfoSearchDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnFranchiseInfoRequestComplete;
+import co.wm21.https.presenter.interfaces.OnFranchiseInfoRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +17,7 @@ public class InvokeFranchiseInfoApi {
     public InvokeFranchiseInfoApi(String divisionID, String districtID, String thanaID, final OnFranchiseInfoRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.getFranchiseBySearch(divisionID,districtID,thanaID).enqueue(new Callback<FranchiseInfoSearchDataModel>() {
             @Override
             public void onResponse(Call<FranchiseInfoSearchDataModel> call, Response<FranchiseInfoSearchDataModel> response) {

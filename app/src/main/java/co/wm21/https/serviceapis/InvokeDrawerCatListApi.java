@@ -1,14 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.DrawerCatModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDrawerCatListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDrawerCatListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,7 +14,7 @@ public class InvokeDrawerCatListApi {
     public InvokeDrawerCatListApi(int id,String counrtyID, final OnDrawerCatListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.getDrawerCatList(id, counrtyID).enqueue(new Callback<DrawerCatModelHead>() {
             @Override
             public void onResponse(Call<DrawerCatModelHead> call, Response<DrawerCatModelHead> response) {

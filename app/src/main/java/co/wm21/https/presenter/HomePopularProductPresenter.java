@@ -3,13 +3,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.adapters.product.ProductView;
-import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
-import co.wm21.https.interfaces.OnHomeCategoryView;
-import co.wm21.https.interfaces.OnHomePopularProductComplete;
-import co.wm21.https.interfaces.OnHomePopularProductView;
-import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
+import co.wm21.https.presenter.interfaces.OnHomePopularProductComplete;
+import co.wm21.https.presenter.interfaces.OnHomePopularProductView;
 import co.wm21.https.serviceapis.InvokeHomePopularProductApi;
 
 public class HomePopularProductPresenter {

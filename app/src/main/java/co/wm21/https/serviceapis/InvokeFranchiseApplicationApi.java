@@ -4,10 +4,9 @@ import com.google.gson.JsonObject;
 
 import java.util.HashMap;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnFranchiseApplicationRequestComplete;
+import co.wm21.https.presenter.interfaces.OnFranchiseApplicationRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +19,7 @@ public class InvokeFranchiseApplicationApi {
                                          String appName, String appAddress, String appLicense, String category,
                                          final OnFranchiseApplicationRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.web_url);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.submitFranchiseApplication(serviceID, userID, formType, divisionID, districtID, thanaID, appName,
                 appAddress, appLicense, category).enqueue(new Callback<JsonObject>() {
             @Override

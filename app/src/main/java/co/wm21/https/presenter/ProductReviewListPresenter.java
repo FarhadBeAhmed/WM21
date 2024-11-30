@@ -2,13 +2,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.ProductReviewModel;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnProductReviewListRequestComplete;
-import co.wm21.https.interfaces.OnProductReviewListView;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.presenter.interfaces.OnProductReviewListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnProductReviewListView;
 import co.wm21.https.serviceapis.InvokeProductReviewListApi;
 
 public class ProductReviewListPresenter {

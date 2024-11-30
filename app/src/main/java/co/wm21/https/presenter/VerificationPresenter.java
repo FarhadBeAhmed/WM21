@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnVerificationRequestComplete;
-import co.wm21.https.interfaces.OnVerificationView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnVerificationRequestComplete;
+import co.wm21.https.presenter.interfaces.OnVerificationView;
 import co.wm21.https.serviceapis.InvokeVerificationApi;
 
 public class VerificationPresenter {

@@ -4,10 +4,9 @@ import com.google.gson.JsonObject;
 
 import java.util.HashMap;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnTrainingRequestFormRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTrainingRequestFormRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +19,7 @@ public class InvokeTrainerRequestApi {
                                    String seats, String targetDate, String division, String district, String thana, final OnTrainingRequestFormRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.submitTrainerRequest(userID, trainingCategory, title, details, trainer, charge, duration, venue, seats, targetDate,division,district,thana).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

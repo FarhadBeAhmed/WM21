@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.HotProductModelHead;
-import co.wm21.https.FHelper.networks.Models.PopularProductViewModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnHomePopularProductComplete;
-import co.wm21.https.interfaces.OnHotProductRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHotProductRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +13,8 @@ public class InvokeHotProductApi {
 
     public InvokeHotProductApi(int value, final OnHotProductRequestComplete onHotProductRequestComplete) {
         this.onHotProductRequestComplete = onHotProductRequestComplete;
-        APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getHotProduct(value).enqueue(new Callback<HotProductModelHead>() {
+        APIService mApiService = ApiUtils.getApiService();
+        mApiService.getHotProduct(value).enqueue(new Callback<HotProductModelHead>() {
             @Override
             public void onResponse(Call<HotProductModelHead> call, Response<HotProductModelHead> response) {
                 if (response.isSuccessful()) {

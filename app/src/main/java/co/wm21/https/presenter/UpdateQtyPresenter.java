@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.UpdateQty;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnUpdateQtyRequestComplete;
-import co.wm21.https.interfaces.OnUpdateQtyView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnUpdateQtyRequestComplete;
+import co.wm21.https.presenter.interfaces.OnUpdateQtyView;
 import co.wm21.https.serviceapis.InvokeUpdateQtyApi;
 
 public class UpdateQtyPresenter {

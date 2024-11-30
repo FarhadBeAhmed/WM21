@@ -4,8 +4,8 @@ package co.wm21.https.presenter;
 
 import java.util.HashMap;
 
-import co.wm21.https.interfaces.OnFranchiseInfoRequestComplete;
-import co.wm21.https.interfaces.OnFranchiseInfoView;
+import co.wm21.https.presenter.interfaces.OnFranchiseInfoRequestComplete;
+import co.wm21.https.presenter.interfaces.OnFranchiseInfoView;
 import co.wm21.https.serviceapis.InvokeFranchiseInfoApi;
 
 public class FranchiseInfoPresenter {

@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.SliderItem;
-import co.wm21.https.adapters.category.CategoryView;
+import co.wm21.https.view.adapters.category.CategoryView;
 
 public class HomeCategoryHead {
     @SerializedName("error")

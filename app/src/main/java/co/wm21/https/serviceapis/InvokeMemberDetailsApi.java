@@ -1,11 +1,10 @@
 package co.wm21.https.serviceapis;
 
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.MemberDetailsModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnMemberDetailsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnMemberDetailsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +15,8 @@ public class InvokeMemberDetailsApi {
     public InvokeMemberDetailsApi(String userId, String rank, String limit, OnMemberDetailsRequestComplete onMemberDetailsRequestComplete) {
         this.onMemberDetailsRequestComplete = onMemberDetailsRequestComplete;
 
-        APIService apiService = ApiUtils.getApiService(ConstantValues.web_url);
-        apiService.getMemberDetails(userId, rank, limit).enqueue(new Callback<MemberDetailsModel>() {
+        APIService mApiService = ApiUtils.getApiService();
+        mApiService.getMemberDetails(userId, rank, limit).enqueue(new Callback<MemberDetailsModel>() {
             @Override
             public void onResponse(Call<MemberDetailsModel> call, Response<MemberDetailsModel> response) {
                 if (response.isSuccessful()){

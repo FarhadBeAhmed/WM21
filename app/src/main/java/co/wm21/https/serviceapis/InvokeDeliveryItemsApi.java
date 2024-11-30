@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
 import co.wm21.https.FHelper.networks.Models.DeliveryItemsModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnDeliveryItemsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDeliveryItemsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +14,7 @@ public class InvokeDeliveryItemsApi {
     public InvokeDeliveryItemsApi(String user_id, final OnDeliveryItemsRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.delivery_items(user_id).enqueue(new Callback<DeliveryItemsModelHead>() {
             @Override
             public void onResponse(Call<DeliveryItemsModelHead> call, Response<DeliveryItemsModelHead> response) {

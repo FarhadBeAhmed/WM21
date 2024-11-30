@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.CartItemsHead;
 import co.wm21.https.FHelper.networks.Models.TreesModel;
-import co.wm21.https.interfaces.OnCartItemListRequestComplete;
-import co.wm21.https.interfaces.OnCartItemListView;
-import co.wm21.https.interfaces.OnTreesListRequestComplete;
-import co.wm21.https.interfaces.OnTreesListView;
-import co.wm21.https.serviceapis.InvokeCartItemListApi;
+import co.wm21.https.presenter.interfaces.OnTreesListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTreesListView;
 import co.wm21.https.serviceapis.InvokeTreesListApi;
 
 public class TreesListPresenter {

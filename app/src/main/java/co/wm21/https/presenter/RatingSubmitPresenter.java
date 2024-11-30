@@ -1,15 +1,8 @@
 package co.wm21.https.presenter;
 
 
-
-import java.util.HashMap;
-import java.util.List;
-
-import co.wm21.https.interfaces.OnFranchiseInfoRequestComplete;
-import co.wm21.https.interfaces.OnFranchiseInfoView;
-import co.wm21.https.interfaces.OnRatingSubmitRequestComplete;
-import co.wm21.https.interfaces.OnRatingSubmitView;
-import co.wm21.https.serviceapis.InvokeFranchiseInfoApi;
+import co.wm21.https.presenter.interfaces.OnRatingSubmitRequestComplete;
+import co.wm21.https.presenter.interfaces.OnRatingSubmitView;
 import co.wm21.https.serviceapis.InvokeRatingSubmitApi;
 
 public class RatingSubmitPresenter {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/training_contextView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.member.TrainingFragment">
+    tools:context=".view.fragments.member.TrainingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trainingServiceNewsRecycler"

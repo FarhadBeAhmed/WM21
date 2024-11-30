@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.DeliveryReceiveModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnDeliveryReceiveRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDeliveryReceiveRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +14,7 @@ public class InvokeDeliveryReceiveApi {
     public InvokeDeliveryReceiveApi(String userId, String pin, String action, String serial, final OnDeliveryReceiveRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.deliveryReceive(userId, pin, action, serial).enqueue(new Callback<DeliveryReceiveModel>() {
             @Override
             public void onResponse(Call<DeliveryReceiveModel> call, Response<DeliveryReceiveModel> response) {

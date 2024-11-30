@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/tsnf_detail_contextView"
-    tools:context=".activities.TSNFCategoryDetailsActivity">
+    tools:context=".view.activities.TSNFCategoryDetailsActivity">
 
 
     <androidx.appcompat.widget.Toolbar

@@ -169,6 +169,7 @@
                         android:id="@+id/pastBalBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -214,6 +215,7 @@
                         android:id="@+id/derRefComBalBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -251,6 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="@dimen/_2ssp"
+                    android:background="@color/white"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     app:cardElevation="@dimen/_8sdp"
@@ -259,6 +262,7 @@
                         android:id="@+id/DailyMatchingCommissionBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -304,6 +308,7 @@
                         android:id="@+id/BrandPromoterIncentiveBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -349,6 +354,7 @@
                         android:id="@+id/BrandAmbassadorRoyaltyBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -394,6 +400,7 @@
                         android:id="@+id/ExecutiveRoyaltyBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -439,6 +446,7 @@
                         android:id="@+id/BusinessDevelopBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -484,6 +492,7 @@
                         android:id="@+id/PromotionalIncentiveBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -529,6 +538,7 @@
                         android:id="@+id/TopEarnerIncentiveBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -574,6 +584,7 @@
                         android:id="@+id/ShopReferCommissionBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -619,6 +630,7 @@
                         android:id="@+id/Total_IncomeBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:paddingHorizontal="@dimen/_5sdp"
                         android:paddingVertical="@dimen/_10sdp"
                         >
@@ -658,6 +670,7 @@
                         android:id="@+id/WithdrawalBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -703,6 +716,7 @@
                         android:id="@+id/FlexiloadBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -748,6 +762,7 @@
                         android:id="@+id/CenterTransferBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView
@@ -793,6 +808,7 @@
                         android:id="@+id/TotalExpenseBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:padding="@dimen/_5sdp"
                         >
                         <TextView

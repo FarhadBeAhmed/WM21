@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.LoginModel;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnLoginRequestComplete;
-import co.wm21.https.interfaces.OnLoginView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnLoginRequestComplete;
+import co.wm21.https.presenter.interfaces.OnLoginView;
 import co.wm21.https.serviceapis.InvokeLoginApi;
 
 public class LoginPresenter {

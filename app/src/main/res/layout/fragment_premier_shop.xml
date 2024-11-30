@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/_5sdp"
-    tools:context=".activities.ShopsActivity$PremierShop">
+    tools:context=".view.activities.ShopsActivity$PremierShop">
 
     <com.amar.library.ui.StickyScrollView
         android:id="@+id/stickyView"

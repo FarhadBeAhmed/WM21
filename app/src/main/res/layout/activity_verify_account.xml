@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.mlm.VerifyAccountActivity">
+    tools:context=".view.activities.mlm.VerifyAccountActivity">
 
 
     <FrameLayout

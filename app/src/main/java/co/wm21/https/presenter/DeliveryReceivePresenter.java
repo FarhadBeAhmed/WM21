@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.DeliveryReceiveModel;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnDeliveryReceiveRequestComplete;
-import co.wm21.https.interfaces.OnDeliveryReceiveView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnDeliveryReceiveRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDeliveryReceiveView;
 import co.wm21.https.serviceapis.InvokeDeliveryReceiveApi;
 
 public class DeliveryReceivePresenter {

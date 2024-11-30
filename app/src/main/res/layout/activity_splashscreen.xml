@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/primary_red"
         android:theme="@style/ThemeOverlay.WM21.FullscreenContainer"
-        tools:context=".activities.SplashscreenActivity">
+        tools:context=".view.activities.SplashscreenActivity">
 
         <ImageView
             android:id="@+id/splashLogo"

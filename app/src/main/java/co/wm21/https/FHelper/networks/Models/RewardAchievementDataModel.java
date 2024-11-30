@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
-
 public class RewardAchievementDataModel {
     @SerializedName("error")
     private Integer error;

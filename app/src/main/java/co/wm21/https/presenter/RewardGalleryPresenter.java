@@ -4,8 +4,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.RewardGalleryDataListModel;
-import co.wm21.https.interfaces.OnRewardGalleryRequestComplete;
-import co.wm21.https.interfaces.OnRewardGalleryView;
+import co.wm21.https.presenter.interfaces.OnRewardGalleryRequestComplete;
+import co.wm21.https.presenter.interfaces.OnRewardGalleryView;
 import co.wm21.https.serviceapis.InvokeRewardGalleryApi;
 
 public class RewardGalleryPresenter {

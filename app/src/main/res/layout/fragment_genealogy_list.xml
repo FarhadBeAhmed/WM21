@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".view.fragments.GenealogyListFragment">
+
+    <!-- RecyclerView for displaying the list items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/genealogy_list_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        tools:listitem="@layout/genealogy_list_single_item" />
+
+</LinearLayout>

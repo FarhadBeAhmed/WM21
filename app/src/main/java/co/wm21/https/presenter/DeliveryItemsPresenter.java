@@ -2,13 +2,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.DeliveryItemsModel;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDeliveryItemsRequestComplete;
-import co.wm21.https.interfaces.OnDeliveryItemsView;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.presenter.interfaces.OnDeliveryItemsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDeliveryItemsView;
 import co.wm21.https.serviceapis.InvokeDeliveryItemsApi;
 
 public class DeliveryItemsPresenter {

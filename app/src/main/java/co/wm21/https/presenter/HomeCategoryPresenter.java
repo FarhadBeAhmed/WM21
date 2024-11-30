@@ -2,13 +2,10 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.HomeCategoryHead;
-import co.wm21.https.SliderItem;
-import co.wm21.https.adapters.category.CategoryView;
-import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
-import co.wm21.https.interfaces.OnHomeCategoryView;
+import co.wm21.https.view.adapters.category.CategoryView;
+import co.wm21.https.presenter.interfaces.OnHomeCategoryRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHomeCategoryView;
 import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
-import co.wm21.https.serviceapis.InvokeHomeTopSliderImageApi;
 
 public class HomeCategoryPresenter {
     private OnHomeCategoryView onHomeCategoryView;

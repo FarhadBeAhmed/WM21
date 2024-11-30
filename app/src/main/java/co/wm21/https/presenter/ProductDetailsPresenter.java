@@ -1,17 +1,10 @@
 package co.wm21.https.presenter;
 
 
-
-import java.util.List;
-
 import co.wm21.https.FHelper.networks.Models.ProductDetails;
-import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
-import co.wm21.https.interfaces.OnProductDetailsRequestComplete;
-import co.wm21.https.interfaces.OnProductDetailsView;
-import co.wm21.https.interfaces.OnRewardPolicyRequestComplete;
-import co.wm21.https.interfaces.OnRewardPolicyView;
+import co.wm21.https.presenter.interfaces.OnProductDetailsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnProductDetailsView;
 import co.wm21.https.serviceapis.InvokeProductDetailsApi;
-import co.wm21.https.serviceapis.InvokeRewardPolicyApi;
 
 public class ProductDetailsPresenter {
     OnProductDetailsView productDetailsView;

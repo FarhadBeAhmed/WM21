@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnProfileDetailsRequestComplete;
-import co.wm21.https.interfaces.OnProfileDetailsView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnProfileDetailsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnProfileDetailsView;
 import co.wm21.https.serviceapis.InvokeProfileDetailsApi;
 
 public class ProfileDetailsPresenter {

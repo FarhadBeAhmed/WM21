@@ -2,11 +2,9 @@ package co.wm21.https.presenter;
 
 
 
-import java.util.List;
-
-import co.wm21.https.fragments.member.model.RewardPolicyDataListModel;
-import co.wm21.https.interfaces.OnRewardPolicyRequestComplete;
-import co.wm21.https.interfaces.OnRewardPolicyView;
+import co.wm21.https.view.fragments.member.model.RewardPolicyResponse;
+import co.wm21.https.presenter.interfaces.OnRewardPolicyRequestComplete;
+import co.wm21.https.presenter.interfaces.OnRewardPolicyView;
 import co.wm21.https.serviceapis.InvokeRewardPolicyApi;
 
 public class RewardPolicyPresenter {
@@ -22,7 +20,7 @@ public class RewardPolicyPresenter {
             @Override
             public void onRewardPolicyRequestSuccess(Object obj) {
                 mView.onRewardPolicyStopLoading();
-                mView.onRewardPolicyData((List<RewardPolicyDataListModel>) obj);
+                mView.onRewardPolicyData((RewardPolicyResponse) obj);
             }
 
             @Override

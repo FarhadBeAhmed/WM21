@@ -1,13 +1,9 @@
 package co.wm21.https.presenter;
 
 import co.wm21.https.FHelper.networks.Models.TreeModel;
-import co.wm21.https.FHelper.networks.Models.TreesModel;
-import co.wm21.https.interfaces.OnTreeDataRequestComplete;
-import co.wm21.https.interfaces.OnTreeDataView;
-import co.wm21.https.interfaces.OnTreesListRequestComplete;
-import co.wm21.https.interfaces.OnTreesListView;
+import co.wm21.https.presenter.interfaces.OnTreeDataRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTreeDataView;
 import co.wm21.https.serviceapis.InvokeTreeDataApi;
-import co.wm21.https.serviceapis.InvokeTreesListApi;
 
 public class TreeDataPresenter {
     OnTreeDataView treeDataView;

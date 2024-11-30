@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".fragments.LoginFragment">
+        tools:context=".view.fragments.LoginFragment">
 
 
 
@@ -38,18 +38,18 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/username"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_login_btn"
-                    app:boxCornerRadiusTopStart="10dp"
+
+                    app:boxCornerRadiusTopStart="5dp"
                     android:paddingBottom="5dp"
                     android:hint="User id"
                     app:boxStrokeWidth="1.5dp"
                     app:boxStrokeWidthFocused="1dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusBottomEnd="5dp"
                     tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -68,19 +68,19 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_login_btn"
+
                     app:boxStrokeColor="@color/primary_red"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
                     android:hint="Password"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused="1dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusBottomEnd="5dp"
                     app:passwordToggleEnabled="true"
                     tools:ignore="HardcodedText">
 

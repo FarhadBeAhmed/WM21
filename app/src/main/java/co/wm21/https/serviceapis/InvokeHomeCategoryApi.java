@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.HomeCategoryHead;
-import co.wm21.https.FHelper.networks.Models.HomeTopSliderImageModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnHomeCategoryRequestComplete;
-import co.wm21.https.interfaces.OnHomeTopSliderImageRequestComplete;
+import co.wm21.https.presenter.interfaces.OnHomeCategoryRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +13,8 @@ public class InvokeHomeCategoryApi {
 
     public InvokeHomeCategoryApi(String limit, final OnHomeCategoryRequestComplete onHomeCategoryRequestComplete) {
         this.onHomeCategoryRequestComplete = onHomeCategoryRequestComplete;
-        APIService apiService = ApiUtils.getApiService(ConstantValues.URL);
-        apiService.getCategoryList(limit).enqueue(new Callback<HomeCategoryHead>() {
+        APIService mApiService = ApiUtils.getApiService();
+        mApiService.getCategoryList(limit).enqueue(new Callback<HomeCategoryHead>() {
             @Override
             public void onResponse(Call<HomeCategoryHead> call, Response<HomeCategoryHead> response) {
                 if (response.isSuccessful()) {

@@ -1,14 +1,8 @@
 package co.wm21.https.presenter;
 
-import java.util.List;
-
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.OrderItemModelHead;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnOrderItemListRequestComplete;
-import co.wm21.https.interfaces.OnOrderItemListView;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.presenter.interfaces.OnOrderItemListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnOrderItemListView;
 import co.wm21.https.serviceapis.InvokeOrderItemListApi;
 
 public class OrderItemListPresenter {

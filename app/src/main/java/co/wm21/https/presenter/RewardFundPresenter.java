@@ -3,8 +3,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.RewardFundDataListModel;
-import co.wm21.https.interfaces.OnRewardFundRequestComplete;
-import co.wm21.https.interfaces.OnRewardFundView;
+import co.wm21.https.presenter.interfaces.OnRewardFundRequestComplete;
+import co.wm21.https.presenter.interfaces.OnRewardFundView;
 import co.wm21.https.serviceapis.InvokeRewardFundApi;
 
 public class RewardFundPresenter {

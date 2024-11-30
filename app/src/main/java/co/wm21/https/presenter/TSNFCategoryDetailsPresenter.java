@@ -5,8 +5,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.TSNFCategoryDetailsListModel;
-import co.wm21.https.interfaces.OnTSNFCategoryDetailsListView;
-import co.wm21.https.interfaces.OnTSNFCategoryDetailsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTSNFCategoryDetailsListView;
+import co.wm21.https.presenter.interfaces.OnTSNFCategoryDetailsRequestComplete;
 import co.wm21.https.serviceapis.InvokeTSNFCategoryDetailsApi;
 
 public class TSNFCategoryDetailsPresenter {

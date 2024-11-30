@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/contextView"
-        tools:context=".fragments.member.verifications.VerifyAccountFragment$ProfileUpdateFragment">
+        tools:context=".view.fragments.member.verifications.VerifyAccountFragment$ProfileUpdateFragment">
 
         <!-- TODO: Update blank fragment layout -->
 

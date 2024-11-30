@@ -21,49 +21,6 @@ import retrofit2.http.POST;
 public interface API {
 
 
-    @RequestUrl("apps/login.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest login(
-            @Field(ConstantValues.USERNAME) String username,
-            @Field(ConstantValues.PASSWORD) String password,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/accounts_income2.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getIncomeBalanceReportStatus2(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/accounts_expense2.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getExpenseBalanceReportStatus2(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/accounts2.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest getIncomeStatus2(
-            @Field(ConstantValues.USERNAME) String username,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/tele_shop.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest teleShop(
-            @Field(ConstantValues.SHOP) int shop,
-            Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/more_products.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest moreProducts(
-            @Field(ConstantValues.VALUE) int value,
-            @Field(ConstantValues.ID) int id,
-            Response.Listener<JSONObject> listener);
 
     @RequestUrl("apps/blog_get.php")
     @SendMethod(Request.Method.POST)
@@ -71,6 +28,7 @@ public interface API {
     JsonObjectRequest blogs(
             @Field(ConstantValues.VALUE) int value,
             Response.Listener<JSONObject> listener);
+
     @RequestUrl("apps/blog_single.php")
     @SendMethod(Request.Method.POST)
     @NonNull
@@ -79,18 +37,12 @@ public interface API {
             Response.Listener<JSONObject> listener);
 
 
-
     @RequestUrl("apps/shops.php")
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectRequest premiumShop(
             @Field(ConstantValues.SHOP) int shop,
             Response.Listener<JSONObject> listener);
-
-    @RequestUrl("apps/category.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest category(Response.Listener<JSONObject> listener);
 
 
 
@@ -103,27 +55,18 @@ public interface API {
             Response.Listener<JSONObject> listener);
 
 
-
-
-
     @RequestUrl("apps/shops_products.php")
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectRequest shopsProducts(@Field(ConstantValues.SHOP) int shop,
                                     @Field(ConstantValues.Product.S_ID) int s_id,
-                                     Response.Listener<JSONObject> listener);
-
+                                    Response.Listener<JSONObject> listener);
 
 
     @RequestUrl("apps/hotProducts.php")
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectRequest hotProduct(Response.Listener<JSONObject> listener);
-
-
-
-
-
 
 
     @RequestUrl("apps/balance.php")
@@ -144,8 +87,6 @@ public interface API {
                                 Response.Listener<JSONObject> listener);
 
 
-
-
     @RequestUrl("apps/categories.php")
     @SendMethod(Request.Method.POST)
     @NonNull
@@ -154,13 +95,11 @@ public interface API {
                                  Response.Listener<JSONObject> listener);
 
 
-
-
     @RequestUrl("apps/customer_product_review.php")
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectRequest review(@Field(ConstantValues.Product.PRODUCT_ID) long serial,
-                                     Response.Listener<JSONObject> listener);
+                             Response.Listener<JSONObject> listener);
 
 
     @RequestUrl("apps/user_profile.php")
@@ -200,9 +139,6 @@ public interface API {
     JsonObjectRequest slide(Response.Listener<JSONObject> listener);
 
 
-
-
-
     @RequestUrl("apps/received_eCom_sign.php")
     @SendMethod(Request.Method.POST)
     @NonNull
@@ -213,16 +149,16 @@ public interface API {
                                 @Field(ConstantValues.applied.POSITION) int position,
                                 @Field(ConstantValues.applied.UPLINK) String uplink,
                                 Response.Listener<JSONObject> listener);
+
     @RequestUrl("apps/receive_action.php")
     @SendMethod(Request.Method.POST)
     @NonNull
     JsonObjectRequest receive_action(@Field(ConstantValues.Login.USERNAME) String username,
-                                @Field(ConstantValues.PASSWORD) String password,
-                                @Field(ConstantValues.Login.PIN) String pin,
-                                @Field(ConstantValues.applied.SERIAL) String serial,
-                                @Field(ConstantValues.applied.ACTION) String action,
-                                Response.Listener<JSONObject> listener);
-
+                                     @Field(ConstantValues.PASSWORD) String password,
+                                     @Field(ConstantValues.Login.PIN) String pin,
+                                     @Field(ConstantValues.applied.SERIAL) String serial,
+                                     @Field(ConstantValues.applied.ACTION) String action,
+                                     Response.Listener<JSONObject> listener);
 
 
     @RequestUrl("apps/update_profile.php")

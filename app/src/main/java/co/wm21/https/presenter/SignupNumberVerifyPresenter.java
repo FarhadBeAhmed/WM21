@@ -1,13 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
-import co.wm21.https.FHelper.networks.Models.SignupModel;
 import co.wm21.https.FHelper.networks.Models.SignupNumberVerifyModel;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnSignupNumberVerifyRequestComplete;
-import co.wm21.https.interfaces.OnSignupNumberVerifyView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnSignupNumberVerifyRequestComplete;
+import co.wm21.https.presenter.interfaces.OnSignupNumberVerifyView;
 import co.wm21.https.serviceapis.InvokeSignupNumberVerifyApi;
 
 public class SignupNumberVerifyPresenter {

@@ -1,14 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import com.google.gson.JsonObject;
-
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.CartItemsHead;
 import co.wm21.https.FHelper.networks.Models.TreesModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnCartItemListRequestComplete;
-import co.wm21.https.interfaces.OnTreesListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTreesListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,7 +14,7 @@ public class InvokeTreesListApi {
     public InvokeTreesListApi(String deviceID, final OnTreesListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
 
         mApiService.getTreesData(deviceID).enqueue(new Callback<TreesModel>() {
             @Override

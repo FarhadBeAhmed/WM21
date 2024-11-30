@@ -1,12 +1,8 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.OrderConfirmModel;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnAddToCartView;
-import co.wm21.https.interfaces.OnOrderConfirmRequestComplete;
-import co.wm21.https.interfaces.OnOrderConfirmView;
-import co.wm21.https.serviceapis.InvokeAddToCartApi;
+import co.wm21.https.presenter.interfaces.OnOrderConfirmRequestComplete;
+import co.wm21.https.presenter.interfaces.OnOrderConfirmView;
 import co.wm21.https.serviceapis.InvokeOrderConfirmApi;
 
 public class OrderConfirmPresenter {

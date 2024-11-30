@@ -1,16 +1,11 @@
 package co.wm21.https.presenter;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnDivisionListRequestComplete;
-import co.wm21.https.interfaces.OnDivisionListView;
+import co.wm21.https.presenter.interfaces.OnBlogListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnBlogListView;
 import co.wm21.https.serviceapis.InvokeBlogListApi;
-import co.wm21.https.serviceapis.InvokeDivisionListApi;
 
 public class BlogListPresenter {
     OnBlogListView mView;

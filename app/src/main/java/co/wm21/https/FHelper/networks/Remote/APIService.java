@@ -1,17 +1,7 @@
 package co.wm21.https.FHelper.networks.Remote;
 
-import androidx.annotation.NonNull;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
-import co.wm21.https.FHelper.Annotations.RequestUrl;
-import co.wm21.https.FHelper.Annotations.SendMethod;
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.Models.AccountExpenseDataModel;
 import co.wm21.https.FHelper.networks.Models.AccountIncomeDataModel;
 import co.wm21.https.FHelper.networks.Models.AddToCartModel;
@@ -40,7 +30,6 @@ import co.wm21.https.FHelper.networks.Models.IncomeBalaceReportDataModel;
 import co.wm21.https.FHelper.networks.Models.MemberDetailsModel;
 import co.wm21.https.FHelper.networks.Models.MyFranchiseDataModel;
 import co.wm21.https.FHelper.networks.Models.ProductDetailsHead;
-import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.FHelper.networks.Models.ProductReviewModelHead;
 import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
 import co.wm21.https.FHelper.networks.Models.RatingSubmitModelHead;
@@ -64,15 +53,20 @@ import co.wm21.https.FHelper.networks.Models.UpdateQty;
 import co.wm21.https.FHelper.networks.Models.VendorDetailsModelHead;
 import co.wm21.https.FHelper.networks.Models.VendorProductModelHead;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
+import co.wm21.https.FHelper.networks.Models.application.BDPStatusResponse;
+import co.wm21.https.FHelper.networks.Models.application.EShopRefComResponse;
+import co.wm21.https.FHelper.networks.Models.application.EShopStatusResponse;
 import co.wm21.https.FHelper.networks.Models.balanceResponse.BalanceModel;
-import co.wm21.https.fragments.member.model.GenerationDataModel;
-import co.wm21.https.fragments.member.model.RewardPolicyDataModel;
+import co.wm21.https.FHelper.networks.Models.genealogy.GenealogyListResponse;
+import co.wm21.https.FHelper.networks.Models.transaction.WithdrawalHistoryResponse;
+import co.wm21.https.view.fragments.member.model.GenerationDataModel;
+import co.wm21.https.view.fragments.member.model.RewardPolicyResponse;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -126,6 +120,15 @@ public interface APIService {
     @FormUrlEncoded
     Call<RewardGalleryDataModel> getRewardGallery(@Field("user_id") String userID,
                                                   @Field("limit") String dataLimit);
+
+
+    @POST("apps/genealogy_list.php")
+    //@FormUrlEncoded
+    Call<GenealogyListResponse> getGenealogyList(@Body JsonObject user_id);
+
+    @POST("apps/withdrawHistory.php")
+        //@FormUrlEncoded
+    Call<WithdrawalHistoryResponse> getWithdrawalHistory(@Body JsonObject user_id);
 
 
     @POST("apps/brand_ambassador.php")
@@ -215,7 +218,7 @@ public interface APIService {
 
     @POST("apps/reward_policy.php")
     @FormUrlEncoded
-    Call<RewardPolicyDataModel> getRewardPolicy(@Field("user_id") String userID);
+    Call<RewardPolicyResponse> getRewardPolicy(@Field("user_id") String userID);
 
 
     //for get generation List
@@ -451,29 +454,6 @@ public interface APIService {
             @Field("country") String country
     );
 
-/*
-   @RequestUrl("apps/signUpFinal.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest signUpFinal(
-            @Field(ConstantValues.SignUp.MOBILE) String mobile,
-            @Field(ConstantValues.SignUp.NAME) String name,
-            @Field(ConstantValues.SignUp.REFER) String refer,
-            @Field(ConstantValues.SignUp.EMAIL) String email,
-            @Field(ConstantValues.SignUp.DIVISION) String division,
-            @Field(ConstantValues.SignUp.COUNTRY) String country,
-            Response.Listener<JSONObject> listener);
-
-     @RequestUrl("apps/signUpNumberVerify.php")
-    @SendMethod(Request.Method.POST)
-    @NonNull
-    JsonObjectRequest signUpNumberVerify(
-            @Field(ConstantValues.SignUp.MOBILE) String mobile,
-            @Field(ConstantValues.SignUp.COUNTRY) int country,
-            @Field(ConstantValues.SignUp.CODE) int code,
-            Response.Listener<JSONObject> listener);
-
-*/
 
     @POST("apps/home_top_slider_image.php")
     @FormUrlEncoded
@@ -525,5 +505,18 @@ public interface APIService {
     Call<FranchiseAccountDataModel> getFranchiseAccountCommission(@Field("user_id") String userID,
                                                                   @Field("limit") String dataLimit);
 
+
+    @POST("apps/eShopStatus.php")
+        //@FormUrlEncoded
+    Call<EShopStatusResponse> getEShopStatus(@Body JsonObject user_id);
+
+    @POST("apps/eShopRefCom.php")
+        //@FormUrlEncoded
+    Call<EShopRefComResponse> getEShopRefCom(@Body JsonObject user_id);
+
+
+    @POST("apps/bdpStatus.php")
+        //@FormUrlEncoded
+    Call<BDPStatusResponse> getBDPStatus(@Body JsonObject user_id);
 
 }

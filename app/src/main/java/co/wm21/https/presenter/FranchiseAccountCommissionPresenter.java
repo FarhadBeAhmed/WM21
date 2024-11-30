@@ -4,8 +4,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
-import co.wm21.https.interfaces.OnFranchiseAccountRequestComplete;
-import co.wm21.https.interfaces.OnFranchiseAccountView;
+import co.wm21.https.presenter.interfaces.OnFranchiseAccountRequestComplete;
+import co.wm21.https.presenter.interfaces.OnFranchiseAccountView;
 import co.wm21.https.serviceapis.InvokeFranchiseAccountApi;
 
 public class FranchiseAccountCommissionPresenter {

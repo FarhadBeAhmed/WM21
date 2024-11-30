@@ -24,72 +24,75 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WM21">
         <activity
-            android:name=".activities.MobileRechargeActivity"
+            android:name=".view.activities.mlm.ApplicationActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.HomeMoreProductActivity"
+            android:name=".view.activities.TransactionActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SignupActivity"
+            android:name=".view.activities.MobileRechargeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".view.activities.HomeMoreProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.affiliate.HomeActivityAff"
+            android:name=".view.activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.mlm.VerifyAccountActivity"
+            android:name=".view.activities.affiliate.HomeActivityAff"
             android:exported="false" />
         <activity
-            android:name=".activities.mlm.ProfileActivity"
+            android:name=".view.activities.mlm.VerifyAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SmsCallActivity"
+            android:name=".view.activities.mlm.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.mlm.HomeActivity"
+            android:name=".view.activities.SmsCallActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RewardsActivity"
+            android:name=".view.activities.mlm.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.GenealogyActivity"
+            android:name=".view.activities.RewardsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TSNFCategoryDetailsActivity"
+            android:name=".view.activities.GenealogyActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TSNFApplyActivity"
+            android:name=".view.activities.TSNFCategoryDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.mlm.company.CompanyProfileActivity"
+            android:name=".view.activities.TSNFApplyActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.FranchiseActivity"
+            android:name=".view.activities.mlm.company.CompanyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TrainingActivity"
+            android:name=".view.activities.FranchiseActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ShopSearchScanActivity"
+            android:name=".view.activities.TrainingActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchShopActivity"
+            android:name=".view.activities.ShopSearchScanActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ShopsActivity"
+            android:name=".view.activities.SearchShopActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".view.activities.ShopsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.EarningActivity"
+            android:name=".view.activities.EarningActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.SplashscreenActivity"
+            android:name=".view.activities.SplashscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/app_name"
@@ -101,7 +104,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ProductDetailsActivity"
+            android:name=".view.activities.ProductDetailsActivity"
             android:exported="true" />
 
         <receiver

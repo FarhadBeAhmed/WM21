@@ -52,7 +52,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp"
-                tools:context=".activities.ProductDetailsActivity">
+                tools:context=".view.activities.ProductDetailsActivity">
 
                 <ImageView
                     android:id="@+id/productDisplayPhoto"

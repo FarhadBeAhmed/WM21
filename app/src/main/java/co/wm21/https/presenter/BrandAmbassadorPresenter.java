@@ -4,8 +4,8 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.BrandAmbassadorListModel;
-import co.wm21.https.interfaces.OnBrandAmbassadorListView;
-import co.wm21.https.interfaces.OnBrandAmbassadorRequestComplete;
+import co.wm21.https.presenter.interfaces.OnBrandAmbassadorListView;
+import co.wm21.https.presenter.interfaces.OnBrandAmbassadorRequestComplete;
 import co.wm21.https.serviceapis.InvokeBrandAmbassadorApi;
 
 public class BrandAmbassadorPresenter {

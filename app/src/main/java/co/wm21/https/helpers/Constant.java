@@ -167,9 +167,6 @@ public final class Constant implements ConstantValues {
         return result.toString();
     }
 
-    /**
-     * Requires this method for using {@link API}.
-     */
   /*  @NonNull
     @SuppressWarnings("unchecked")
     public static API getAPI() {

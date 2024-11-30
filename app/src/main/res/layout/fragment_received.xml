@@ -7,7 +7,7 @@
         android:id="@+id/contextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.manageOrder.ReceivedFragment">
+        tools:context=".view.fragments.manageOrder.ReceivedFragment">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

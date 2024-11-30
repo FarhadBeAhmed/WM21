@@ -3,8 +3,6 @@ package co.wm21.https.FHelper.networks.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import co.wm21.https.adapters.product.ProductDetailsModel;
-
 public class ProfileDetailsHead {
     @SerializedName("percent")
     @Expose

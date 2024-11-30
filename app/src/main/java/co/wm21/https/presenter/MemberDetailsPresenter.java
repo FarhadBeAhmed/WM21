@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
-import co.wm21.https.interfaces.OnMemberDetailsRequestComplete;
-import co.wm21.https.interfaces.OnMemberDetailsView;
+import co.wm21.https.presenter.interfaces.OnMemberDetailsRequestComplete;
+import co.wm21.https.presenter.interfaces.OnMemberDetailsView;
 import co.wm21.https.serviceapis.InvokeMemberDetailsApi;
 
 public class MemberDetailsPresenter {

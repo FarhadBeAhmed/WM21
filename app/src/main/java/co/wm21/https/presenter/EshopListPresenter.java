@@ -2,13 +2,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
-import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.EshopListModel;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnBlogListView;
-import co.wm21.https.interfaces.OnEshopListRequestComplete;
-import co.wm21.https.interfaces.OnEshopListView;
-import co.wm21.https.serviceapis.InvokeBlogListApi;
+import co.wm21.https.presenter.interfaces.OnEshopListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnEshopListView;
 import co.wm21.https.serviceapis.InvokeEshopListApi;
 
 public class EshopListPresenter {

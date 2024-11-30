@@ -4,10 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnDistrictListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnDistrictListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +17,7 @@ public class InvokeDistrictListApi {
     public InvokeDistrictListApi(String countryID, String divisionID, final OnDistrictListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.getDistrictList("", divisionID, countryID).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

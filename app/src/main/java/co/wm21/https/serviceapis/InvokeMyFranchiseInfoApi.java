@@ -1,14 +1,12 @@
 package co.wm21.https.serviceapis;
 
 
-
 import java.util.HashMap;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Models.MyFranchiseDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnMyFranchiseRequestComplete;
+import co.wm21.https.presenter.interfaces.OnMyFranchiseRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +16,7 @@ public class InvokeMyFranchiseInfoApi {
 
     public InvokeMyFranchiseInfoApi(String userID, final OnMyFranchiseRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.getMyFranchiseData(userID).enqueue(new Callback<MyFranchiseDataModel>() {
             @Override
             public void onResponse(Call<MyFranchiseDataModel> call, Response<MyFranchiseDataModel> response) {

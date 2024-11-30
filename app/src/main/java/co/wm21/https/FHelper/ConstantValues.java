@@ -1,11 +1,5 @@
 package co.wm21.https.FHelper;
 
-import static co.wm21.https.helpers.Constant.getFixedImageUrl;
-
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -17,16 +11,13 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import co.wm21.https.FHelper.Annotations.Field;
 import co.wm21.https.FHelper.Annotations.RequestUrl;
 import co.wm21.https.FHelper.Annotations.SendMethod;
-import co.wm21.https.adapters.cart.CartModel;
-import co.wm21.https.helpers.Joiner;
+import co.wm21.https.view.adapters.cart.CartModel;
 
 
 public final class ConstantValues {
@@ -179,50 +170,11 @@ public final class ConstantValues {
         String NAME = "name";
         String S_ID = "s_id";
         String IMAGE = "img";
-        String PREVIOUS_PRICE = "sprice";
-        String PRICE = "price";
-        String DISCOUNT = "discount";
         String PRODUCT_ID = "serial";
-        String LIMIT = "limit";
-        String UPLOAD_BY = "upload_by";
-        String CAT_ID = "cat_id";
-        String SCAT_ID = "scat_id";
-        String BRAND_ID = "brand_id";
-        String MODEL = "model";
-        String P_PRICE = "pprice";
         String POINT = "point";
-        String DIRECT = "direct";
-        String CASHBACK = "cashback";
-        String TE_PRICE = "teprice";
-        String SH_PRICE = "shprice";
-        String MI_PRICE = "miprice";
-        String ENTRY = "entry";
-        String STOCK = "stock";
-        String SOLD = "sold";
-        String REPLACE = "repleace";
-        String DAMAGE = "damage";
         String COLOR = "color";
-        String SIZE = "size";
-        String WARRANTY = "warrenty";
-        String INFO = "info";
-        String DETAILS = "details";
-        String VIDEO = "video";
-        String FEATURE = "feature";
-        String SPACIAL = "special";
-        String HOT_DEAL = "hot_deal";
-        String OFFER_DATE = "offer_date";
-        String E_SHOP = "eshop";
-        String OUT_STOCK = "out_stock";
-        String RATING = "rating";
-        String PERSON = "person";
-        String DELIVERY = "delivery";
-        String CHK = "chk";
-        String DATE = "date";
 
         String PARCEL = "parcel";
-        String PARCEL_TOP_SEL = "parcel_top_sel";
-        String VALUE = "value";
-        String REVIEW = "review";
 
 
     }
@@ -234,38 +186,14 @@ public final class ConstantValues {
         String PREVIOUS_PRICE = "sprice";
         String PRICE = "price";
         String DISCOUNT = "discount";
-        String PRODUCT_ID = "serial";
         String PARCEL = "parcel";
-        String UPLOAD_BY = "upload_by";
-        String OFFERED_DATE = "offer_date";
-        String POINT = "point";
 
     }
 
     public interface Categories {
         String ID = "id";
         String CAT_ID = "cat_id";
-        String CAT_ICON = "cat_icon";
-        String CAT_NAME = "cat";
-        String SCAT_NAME = "scat";
-        String SCAT_ICON = "scat_img";
-        String SCAT_ID = "scat_id";
-        String BRAND_ID = "brand_id";
-        String BRAND_NAME = "brand";
-        String BRAND_IMG = "brand_img";
 
-    }
-    public interface Category {
-        String CATEGORY_ID = "cat_id";
-        String SUB_CATEGORY_ID = "scat_id";
-        String BRAND_ID = "brand_id";
-        String ORDERING = "ordering ";
-
-        String CATEGORY_NAME = "cat";
-        String SUB_CATEGORY_NAME = "scat";
-        String SUB_CATEGORY_IMAGE = "scat_img";
-        String CATEGORY_IMAGE = "cat_img";
-        String BRAND_NAME = "brand";
     }
 
 
@@ -363,52 +291,9 @@ public final class ConstantValues {
     public static String getTextFromTIL(@NonNull TextInputLayout textInputLayout) {
         return textInputLayout.getEditText().getText().toString();
     }
-    @NotNull
-    public static String getFileName(@NonNull String... strings) {
-        return getFixedImageUrl(new Joiner<>("/", web_url, "", strings).toString());
-    }
 
 
-    public static void addMultipleClickListener(View.OnClickListener v, @NonNull View... views) {
-        for (View b : views) b.setOnClickListener(v);
-    }
 
-    /**
-     * If you write blank string, It can return only <b>website</b>.<br>
-     * We've create a only website value, So use that.
-     *
-     * @param strings Use ("api", "*.php") instead of ("api/*.php") in this inner method.
-     * @return Get File Name As Host Name Shortcut.
-     */
-
-    @NotNull
-    public static String getFileNameAsHost(@NonNull String @NotNull ... strings) {
-        String result = web_url;
-        for (String f : strings) {
-            result += f + "/";
-        }
-        result += "/";
-        result = result.replace("//", "");
-        return result;
-    }
-
-    @NotNull
-    public static String getImageUrl(@NonNull String @NotNull ... strings) {
-        String result = web_url;
-        for (String f : strings) {
-            result += f + "/";
-        }
-        result += "/";
-        result = result.replace("//", "");
-        return result;
-    }
-
-    /**
-     * What all of {@link TextInputLayout} checked is text completed or not.
-     *
-     * @param textInputLayouts enter the all {@link TextInputLayout}
-     * @return is {@link TextInputLayout}(s) text completed or not.
-     */
     public static boolean validation(TextInputLayout @NotNull ... textInputLayouts) {
         boolean result = true;
         for (TextInputLayout til : textInputLayouts) {

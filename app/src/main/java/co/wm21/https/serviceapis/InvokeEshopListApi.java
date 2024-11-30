@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.BlogsModelHead;
 import co.wm21.https.FHelper.networks.Models.EshopListModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnBlogListRequestComplete;
-import co.wm21.https.interfaces.OnEshopListRequestComplete;
+import co.wm21.https.presenter.interfaces.OnEshopListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +14,7 @@ public class InvokeEshopListApi {
     public InvokeEshopListApi( String user_id,String location,String locationType,String searchTxt, final OnEshopListRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.order_eshop(user_id,location,locationType,searchTxt).enqueue(new Callback<EshopListModelHead>() {
             @Override
             public void onResponse(Call<EshopListModelHead> call, Response<EshopListModelHead> response) {

@@ -1,12 +1,9 @@
 package co.wm21.https.serviceapis;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
-import co.wm21.https.FHelper.networks.Models.AddToCartModel;
 import co.wm21.https.FHelper.networks.Models.SignupModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.interfaces.OnAddToCartRequestComplete;
-import co.wm21.https.interfaces.OnSignupFinalRequestComplete;
+import co.wm21.https.presenter.interfaces.OnSignupFinalRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +14,7 @@ public class InvokeSignupFinalApi {
     public InvokeSignupFinalApi(String mobile,String name,String refer,String email,String division,String country, final OnSignupFinalRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
-        APIService mApiService = ApiUtils.getApiService(ConstantValues.URL);
+        APIService mApiService = ApiUtils.getApiService();
         mApiService.signUpFinal(mobile,name,refer,email,division,country).enqueue(new Callback<SignupModel>() {
             @Override
             public void onResponse(Call<SignupModel> call, Response<SignupModel> response) {

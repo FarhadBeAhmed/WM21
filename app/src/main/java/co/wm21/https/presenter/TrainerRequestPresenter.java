@@ -3,8 +3,8 @@ package co.wm21.https.presenter;
 
 import java.util.HashMap;
 
-import co.wm21.https.interfaces.OnTrainingRequestFormRequestComplete;
-import co.wm21.https.interfaces.OnTrainingRequestFormView;
+import co.wm21.https.presenter.interfaces.OnTrainingRequestFormRequestComplete;
+import co.wm21.https.presenter.interfaces.OnTrainingRequestFormView;
 import co.wm21.https.serviceapis.InvokeTrainerRequestApi;
 
 public class TrainerRequestPresenter {
