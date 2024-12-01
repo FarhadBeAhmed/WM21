@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.HomeTopSliderImageModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeHomeTopSliderImageApi {
-    private OnHomeTopSliderImageRequestComplete onHomeTopSliderImageRequestComplete;
+    private OnRequestComplete onHomeTopSliderImageRequestComplete;
 
-    public InvokeHomeTopSliderImageApi(String limit,final OnHomeTopSliderImageRequestComplete onHomeTopSliderImageRequestComplete) {
+    public InvokeHomeTopSliderImageApi(String limit,final OnRequestComplete onHomeTopSliderImageRequestComplete) {
         this.onHomeTopSliderImageRequestComplete = onHomeTopSliderImageRequestComplete;
         APIService mApiService = ApiUtils.getApiService();
         mApiService.getHomeTopSlideImageList(limit).enqueue(new Callback<HomeTopSliderImageModelHead>() {
@@ -20,13 +20,13 @@ public class InvokeHomeTopSliderImageApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0){
-                        onHomeTopSliderImageRequestComplete.onHomeTopSliderImageRequestSuccess(response.body().getSliderItems());
+                        onHomeTopSliderImageRequestComplete.onRequestSuccess(response.body().getSliderItems());
                     }else {
-                        onHomeTopSliderImageRequestComplete.onHomeTopSliderImageRequestError(response.body().getErrorReport());
+                        onHomeTopSliderImageRequestComplete.onRequestError(response.body().getErrorReport());
                     }
 
                 }else {
-                    onHomeTopSliderImageRequestComplete.onHomeTopSliderImageRequestError("Something went wrong!");
+                    onHomeTopSliderImageRequestComplete.onRequestError("Something went wrong!");
                 }
             }
 

@@ -2,8 +2,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.view.adapters.category.CategoryView;
-import co.wm21.https.presenter.interfaces.OnHomeCategoryRequestComplete;
 import co.wm21.https.presenter.interfaces.OnHomeCategoryView;
 import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
 
@@ -15,15 +15,15 @@ public class HomeCategoryPresenter {
     }
     public void getCategoryDataResponse(String limit){
         onHomeCategoryView.onHomeCategoryDataStartLoading();
-        new InvokeHomeCategoryApi(limit, new OnHomeCategoryRequestComplete() {
+        new InvokeHomeCategoryApi(limit, new OnRequestComplete() {
             @Override
-            public void onHomeCategoryRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 onHomeCategoryView.onHomeCategoryDataStopLoading();
                 onHomeCategoryView.onHomeCategoryDataLoaded((List<CategoryView>)obj);
             }
 
             @Override
-            public void onHomeCategoryRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 onHomeCategoryView.onHomeCategoryDataStopLoading();
                 onHomeCategoryView.onHomeCategoryDataShowMessage(errMsg);
             }

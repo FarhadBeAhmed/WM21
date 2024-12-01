@@ -1,10 +1,9 @@
 package co.wm21.https.presenter;
 
 
-
 import java.util.HashMap;
 
-import co.wm21.https.presenter.interfaces.OnFranchiseApplicationRequestComplete;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.presenter.interfaces.OnFranchiseApplicationView;
 import co.wm21.https.serviceapis.InvokeFranchiseApplicationApi;
 
@@ -19,15 +18,15 @@ public class FranchiseApplicationPresenter {
                                                    String districtID, String thanaID, String applicantName, String applicantAddress,
                                                    String applicantLicense, String category){
         mView.onFranchiseApplicationStartLoading();
-        new InvokeFranchiseApplicationApi(serviceID, userID, formType, divisionID, districtID, thanaID, applicantName, applicantAddress, applicantLicense, category, new OnFranchiseApplicationRequestComplete() {
+        new InvokeFranchiseApplicationApi(serviceID, userID, formType, divisionID, districtID, thanaID, applicantName, applicantAddress, applicantLicense, category, new OnRequestComplete() {
             @Override
-            public void onFranchiseApplicationRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 mView.onFranchiseApplicationStopLoading();
                 mView.onFranchiseApplicationData((HashMap) obj);
             }
 
             @Override
-            public void onFranchiseApplicationRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 mView.onFranchiseApplicationStopLoading();
                 mView.onFranchiseApplicationShowMessage(errMsg);
             }

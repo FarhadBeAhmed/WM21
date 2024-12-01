@@ -2,8 +2,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.SliderItem;
-import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageRequestComplete;
 import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageView;
 import co.wm21.https.serviceapis.InvokeHomeTopSliderImageApi;
 
@@ -15,15 +15,15 @@ public class HomeTopSliderImagePresenter {
     }
     public void getSliderImageDataResponse(String limit){
         onHomeTopSliderImageView.onHomeSliderDataStartLoading();
-        new InvokeHomeTopSliderImageApi(limit, new OnHomeTopSliderImageRequestComplete() {
+        new InvokeHomeTopSliderImageApi(limit, new OnRequestComplete() {
             @Override
-            public void onHomeTopSliderImageRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 onHomeTopSliderImageView.onHomeSliderDataLoaded((List<SliderItem>)obj);
                 onHomeTopSliderImageView.onHomeSliderDataStopLoading();
             }
 
             @Override
-            public void onHomeTopSliderImageRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 onHomeTopSliderImageView.onHomeSliderDataShowMessage(errMsg);
                 onHomeTopSliderImageView.onHomeSliderDataStopLoading();
             }

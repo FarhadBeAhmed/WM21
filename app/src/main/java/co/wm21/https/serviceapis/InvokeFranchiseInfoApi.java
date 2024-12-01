@@ -4,17 +4,17 @@ package co.wm21.https.serviceapis;
 import java.util.HashMap;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.FranchiseInfoSearchDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnFranchiseInfoRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeFranchiseInfoApi {
-    OnFranchiseInfoRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeFranchiseInfoApi(String divisionID, String districtID, String thanaID, final OnFranchiseInfoRequestComplete requestComplete) {
+    public InvokeFranchiseInfoApi(String divisionID, String districtID, String thanaID, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -29,18 +29,18 @@ public class InvokeFranchiseInfoApi {
                         hashMap.put("mobile", response.body().getMobile());
                         hashMap.put("email", response.body().getEmail());
                         hashMap.put("addrss", response.body().getAddrss());
-                        requestComplete.onFranchiseInfoRequestSuccess(hashMap);
+                        requestComplete.onRequestSuccess(hashMap);
                     } else {
-                        requestComplete.onFranchiseInfoRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onFranchiseInfoRequestError("Something went wrong!");
+                    requestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<FranchiseInfoSearchDataModel> call, Throwable t) {
-                requestComplete.onFranchiseInfoRequestError("Something went wrong!");
+                requestComplete.onRequestError("Something went wrong!");
             }
         });
     }

@@ -3,9 +3,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.BrandAmbassadorListModel;
 import co.wm21.https.presenter.interfaces.OnBrandAmbassadorListView;
-import co.wm21.https.presenter.interfaces.OnBrandAmbassadorRequestComplete;
 import co.wm21.https.serviceapis.InvokeBrandAmbassadorApi;
 
 public class BrandAmbassadorPresenter {
@@ -18,15 +18,15 @@ public class BrandAmbassadorPresenter {
     public void brandAmbassadorDataResponse (String limit) {
 
         onBrandAmbassadorListView.onBrandAmbassadorStartLoading();
-        new InvokeBrandAmbassadorApi(limit, new OnBrandAmbassadorRequestComplete() {
+        new InvokeBrandAmbassadorApi(limit, new OnRequestComplete() {
             @Override
-            public void onBrandAmbassadorRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 onBrandAmbassadorListView.onBrandAmbassadorStopLoading();
                 onBrandAmbassadorListView.onBrandAmbassadorReqData((List<BrandAmbassadorListModel>) obj);
             }
 
             @Override
-            public void onBrandAmbassadorRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 onBrandAmbassadorListView.onBrandAmbassadorStopLoading();
                 onBrandAmbassadorListView.onBrandAmbassadorShowMessage(errMsg);
             }

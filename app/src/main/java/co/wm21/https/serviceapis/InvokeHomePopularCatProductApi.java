@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.PopularCatProductModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnHomePopularCatProductComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeHomePopularCatProductApi {
-    private OnHomePopularCatProductComplete onHomePopularCatProductComplete;
+    private OnRequestComplete onHomePopularCatProductComplete;
 
-    public InvokeHomePopularCatProductApi(String value1,String value2,String value3,String value4, final OnHomePopularCatProductComplete onHomePopularCatProductComplete) {
+    public InvokeHomePopularCatProductApi(String value1,String value2,String value3,String value4, final OnRequestComplete onHomePopularCatProductComplete) {
         this.onHomePopularCatProductComplete = onHomePopularCatProductComplete;
         APIService mApiService = ApiUtils.getApiService();
         mApiService.getPopularCatProductList(value1, value2, value3, value4).enqueue(new Callback<PopularCatProductModelHead>() {
@@ -20,13 +20,13 @@ public class InvokeHomePopularCatProductApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0){
-                        onHomePopularCatProductComplete.onHomePopularCatProductSuccess(response.body().getPopCatProduct());
+                        onHomePopularCatProductComplete.onRequestSuccess(response.body().getPopCatProduct());
                     }else {
-                        onHomePopularCatProductComplete.onHomePopularCatProductError(response.body().getErrorReport());
+                        onHomePopularCatProductComplete.onRequestError(response.body().getErrorReport());
                     }
 
                 }else {
-                    onHomePopularCatProductComplete.onHomePopularCatProductError("Something went wrong!");
+                    onHomePopularCatProductComplete.onRequestError("Something went wrong!");
                 }
             }
 

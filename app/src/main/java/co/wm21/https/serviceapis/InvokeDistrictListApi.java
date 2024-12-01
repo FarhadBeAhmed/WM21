@@ -5,16 +5,16 @@ import com.google.gson.JsonObject;
 
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnDistrictListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeDistrictListApi {
-    OnDistrictListRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeDistrictListApi(String countryID, String divisionID, final OnDistrictListRequestComplete requestComplete) {
+    public InvokeDistrictListApi(String countryID, String divisionID, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -25,18 +25,18 @@ public class InvokeDistrictListApi {
                     if (response.body().get("error").getAsInt() == 0) {
                         JsonArray jsonArray = new JsonArray();
                         jsonArray = response.body().get("report").getAsJsonArray();
-                        requestComplete.onDistrictListRequestSuccess(jsonArray);
+                        requestComplete.onRequestSuccess(jsonArray);
                     } else {
-                        requestComplete.onDistrictListRequestError(response.body().get("error_report").toString());
+                        requestComplete.onRequestError(response.body().get("error_report").toString());
                     }
                 } else {
-                    requestComplete.onDistrictListRequestError("Something went wrong!");
+                    requestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                requestComplete.onDistrictListRequestError("Something went wrong!");
+                requestComplete.onRequestError("Something went wrong!");
             }
         });
     }

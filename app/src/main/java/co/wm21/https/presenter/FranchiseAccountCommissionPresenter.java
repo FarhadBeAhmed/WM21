@@ -3,8 +3,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
-import co.wm21.https.presenter.interfaces.OnFranchiseAccountRequestComplete;
 import co.wm21.https.presenter.interfaces.OnFranchiseAccountView;
 import co.wm21.https.serviceapis.InvokeFranchiseAccountApi;
 
@@ -17,15 +17,15 @@ public class FranchiseAccountCommissionPresenter {
 
     public void onFranchiseAccountRequestData(String userID, String limitData){
         mView.onFranchiseAccountStartLoading();
-        new InvokeFranchiseAccountApi(userID, limitData, new OnFranchiseAccountRequestComplete() {
+        new InvokeFranchiseAccountApi(userID, limitData, new OnRequestComplete() {
             @Override
-            public void onFranchiseAccountRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 mView.onFranchiseAccountStopLoading();
                 mView.onFranchiseAccountData((List<FranchiseAccountDataListModel>) obj);
             }
 
             @Override
-            public void onFranchiseAccountRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 mView.onFranchiseAccountStopLoading();
                 mView.onFranchiseAccountShowMessage(errMsg);
             }
