@@ -3,7 +3,7 @@ package co.wm21.https.presenter;
 
 import java.util.HashMap;
 
-import co.wm21.https.presenter.interfaces.OnTrainingRequestFormRequestComplete;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.presenter.interfaces.OnTrainingRequestFormView;
 import co.wm21.https.serviceapis.InvokeTrainerRequestApi;
 
@@ -20,15 +20,15 @@ public class TrainerRequestPresenter {
         mView.onTrainingRequestFormStartLoading();
 
         new InvokeTrainerRequestApi(userID, traningCategory, title, details, trainer, charge, duration,
-                venue, seats, targetDate,division,district,thana, new OnTrainingRequestFormRequestComplete() {
+                venue, seats, targetDate,division,district,thana, new OnRequestComplete() {
             @Override
-            public void onTrainingRequestFormRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 mView.onTrainingRequestFormStopLoading();
                 mView.onTrainingRequestFormData((HashMap) obj);
             }
 
             @Override
-            public void onTrainingRequestFormRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 mView.onTrainingRequestFormStopLoading();
                 mView.onTrainingRequestFormShowMessage(errMsg);
             }

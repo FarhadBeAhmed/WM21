@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.PopularProductViewModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnHomePopularProductComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeHomePopularProductApi {
-    private OnHomePopularProductComplete onHomePopularProductComplete;
+    private OnRequestComplete onHomePopularProductComplete;
 
-    public InvokeHomePopularProductApi(String value, final OnHomePopularProductComplete onHomePopularProductComplete) {
+    public InvokeHomePopularProductApi(String value, final OnRequestComplete onHomePopularProductComplete) {
         this.onHomePopularProductComplete = onHomePopularProductComplete;
         APIService mApiService = ApiUtils.getApiService();
         mApiService.getPopularProductList(value).enqueue(new Callback<PopularProductViewModelHead>() {
@@ -20,13 +20,13 @@ public class InvokeHomePopularProductApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0){
-                        onHomePopularProductComplete.onHomePopularProductSuccess(response.body().getProductViews());
+                        onHomePopularProductComplete.onRequestSuccess(response.body().getProductViews());
                     }else {
-                        onHomePopularProductComplete.onHomePopularProductError(response.body().getErrorReport());
+                        onHomePopularProductComplete.onRequestError(response.body().getErrorReport());
                     }
 
                 }else {
-                    onHomePopularProductComplete.onHomePopularProductError("Something went wrong!");
+                    onHomePopularProductComplete.onRequestError("Something went wrong!");
                 }
             }
 

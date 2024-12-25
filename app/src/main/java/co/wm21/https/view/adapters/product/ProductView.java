@@ -10,7 +10,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.ProjectApp;
 
 public class ProductView implements Parcelable {

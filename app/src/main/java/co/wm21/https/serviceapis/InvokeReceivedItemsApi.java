@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ReceivedItemsModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnReceivedItemsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeReceivedItemsApi {
-    OnReceivedItemsRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeReceivedItemsApi(String userId, final OnReceivedItemsRequestComplete requestComplete) {
+    public InvokeReceivedItemsApi(String userId, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -21,19 +21,19 @@ public class InvokeReceivedItemsApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0) {
-                        requestComplete.onReceivedItemsRequestComplete(response.body());
+                        requestComplete.onRequestSuccess(response.body());
                     } else {
-                        requestComplete.onReceivedItemsRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onReceivedItemsRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<ReceivedItemsModelHead> call, Throwable t) {
-                requestComplete.onReceivedItemsRequestError("Something Went Wrong!");
+                requestComplete.onRequestSuccess("Something Went Wrong!");
             }
         });
     }

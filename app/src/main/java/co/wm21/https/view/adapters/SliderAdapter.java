@@ -16,7 +16,7 @@ import java.util.List;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.SliderItem;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.R;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {

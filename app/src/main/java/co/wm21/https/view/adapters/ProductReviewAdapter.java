@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,7 +45,22 @@ public class ProductReviewAdapter extends RecyclerView.Adapter<ProductReviewAdap
         ProductReviewModel productReview = productReviews.get(position);
         holder.name.setText(productReview.getName());
         holder.review.setText(productReview.getReview());
-        Picasso.get().load(ConstantValues.web_url + "new/sys/stores/" + productReview.getImg()).into(holder.image);
+        //Picasso.get().load(ConstantValues.web_url + "new/sys/stores/" + productReview.getImg()).into(holder.image);
+
+        Glide.with(context)
+                .asDrawable()
+                .load(ConstantValues.URL + "image/product/small/" + productReview.getImg())  // SVG URL
+                .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
+                .into(holder.image);
+
+      /*  ImageLoaderHelper.loadImage(
+                context,                 // Context (Activity or Application)
+                holder.productImage,            // ImageView where the image will be loaded
+                ConstantValues.URL + "image/product/small/" + product.getImg(),             // Image URL
+                R.drawable.ic_image_temp,     // Placeholder image
+                R.drawable.ic_information           // Error image
+        );*/
         holder.date.setText(productReview.getDate());
         holder.ratingBar.setRating((float) productReview.getRating());
     }

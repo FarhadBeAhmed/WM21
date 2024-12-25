@@ -30,7 +30,7 @@ import co.wm21.https.FHelper.networks.Models.TreesModel;
 import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentTreeViewGnLogyBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.OnTreeDataView;

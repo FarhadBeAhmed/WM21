@@ -2,8 +2,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.presenter.interfaces.OnVendorProductListRequestComplete;
 import co.wm21.https.presenter.interfaces.OnVendorProductListView;
 import co.wm21.https.serviceapis.InvokeVendorProductListApi;
 
@@ -16,15 +16,15 @@ public class VendorProductListPresenter {
 
     public void VendorProductDataLoad(String id,String limit) {
         vendorProductListView.onVendorProductListStartLoading();
-        new InvokeVendorProductListApi(id,limit, new OnVendorProductListRequestComplete() {
+        new InvokeVendorProductListApi(id,limit, new OnRequestComplete() {
             @Override
-            public void onVendorProductListRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 vendorProductListView.onVendorProductListStopLoading();
                 vendorProductListView.onVendorProductListDataLoad((List<ProductModel>) obj);
             }
 
             @Override
-            public void onVendorProductListRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 vendorProductListView.onVendorProductListStopLoading();
                 vendorProductListView.onVendorProductListShowMessage(errMsg);
             }

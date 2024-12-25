@@ -22,7 +22,7 @@ import co.wm21.https.databinding.FragmentRewardMyAchievementBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
 import co.wm21.https.view.fragments.member.model.RewardPolicyDataListModel;
 import co.wm21.https.view.fragments.member.model.RewardPolicyResponse;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.OnRewardPolicyView;

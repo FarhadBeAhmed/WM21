@@ -42,7 +42,7 @@ import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentRegisterBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
 import co.wm21.https.view.fragments.LoginFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.presenter.interfaces.OnSignupFinalView;
 import co.wm21.https.presenter.interfaces.OnSignupFirstView;
 import co.wm21.https.presenter.interfaces.OnSignupNumberVerifyView;

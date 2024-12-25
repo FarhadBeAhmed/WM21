@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
-import co.wm21.https.presenter.interfaces.OnVerificationRequestComplete;
 import co.wm21.https.presenter.interfaces.OnVerificationView;
 import co.wm21.https.serviceapis.InvokeVerificationApi;
 
@@ -14,15 +14,15 @@ public class VerificationPresenter {
 
     public void verificationDataLoad(String user_id) {
         verificationView.onVerificationStartLoading();
-        new InvokeVerificationApi(user_id, new OnVerificationRequestComplete() {
+        new InvokeVerificationApi(user_id, new OnRequestComplete() {
             @Override
-            public void onVerificationRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 verificationView.onVerificationStopLoading();
                 verificationView.onVerificationDataLoad((VerificationModel) obj);
             }
 
             @Override
-            public void onVerificationRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 verificationView.onVerificationStopLoading();
                 verificationView.onVerificationShowMessage(errMsg);
             }

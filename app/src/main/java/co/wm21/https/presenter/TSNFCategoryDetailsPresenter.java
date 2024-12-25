@@ -4,9 +4,9 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.TSNFCategoryDetailsListModel;
 import co.wm21.https.presenter.interfaces.OnTSNFCategoryDetailsListView;
-import co.wm21.https.presenter.interfaces.OnTSNFCategoryDetailsRequestComplete;
 import co.wm21.https.serviceapis.InvokeTSNFCategoryDetailsApi;
 
 public class TSNFCategoryDetailsPresenter {
@@ -18,15 +18,15 @@ public class TSNFCategoryDetailsPresenter {
 
     public void tsnfCategoryDetailsDataResponse (String type, String category, String limit){
         onTSNFCategoryDetailsListView.onTSNFCategoryDetailsStartLoading();
-        new InvokeTSNFCategoryDetailsApi(type, category, limit, new OnTSNFCategoryDetailsRequestComplete() {
+        new InvokeTSNFCategoryDetailsApi(type, category, limit, new OnRequestComplete() {
             @Override
-            public void onTSNFCategoryDetailsRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 onTSNFCategoryDetailsListView.onTSNFCategoryDetailsStopLoading();
                 onTSNFCategoryDetailsListView.onTSNFCategoryDetailsReqData((List<TSNFCategoryDetailsListModel>) obj);
             }
 
             @Override
-            public void onTSNFCategoryDetailsRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 onTSNFCategoryDetailsListView.onTSNFCategoryDetailsStopLoading();
                 onTSNFCategoryDetailsListView.oonTSNFCategoryDetailsShowMessage(errMsg);
             }

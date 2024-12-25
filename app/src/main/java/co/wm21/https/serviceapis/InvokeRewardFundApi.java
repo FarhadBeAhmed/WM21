@@ -2,17 +2,17 @@ package co.wm21.https.serviceapis;
 
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.RewardFundDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnRewardFundRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeRewardFundApi {
-    OnRewardFundRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeRewardFundApi(String userID, final OnRewardFundRequestComplete requestComplete) {
+    public InvokeRewardFundApi(String userID, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -21,18 +21,18 @@ public class InvokeRewardFundApi {
             public void onResponse(Call<RewardFundDataModel> call, Response<RewardFundDataModel> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onRewardFundRequestSuccess(response.body().getTeamInfo());
+                        requestComplete.onRequestSuccess(response.body().getTeamInfo());
                     } else {
-                        requestComplete.onRewardFundRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onRewardFundRequestError("Something went wrong!");
+                    requestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<RewardFundDataModel> call, Throwable t) {
-                requestComplete.onRewardFundRequestError("Something went wrong!");
+                requestComplete.onRequestError("Something went wrong!");
             }
         });
     }

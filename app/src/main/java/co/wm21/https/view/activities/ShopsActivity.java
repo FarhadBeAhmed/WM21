@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -36,15 +39,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.Models.CartItemsHead;
+import co.wm21.https.FHelper.networks.Models.PremierShopData;
+import co.wm21.https.FHelper.networks.Models.PremierShopResponseModel;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.R;
 import co.wm21.https.SliderItem;
+import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.presenter.PremierShopPresenter;
+import co.wm21.https.presenter.application.EShopRefComPresenter;
+import co.wm21.https.presenter.interfaces.OnPremierShopView;
+import co.wm21.https.utils.CheckInternetConnection;
+import co.wm21.https.view.activities.mlm.company.company_fragments.AboutUsFragment;
+import co.wm21.https.view.activities.mlm.company.company_fragments.ContactUsFragment;
+import co.wm21.https.view.adapters.PremierShopsAdapter;
 import co.wm21.https.view.adapters.ShopsAdapter;
 import co.wm21.https.view.adapters.SliderAdapter;
+import co.wm21.https.view.adapters.application.EShopRefComAdapter;
 import co.wm21.https.view.adapters.product.ProductAdapter;
 import co.wm21.https.databinding.ActivityShopsBinding;
 import co.wm21.https.databinding.FragmentBrandShopBinding;
@@ -55,7 +70,7 @@ import co.wm21.https.databinding.FragmentTeleShopBinding;
 import co.wm21.https.databinding.FragmentVendorBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
 import co.wm21.https.view.fragments.CartFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.OnCartItemListView;
 import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageView;
@@ -134,7 +149,8 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this,MainActivity.class));
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @SuppressLint("ResourceType")
@@ -223,7 +239,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
 
     @Override
     public void onCartItemListShowMessage(String errmsg) {
-        Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -248,6 +264,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             return binding.getRoot();
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
@@ -260,10 +277,46 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
 
             loadingDialog=new LoadingDialog(getActivity());
 
-
-
+            binding.footerId.MyAccExpandableLayout.collapse();
+            binding.footerId.CustomerExpandableLayout.collapse();
+            binding.footerId.infoExpandableLayout.collapse();
+            binding.footerId.footerCompany.setOnClickListener(v -> {
+                if (binding.footerId.infoExpandableLayout.isExpanded()) {
+                    binding.footerId.infoExpandableLayout.collapse();
+                    binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.infoExpandableLayout.expand();
+                    binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.footerMyAccount.setOnClickListener(v -> {
+                if (binding.footerId.MyAccExpandableLayout.isExpanded()) {
+                    binding.footerId.MyAccExpandableLayout.collapse();
+                    binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.MyAccExpandableLayout.expand();
+                    binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.footerCustomer.setOnClickListener(v -> {
+                if (binding.footerId.CustomerExpandableLayout.isExpanded()) {
+                    binding.footerId.CustomerExpandableLayout.collapse();
+                    binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.CustomerExpandableLayout.expand();
+                    binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.aboutUs.setOnClickListener(v -> {
+                switchFragment(new AboutUsFragment(), "AboutUsFragment");
+            });
+            binding.footerId.contactUs.setOnClickListener(v -> {
+                switchFragment(new ContactUsFragment(), "ContactUsFragment");
+            });
+            binding.shopsView.setText("Tele Shop");
             String[] allShops = {"Tele Shop", "Showroom", "Mission Bazar", "Premier Shop", "BrandShop", "Vendor"};
-            binding.shopsView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, allShops));
+            binding.shopsView.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, allShops));
+
             binding.shopsView.addTextChangedListener(new TextWatcher() {
 
                 @Override
@@ -455,13 +508,17 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         }
     }
 
-    public static class PremierShop extends Fragment {
+    public static class PremierShop extends Fragment  implements OnPremierShopView {
         FragmentPremierShopBinding binding;
-        co.wm21.https.FHelper.API api;
-        ShopsAdapter adapter;
-        List<SliderItem> sliderItemList;
+        PremierShopsAdapter adapter;
+        ArrayList<SliderItem> sliderItemList;
+        List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
-
+        PremierShopPresenter presenter;
+        SessionHandler appSessionManager;
+        CheckInternetConnection checkInternetConnection;
+        User user;
+        LoadingDialog loadingDialog;
 
 
 
@@ -470,13 +527,60 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             // Inflate the layout for this fragment
             binding = FragmentPremierShopBinding.inflate(inflater, container, false);
 
-            api=ConstantValues.getAPI();
+
             sliderItemList = new ArrayList<>();
             sliderAdapter = new SliderAdapter(getContext(),sliderItemList);
-            co.wm21.https.FHelper.API api = co.wm21.https.FHelper.ConstantValues.getAPI();
             binding.shimmerImageSlider.setVisibility(View.VISIBLE);
             binding.imageSlider.setVisibility(View.GONE);
-            MySingleton.getInstance(getContext()).addToRequestQueue(api.slide(response -> {
+
+
+            appSessionManager = new SessionHandler(getActivity());
+            checkInternetConnection = new CheckInternetConnection();
+            loadingDialog=new LoadingDialog(getActivity());
+            user = new User(getContext());
+            presenter= new PremierShopPresenter(this);
+
+
+            binding.footerId.MyAccExpandableLayout.collapse();
+            binding.footerId.CustomerExpandableLayout.collapse();
+            binding.footerId.infoExpandableLayout.collapse();
+            binding.footerId.footerCompany.setOnClickListener(v -> {
+                if (binding.footerId.infoExpandableLayout.isExpanded()) {
+                    binding.footerId.infoExpandableLayout.collapse();
+                    binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.infoExpandableLayout.expand();
+                    binding.footerId.infExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.footerMyAccount.setOnClickListener(v -> {
+                if (binding.footerId.MyAccExpandableLayout.isExpanded()) {
+                    binding.footerId.MyAccExpandableLayout.collapse();
+                    binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.MyAccExpandableLayout.expand();
+                    binding.footerId.MyAccExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.footerCustomer.setOnClickListener(v -> {
+                if (binding.footerId.CustomerExpandableLayout.isExpanded()) {
+                    binding.footerId.CustomerExpandableLayout.collapse();
+                    binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24);
+                } else {
+                    binding.footerId.CustomerExpandableLayout.expand();
+                    binding.footerId.CustomerExpandIcon.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            });
+            binding.footerId.aboutUs.setOnClickListener(v -> {
+                switchFragment(new AboutUsFragment(), "AboutUsFragment");
+            });
+            binding.footerId.contactUs.setOnClickListener(v -> {
+                switchFragment(new ContactUsFragment(), "ContactUsFragment");
+            });
+
+
+
+          /*  MySingleton.getInstance(getContext()).addToRequestQueue(api.slide(response -> {
                 try {
                     JSONArray array = response.getJSONArray("slides");
                     for (int i = 0; i < response.length(); i++) {
@@ -501,7 +605,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
                     e.printStackTrace();
                 }
 
-            }));
+            }));*/
 
             String[] allShops = {"Tele Shop", "Showroom", "Mission Bazar", "Premier Shop", "BrandShop", "Vendor"};
             binding.shopsView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, allShops));
@@ -590,51 +694,44 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
                 }
             });
 
-
+            loadData();
 
             return binding.getRoot();
         }
-        private void getAllShops() {
-            ArrayList<ShopsModel> shopList=new ArrayList<>();
-            MySingleton.getInstance(getContext()).addToRequestQueue(api.premiumShop(5,response -> {
-                try {
-                    JSONArray array=response.getJSONArray("shops");
-                    for (int i=0;i<array.length();i++){
-                        JSONObject object=array.getJSONObject(i);
-                        shopList.add(new ShopsModel(
-                                object.getString(ConstantValues.admin_login.SHOP_ID),
-                                object.getString(ConstantValues.admin_login.SHOP_TYPE),
-                                object.getString(ConstantValues.admin_login.IMAGE),
-                                object.getString(ConstantValues.admin_login.SHOP_NAME),
-                                object.getString(ConstantValues.admin_login.MOBILE),
-                                object.getString(ConstantValues.admin_login.DISTRICT),
-                                object.getString(ConstantValues.admin_login.THANA),
-                                object.getString(ConstantValues.admin_login.UNION),
-                                object.getString(ConstantValues.admin_login.PHOTO),
-                                object.getInt(ConstantValues.admin_login.TYPE_ID)
-
-                        ));
-                    }
-                    binding.recycleView.setVisibility(View.VISIBLE);
-                    binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                    adapter = new ShopsAdapter(shopList,getContext(),R.layout.layout_item_premium_shop);
-                    if (!shopList.isEmpty()) {
-                        binding.recycleView.setAdapter(adapter);
-                    }
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }));
+
+        @SuppressLint("NotifyDataSetChanged")
+        private void loadData() {
+            //adapter = new EShopRefComAdapter(listData, requireContext(), item -> {});
 
 
+            binding.recycleView.setVisibility(View.VISIBLE);
+            binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+            adapter = new PremierShopsAdapter((ArrayList<PremierShopData>) shopList,getContext(),R.layout.layout_item_premium_shop);
+            binding.recycleView.setAdapter(adapter);
+
+
+            if (checkInternetConnection.isInternetAvailable(requireActivity())) {
+
+                presenter.onPremierShopResponseData(user.getUsername());
+
+            } else {
+                Snackbar snackbar = Snackbar.make(requireActivity().getWindow().getDecorView().getRootView(), "No internet connection!", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("RETRY", view -> loadData());
+                snackbar.setActionTextColor(Color.RED);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
+                textView.setTextColor(Color.YELLOW);
+                snackbar.show();
+            }
         }
+
 
         @Override
         public void onResume() {
             super.onResume();
-            if (!scannerText.equals("")){
+            if (!scannerText.isEmpty()){
                 Snackbar.make(((MainActivity)requireContext()).binding.fragmentContainer,scannerText,Snackbar.LENGTH_SHORT).show();
             }
         }
@@ -647,6 +744,35 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             childFragTrans.replace(R.id.child_fragment_container, fragment, tag);
             childFragTrans.addToBackStack(tag);
             childFragTrans.commit();
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void onPremierShopDataLoadSuccess(@Nullable PremierShopResponseModel response) {
+            shopList.clear();
+            assert response != null;
+            shopList.addAll(Objects.requireNonNull(response.getData()));
+            binding.shimmerImageSlider.setVisibility(View.GONE);
+            adapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        public void onStartLoading() {
+            loadingDialog.startLoadingAlertDialog();
+
+        }
+
+        @Override
+        public void onStopLoading() {
+            loadingDialog.dismissDialog();
+
+        }
+
+        @Override
+        public void onError(@Nullable String errmsg) {
+            loadingDialog.dismissDialog();
+
         }
     }
 

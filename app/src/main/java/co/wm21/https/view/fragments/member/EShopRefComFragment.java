@@ -21,18 +21,14 @@ import java.util.List;
 
 import co.wm21.https.FHelper.networks.Models.application.EShopRefComData;
 import co.wm21.https.FHelper.networks.Models.application.EShopRefComResponse;
-import co.wm21.https.FHelper.networks.Models.application.EShopStatusData;
-import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentEShopRefComBinding;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.application.EShopRefComPresenter;
-import co.wm21.https.presenter.application.EShopStatusPresenter;
 import co.wm21.https.presenter.interfaces.aplication.OnEShopRefComView;
 import co.wm21.https.utils.dialog.LoadingDialog;
 import co.wm21.https.view.adapters.application.EShopRefComAdapter;
-import co.wm21.https.view.adapters.application.EShopStatusAdapter;
 
 
 public class EShopRefComFragment extends Fragment implements OnEShopRefComView {

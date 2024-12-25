@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import co.wm21.https.*;
 import co.wm21.https.view.adapters.ItemClickListener;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 

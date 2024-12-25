@@ -5,9 +5,8 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.DrawableRes;
 import androidx.core.content.res.ResourcesCompat;
 
-import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.ProjectApp;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 
 public class AppliedProductModel {
 

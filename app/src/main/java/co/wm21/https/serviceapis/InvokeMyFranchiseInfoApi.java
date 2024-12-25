@@ -4,17 +4,17 @@ package co.wm21.https.serviceapis;
 import java.util.HashMap;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.MyFranchiseDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnMyFranchiseRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeMyFranchiseInfoApi {
-    OnMyFranchiseRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeMyFranchiseInfoApi(String userID, final OnMyFranchiseRequestComplete requestComplete) {
+    public InvokeMyFranchiseInfoApi(String userID, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
         APIService mApiService = ApiUtils.getApiService();
         mApiService.getMyFranchiseData(userID).enqueue(new Callback<MyFranchiseDataModel>() {
@@ -53,18 +53,18 @@ public class InvokeMyFranchiseInfoApi {
                             hashMap.put("addrss", "null");
                         }
 
-                        requestComplete.onMyFranchiseRequestComplete(hashMap);
+                        requestComplete.onRequestSuccess(hashMap);
                     } else {
-                        requestComplete.onMyFranchiseRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onMyFranchiseRequestError("Something went wrong!");
+                    requestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<MyFranchiseDataModel> call, Throwable t) {
-                requestComplete.onMyFranchiseRequestError("Something went wrong!");
+                requestComplete.onRequestError("Something went wrong!");
             }
         });
     }

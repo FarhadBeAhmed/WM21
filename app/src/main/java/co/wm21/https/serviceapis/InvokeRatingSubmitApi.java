@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.RatingSubmitModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnRatingSubmitRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeRatingSubmitApi {
-    OnRatingSubmitRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeRatingSubmitApi(String username,String serial,String rating,String review, final OnRatingSubmitRequestComplete requestComplete) {
+    public InvokeRatingSubmitApi(String username,String serial,String rating,String review, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -20,19 +20,19 @@ public class InvokeRatingSubmitApi {
             public void onResponse(Call<RatingSubmitModelHead> call, Response<RatingSubmitModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onRatingSubmitRequestComplete(response.body());
+                        requestComplete.onRequestSuccess(response.body());
                     } else {
-                        requestComplete.onRatingSubmitRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onRatingSubmitRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<RatingSubmitModelHead> call, Throwable t) {
-                requestComplete.onRatingSubmitRequestError("Something Went Wrong!");
+                requestComplete.onRequestError("Something Went Wrong!");
             }
         });
     }

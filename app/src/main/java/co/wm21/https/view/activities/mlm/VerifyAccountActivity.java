@@ -40,7 +40,7 @@ import co.wm21.https.databinding.FragmentMobileVerifyBinding;
 import co.wm21.https.databinding.FragmentProfileUpdateBinding;
 import co.wm21.https.databinding.FragmentUpdatePasswordBinding;
 import co.wm21.https.view.fragments.member.verifications.VerifyAccountFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
 

@@ -3,8 +3,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.RewardGalleryDataListModel;
-import co.wm21.https.presenter.interfaces.OnRewardGalleryRequestComplete;
 import co.wm21.https.presenter.interfaces.OnRewardGalleryView;
 import co.wm21.https.serviceapis.InvokeRewardGalleryApi;
 
@@ -18,15 +18,15 @@ public class RewardGalleryPresenter {
     public void onRewardGalleryDataResponse(String userID, String limitData){
         mView.onRewardGalleryStartLoading();
 
-        new InvokeRewardGalleryApi(userID, limitData, new OnRewardGalleryRequestComplete() {
+        new InvokeRewardGalleryApi(userID, limitData, new OnRequestComplete() {
             @Override
-            public void onRewardGalleryRequestSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 mView.onRewardGalleryStopLoading();
                 mView.onRewardGalleryData((List<RewardGalleryDataListModel>) obj);
             }
 
             @Override
-            public void onRewardGalleryRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 mView.onRewardGalleryStopLoading();
                 mView.onRewardGalleryShowMessage(errMsg);
             }

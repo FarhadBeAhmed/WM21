@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,6 +27,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
@@ -55,7 +58,7 @@ import co.wm21.https.view.fragments.manageOrder.DeliveredFragment;
 import co.wm21.https.view.fragments.manageOrder.OrderFragment;
 import co.wm21.https.view.fragments.manageOrder.ReceivedFragment;
 import co.wm21.https.view.fragments.products.CategoryProductFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.OnBlogListView;
 import co.wm21.https.presenter.interfaces.OnHomeCategoryView;
@@ -117,7 +120,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_home, container, false);
 
         user = new User(getContext());
@@ -213,7 +216,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         //hotProduct();
 
 
-        topSellingProduct(8);
+        topSellingProduct();
         return binding.getRoot();
     }
 
@@ -239,28 +242,28 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(0).getCatID());
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(0).getCategoryName());
                 startActivity(intent);
-                Animatoo.INSTANCE.animateSlideLeft(getContext());
+                Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.moreElectronicsProduct:
                  intent=new Intent(getContext(), HomeMoreProductActivity.class);
                 intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(1).getCatID());
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(1).getCategoryName());
                 startActivity(intent);
-                Animatoo.INSTANCE.animateSlideLeft(getContext());
+                Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.beautyMoreProduct:
                 intent=new Intent(getContext(), HomeMoreProductActivity.class);
                 intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(2).getCatID());
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(2).getCategoryName());
                 startActivity(intent);
-                Animatoo.INSTANCE.animateSlideLeft(getContext());
+                Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.fashionMoreProduct:
                 intent=new Intent(getContext(), HomeMoreProductActivity.class);
                 intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(3).getCatID());
                 intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(3).getCategoryName());
                 startActivity(intent);
-                Animatoo.INSTANCE.animateSlideLeft(getContext());
+                Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 /*bundle.putString(ConstantValues.ARGUMENT1, categoryList.get(3).getCatID());
                 fragment.setArguments(bundle);
                 switchFragment(fragment, "ProductsFragment");*/
@@ -306,7 +309,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
             CategoryProductFragment categoryProductFragment = new CategoryProductFragment();
             categoryProductFragment.setArguments(bundle);
             //((FragmentActivity) context).getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right).replace(R.id.main_home_contain, subSubCategoryFragment, "SubCategoryFragment").addToBackStack("SubCategory").commit();
-            ((MainActivity) getActivity()).switchFragment(categoryProductFragment, "CategoryProductFragment");
+            ((MainActivity) requireActivity()).switchFragment(categoryProductFragment, "CategoryProductFragment");
 
         });
         binding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -340,6 +343,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
         switch (view.getId()) {
             case R.id.bestSellerBtn:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.bestSellerBtn.setBackgroundColor(getResources().getColor(R.color.white, null));
+                }
                 binding.bestSellerTxt.setTextColor(Color.parseColor("#FE0000"));
                 binding.mostPopularTxt.setTextColor(Color.parseColor("#000000"));
                 binding.featuredTxt.setTextColor(Color.parseColor("#000000"));
@@ -351,6 +357,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 popularProduct("2");
                 break;
             case R.id.mostPopularBtn:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.mostPopularBtn.setBackgroundColor(getResources().getColor(R.color.white, null));
+                }
                 binding.mostPopularTxt.setTextColor(Color.parseColor("#FE0000"));
                 binding.bestSellerTxt.setTextColor(Color.parseColor("#000000"));
                 binding.featuredTxt.setTextColor(Color.parseColor("#000000"));
@@ -364,6 +373,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 popularProduct("3");
                 break;
             case R.id.featuredBtn:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.featuredBtn.setBackgroundColor(getResources().getColor(R.color.white, null));
+                }
                 binding.featuredTxt.setTextColor(Color.parseColor("#FE0000"));
                 binding.bestSellerTxt.setTextColor(Color.parseColor("#000000"));
                 binding.mostPopularTxt.setTextColor(Color.parseColor("#000000"));
@@ -377,6 +389,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 popularProduct("4");
                 break;
             case R.id.newArrivalBtn:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.newArrivalBtn.setBackgroundColor(getResources().getColor(R.color.white, null));
+                }
                 binding.newArrivalTxt.setTextColor(Color.parseColor("#FE0000"));
                 binding.bestSellerTxt.setTextColor(Color.parseColor("#000000"));
                 binding.mostPopularTxt.setTextColor(Color.parseColor("#000000"));
@@ -395,7 +410,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     private void popularProduct(String value) {
         popularProductList = new ArrayList<>();
-        popularProductAdapter=new PopularProductAdapter(popularProductList,getContext()).addOnClickListener((View, position2) -> {
+        popularProductAdapter=new PopularProductAdapter(popularProductList,requireContext()).addOnClickListener((View, position2) -> {
             ProductModel productView = popularProductList.get(position2);
             Activity activity = getActivity();
             if (activity != null) {
@@ -416,11 +431,11 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         hotProductViews = new ArrayList<>();
         binding.hotDealSlider.setScrollTimeInSec(5);
         binding.hotDealSlider.startAutoCycle();
-        hotDealSliderAdapter=new HotDealSliderAdapter(getContext(), hotProductViews, R.layout.layout_item_product_hot_deal);
+        hotDealSliderAdapter=new HotDealSliderAdapter(requireContext(), hotProductViews, R.layout.layout_item_product_hot_deal);
 
         binding.hotDealSlider.setSliderAdapter(hotDealSliderAdapter);
         hotProductPresenter.getHotProduct(30);
-        fromOurBlog(5);
+        fromOurBlog();
 
 
 
@@ -438,7 +453,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         popularCatProductList3 = new ArrayList<>();
         popularCatProductList4 = new ArrayList<>();
 
-        popularCatProductAdapter1=new PopularCatProductAdapter( popularCatProductList1,getContext(), R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
+        popularCatProductAdapter1=new PopularCatProductAdapter( popularCatProductList1,requireContext(), R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
                 ProductModel productView = popularCatProductList1.get(position2);
                 Activity activity = getActivity();
                 if (activity != null) {
@@ -451,7 +466,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.productGroceryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.productGroceryRecyclerView.setAdapter(popularCatProductAdapter1);
 
-        popularCatProductAdapter2=   new PopularCatProductAdapter( popularCatProductList2,getContext(), R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
+        popularCatProductAdapter2=   new PopularCatProductAdapter( popularCatProductList2,requireContext(), R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
             ProductModel productView = popularCatProductList2.get(position2);
             Activity activity = getActivity();
             if (activity != null) {
@@ -465,7 +480,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.productCatRecyclerView2.setAdapter(popularCatProductAdapter2);
 
 
-        popularCatProductAdapter3=   new PopularCatProductAdapter(popularCatProductList3, getContext(),  R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
+        popularCatProductAdapter3=   new PopularCatProductAdapter(popularCatProductList3, requireContext(),  R.layout.layout_item_product2,8).addOnClickListener((View, position2) -> {
             ProductModel productView = popularCatProductList3.get(position2);
             Activity activity = getActivity();
             if (activity != null) {
@@ -498,24 +513,24 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     }
 
-    private void fromOurBlog(int limit) {
+    private void fromOurBlog() {
        blogsModels = new ArrayList<>();
 
         binding.blogRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         blogsAdapter= new BlogsAdapter(getContext(), blogsModels, R.layout.layout_item_blog);
         binding.blogRecyclerView.setAdapter(blogsAdapter);
-        blogListPresenter.BlogDataLoad(limit);
+        blogListPresenter.BlogDataLoad(5);
 
       //  topSellingProduct();
 
     }
 
-    private void topSellingProduct(int limit) {
+    private void topSellingProduct() {
 
         topSellingProList=new ArrayList<>();
 
         binding.topRecyclerView4.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        topSellingAdapter= new TopSellingAdapter(getContext(), topSellingProList, R.layout.layout_item_top_sel).addOnClickListener((View, position2) -> {
+        topSellingAdapter= new TopSellingAdapter(requireContext(), topSellingProList, R.layout.layout_item_top_sel).addOnClickListener((View, position2) -> {
             TopSellingProModel productView = topSellingProList.get(position2);
             Activity activity = getActivity();
             if (activity != null) {
@@ -526,7 +541,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         });
         binding.topRecyclerView4.setAdapter(topSellingAdapter);
 
-        topSellingProPresenter.topSellingProDataLoad(limit);
+        topSellingProPresenter.topSellingProDataLoad(8);
     }
 
     @Override
@@ -759,7 +774,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
-    class MyThread extends Thread {
+    static class MyThread extends Thread {
         public void run() {
          // topSellingProduct();
         }

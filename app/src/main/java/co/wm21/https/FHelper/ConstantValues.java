@@ -23,6 +23,7 @@ import co.wm21.https.view.adapters.cart.CartModel;
 public final class ConstantValues {
     public static final String web_url = "https://wm21.net/";
     public final static String URL = "https://www.wm21.co/";
+    public final static String imageURL = "https://wm21.co/";
     public static final @Nullable
     String KEY_EMPTY = "";
     public static int badgeValue = 0;

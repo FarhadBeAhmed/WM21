@@ -2,6 +2,7 @@ package co.wm21.https.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -65,10 +66,16 @@ public class CartFragment extends Fragment implements OnCartItemListView, OnChec
         loadingDialog = new LoadingDialog(getActivity());
         //getSelectedProducts();
         binding.checkOutBtn.setOnClickListener(this::checkout);
+        binding.keepShopping.setOnClickListener(this::keepShopping);
         cartItemListPresenter = new CartItemListPresenter(this);
         checkoutPresenter = new CheckoutPresenter(this);
         getSelectedProducts();
         return binding.getRoot();
+    }
+
+    private void keepShopping(View view) {
+        //switchFragment(new HomeFragment(), "home");
+        startActivity(new Intent(getActivity(),MainActivity.class));
     }
 
     private void checkout(View view) {
@@ -132,7 +139,7 @@ public class CartFragment extends Fragment implements OnCartItemListView, OnChec
 
     @Override
     public void onCartItemListShowMessage(String errmsg) {
-        Toast.makeText(getActivity(), errmsg, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

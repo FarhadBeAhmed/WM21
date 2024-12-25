@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ProductDetailsHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnProductDetailsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeProductDetailsApi {
-    OnProductDetailsRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeProductDetailsApi(String id, final OnProductDetailsRequestComplete requestComplete) {
+    public InvokeProductDetailsApi(String id, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -20,19 +20,19 @@ public class InvokeProductDetailsApi {
             public void onResponse(Call<ProductDetailsHead> call, Response<ProductDetailsHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onProductDetailsRequestComplete(response.body().getProductDetails());
+                        requestComplete.onRequestSuccess(response.body().getProductDetails());
                     } else {
-                        requestComplete.onProductDetailsRequestError(response.body().getError_report());
+                        requestComplete.onRequestError(response.body().getError_report());
                     }
                 } else {
-                    requestComplete.onProductDetailsRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<ProductDetailsHead> call, Throwable t) {
-                requestComplete.onProductDetailsRequestError("Something Went Wrong!");
+                requestComplete.onRequestError("Something Went Wrong!");
             }
         });
     }

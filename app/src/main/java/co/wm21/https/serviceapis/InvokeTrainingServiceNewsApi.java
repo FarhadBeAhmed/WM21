@@ -4,17 +4,17 @@ package co.wm21.https.serviceapis;
 import android.util.Log;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.TrainingServiceNewsDataModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnTrainingServiceNewsRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeTrainingServiceNewsApi {
-    private OnTrainingServiceNewsRequestComplete onTrainingServiceNewsRequestComplete;
+    private OnRequestComplete onTrainingServiceNewsRequestComplete;
 
-    public InvokeTrainingServiceNewsApi(String type, String limit, final OnTrainingServiceNewsRequestComplete onTrainingServiceNewsRequestComplete) {
+    public InvokeTrainingServiceNewsApi(String type, String limit, final OnRequestComplete onTrainingServiceNewsRequestComplete) {
         this.onTrainingServiceNewsRequestComplete = onTrainingServiceNewsRequestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -23,21 +23,21 @@ public class InvokeTrainingServiceNewsApi {
             public void onResponse(Call<TrainingServiceNewsDataModel> call, Response<TrainingServiceNewsDataModel> response) {
                 if (response.isSuccessful()){
                     if (response.body().getError()==0){
-                        onTrainingServiceNewsRequestComplete.onTrainingServiceNewsRequestSuccess(response.body().getCategory());
+                        onTrainingServiceNewsRequestComplete.onRequestSuccess(response.body().getCategory());
                     }
                     else {
-                        onTrainingServiceNewsRequestComplete.onTrainingServiceNewsRequestError(response.body().getErrorReport());
+                        onTrainingServiceNewsRequestComplete.onRequestError(response.body().getErrorReport());
                     }
                 }
                 else {
-                    onTrainingServiceNewsRequestComplete.onTrainingServiceNewsRequestError("Something went wrong!");
+                    onTrainingServiceNewsRequestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<TrainingServiceNewsDataModel> call, Throwable t) {
                 Log.d("tag", "onFailure: "+t.getMessage());
-                onTrainingServiceNewsRequestComplete.onTrainingServiceNewsRequestError("Something went wrong!");
+                onTrainingServiceNewsRequestComplete.onRequestError("Something went wrong!");
 
             }
         });

@@ -36,7 +36,7 @@ import co.wm21.https.view.adapters.SliderAdapter;
 import co.wm21.https.databinding.FragmentPremierShopBinding;
 import co.wm21.https.view.activities.mlm.company.company_fragments.AboutUsFragment;
 import co.wm21.https.view.activities.mlm.company.company_fragments.ContactUsFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.model.ShopsModel;
 
 public class PremierShop extends Fragment {

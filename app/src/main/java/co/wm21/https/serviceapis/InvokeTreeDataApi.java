@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.TreeModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnTreeDataRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeTreeDataApi {
-    OnTreeDataRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeTreeDataApi(String deviceID,String user_id, final OnTreeDataRequestComplete requestComplete) {
+    public InvokeTreeDataApi(String deviceID,String user_id, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -21,18 +21,18 @@ public class InvokeTreeDataApi {
             public void onResponse(Call<TreeModel> call, Response<TreeModel> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onTreeDataRequestComplete(response.body());
+                        requestComplete.onRequestSuccess(response.body());
                     } else {
-                        requestComplete.onTreeDataRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onTreeDataRequestError("Tree Data Failed");
+                    requestComplete.onRequestError("Tree Data Failed");
                 }
 
             }
             @Override
             public void onFailure(Call<TreeModel> call, Throwable t) {
-                requestComplete.onTreeDataRequestError("Something Went Wrong in Tree Data!");
+                requestComplete.onRequestError("Something Went Wrong in Tree Data!");
             }
         });
     }

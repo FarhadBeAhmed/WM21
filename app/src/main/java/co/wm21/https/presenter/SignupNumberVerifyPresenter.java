@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.SignupNumberVerifyModel;
-import co.wm21.https.presenter.interfaces.OnSignupNumberVerifyRequestComplete;
 import co.wm21.https.presenter.interfaces.OnSignupNumberVerifyView;
 import co.wm21.https.serviceapis.InvokeSignupNumberVerifyApi;
 
@@ -14,15 +14,15 @@ public class SignupNumberVerifyPresenter {
 
     public void signupNumberVerifyDataLoad(String mobile,String country,String code) {
         signupNumberVerifyView.onSignupNumberVerifyStartLoading();
-        new InvokeSignupNumberVerifyApi(mobile,country,code, new OnSignupNumberVerifyRequestComplete() {
+        new InvokeSignupNumberVerifyApi(mobile,country,code, new OnRequestComplete() {
             @Override
-            public void onSignupNumberVerifyRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 signupNumberVerifyView.onSignupNumberVerifyStopLoading();
                 signupNumberVerifyView.onSignupNumberVerifyDataLoad((SignupNumberVerifyModel) obj);
             }
 
             @Override
-            public void onSignupNumberVerifyRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 signupNumberVerifyView.onSignupNumberVerifyStopLoading();
                 signupNumberVerifyView.onSignupNumberVerifyShowMessage(errMsg);
             }

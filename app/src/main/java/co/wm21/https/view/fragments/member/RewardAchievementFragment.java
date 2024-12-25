@@ -20,7 +20,7 @@ import co.wm21.https.FHelper.networks.Models.RewardAchievementDataListModel;
 import co.wm21.https.view.adapters.RewardAchievementAdapter;
 import co.wm21.https.databinding.FragmentAchievementBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.OnRewardAchievementView;
 import co.wm21.https.presenter.RewardAchievementPresenter;

@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.RelatedProductModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnRelatedProductListRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeRelatedProductListApi {
-    OnRelatedProductListRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeRelatedProductListApi(String limit,String cat_id,String scat_id,String brand_id, final OnRelatedProductListRequestComplete requestComplete) {
+    public InvokeRelatedProductListApi(String limit,String cat_id,String scat_id,String brand_id, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -20,19 +20,19 @@ public class InvokeRelatedProductListApi {
             public void onResponse(Call<RelatedProductModelHead> call, Response<RelatedProductModelHead> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getError() == 0) {
-                        requestComplete.onRelatedProductListRequestComplete(response.body().getData());
+                        requestComplete.onRequestSuccess(response.body().getData());
                     } else {
-                        requestComplete.onRelatedProductListRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onRelatedProductListRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<RelatedProductModelHead> call, Throwable t) {
-                requestComplete.onRelatedProductListRequestError("Something Went Wrong!");
+                requestComplete.onRequestError("Something Went Wrong!");
             }
         });
     }

@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.SignupModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnSignupFirstRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeSignupFirstApi {
-    OnSignupFirstRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeSignupFirstApi(String pId, String userId, final OnSignupFirstRequestComplete requestComplete) {
+    public InvokeSignupFirstApi(String pId, String userId, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -21,19 +21,19 @@ public class InvokeSignupFirstApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0 || response.body().getError()==2 ) {
-                        requestComplete.onSignupFirstRequestComplete(response.body());
+                        requestComplete.onRequestSuccess(response.body());
                     } else {
-                        requestComplete.onSignupFirstRequestError(response.body().getError_report());
+                        requestComplete.onRequestError(response.body().getError_report());
                     }
                 } else {
-                    requestComplete.onSignupFirstRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<SignupModel> call, Throwable t) {
-                requestComplete.onSignupFirstRequestError("Something Went Wrong!");
+                requestComplete.onRequestError("Something Went Wrong!");
             }
         });
     }

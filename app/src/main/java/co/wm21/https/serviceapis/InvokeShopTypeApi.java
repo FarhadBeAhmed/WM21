@@ -1,17 +1,17 @@
 package co.wm21.https.serviceapis;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ShopTypeModelHead;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnShopTypeRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeShopTypeApi {
-    OnShopTypeRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
-    public InvokeShopTypeApi(String userId, final OnShopTypeRequestComplete requestComplete) {
+    public InvokeShopTypeApi(String userId, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -21,19 +21,19 @@ public class InvokeShopTypeApi {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     if (response.body().getError()==0 || response.body().getError()==2 ) {
-                        requestComplete.onShopTypeRequestComplete(response.body().getData());
+                        requestComplete.onRequestSuccess(response.body().getData());
                     } else {
-                        requestComplete.onShopTypeRequestError(response.body().getErrorReport());
+                        requestComplete.onRequestError(response.body().getErrorReport());
                     }
                 } else {
-                    requestComplete.onShopTypeRequestError("Something Went Wrong!");
+                    requestComplete.onRequestError("Something Went Wrong!");
                 }
 
             }
 
             @Override
             public void onFailure(Call<ShopTypeModelHead> call, Throwable t) {
-                requestComplete.onShopTypeRequestError("Something Went Wrong!");
+                requestComplete.onRequestError("Something Went Wrong!");
             }
         });
     }

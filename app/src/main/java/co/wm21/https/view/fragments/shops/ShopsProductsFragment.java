@@ -21,7 +21,7 @@ import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.R;
 import co.wm21.https.view.adapters.product.ProductView;
 import co.wm21.https.databinding.FragmentShopsProductsBinding;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 
 public class ShopsProductsFragment extends Fragment {
 

@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.LoginModel;
-import co.wm21.https.presenter.interfaces.OnLoginRequestComplete;
 import co.wm21.https.presenter.interfaces.OnLoginView;
 import co.wm21.https.serviceapis.InvokeLoginApi;
 
@@ -14,15 +14,15 @@ public class LoginPresenter {
 
     public void login(String user,String pass) {
         loginView.onLoginStartLoading();
-        new InvokeLoginApi(user,pass, new OnLoginRequestComplete() {
+        new InvokeLoginApi(user,pass, new OnRequestComplete() {
             @Override
-            public void onLoginRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 loginView.onLoginStopLoading();
                 loginView.onLoginDataLoad((LoginModel) obj);
             }
 
             @Override
-            public void onLoginRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 loginView.onLoginStopLoading();
                 loginView.onLoginShowMessage(errMsg);
             }

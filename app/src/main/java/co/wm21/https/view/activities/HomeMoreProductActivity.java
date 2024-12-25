@@ -18,7 +18,7 @@ import co.wm21.https.R;
 import co.wm21.https.view.adapters.PopularCatProductAdapter;
 import co.wm21.https.databinding.ActivityHomeMoreProductBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.presenter.interfaces.OnHomePopularCatProductView;
 import co.wm21.https.presenter.HomePopularCatProductPresenter;
 

@@ -19,7 +19,7 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.wm21.https.R;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.interfaces.OnFranchiseApplicationView;
 import co.wm21.https.presenter.FranchiseApplicationPresenter;

@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.OrderItemModelHead;
-import co.wm21.https.presenter.interfaces.OnOrderItemListRequestComplete;
 import co.wm21.https.presenter.interfaces.OnOrderItemListView;
 import co.wm21.https.serviceapis.InvokeOrderItemListApi;
 
@@ -14,15 +14,15 @@ public class OrderItemListPresenter {
 
     public void orderItemDataLoad(String user_id) {
         orderItemListView.onOrderItemListStartLoading();
-        new InvokeOrderItemListApi(user_id, new OnOrderItemListRequestComplete() {
+        new InvokeOrderItemListApi(user_id, new OnRequestComplete() {
             @Override
-            public void onOrderItemListRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 orderItemListView.onOrderItemListStopLoading();
                 orderItemListView.onOrderItemListDataLoad((OrderItemModelHead) obj);
             }
 
             @Override
-            public void onOrderItemListRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 orderItemListView.onOrderItemListStopLoading();
                 orderItemListView.onOrderItemListShowMessage(errMsg);
             }

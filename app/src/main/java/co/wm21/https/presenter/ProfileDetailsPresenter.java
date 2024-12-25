@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
-import co.wm21.https.presenter.interfaces.OnProfileDetailsRequestComplete;
 import co.wm21.https.presenter.interfaces.OnProfileDetailsView;
 import co.wm21.https.serviceapis.InvokeProfileDetailsApi;
 
@@ -14,15 +14,15 @@ public class ProfileDetailsPresenter {
 
     public void profileDetailsDataLoad(String userId) {
         profileDetailsView.onProfileDetailsStartLoading();
-        new InvokeProfileDetailsApi(userId, new OnProfileDetailsRequestComplete() {
+        new InvokeProfileDetailsApi(userId, new OnRequestComplete() {
             @Override
-            public void onProfileDetailsRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 profileDetailsView.onProfileDetailsStopLoading();
                 profileDetailsView.onProfileDetailsDataLoad((ProfileDetailsHead) obj);
             }
 
             @Override
-            public void onProfileDetailsRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 profileDetailsView.onProfileDetailsStopLoading();
                 profileDetailsView.onProfileDetailsShowMessage(errMsg);
             }

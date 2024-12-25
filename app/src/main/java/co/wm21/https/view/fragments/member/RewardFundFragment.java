@@ -20,7 +20,7 @@ import co.wm21.https.FHelper.networks.Models.RewardFundDataListModel;
 import co.wm21.https.view.adapters.RewardFundAdapter;
 import co.wm21.https.databinding.FragmentRewardFundBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.interfaces.OnRewardFundView;
 import co.wm21.https.presenter.RewardFundPresenter;

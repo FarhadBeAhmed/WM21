@@ -46,7 +46,7 @@ import co.wm21.https.FHelper.networks.Models.SearchModel;
 import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.R;
 import co.wm21.https.view.adapters.SearchAdapter;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.interfaces.RecycleViewItemClickListener;
 import co.wm21.https.presenter.interfaces.SearchSmsCallListener;

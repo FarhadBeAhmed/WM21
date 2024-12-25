@@ -124,18 +124,45 @@
 
             </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/checkOutBtn"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_8sdp"
-                android:background="@drawable/bg_cart_btn"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center"
-                android:text="Checkout"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                tools:ignore="HardcodedText" />
+                android:weightSum="2"
+                android:orientation="horizontal"
+                >
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/keep_shopping"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@drawable/bg_cart_btn2"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="Keep Shopping"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/checkOutBtn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:background="@drawable/bg_cart_btn"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="Checkout"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    tools:ignore="HardcodedText" />
+
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </RelativeLayout>
 

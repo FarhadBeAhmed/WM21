@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.SignupModel;
-import co.wm21.https.presenter.interfaces.OnSignupFirstRequestComplete;
 import co.wm21.https.presenter.interfaces.OnSignupFirstView;
 import co.wm21.https.serviceapis.InvokeSignupFirstApi;
 
@@ -14,15 +14,15 @@ public class SignupFirstPresenter {
 
     public void signupFirstDataLoad(String mobile,String userId) {
         signupFirstView.onSignupFirstStartLoading();
-        new InvokeSignupFirstApi(mobile,userId, new OnSignupFirstRequestComplete() {
+        new InvokeSignupFirstApi(mobile,userId, new OnRequestComplete() {
             @Override
-            public void onSignupFirstRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 signupFirstView.onSignupFirstStopLoading();
                 signupFirstView.onSignupFirstDataLoad((SignupModel) obj);
             }
 
             @Override
-            public void onSignupFirstRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 signupFirstView.onSignupFirstStopLoading();
                 signupFirstView.onSignupFirstShowMessage(errMsg);
             }

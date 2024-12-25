@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
 
     @Override
     public void onCartItemListShowMessage(String errmsg) {
-        Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show();
     }
 
     public static class DrawerMainMenu extends Fragment {

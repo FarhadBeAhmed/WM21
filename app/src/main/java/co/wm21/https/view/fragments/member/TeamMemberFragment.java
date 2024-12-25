@@ -28,7 +28,7 @@ import co.wm21.https.FHelper.networks.Remote.APIService;
 import co.wm21.https.R;
 import co.wm21.https.view.adapters.TeamInfoAdapter;
 import co.wm21.https.databinding.FragmentTeamInfoBinding;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import retrofit2.Call;
 import retrofit2.Callback;

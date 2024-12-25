@@ -43,7 +43,7 @@ import java.sql.Timestamp;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
-import co.wm21.https.FHelper.ImageHelper;
+import co.wm21.https.utils.ImageHelper;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.Remote.APIService;
@@ -51,7 +51,7 @@ import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentProfileBinding;
 import co.wm21.https.utils.dialog.TransientDialog;
 import co.wm21.https.view.fragments.member.ProfileInfoFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.helpers.User;
 import okhttp3.MediaType;

@@ -5,18 +5,18 @@ import com.google.gson.JsonObject;
 import java.util.HashMap;
 
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Remote.APIService;
-import co.wm21.https.presenter.interfaces.OnTrainingRequestFormRequestComplete;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InvokeTrainerRequestApi {
-    OnTrainingRequestFormRequestComplete requestComplete;
+    OnRequestComplete requestComplete;
 
     public InvokeTrainerRequestApi(String userID, String trainingCategory, String title,
                                    String details, String trainer, String charge, String duration, String venue,
-                                   String seats, String targetDate, String division, String district, String thana, final OnTrainingRequestFormRequestComplete requestComplete) {
+                                   String seats, String targetDate, String division, String district, String thana, final OnRequestComplete requestComplete) {
         this.requestComplete = requestComplete;
 
         APIService mApiService = ApiUtils.getApiService();
@@ -28,18 +28,18 @@ public class InvokeTrainerRequestApi {
                         HashMap hashMap = new HashMap();
                         hashMap.put("error", response.body().get("error").getAsInt() + "");
                         hashMap.put("error_report", response.body().get("error_report").getAsString());
-                        requestComplete.onTrainingRequestFormRequestSuccess(hashMap);
+                        requestComplete.onRequestSuccess(hashMap);
                     } else {
-                        requestComplete.onTrainingRequestFormRequestError(response.body().get("error_report").toString());
+                        requestComplete.onRequestError(response.body().get("error_report").toString());
                     }
                 } else {
-                    requestComplete.onTrainingRequestFormRequestError("Something went wrong!");
+                    requestComplete.onRequestError("Something went wrong!");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                requestComplete.onTrainingRequestFormRequestError("Something went wrong!");
+                requestComplete.onRequestError("Something went wrong!");
             }
         });
     }

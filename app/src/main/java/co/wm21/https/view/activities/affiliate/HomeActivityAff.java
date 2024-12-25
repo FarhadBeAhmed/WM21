@@ -34,7 +34,7 @@ import co.wm21.https.view.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.ActivityHomeAffiliateBinding;
 import co.wm21.https.view.fragments.member.FlexiloadFragment;
 import co.wm21.https.view.fragments.member.verifications.VerifyAccountFragment;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.User;
 
 public class HomeActivityAff extends AppCompatActivity {

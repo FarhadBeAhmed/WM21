@@ -23,7 +23,7 @@ import java.util.List;
 import co.wm21.https.FHelper.networks.Models.MemberDetailsListModel;
 import co.wm21.https.R;
 import co.wm21.https.view.adapters.MemberDetailsAdapter;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.interfaces.OnBottomReachedListener;
 import co.wm21.https.presenter.interfaces.OnCustomerCareItemClickListner;

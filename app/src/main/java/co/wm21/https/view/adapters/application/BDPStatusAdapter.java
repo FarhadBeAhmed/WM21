@@ -46,11 +46,11 @@ public class BDPStatusAdapter extends RecyclerView.Adapter<BDPStatusAdapter.MyVi
     public void onBindViewHolder(@NonNull BDPStatusAdapter.MyViewHolder holder, int position) {
         BDPStatusData iModel = iList.get(position);
 
-        holder.userId.setText(iModel.getUser()+" ("+iModel.getId()+")");
-        holder.purchaseAmount.setText(iModel.getAmount());
-        holder.unit.setText(iModel.getUnite());
-        holder.date.setText(iModel.getDate());
-        if (iModel.getApprove().equals("1")){
+        holder.userId.setText(iModel.user +" ("+ iModel.id +")");
+        holder.purchaseAmount.setText(iModel.amount);
+        holder.unit.setText(iModel.unite);
+        holder.date.setText(iModel.date);
+        if (iModel.approve.equals("1")){
             holder.approve.setText("Approved");
             holder.approve.setTextColor(Color.GREEN);
 
@@ -58,7 +58,7 @@ public class BDPStatusAdapter extends RecyclerView.Adapter<BDPStatusAdapter.MyVi
             holder.approve.setText("Denied");
             holder.approve.setTextColor(Color.RED);
         }
-        if (iModel.getPaid().equals("1")){
+        if (iModel.paid.equals("1")){
             holder.paid.setText("Success");
             holder.paid.setTextColor(Color.GREEN);
 

@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 import co.wm21.https.R;
 import co.wm21.https.view.adapters.product.ProductView;
 import co.wm21.https.view.activities.ProductDetailsActivity;
-import co.wm21.https.helpers.Constant;
+import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.SessionHandler;
 
 public class HotDealAdapter extends RecyclerView.Adapter<HotDealAdapter.HotDealViewHolder> {

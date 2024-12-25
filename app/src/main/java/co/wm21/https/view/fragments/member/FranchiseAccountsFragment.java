@@ -21,7 +21,7 @@ import co.wm21.https.FHelper.networks.Models.FranchiseAccountDataListModel;
 import co.wm21.https.view.adapters.FranchiseAccountCommissionAdapter;
 import co.wm21.https.databinding.FragmentFranchiseAccountsBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.interfaces.OnBottomReachedListener;
 import co.wm21.https.presenter.interfaces.OnFranchiseAccountView;

@@ -1,7 +1,7 @@
 package co.wm21.https.presenter;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ShopTypeModel;
-import co.wm21.https.presenter.interfaces.OnShopTypeRequestComplete;
 import co.wm21.https.presenter.interfaces.OnShopTypeView;
 import co.wm21.https.serviceapis.InvokeShopTypeApi;
 
@@ -14,15 +14,15 @@ public class ShopTypePresenter {
 
     public void shopTypeDataLoad(String userId) {
         shopTypeView.onShopTypeStartLoading();
-        new InvokeShopTypeApi(userId, new OnShopTypeRequestComplete() {
+        new InvokeShopTypeApi(userId, new OnRequestComplete() {
             @Override
-            public void onShopTypeRequestComplete(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 shopTypeView.onShopTypeStopLoading();
                 shopTypeView.onShopTypeDataLoad((ShopTypeModel) obj);
             }
 
             @Override
-            public void onShopTypeRequestError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 shopTypeView.onShopTypeStopLoading();
                 shopTypeView.onShopTypeShowMessage(errMsg);
             }

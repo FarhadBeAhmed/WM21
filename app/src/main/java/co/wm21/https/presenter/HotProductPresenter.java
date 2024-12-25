@@ -2,8 +2,8 @@ package co.wm21.https.presenter;
 
 import java.util.List;
 
+import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
-import co.wm21.https.presenter.interfaces.OnHotProductRequestComplete;
 import co.wm21.https.presenter.interfaces.OnHotProductView;
 import co.wm21.https.serviceapis.InvokeHotProductApi;
 
@@ -15,15 +15,15 @@ public class HotProductPresenter {
     }
     public void getHotProduct(int value){
         onHotProductView.onHotProductStartLoading();
-        new InvokeHotProductApi(value, new OnHotProductRequestComplete() {
+        new InvokeHotProductApi(value, new OnRequestComplete() {
             @Override
-            public void onHotProductSuccess(Object obj) {
+            public void onRequestSuccess(Object obj) {
                 onHotProductView.onHotProductStopLoading();
                 onHotProductView.onHotProductDataLoaded((List<ProductModel>)obj);
             }
 
             @Override
-            public void onHotProductError(String errMsg) {
+            public void onRequestError(String errMsg) {
                 onHotProductView.onHotProductStopLoading();
                 onHotProductView.onHotProductShowMessage(errMsg);
             }

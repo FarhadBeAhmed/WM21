@@ -24,7 +24,7 @@ import co.wm21.https.FHelper.networks.Models.transaction.WithdrawalHistoryRespon
 import co.wm21.https.view.adapters.WithdrawalHistoryAdapter;
 import co.wm21.https.databinding.FragmentWithdrawalBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
-import co.wm21.https.helpers.CheckInternetConnection;
+import co.wm21.https.utils.CheckInternetConnection;
 import co.wm21.https.helpers.User;
 import co.wm21.https.presenter.interfaces.transaction.OnWithdrawalHistoryView;
 import co.wm21.https.presenter.transaction.WithdrawalHistoryPresenter;
