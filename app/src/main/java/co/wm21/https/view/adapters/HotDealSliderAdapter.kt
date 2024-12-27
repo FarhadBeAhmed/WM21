@@ -130,8 +130,8 @@ class HotDealSliderAdapter : SliderViewAdapter<HotDealSliderAdapter.HotDealViewH
         }
         holder.shopName.text = "(" + product!!.uploadBy + ")"
 
-        val discount = product!!.discount.toDouble()
-        val price = product!!.price.toDouble()
+        val discount = product!!.discount?.toDouble()?:0.0
+        val price = product!!.price?.toDouble()?:0.0
         if (discount != 0.0) {
             holder.offerLayout.visibility = View.VISIBLE
             val dis = Math.round((discount / price) * 100).toDouble()
@@ -149,7 +149,7 @@ class HotDealSliderAdapter : SliderViewAdapter<HotDealSliderAdapter.HotDealViewH
                 .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
                 .into(holder.productImage);*/
-        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product!!.getImg()) {
+        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product!!.img) {
             decoderFactory(SvgDecoder.Factory()) // Corrected method
         }
 

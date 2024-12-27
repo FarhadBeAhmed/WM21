@@ -38,7 +38,7 @@ class BDPStatusFragment : Fragment(), OnBDPStatusView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBDPBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         appSessionManager = SessionHandler(activity)
@@ -78,6 +78,7 @@ class BDPStatusFragment : Fragment(), OnBDPStatusView {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBDPStatusDataLoad(response: BDPStatusResponse) {
         listData.clear()
         response.data?.let { listData.addAll(it) }

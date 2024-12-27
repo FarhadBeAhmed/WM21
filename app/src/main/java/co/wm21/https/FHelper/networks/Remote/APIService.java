@@ -30,6 +30,7 @@ import co.wm21.https.FHelper.networks.Models.IncomeBalaceReportDataModel;
 import co.wm21.https.FHelper.networks.Models.MemberDetailsModel;
 import co.wm21.https.FHelper.networks.Models.MyFranchiseDataModel;
 import co.wm21.https.FHelper.networks.Models.PremierShopResponseModel;
+import co.wm21.https.FHelper.networks.Models.PremierShopViewResponse;
 import co.wm21.https.FHelper.networks.Models.ProductDetailsHead;
 import co.wm21.https.FHelper.networks.Models.ProductReviewModelHead;
 import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
@@ -124,7 +125,7 @@ public interface APIService {
 
 
     @POST("apps/genealogy_list.php")
-    //@FormUrlEncoded
+        //@FormUrlEncoded
     Call<GenealogyListResponse> getGenealogyList(@Body JsonObject user_id);
 
     @POST("apps/withdrawHistory.php")
@@ -523,6 +524,12 @@ public interface APIService {
     @POST("apps/premierShop.php")
         //@FormUrlEncoded
     Call<PremierShopResponseModel> getPremierShopResponse(@Body JsonObject user_id);
+
+
+    @POST("apps/premierShopDetails.php")
+        //@FormUrlEncoded
+    Call<PremierShopViewResponse> getPremierShopViewResponse(
+            @Body JsonObject request);
 
 
 }

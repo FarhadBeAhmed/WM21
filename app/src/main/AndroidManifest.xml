@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WM21">
         <activity
+            android:name=".view.activities.PremierShopViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.mlm.ApplicationActivity"
             android:exported="false" />
         <activity

@@ -107,7 +107,7 @@ class PopularCatProductAdapter : RecyclerView.Adapter<PopularCatProductAdapter.P
                 .into(holder.productImage);*/
 
 
-        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.getImg()){
+        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
         }
 

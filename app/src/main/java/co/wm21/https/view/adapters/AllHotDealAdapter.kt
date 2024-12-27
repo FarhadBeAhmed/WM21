@@ -60,15 +60,15 @@ class AllHotDealAdapter(
             holder.eshopTV.visibility = View.VISIBLE
         }
         holder.shopName.text = "(" + product.uploadBy + ")"
-        if (product.discount.toInt() != 0) {
+        if ((product.discount?.toInt() ?: 0) != 0) {
             holder.offerLayout.visibility = View.VISIBLE
-            val dis = Math.round((product.discount.toDouble() / product.price.toDouble()) * 100)
+            val dis = Math.round(((product.discount?.toDouble()?:0.0) / (product.price?.toDouble()!! ?:0.0)) * 100)
                 .toDouble()
             holder.offerPercent.text = String.format("%s", dis)
         } else {
             holder.offerLayout.visibility = View.GONE
         }
-        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.getImg()){
+        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
         }
 

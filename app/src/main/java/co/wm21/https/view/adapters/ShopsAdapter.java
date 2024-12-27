@@ -28,7 +28,6 @@ import java.util.List;
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.view.activities.MainActivity;
 import co.wm21.https.databinding.LayoutItemPremiumShopBinding;
-import co.wm21.https.view.fragments.shops.ShopsProductsFragment;
 import co.wm21.https.model.ShopsModel;
 
 public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.viewHolder> implements Filterable {
@@ -66,7 +65,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.viewHolder> 
         String address = shopsModel.getUnion() + "," + shopsModel.getThana() + "," + shopsModel.getDistrict();
         holder.address.setText(shopsModel.getUnion() + "," + shopsModel.getThana() + "," + shopsModel.getDistrict());
         holder.mobile.setText(shopsModel.getMobile());
-        holder.productsButton.setOnClickListener(view -> {
+        /*holder.productsButton.setOnClickListener(view -> {
             ShopsProductsFragment shopsProductsFragment = new ShopsProductsFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(ConstantValues.admin_login.SHOP_ID, Integer.parseInt(shopsModel.getShop_id()));
@@ -80,7 +79,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.viewHolder> 
 
             switchFragment(shopsProductsFragment, "ShopsProductsFragment");
 
-        });
+        });*/
 
 
     }

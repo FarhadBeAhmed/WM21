@@ -39,6 +39,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
@@ -244,8 +245,10 @@ public class MainActivity extends AppCompatActivity  implements OnCartItemListVi
 
         Intent intent = getIntent();
         if (getIntent().getExtras() != null) {
-            if (intent.getStringExtra("fromCart").equals("cart"))
+            if (Objects.equals(intent.getStringExtra("fromCart"), "cart")){
                 switchFragment(new CartFragment(), "CartFragment");
+            }
+
         } else switchFragment(new HomeFragment(), "HomeFragment");
 
     }

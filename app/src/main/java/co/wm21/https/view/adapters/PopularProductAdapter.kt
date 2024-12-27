@@ -67,8 +67,8 @@ class PopularProductAdapter(
             holder.rpLayout.visibility = View.GONE
             holder.eshopTV.visibility = View.VISIBLE
         }
-        val discount = product.discount.toDouble()
-        val sPrice = product.sprice.toDouble()
+        val discount = product.discount?.toDouble()?:0.0
+        val sPrice = product.sprice?.toDouble()?:0.0
 
         if (Math.round(discount / sPrice * 100) > .49) {
             holder.disLayout.visibility = View.VISIBLE
@@ -80,7 +80,7 @@ class PopularProductAdapter(
         holder.previousPrice.text = String.format("৳ %s", product.price)
         holder.productPrice.text = String.format("৳ %s", product.sprice)
 
-        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.getImg()){
+        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
         }
         // holder.productImage.setImageDrawable(product.getImage());
@@ -208,6 +208,6 @@ class PopularProductAdapter(
     }
 
     override fun onAddToCartShowMessage(errmsg: String) {
-        Toast.makeText(context, errmsg, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, errmsg, Toast.LENGTH_SHORT).show()
     }
 }

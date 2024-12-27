@@ -272,7 +272,7 @@ public class ProductDetailsActivity_old extends AppCompatActivity implements OnP
         productReviewAdapter= new ProductReviewAdapter(this, productReviewModelArrayList, R.layout.item_product_review);
         binding.reviewRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         binding.reviewRecView.setAdapter(productReviewAdapter);
-        String id=productView.getSerial();
+        String id= productView.getSerial();
         productReviewListPresenter.ProductReviewDataLoad(id);
 
 
@@ -308,7 +308,7 @@ public class ProductDetailsActivity_old extends AppCompatActivity implements OnP
             String reviewTxt = review.getEditText().getText().toString();
             if (ratingBar2.getRating() > 0) {
                                                                                             //need product ID
-              ratingSubmitPresenter.onRatingSubmitResponse(sessionHandler.getUserDetails().getUsername(),productView.getSerial(),String.valueOf(ratingBar2.getRating()),reviewTxt);
+              ratingSubmitPresenter.onRatingSubmitResponse(sessionHandler.getUserDetails().getUsername(), productView.getSerial(),String.valueOf(ratingBar2.getRating()),reviewTxt);
             } else {
                 Toast.makeText(ProductDetailsActivity_old.this, "Rating Shouldn't be empty", Toast.LENGTH_SHORT).show();
             }
