@@ -48,6 +48,8 @@ dependencies {
     implementation 'androidx.activity:activity:1.9.3'
     implementation 'androidx.palette:palette:1.0.0'
     implementation 'com.google.android.gms:play-services-analytics-impl:18.2.0'
+    implementation 'com.google.mlkit:barcode-scanning-common:17.0.0'
+    implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.1'
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
@@ -123,6 +125,11 @@ dependencies {
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1'
+
+
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.0'
+
+
 
 
 

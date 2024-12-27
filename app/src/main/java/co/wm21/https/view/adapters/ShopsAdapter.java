@@ -2,7 +2,6 @@ package co.wm21.https.view.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -26,9 +25,9 @@ import java.util.Collection;
 import java.util.List;
 
 import co.wm21.https.FHelper.ConstantValues;
-import co.wm21.https.view.activities.MainActivity;
 import co.wm21.https.databinding.LayoutItemPremiumShopBinding;
 import co.wm21.https.model.ShopsModel;
+import co.wm21.https.view.activities.MainActivity;
 
 public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.viewHolder> implements Filterable {
     ArrayList<ShopsModel> shopsModelsList;
@@ -65,21 +64,6 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.viewHolder> 
         String address = shopsModel.getUnion() + "," + shopsModel.getThana() + "," + shopsModel.getDistrict();
         holder.address.setText(shopsModel.getUnion() + "," + shopsModel.getThana() + "," + shopsModel.getDistrict());
         holder.mobile.setText(shopsModel.getMobile());
-        /*holder.productsButton.setOnClickListener(view -> {
-            ShopsProductsFragment shopsProductsFragment = new ShopsProductsFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt(ConstantValues.admin_login.SHOP_ID, Integer.parseInt(shopsModel.getShop_id()));
-            bundle.putInt(ConstantValues.admin_login.TYPE_ID, shopsModel.getType_id());
-            bundle.putString(ConstantValues.admin_login.MOBILE, shopsModel.getMobile());
-            bundle.putString(ConstantValues.admin_login.SHOP_TYPE, shopsModel.getType_name());
-            bundle.putString(ConstantValues.admin_login.IMAGE, shopsModel.getImg());
-            bundle.putString(ConstantValues.admin_login.PHOTO, shopsModel.getPhoto());
-            bundle.putString(ConstantValues.admin_login.ADDRESS, address);
-            shopsProductsFragment.setArguments(bundle);
-
-            switchFragment(shopsProductsFragment, "ShopsProductsFragment");
-
-        });*/
 
 
     }

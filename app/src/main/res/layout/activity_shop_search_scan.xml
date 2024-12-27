@@ -33,45 +33,26 @@
             />
 
     </RelativeLayout>
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:layout_height="match_parent">
+
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/scanner_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/scannerId"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            >
-            <LinearLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_qr_code_scanner_24"
-                    android:padding="@dimen/_20sdp"
-                    />
-            </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Scan shop's QR code for first search"
-                android:gravity="center"
-                android:textSize="@dimen/_16ssp"
-                android:textColor="#FE0000"
-                android:fontFamily="@font/poppins_medium"
-                />
-
-        </LinearLayout>
-    </RelativeLayout>
+            app:autoFocusButtonColor="@android:color/white"
+            app:autoFocusButtonVisible="true"
+            app:flashButtonColor="@android:color/white"
+            app:flashButtonVisible="true"
+            app:frameColor="@android:color/white"
+            app:frameCornersSize="50dp"
+            app:frameCornersRadius="0dp"
+            app:frameAspectRatioWidth="1"
+            app:frameAspectRatioHeight="1"
+            app:frameSize="0.75"
+            app:frameThickness="2dp"
+            app:frameVerticalBias="0.5"
+            app:maskColor="#77000000"/>
+    </FrameLayout>
 </LinearLayout>

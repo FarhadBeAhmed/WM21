@@ -580,32 +580,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
 
 
 
-          /*  MySingleton.getInstance(getContext()).addToRequestQueue(api.slide(response -> {
-                try {
-                    JSONArray array = response.getJSONArray("slides");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject json = array.getJSONObject(i);
-                        json.getString(Constant.Slide.INFO);
-                        sliderItemList.add(i,
-                                new SliderItem(
-                                        json.getString(Constant.Slide.IMAGE),
-                                        json.getString(Constant.Slide.INFO)
-                                ));
 
-                    }
-                    sliderAdapter.renewItems(sliderItemList);
-                    binding.imageSlider.setSliderAdapter(sliderAdapter);
-                    binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-                    binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-                    binding.imageSlider.startAutoCycle();
-                    binding.shimmerImageSlider.setVisibility(View.GONE);
-                    binding.imageSlider.setVisibility(View.VISIBLE);
-                    getAllShops();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }));*/
 
             String[] allShops = {"Tele Shop", "Showroom", "Mission Bazar", "Premier Shop", "BrandShop", "Vendor"};
             binding.shopsView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, allShops));
