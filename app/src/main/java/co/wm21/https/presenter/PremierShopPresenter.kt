@@ -11,9 +11,9 @@ import co.wm21.https.serviceapis.InvokeRewardAchievementApi
 
 
 class PremierShopPresenter(var mView: OnPremierShopView) {
-    fun onPremierShopResponseData(userID: String?) {
+    fun onPremierShopResponseData(userID: String?,shopId: String?) {
         mView.onStartLoading()
-        InvokePremierShopApi(userID, object : OnRequestComplete {
+        InvokePremierShopApi(userID,shopId, object : OnRequestComplete {
             override fun onRequestSuccess(obj: Any) {
                 mView.onStopLoading()
                 mView.onPremierShopDataLoadSuccess(obj as PremierShopResponseModel)

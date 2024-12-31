@@ -43,7 +43,7 @@
                 
 
                 <com.chaos.view.PinView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/pinView"
                     style="@style/PinWidget.PinView"
                     android:layout_width="wrap_content"
@@ -95,26 +95,24 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeWidth="1dp"
-                    app:boxStrokeWidthFocused=".5dp"
-                    android:background="@drawable/bg_login_btn"
-                    app:boxCornerRadiusTopStart="10dp"
-                    android:paddingVertical="5dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    android:layout_marginVertical="10dp">
+                    android:hint="Country"
+                    android:paddingBottom="5dp"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeWidth="1.5dp">
 
                     <AutoCompleteTextView
                         android:id="@+id/selectCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Country"
                         android:inputType="none"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_marginTop="5dp"
                         android:paddingVertical="16dp"
                         android:paddingStart="20dp"
@@ -130,7 +128,8 @@
                     android:paddingVertical="3dp"
                     app:boxCornerRadiusTopEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"                    android:layout_width="match_parent"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:visibility="gone">
@@ -174,7 +173,7 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused=".5dp"
-                    android:background="@drawable/bg_login_btn"
+
                     app:boxCornerRadiusTopStart="10dp"
                     android:paddingVertical="5dp"
                     app:boxCornerRadiusTopEnd="10dp"

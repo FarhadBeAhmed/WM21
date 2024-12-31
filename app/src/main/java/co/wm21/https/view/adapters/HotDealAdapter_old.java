@@ -29,12 +29,12 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import co.wm21.https.R;
-import co.wm21.https.view.adapters.product.ProductView;
-import co.wm21.https.view.activities.ProductDetailsActivity;
-import co.wm21.https.utils.Constant;
 import co.wm21.https.helpers.SessionHandler;
+import co.wm21.https.utils.Constant;
+import co.wm21.https.view.activities.ProductDetailsActivity;
+import co.wm21.https.view.adapters.product.ProductView;
 
-public class HotDealAdapter extends RecyclerView.Adapter<HotDealAdapter.HotDealViewHolder> {
+public class HotDealAdapter_old extends RecyclerView.Adapter<HotDealAdapter_old.HotDealViewHolder> {
     Context context;
     public List<ProductView> productList;
     private final LayoutInflater mInflater;
@@ -47,14 +47,14 @@ public class HotDealAdapter extends RecyclerView.Adapter<HotDealAdapter.HotDealV
 
     ProgressDialog progressBar;
 
-    public HotDealAdapter(Context context, List<ProductView> productList, int itemRes) {
+    public HotDealAdapter_old(Context context, List<ProductView> productList, int itemRes) {
         this.context = context;
         this.productList = productList;
         this.itemRes = itemRes;
         mInflater = LayoutInflater.from(context);
     }
 
-    public HotDealAdapter(Context context, List<ProductView> productList, int itemRes, ViewPager2 viewPager2) {
+    public HotDealAdapter_old(Context context, List<ProductView> productList, int itemRes, ViewPager2 viewPager2) {
         this.context = context;
         this.productList = productList;
         this.viewPager2 = viewPager2;
@@ -164,7 +164,7 @@ public class HotDealAdapter extends RecyclerView.Adapter<HotDealAdapter.HotDealV
         this.listener = listener;
     }
 
-    public HotDealAdapter addOnClickListener(ItemClickListener listener) {
+    public HotDealAdapter_old addOnClickListener(ItemClickListener listener) {
         this.listener = listener;
         return this;
     }

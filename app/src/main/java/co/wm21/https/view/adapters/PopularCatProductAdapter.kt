@@ -96,35 +96,16 @@ class PopularCatProductAdapter : RecyclerView.Adapter<PopularCatProductAdapter.P
         }
         holder.shopName.text = "(" + product.uploadBy + ")"
         holder.productName.text = product.name
-        holder.previousPrice.text = String.format("৳ %s", product.price)
-        holder.productPrice.text = String.format("৳ %s", product.sprice)
+        holder.previousPrice.text = String.format("৳ %s", product.sprice)
+        holder.productPrice.text = String.format("৳ %s", product.price)
 
-        // holder.productImage.setImageDrawable(product.getImage());
-        //Picasso.get().load(ConstantValues.URL+"image/product/small/"+product.getImg()).into(holder.productImage);
-        /*Picasso.get()
-                .load(ConstantValues.URL + "image/product/small/" + product.getImg())
-                .placeholder(R.drawable.ic_image_temp) // Replace with your placeholder image resource
-                .into(holder.productImage);*/
 
 
         holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
         }
 
-     /*   Glide.with(context)
-            .asDrawable()
-            .load(ConstantValues.URL + "image/product/small/" + product.img) // SVG URL
-            .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
-            .into(holder.productImage)*/
 
-        /* ImageLoaderHelper.loadImage(
-                context,                 // Context (Activity or Application)
-                holder.productImage,            // ImageView where the image will be loaded
-                ConstantValues.URL + "image/product/small/" + product.getImg(),             // Image URL
-                R.drawable.ic_image_temp,     // Placeholder image
-                R.drawable.ic_information           // Error image
-        );*/
         holder.btnAddToCart.setOnClickListener { view: View? ->
             addToCartPresenter = AddToCartPresenter(this)
             loadingDialog = if (temp == 1) {

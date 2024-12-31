@@ -48,26 +48,7 @@
                     android:padding="6dp"
                     android:src="@drawable/ic_heart_outline"
                     app:tint="@color/primary_red" />
-                <RelativeLayout
-                    android:id="@+id/disLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="6dp"
-                    android:background="@color/light_red"
-                    android:src="@drawable/ic_heart_outline"
-                    app:tint="@color/primary_red" >
-                    <TextView
-                        android:id="@+id/disText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="100% OFF"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_9ssp"
-                        />
 
-                </RelativeLayout>
 
                 <LinearLayout
                     android:visibility="gone"

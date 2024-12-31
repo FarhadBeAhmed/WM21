@@ -103,8 +103,17 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>, O
         }
         holder.shopName.text = "(" + product.uploadBy + ")"
         holder.productName.text = product.name
-        holder.previousPrice.text = String.format("৳ %s", product.price)
+        holder.previousPrice.text = String.format("৳ %s", product.sprice)
         holder.productPrice.text = String.format("৳ %s", product.price)
+        if ((product.discount?.toInt() ?: 0) != 0) {
+            holder.offerLayout.visibility = View.VISIBLE
+            val dis = Math.round(((product.discount?.toDouble()?:0.0) / (product.price?.toDouble()!! ?:0.0)) * 100)
+                .toDouble()
+            holder.discount.text = String.format("%s", dis)
+        } else {
+            holder.offerLayout.visibility = View.GONE
+        }
+
         // holder.productImage.setImageDrawable(product.getImage());
         holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
@@ -200,6 +209,8 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>, O
         var productRPTV: TextView = itemView.findViewById(R.id.productRP)
         var shopName: TextView = itemView.findViewById(R.id.shopNameTV)
         var eshopTV: TextView = itemView.findViewById(R.id.eshopTV)
+        var discount: TextView = itemView.findViewById(R.id.offerPercent)
+        var offerLayout: LinearLayout = itemView.findViewById(R.id.offerLayout)
         var productRPLayout: LinearLayout = itemView.findViewById(R.id.productRPLayout)
         var rpLayout: LinearLayout = itemView.findViewById(R.id.rpLayout)
 

@@ -46,6 +46,8 @@ public class LoginFragment extends Fragment implements OnLoginView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
 
+
+        binding.username.setHint("User id");
         User = new User(getContext());
         loginPresenter=new LoginPresenter(this);
         loadingDialog=new LoadingDialog(getActivity());

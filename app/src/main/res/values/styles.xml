@@ -1,11 +1,12 @@
 <resources>
-
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary_red</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/primary_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="android:textColorHint">@color/gray</item>
     </style>
     <style name="Widget.Theme.WM21.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WM21" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.WM21" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_red</item>
@@ -15,7 +15,7 @@
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
 
         <!-- Splash Screen. -->
         <item name="windowActionBar">false</item>
@@ -29,9 +29,12 @@
         <item name="android:colorBackground">@color/background_color</item>
         <item name="iconColor">@color/white</item>
 
+
+
         <item name="android:textColorHint">@color/gray</item> <!-- Hint color for dark mode -->
         <item name="backgroundColor">@color/background_color</item>
         <item name="textColor">@color/text_color</item>
+
 
     </style>
 

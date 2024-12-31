@@ -100,6 +100,7 @@ class PremierShopsAdapter(
             return FilterResults().apply { values = filterList }
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Suppress("UNCHECKED_CAST")
         override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
             shopsModelsList.clear()

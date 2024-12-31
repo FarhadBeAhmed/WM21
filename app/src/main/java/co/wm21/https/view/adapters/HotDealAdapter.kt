@@ -2,6 +2,7 @@ package co.wm21.https.view.adapters
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
@@ -15,71 +16,79 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import co.wm21.https.FHelper.ConstantValues
-import co.wm21.https.FHelper.networks.Models.ProductModel
 import co.wm21.https.R
 import co.wm21.https.helpers.SessionHandler
 import co.wm21.https.utils.Constant
 import co.wm21.https.view.activities.ProductDetailsActivity
-import coil.decode.SvgDecoder
-import coil.load
+import co.wm21.https.view.adapters.product.ProductView
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-class AllHotDealAdapter(
-    var context: Context,
-    var productList: List<ProductModel>,
-    @field:LayoutRes var itemRes: Int
-) : RecyclerView.Adapter<AllHotDealAdapter.viewHolder>() {
-    private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    var listener: ItemClickListener? = null
-    var sessionHandler: SessionHandler? = null
-    var pos: Int = 0
+class HotDealAdapter : RecyclerView.Adapter<HotDealAdapter.HotDealViewHolder> {
+    var context: Context
+    var productList: MutableList<ProductView> = mutableListOf()
+    private val mInflater: LayoutInflater
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        return viewHolder(mInflater.inflate(itemRes, parent, false))
+    @LayoutRes
+    var itemRes: Int
+    var listener: ItemClickListener? = null
+    var pos: Int = 0
+    var sessionHandler: SessionHandler? = null
+    var viewPager2: ViewPager2? = null
+
+    var progressBar: ProgressDialog? = null
+
+    constructor(context: Context, productList: MutableList<ProductView>, itemRes: Int) {
+        this.context = context
+        this.productList = productList
+        this.itemRes = itemRes
+        mInflater = LayoutInflater.from(context)
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: viewHolder, @SuppressLint("RecyclerView") position: Int) {
-        sessionHandler = SessionHandler(context)
+    constructor(
+        context: Context,
+        productList: MutableList<ProductView>,
+        itemRes: Int,
+        viewPager2: ViewPager2?
+    ) {
+        this.context = context
+        this.productList = productList
+        this.viewPager2 = viewPager2
+        this.itemRes = itemRes
+        mInflater = LayoutInflater.from(context)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotDealViewHolder {
+        return HotDealViewHolder(mInflater.inflate(itemRes, parent, false))
+    }
+
+    override fun onBindViewHolder(
+        holder: HotDealViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         pos = position
         val product = productList[position]
-        holder.productName.text = product.name
-        holder.previousPrice.text = String.format("৳ %s", product.sprice)
-        holder.productPrice.text = String.format("৳ %s", product.price)
-        if (sessionHandler!!.isLoggedIn) {
-            holder.rpLayout.visibility = View.VISIBLE
-            holder.eshopTV.visibility = View.GONE
-            holder.productRPTV.text = String.format("%s", product.point)
-        } else {
-            holder.rpLayout.visibility = View.GONE
-            holder.eshopTV.visibility = View.VISIBLE
-        }
-        holder.shopName.text = "(" + product.uploadBy + ")"
-        if ((product.discount?.toInt() ?: 0) != 0) {
-            holder.offerLayout.visibility = View.VISIBLE
-            val dis = Math.round(((product.discount?.toDouble()?:0.0) / (product.price?.toDouble()!! ?:0.0)) * 100)
-                .toDouble()
-            holder.offerPercent.text = String.format("%s", dis)
-        } else {
-            holder.offerLayout.visibility = View.GONE
-        }
-        holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
-            decoderFactory(SvgDecoder.Factory())
-        }
+        holder.productName.text = product.productName
+        holder.previousPrice.text = String.format("৳ %s", product.price)
+        holder.productPrice.text = String.format("৳ %s", product.currentPrice)
 
-        //holder.productImage.setImageDrawable(product.getImg());
+
+        holder.productImage.setImageDrawable(product.image)
+
         holder.button.setOnClickListener { view: View? ->
             context.startActivity(
-                Intent(
-                    context, ProductDetailsActivity::class.java
-                )
+                Intent(context, ProductDetailsActivity::class.java)
                     .putExtra(ConstantValues.Product.PARCEL, productList[position])
             )
+        }
+
+        if (position == productList.size - 2) {
+            viewPager2!!.post(runnable)
         }
 
         //Calendar currentDate = Calendar.getInstance();
@@ -92,7 +101,7 @@ class AllHotDealAdapter(
         val currentDate = simpleDateFormat.format(c)
         try {
             val date1 = simpleDateFormat.parse(currentDate)
-            val date2 = simpleDateFormat.parse(product.offerDate.toString())
+            val date2 = simpleDateFormat.parse(product.offer_date.toString())
             val today = Calendar.getInstance()
             val offerDate = Calendar.getInstance()
 
@@ -102,13 +111,13 @@ class AllHotDealAdapter(
                 offerDate.time = date2
 
                 val different = offerDate.timeInMillis - today.timeInMillis
-                if (different >= 0) {
+                if (different > 0) {
                     holder.expiredDate.visibility = View.GONE
                     holder.hasDate.visibility = View.VISIBLE
                     object : CountDownTimer(different, 1000) {
                         override fun onTick(l: Long) {
                             (context as Activity).runOnUiThread {
-                                //change View Data
+                                //chang
                                 val days = TimeUnit.MILLISECONDS.toDays(l)
                                 val hours =
                                     (TimeUnit.MILLISECONDS.toHours(l) - TimeUnit.DAYS.toHours(days))
@@ -153,6 +162,7 @@ class AllHotDealAdapter(
         }
     }
 
+
     override fun getItemCount(): Int {
         return productList.size
     }
@@ -161,31 +171,28 @@ class AllHotDealAdapter(
         this.listener = listener
     }
 
-    fun addOnClickListener(listener: ItemClickListener?): AllHotDealAdapter {
+    fun addOnClickListener(listener: ItemClickListener?): HotDealAdapter {
         this.listener = listener
         return this
     }
 
-    inner class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotDealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productImage: ImageView = itemView.findViewById(R.id.h_productImage)
         var productName: TextView = itemView.findViewById(R.id.h_productName)
         var productPrice: TextView = itemView.findViewById(R.id.h_productPrice)
         var previousPrice: TextView = itemView.findViewById(R.id.h_previousPrice)
         var btnAddToCart: TextView = itemView.findViewById(R.id.h_addToCart)
-        var productRPTV: TextView = itemView.findViewById(R.id.productRP)
-        var shopName: TextView = itemView.findViewById(R.id.shopNameTV)
-        var eshopTV: TextView = itemView.findViewById(R.id.eshopTV)
-        var productRPLayout: LinearLayout = itemView.findViewById(R.id.productRPLayout)
         var day: TextView = itemView.findViewById(R.id.daysId)
         var hour: TextView = itemView.findViewById(R.id.hourId)
         var min: TextView = itemView.findViewById(R.id.minID)
         var sec: TextView? = null
         var offerPercent: TextView = itemView.findViewById(R.id.offerPercent)
         var button: RelativeLayout = itemView.findViewById(R.id.h_prButton)
+
+        //  sec = itemView.findViewById(R.id.secID);
         var hasDate: LinearLayout = itemView.findViewById(R.id.hasDates)
         var expiredDate: LinearLayout = itemView.findViewById(R.id.dateExpired)
-        var offerLayout: LinearLayout = itemView.findViewById(R.id.offerLayout)
-        var rpLayout: LinearLayout = itemView.findViewById(R.id.rpLayout)
+
 
         init {
             previousPrice.paintFlags = previousPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -196,5 +203,10 @@ class AllHotDealAdapter(
                 )
             }
         }
+    }
+
+    private val runnable = Runnable {
+        productList.addAll(productList)
+        notifyDataSetChanged()
     }
 }

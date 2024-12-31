@@ -1,5 +1,7 @@
 package co.wm21.https.serviceapis;
 
+import android.util.Log;
+
 import co.wm21.https.FHelper.networks.ApiUtil.ApiUtils;
 import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
 import co.wm21.https.FHelper.networks.Models.HomeCategoryHead;
@@ -32,7 +34,7 @@ public class InvokeHomeCategoryApi {
 
             @Override
             public void onFailure(Call<HomeCategoryHead> call, Throwable t) {
-
+                Log.d("TAG", "onFailure: "+t.getMessage());
             }
         });
     }

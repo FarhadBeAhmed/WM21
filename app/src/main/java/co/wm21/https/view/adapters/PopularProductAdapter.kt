@@ -72,38 +72,18 @@ class PopularProductAdapter(
 
         if (Math.round(discount / sPrice * 100) > .49) {
             holder.disLayout.visibility = View.VISIBLE
-            holder.discountText.text = Math.round(discount / sPrice * 100).toString() + "% OFF"
+            holder.discountText.text = Math.round(discount / sPrice * 100).toString()
         }
 
         holder.shopName.text = "(" + product.uploadBy + ")"
         holder.productName.text = product.name
-        holder.previousPrice.text = String.format("৳ %s", product.price)
-        holder.productPrice.text = String.format("৳ %s", product.sprice)
+        holder.previousPrice.text = String.format("৳ %s", product.sprice)
+        holder.productPrice.text = String.format("৳ %s", product.price)
 
         holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img){
             decoderFactory(SvgDecoder.Factory())
         }
-        // holder.productImage.setImageDrawable(product.getImage());
-        // Picasso.get().load(ConstantValues.URL+"image/product/small/"+product.getImg()).into(holder.productImage);
 
-
-        // Enqueue the request
-        //  imageLoader.enqueue(request);
-
-        /* Glide.with(context)
-                .asDrawable()
-                .load(ConstantValues.URL + "image/product/small/" + product.getImg())  // SVG URL
-                .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
-                .into(holder.productImage);*/
-
-        /*  ImageLoaderHelper.loadImage(
-                context,                 // Context (Activity or Application)
-                holder.productImage,            // ImageView where the image will be loaded
-                ConstantValues.URL + "image/product/small/" + product.getImg(),             // Image URL
-                R.drawable.ic_image_temp,     // Placeholder image
-                R.drawable.ic_information           // Error image
-        );*/
         holder.btnAddToCart.setOnClickListener { view: View? ->
             loadingDialog = LoadingDialog(context as Activity)
             addToCartPresenter = AddToCartPresenter(this)
@@ -148,8 +128,8 @@ class PopularProductAdapter(
         var eshopTV: TextView = itemView.findViewById(R.id.eshopTV)
         var productRPLayout: LinearLayout = itemView.findViewById(R.id.productRPLayout)
         var rpLayout: LinearLayout = itemView.findViewById(R.id.rpLayout)
-        var discountText: TextView = itemView.findViewById(R.id.disText)
-        var disLayout: RelativeLayout = itemView.findViewById(R.id.disLayout)
+        var discountText: TextView = itemView.findViewById(R.id.offerPercent)
+        var disLayout: LinearLayout = itemView.findViewById(R.id.offerLayout)
 
         init {
             previousPrice.paintFlags = previousPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

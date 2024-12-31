@@ -54,13 +54,7 @@ public class ProductReviewAdapter extends RecyclerView.Adapter<ProductReviewAdap
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
                 .into(holder.image);
 
-      /*  ImageLoaderHelper.loadImage(
-                context,                 // Context (Activity or Application)
-                holder.productImage,            // ImageView where the image will be loaded
-                ConstantValues.URL + "image/product/small/" + product.getImg(),             // Image URL
-                R.drawable.ic_image_temp,     // Placeholder image
-                R.drawable.ic_information           // Error image
-        );*/
+
         holder.date.setText(productReview.getDate());
         holder.ratingBar.setRating((float) productReview.getRating());
     }

@@ -141,7 +141,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 new ItemMenuView("MISSION BAZAR", "#ffbfbf"),
                 new ItemMenuView("BRAND SHOP", "#ffbfbf"),
                 new ItemMenuView("PREMIER SHOP", "#ffbfbf"),
-                new ItemMenuView("INSURANCE", "#ffbfbf")
+                new ItemMenuView("VENDOR", "#ffbfbf")
         ));
 
         binding.shopsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

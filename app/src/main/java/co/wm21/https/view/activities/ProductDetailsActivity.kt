@@ -145,38 +145,11 @@ class ProductDetailsActivity : AppCompatActivity(), OnProductReviewListView, OnR
         }
 
 
-        //Picasso.get().load(ConstantValues.URL + "image/product/small/" + productView.getImg()).into(binding.productDisplayPhoto);
-        /*if (productView.getImg().endsWith(".svg")) {
-            // Replace ".svg" with ".png"
-            productView.setImg(productView.getImg().replace(".svg", ".png"));
-        }*/
 
-        /*Glide.with(this)
-                .asDrawable()
-                .load(ConstantValues.URL + "image/product/small/" + productView.getImg())  // SVG URL
-                .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
-                .into(binding.productDisplayPhoto);*/
-
-        /*  ImageLoaderHelper.loadImage(
-                this,                 // Context (Activity or Application)
-                binding.productDisplayPhoto,            // ImageView where the image will be loaded
-                ConstantValues.URL + "image/product/small/" + productView.getImg(),             // Image URL
-                R.drawable.ic_image_temp,     // Placeholder image
-                R.drawable.ic_information           // Error image
-        );*/
 
         binding?.productDisplayPhoto?.load(ConstantValues.imageURL + "image/product/small/" + productView?.img){
             decoderFactory(SvgDecoder.Factory())
         }
-       /* Glide.with(this)
-            .`as`(PictureDrawable::class.java)
-            .listener(SvgSoftwareLayerSetter())
-            .load(ConstantValues.imageURL + "image/product/small/" + productView?.img)
-            .into(binding!!.productDisplayPhoto)*/
-
-
-        Log.d("TAG", "image: "+ConstantValues.imageURL + "image/product/small/" + productView?.img)
 
 
         binding!!.productOldPrice.paintFlags =
@@ -667,6 +640,7 @@ class ProductDetailsActivity : AppCompatActivity(), OnProductReviewListView, OnR
 
     override fun onProductDetailsDataLoad(productDetails: ProductDetails) {
         binding!!.productCategory.text = productDetails.cat_id
+        binding!!.pModel.text = productDetails.model
 
         binding!!.rpPoint.text = productDetails.point
         colors = productDetails.color

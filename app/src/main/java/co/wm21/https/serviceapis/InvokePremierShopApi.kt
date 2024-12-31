@@ -9,10 +9,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InvokePremierShopApi(memberId: String?, var requestComplete: OnRequestComplete) {
+class InvokePremierShopApi(memberId: String?,shopID: String?, var requestComplete: OnRequestComplete) {
     init {
         val jsonObject = JsonObject()
         jsonObject.addProperty("user_id", memberId)
+        jsonObject.addProperty("shop_id", shopID)
         val mApiService = ApiUtils.getApiService()
         mApiService.getPremierShopResponse(jsonObject).enqueue(object : Callback<PremierShopResponseModel> {
             override fun onResponse(

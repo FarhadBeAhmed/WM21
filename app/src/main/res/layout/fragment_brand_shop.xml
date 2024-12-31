@@ -3,37 +3,238 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activities.ShopsActivity$BrandShop">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.core.widget.NestedScrollView
+    <com.amar.library.ui.StickyScrollView
+        android:id="@+id/stickyView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:stickyHeader="@id/stickyHeader">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/fullBoxLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- TODO: Update blank fragment layout -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="@dimen/corner_radius">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_130sdp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/shimmerImageSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_130sdp"
+                            android:background="@drawable/bg_shimmer"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/shop_banner"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="134dp"
+                            android:layout_marginEnd="290dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="Brand Shop"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textStyle="italic"
+                            android:textSize="@dimen/_15sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/shimmerImageSlider"
+                            app:layout_constraintEnd_toEndOf="@+id/shimmerImageSlider"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/shimmerImageSlider"
+                            app:layout_constraintTop_toTopOf="@+id/shimmerImageSlider"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/imageSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_130sdp"
+                        android:visibility="gone"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderAutoCycleEnabled="true"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#FFF"
+                        app:sliderIndicatorUnselectedColor="@color/primary_red"
+                        app:sliderScrollTimeInSec="4"
+                        app:sliderStartAutoCycle="true"
+
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/stickyHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_5sdp">
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/shops"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:paddingVertical="3dp"
+                        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/shopsView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="Select Shop"
+                            android:textColor="@color/black"
+                            android:inputType="none"
+                            android:paddingVertical="@dimen/_10ssp"
+                            android:paddingStart="@dimen/_10ssp"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        tools:ignore="RtlSymmetry">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_border"
+                            android:orientation="horizontal">
+
+                            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                                android:id="@+id/searchExpandableLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:ael_expanded="false"
+                                app:ael_interpolator="accelerate"
+                                app:ael_orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/searchEditText"
+                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/transparent"
+                                    android:gravity="center_vertical"
+                                    android:hint="search"
+                                    android:paddingHorizontal="@dimen/_10sdp"
+                                    android:paddingVertical="@dimen/_7sdp"
+                                    android:textCursorDrawable="@drawable/cursor_color"
+                                    tools:ignore="HardcodedText" />
+                            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/searchExpandButton"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_search" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/recycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/layout_item_premium_shop" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/emptyBoxLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_100sdp"
                 android:orientation="vertical"
                 >
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Shop2" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="There is no Brand Shop"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:alpha="0.5"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:src="@drawable/showroom"
+                    android:layout_gravity="center"
+                    android:alpha="0.2"
+                    />
             </LinearLayout>
+
             <include
                 android:id="@+id/footerId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 layout="@layout/footer"
-                />
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </com.amar.library.ui.StickyScrollView>
 
 
 </RelativeLayout>

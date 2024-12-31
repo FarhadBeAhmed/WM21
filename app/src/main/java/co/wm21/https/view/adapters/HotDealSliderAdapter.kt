@@ -118,7 +118,7 @@ class HotDealSliderAdapter : SliderViewAdapter<HotDealSliderAdapter.HotDealViewH
         pos = position
         product = productList[position]
         holder.productName.text = product!!.name
-        holder.previousPrice.text = String.format("৳ %s", product!!.price)
+        holder.previousPrice.text = String.format("৳ %s", product!!.sprice)
         holder.productPrice.text = String.format("৳ %s", product!!.price)
         if (sessionHandler!!.isLoggedIn) {
             holder.rpLayout.visibility = View.VISIBLE
@@ -154,20 +154,6 @@ class HotDealSliderAdapter : SliderViewAdapter<HotDealSliderAdapter.HotDealViewH
         }
 
 
-        /* Glide.with(context)
-                .asDrawable()
-                .load(ConstantValues.URL + "image/product/small/" + product.getImg())  // SVG URL
-                .transition(DrawableTransitionOptions.withCrossFade()) // Optional: Fade transition
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE) // Cache strategy
-                .into(holder.productImage);*/
-
-        /*  ImageLoaderHelper.loadImage(
-                context,                 // Context (Activity or Application)
-                holder.productImage,            // ImageView where the image will be loaded
-                ConstantValues.URL + "image/product/small/" + product.getImg(),             // Image URL
-                R.drawable.ic_image_temp,     // Placeholder image
-                R.drawable.ic_information           // Error image
-        );*/
 
         //holder.productImage.setImageDrawable(product.getImg());
         holder.layoutBtn.setOnClickListener { view: View? ->

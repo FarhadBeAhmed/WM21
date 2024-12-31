@@ -65,13 +65,13 @@ class ProductAdapterNew(
 
         if (Math.round(discount / sPrice * 100) > .49) {
             holder.disLayout.visibility = View.VISIBLE
-            holder.discountText.text = Math.round(discount / sPrice * 100).toString() + "% OFF"
+            holder.discountText.text = Math.round(discount / sPrice * 100).toString()
         }
 
         holder.shopName.text = "(" + product.uploadBy + ")"
         holder.productName.text = product.name
-        holder.previousPrice.text = String.format("৳ %s", product.price)
-        holder.productPrice.text = String.format("৳ %s", product.sprice)
+        holder.previousPrice.text = String.format("৳ %s", product.sprice)
+        holder.productPrice.text = String.format("৳ %s", product.price)
 
         holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img) {
             decoderFactory(SvgDecoder.Factory())
@@ -109,8 +109,8 @@ class ProductAdapterNew(
         var eshopTV: TextView = binding.eshopTV
         var productRPLayout: LinearLayout = binding.productRPLayout
         var rpLayout: LinearLayout = binding.rpLayout
-        var discountText: TextView = binding.disText
-        var disLayout: RelativeLayout = binding.disLayout
+        var discountText: TextView = binding.offerPercent
+        var disLayout: LinearLayout = binding.offerLayout
 
         fun bind(product: ProductModel) {
             // Set product name and price

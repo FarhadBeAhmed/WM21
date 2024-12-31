@@ -39,14 +39,17 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User id"
-                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp"
                 app:boxCornerRadiusTopStart="5dp"
-                app:boxStrokeWidth="1.5dp"
+                app:boxStrokeColor="@color/primary_red"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/gray"
+                app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
+                app:passwordToggleEnabled="true"
                 tools:ignore="HardcodedText">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -56,12 +59,15 @@
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/primary_red"
                     android:fontFamily="@font/poppins_medium"
+                    android:hint="User id"
                     android:inputType="textWebEditText"
                     android:maxLines="1"
                     android:paddingStart="10dp"
                     android:textColor="@color/text_color"
+                    android:textColorHint="@color/gray"
                     tools:ignore="RtlSymmetry,UnusedAttribute" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password"
@@ -69,7 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-
                 android:hint="Password"
                 app:boxCornerRadiusBottomEnd="5dp"
                 app:boxCornerRadiusBottomStart="5dp"
@@ -78,6 +83,7 @@
                 app:boxStrokeColor="@color/primary_red"
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
+                app:hintTextColor="@color/gray"
                 app:passwordToggleEnabled="true"
                 tools:ignore="HardcodedText">
 

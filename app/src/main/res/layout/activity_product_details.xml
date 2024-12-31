@@ -117,6 +117,7 @@
                         android:id="@+id/productCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Electronics &amp; Electronics"
                         tools:ignore="HardcodedText" />
@@ -135,9 +136,10 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
-                        android:id="@+id/productModel"
+                        android:id="@+id/pModel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/poppins_medium"
                         android:text="LED SMART TV - 32"
                         tools:ignore="HardcodedText" />
