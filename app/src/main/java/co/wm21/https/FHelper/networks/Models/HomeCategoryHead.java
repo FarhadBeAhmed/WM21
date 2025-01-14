@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.view.adapters.category.CategoryView;
+import co.wm21.https.FHelper.networks.Models.home.CategoryView;
 
 public class HomeCategoryHead {
     @SerializedName("error")

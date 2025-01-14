@@ -3,7 +3,7 @@ package co.wm21.https.presenter;
 import java.util.List;
 
 import co.wm21.https.FHelper.networks.ApiUtil.OnRequestComplete;
-import co.wm21.https.view.adapters.category.CategoryView;
+import co.wm21.https.FHelper.networks.Models.home.CategoryView;
 import co.wm21.https.presenter.interfaces.OnHomeCategoryView;
 import co.wm21.https.serviceapis.InvokeHomeCategoryApi;
 

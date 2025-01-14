@@ -10,7 +10,7 @@ public class OrderConfirmModel {
     @SerializedName("error_report")
     @Expose
     private String errorReport;
-    @SerializedName("data")
+    @SerializedName("message")
     @Expose
     private String data;
 

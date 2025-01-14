@@ -84,8 +84,9 @@
                                 android:gravity="center"
                                 android:paddingStart="5dp"
                                 android:text="1100"
+                                android:textStyle="bold"
                                 android:textColor="@color/primary_red"
-                                android:textSize="11sp"
+                                android:textSize="@dimen/_10sdp"
                                 tools:ignore="HardcodedText,RtlSymmetry" />
                         </LinearLayout>
 
@@ -134,8 +135,8 @@
 
                         <ImageView
                             android:id="@+id/qtyDecrement"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_18sdp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/cart_qty_btn"
                             android:clickable="true"
@@ -148,7 +149,7 @@
                         <TextView
                             android:id="@+id/productQuantity"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
+                            android:layout_height="@dimen/_18sdp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/cart_qty_btn"
                             android:fontFamily="@font/poppins_medium"
@@ -163,8 +164,8 @@
 
                         <ImageView
                             android:id="@+id/qtyIncrement"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_18sdp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/cart_qty_btn"
                             android:clickable="true"
@@ -181,8 +182,8 @@
 
                     <ImageView
                         android:id="@+id/deleteItem"
-                        android:layout_width="@dimen/_18ssp"
-                        android:layout_height="@dimen/_18ssp"
+                        android:layout_width="@dimen/_20ssp"
+                        android:layout_height="@dimen/_20ssp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:clickable="true"

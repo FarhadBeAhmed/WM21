@@ -13,13 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.example.SlideImage;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.R;
-import co.wm21.https.SliderItem;
+
 import co.wm21.https.view.activities.MainActivity;
 import co.wm21.https.view.adapters.AllHotDealAdapter;
 import co.wm21.https.view.adapters.ShopsAdapter;
@@ -38,7 +40,7 @@ public class AllHotDealFragment extends Fragment implements OnHotProductView {
     ArrayList<ProductView> productList;
     co.wm21.https.FHelper.API api;
     ShopsAdapter adapter;
-    List<SliderItem> sliderItemList;
+    List<SlideImage> sliderItemList;
     SliderAdapter sliderAdapter;
     AllHotDealAdapter productAdapter;
     HotProductPresenter hotProductPresenter;

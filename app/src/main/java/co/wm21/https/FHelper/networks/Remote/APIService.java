@@ -1,5 +1,6 @@
 package co.wm21.https.FHelper.networks.Remote;
 
+import com.example.example.HomeDetailsResponse;
 import com.google.gson.JsonObject;
 
 import co.wm21.https.FHelper.networks.Models.AccountExpenseDataModel;
@@ -315,12 +316,7 @@ public interface APIService {
             @Field("u_id") String u_id
     );
 
-    @POST("apps/app_checkout.php")
-    @FormUrlEncoded
-    Call<CheckoutModel> checkout(
-            @Field("u_id") String u_id,
-            @Field("username") String username
-    );
+
 
     @POST("apps/update_quantity.php")
     @FormUrlEncoded
@@ -430,12 +426,7 @@ public interface APIService {
             @Field("serial") String serial
     );
 
-    @POST("apps/signUpFirstStep.php")
-    @FormUrlEncoded
-    Call<SignupModel> signUpFirstStep(
-            @Field("mobile") String mobile,
-            @Field("country") String country
-    );
+
 
     @POST("apps/signUpNumberVerify.php")
     @FormUrlEncoded
@@ -525,11 +516,26 @@ public interface APIService {
         //@FormUrlEncoded
     Call<PremierShopResponseModel> getPremierShopResponse(@Body JsonObject user_id);
 
+    @POST("apps/home.php")
+        //@FormUrlEncoded
+    Call<HomeDetailsResponse> getHomeDetailsResponse();
+
 
     @POST("apps/premierShopDetails.php")
         //@FormUrlEncoded
     Call<PremierShopViewResponse> getPremierShopViewResponse(
             @Body JsonObject request);
 
+    @POST("apps/app_checkout.php")
+        //@FormUrlEncoded
+    Call<CheckoutModel> checkout(
+            @Body JsonObject request
+    );
 
+
+    @POST("apps/signUpFirstStep.php")
+    Call<SignupModel> signUpFirstStep(
+
+            @Body JsonObject request
+    );
 }

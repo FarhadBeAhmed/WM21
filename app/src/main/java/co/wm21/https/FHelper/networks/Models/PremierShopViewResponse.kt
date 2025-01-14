@@ -16,7 +16,7 @@ data class PremierShopViewData(
     @SerializedName("shop_info")
     val shopInfo: ShopInfo,
     @SerializedName("products")
-    val products: List<ProductModel>
+    val products: List<ProductModel>?
 )
 data class ShopInfo(
     @SerializedName("shop_id")

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.example.SlideImage;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -26,7 +27,6 @@ import java.util.List;
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.MySingleton;
 import co.wm21.https.R;
-import co.wm21.https.SliderItem;
 import co.wm21.https.view.activities.mlm.ProfileActivity;
 import co.wm21.https.view.adapters.SliderAdapter;
 import co.wm21.https.view.adapters.item_menu.ItemMenuAdapter;
@@ -40,7 +40,7 @@ import co.wm21.https.helpers.User;
 public class HomeActivityAff extends AppCompatActivity {
 
     ActivityHomeAffiliateBinding binding;
-    List<SliderItem> sliderItemList;
+    List<SlideImage> sliderItemList;
     SliderAdapter adapter;
 
     public static co.wm21.https.helpers.User user;
@@ -68,8 +68,8 @@ public class HomeActivityAff extends AppCompatActivity {
 
         sliderItemList = new ArrayList<>();
         adapter = new SliderAdapter(this,sliderItemList);
-        sliderItemList.add(new SliderItem("20220921.png",""));
-        sliderItemList.add(new SliderItem("20220928.png",""));
+        sliderItemList.add(new SlideImage("20220921.png",""));
+        sliderItemList.add(new SlideImage("20220928.png",""));
         adapter.renewItems(sliderItemList);
         binding.imageSlider.setSliderAdapter(adapter);
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -82,8 +82,8 @@ public class HomeActivityAff extends AppCompatActivity {
       //  ((MainActivity) requireActivity()).signOutItem.setVisible(true);
         sliderItemList = new ArrayList<>();
         adapter = new SliderAdapter(this,sliderItemList);
-        sliderItemList.add(new SliderItem("20220921.png",""));
-        sliderItemList.add(new SliderItem("20220928.png",""));
+        sliderItemList.add(new SlideImage("20220921.png",""));
+        sliderItemList.add(new SlideImage("20220928.png",""));
         adapter.renewItems(sliderItemList);
         binding.imageSlider2.setSliderAdapter(adapter);
         binding.imageSlider2.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!

@@ -1,5 +1,4 @@
 package co.wm21.https.view.fragments;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,30 +11,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.example.HomeDetailsResponse;
+import com.example.example.SlideImage;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-
 import co.wm21.https.FHelper.API;
 import co.wm21.https.FHelper.ConstantValues;
 import co.wm21.https.FHelper.networks.Models.BlogsModel;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.FHelper.networks.Models.TopSellingProModel;
 import co.wm21.https.R;
-import co.wm21.https.SliderItem;
+import co.wm21.https.presenter.HomeDetailsPresenter;
+import co.wm21.https.presenter.interfaces.OnHomeDetailsView;
 import co.wm21.https.view.activities.HomeMoreProductActivity;
 import co.wm21.https.view.activities.MainActivity;
 import co.wm21.https.view.activities.ProductDetailsActivity;
@@ -47,7 +45,7 @@ import co.wm21.https.view.adapters.PopularProductAdapter;
 import co.wm21.https.view.adapters.SliderAdapter;
 import co.wm21.https.view.adapters.TopSellingAdapter;
 import co.wm21.https.view.adapters.category.CategoryAdapter;
-import co.wm21.https.view.adapters.category.CategoryView;
+import co.wm21.https.FHelper.networks.Models.home.CategoryView;
 import co.wm21.https.view.adapters.item_menu.ItemMenuView;
 import co.wm21.https.databinding.FragmentMainHomeBinding;
 import co.wm21.https.utils.dialog.LoadingDialog;
@@ -64,20 +62,18 @@ import co.wm21.https.presenter.interfaces.OnBlogListView;
 import co.wm21.https.presenter.interfaces.OnHomeCategoryView;
 import co.wm21.https.presenter.interfaces.OnHomePopularCatProductView;
 import co.wm21.https.presenter.interfaces.OnHomePopularProductView;
-import co.wm21.https.presenter.interfaces.OnHomeTopSliderImageView;
 import co.wm21.https.presenter.interfaces.OnHotProductView;
 import co.wm21.https.presenter.interfaces.OnTopSellingProView;
 import co.wm21.https.presenter.BlogListPresenter;
 import co.wm21.https.presenter.HomeCategoryPresenter;
 import co.wm21.https.presenter.HomePopularCatProductPresenter;
 import co.wm21.https.presenter.HomePopularProductPresenter;
-import co.wm21.https.presenter.HomeTopSliderImagePresenter;
 import co.wm21.https.presenter.HotProductPresenter;
 import co.wm21.https.presenter.TopSellingProPresenter;
 
-public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, OnHomeCategoryView, OnHomePopularProductView, OnHotProductView, OnHomePopularCatProductView, OnBlogListView, OnTopSellingProView {
+public class HomeFragment extends Fragment implements OnHomeDetailsView, OnTopSellingProView {
 
-    List<SliderItem> sliderItemList;
+    List<SlideImage> sliderItemList;
 
     ArrayList<CategoryView> categoryList;
     ArrayList<ProductModel> popularCatProductList1;
@@ -97,7 +93,6 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     Handler mainHandler = new Handler();
     //ProgressDialog progressDialog;
     API api;
-    private final Handler sliderHandler = new Handler();
     ArrayList<ProductModel> hotProductViews;
 
 
@@ -106,16 +101,15 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     PopularCatProductAdapter popularCatProductAdapter2;
     PopularCatProductAdapter popularCatProductAdapter3;
     PopularCatProductAdapter popularCatProductAdapter4;
-   LoadingDialog loadingDialog;
-    HomeTopSliderImagePresenter homeTopSliderImagePresenter;
-    HotProductPresenter hotProductPresenter;
-    HomeCategoryPresenter homeCategoryPresenter;
-    HomePopularProductPresenter homePopularProductPresenter;
-    HomePopularCatProductPresenter popularCatProductPresenter;
+    LoadingDialog loadingDialog;
     TopSellingProPresenter topSellingProPresenter;
-    BlogListPresenter blogListPresenter;
+    HomeDetailsPresenter homeDetailsPresenter;
 
     ArrayList<ProductModel> popularProductList;
+    ArrayList<ProductModel> bestSellerProductList;
+    ArrayList<ProductModel> mostPopularProductList;
+    ArrayList<ProductModel> featuredProductList;
+    ArrayList<ProductModel> newArrivalProductList;
     PopularProductAdapter popularProductAdapter;
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -203,18 +197,13 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.moreHotDeal.setOnClickListener(this::moreProducts);
         binding.allBlogsBtn.setOnClickListener(this::moreProducts);
 
-        homeTopSliderImagePresenter=new HomeTopSliderImagePresenter(this);
-        homeCategoryPresenter=new HomeCategoryPresenter(this);
-        homePopularProductPresenter=new HomePopularProductPresenter(this);
-        hotProductPresenter=new HotProductPresenter(this);
-        popularCatProductPresenter=new HomePopularCatProductPresenter(this);
-        blogListPresenter=new BlogListPresenter(this);
         topSellingProPresenter=new TopSellingProPresenter(this);
-        topSliderImage();
-        //categories();
-        popularProduct("2");
-        //hotProduct();
 
+
+
+
+        homeDetailsPresenter=new HomeDetailsPresenter(this);
+        topSliderImage();
 
         topSellingProduct();
         return binding.getRoot();
@@ -228,8 +217,13 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         binding.imageSlider.startAutoCycle();
         binding.imageSlider.setSliderAdapter(adapter);
+        categories();
 
-        homeTopSliderImagePresenter.getSliderImageDataResponse("10");
+
+
+        homeDetailsPresenter.onHomeDetailsResponseData();
+
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -239,29 +233,29 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         switch (view.getId()) {
             case R.id.moreGroceryProduct:
                  intent=new Intent(getContext(), HomeMoreProductActivity.class);
-                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(0).getCatID());
-                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(0).getCategoryName());
+                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(0).catID);
+                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(0).categoryName);
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.moreElectronicsProduct:
                  intent=new Intent(getContext(), HomeMoreProductActivity.class);
-                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(1).getCatID());
-                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(1).getCategoryName());
+                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(1).catID);
+                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(1).categoryName);
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.beautyMoreProduct:
                 intent=new Intent(getContext(), HomeMoreProductActivity.class);
-                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(2).getCatID());
-                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(2).getCategoryName());
+                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(2).catID);
+                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(2).categoryName);
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 break;
             case R.id.fashionMoreProduct:
                 intent=new Intent(getContext(), HomeMoreProductActivity.class);
-                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(3).getCatID());
-                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(3).getCategoryName());
+                intent.putExtra(ConstantValues.ARGUMENT1, categoryList.get(3).catID);
+                intent.putExtra(ConstantValues.ARGUMENT2, categoryList.get(3).categoryName);
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideLeft(requireContext());
                 /*bundle.putString(ConstantValues.ARGUMENT1, categoryList.get(3).getCatID());
@@ -301,8 +295,8 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         categoryList = new ArrayList<>();
         categoryAdapter = new CategoryAdapter(getContext(), categoryList, Constant.GRID_LAYOUT).addOnClickListener((View, position) -> {
 
-            String cat_id = categoryList.get(position).getCatID();
-            String name = categoryList.get(position).getCategoryName();
+            String cat_id = categoryList.get(position).catID;
+            String name = categoryList.get(position).categoryName;
             Bundle bundle = new Bundle();
             bundle.putString(co.wm21.https.FHelper.ConstantValues.ARGUMENT1, cat_id);
             bundle.putString(co.wm21.https.FHelper.ConstantValues.NAME, name);
@@ -314,7 +308,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         });
         binding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.categoryRecyclerView.setAdapter(categoryAdapter);
-        homeCategoryPresenter.getCategoryDataResponse("100");
+
+
+        hotProduct();
 
     }
 
@@ -338,7 +334,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     }
 
 
-    @SuppressLint({"NonConstantResourceId", "UseCompatLoadingForDrawables"})
+    @SuppressLint({"NonConstantResourceId", "UseCompatLoadingForDrawables", "NotifyDataSetChanged"})
     private void clickForFeatured(View view) {
 
         switch (view.getId()) {
@@ -354,7 +350,12 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 binding.mostPopularBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.newArrivalBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.featuredBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
-                popularProduct("2");
+
+                popularProductList.clear();
+                popularProductList.addAll(bestSellerProductList);
+                popularProductAdapter.notifyDataSetChanged();
+
+                //popularProduct("2");
                 break;
             case R.id.mostPopularBtn:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -370,7 +371,10 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 binding.newArrivalBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.featuredBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
 
-                popularProduct("3");
+                popularProductList.clear();
+                popularProductList.addAll(mostPopularProductList);
+                popularProductAdapter.notifyDataSetChanged();
+                //popularProduct("3");
                 break;
             case R.id.featuredBtn:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -386,7 +390,10 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 binding.newArrivalBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.bestSellerBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
 
-                popularProduct("4");
+                popularProductList.clear();
+                popularProductList.addAll(featuredProductList);
+                popularProductAdapter.notifyDataSetChanged();
+                //popularProduct("4");
                 break;
             case R.id.newArrivalBtn:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -401,15 +408,21 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 binding.mostPopularBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.featuredBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
                 binding.bestSellerBtn.setBackground(getResources().getDrawable(R.drawable.bg_home_page_normal_btn));
-
-                popularProduct("1");
+                popularProductList.clear();
+                popularProductList.addAll(newArrivalProductList);
+                popularProductAdapter.notifyDataSetChanged();
+                //popularProduct("1");
                 break;
         }
 
     }
 
-    private void popularProduct(String value) {
+    private void popularProduct() {
         popularProductList = new ArrayList<>();
+        bestSellerProductList = new ArrayList<>();
+        mostPopularProductList = new ArrayList<>();
+        featuredProductList = new ArrayList<>();
+        newArrivalProductList = new ArrayList<>();
         popularProductAdapter=new PopularProductAdapter(popularProductList,requireContext()).addOnClickListener((View, position2) -> {
             ProductModel productView = popularProductList.get(position2);
             Activity activity = getActivity();
@@ -419,9 +432,8 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
                 activity.startActivityForResult(intent, 2);
             }
         });
-
         binding.productRecyclerView.setAdapter(popularProductAdapter);
-        homePopularProductPresenter.getHomePopularProduct(value);
+       // homePopularProductPresenter.getHomePopularProduct(value);
 
 
 
@@ -434,7 +446,9 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         hotDealSliderAdapter=new HotDealSliderAdapter(requireContext(), hotProductViews, R.layout.layout_item_product_hot_deal);
 
         binding.hotDealSlider.setSliderAdapter(hotDealSliderAdapter);
-        hotProductPresenter.getHotProduct(30);
+       // hotProductPresenter.getHotProduct(30);
+
+
         fromOurBlog();
 
 
@@ -443,10 +457,10 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
     }
     private void popularCategoryProduct(String value1,String value2,String value3,String value4) {
 
-        binding.catNameText1.setText(categoryList.get(0).getCategoryName());
-        binding.catNameText2.setText(categoryList.get(1).getCategoryName());
-        binding.catNameText3.setText(categoryList.get(2).getCategoryName());
-        binding.catNameText4.setText(categoryList.get(3).getCategoryName());
+        binding.catNameText1.setText(categoryList.get(0).categoryName);
+        binding.catNameText2.setText(categoryList.get(1).categoryName);
+        binding.catNameText3.setText(categoryList.get(2).categoryName);
+        binding.catNameText4.setText(categoryList.get(3).categoryName);
 
         popularCatProductList1 = new ArrayList<>();
         popularCatProductList2 = new ArrayList<>();
@@ -507,7 +521,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.productCatRecyclerView4.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.productCatRecyclerView4.setAdapter(popularCatProductAdapter4);
 
-        popularCatProductPresenter.getHomePopularProduct(value1,value2,value3,value4);
+       // popularCatProductPresenter.getHomePopularProduct(value1,value2,value3,value4);
 
 
 
@@ -519,9 +533,6 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         binding.blogRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         blogsAdapter= new BlogsAdapter(getContext(), blogsModels, R.layout.layout_item_blog);
         binding.blogRecyclerView.setAdapter(blogsAdapter);
-        blogListPresenter.BlogDataLoad(5);
-
-      //  topSellingProduct();
 
     }
 
@@ -544,207 +555,14 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         topSellingProPresenter.topSellingProDataLoad(8);
     }
 
-    @Override
-    public void onHomeSliderDataLoaded(List<SliderItem> sliderItem) {
-        sliderItemList.addAll(sliderItem);
-        adapter.notifyDataSetChanged();
-        categories();
-    }
-
-    @Override
-    public void onHomeSliderDataStartLoading() {
-        loadingDialog.startLoadingAlertDialog();
-        binding.shimmerImageSlider.setVisibility(View.VISIBLE);
-        binding.imageSlider.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onHomeSliderDataStopLoading() {
-        //loadingDialog.dismissDialog();
-        binding.shimmerImageSlider.setVisibility(View.GONE);
-        binding.imageSlider.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onHomeSliderDataShowMessage(String errMsg) {
-        Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onHomeCategoryDataLoaded(List<CategoryView> catList) {
-        categoryList.addAll(catList);
-        categoryAdapter.notifyDataSetChanged();
-        popularCategoryProduct(categoryList.get(0).getCatID(),categoryList.get(1).getCatID(),categoryList.get(2).getCatID(),categoryList.get(3).getCatID());
-        binding.catNameText1.setText(categoryList.get(0).getCategoryName());
-        hotProduct();
-    }
-
-    @Override
-    public void onHomeCategoryDataStartLoading() {
-        //loadingDialog.startLoadingAlertDialog();
-        binding.shimmerCategory.setVisibility(View.VISIBLE);
-        binding.categoryRecyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onHomeCategoryDataStopLoading() {
-        //loadingDialog.dismissDialog();
-        binding.shimmerCategory.setVisibility(View.GONE);
-        binding.categoryRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onHomeCategoryDataShowMessage(String errMsg) {
-        Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onHotProductDataLoaded(List<ProductModel> sliderItem) {
-        hotProductViews.addAll(sliderItem);
-        hotDealSliderAdapter.notifyDataSetChanged();
-
-    }
-
-    @Override
-    public void onHotProductStartLoading() {
-         //loadingDialog.startLoadingAlertDialog();
-        binding.shimmerHotProduct.setVisibility(View.VISIBLE);
-        binding.hotDealSlider.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onHotProductStopLoading() {
-        loadingDialog.dismissDialog();
-        binding.shimmerHotProduct.setVisibility(View.GONE);
-        binding.hotDealSlider.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onHotProductShowMessage(String errMsg) {
-        Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
-    }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onHomePopularProductLoaded(List<ProductModel> productViews) {
-        popularProductList.addAll(productViews);
-        popularProductAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onHomePopularProductStartLoading() {
-        //loadingDialog.startLoadingAlertDialog();
-        binding.shimmerProduct.setVisibility(View.VISIBLE);
-        binding.productRecyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onHomePopularProductStopLoading() {
-        //loadingDialog.dismissDialog();
-        binding.shimmerProduct.setVisibility(View.GONE);
-        binding.productRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onHomePopularProductShowMessage(String errMsg) {
-        Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
-    }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onHomePopularCatProductLoaded(List<ProductModel> productViews) {
-        for (int i = 0; i < productViews.size(); i++) {
-            if (productViews.get(i).getCatId().equals(categoryList.get(0).getCatID())){
-                popularCatProductList1.add(productViews.get(i));
-            } else if (productViews.get(i).getCatId().equals(categoryList.get(1).getCatID())) {
-                popularCatProductList2.add(productViews.get(i));
-            } else if (productViews.get(i).getCatId().equals(categoryList.get(2).getCatID())) {
-                popularCatProductList3.add(productViews.get(i));
-            } else if (productViews.get(i).getCatId().equals(categoryList.get(3).getCatID())) {
-                popularCatProductList4.add(productViews.get(i));
-            }
-
-        }
-        popularCatProductAdapter1.notifyDataSetChanged();
-        popularCatProductAdapter2.notifyDataSetChanged();
-        popularCatProductAdapter3.notifyDataSetChanged();
-        popularCatProductAdapter4.notifyDataSetChanged();
-
-    }
-
-    @Override
-    public void onHomePopularCatProductStartLoading() {
-        //loadingDialog.startLoadingAlertDialog();
-        binding.shimmerGroceryProduct.setVisibility(View.VISIBLE);
-        binding.productGroceryRecyclerView.setVisibility(View.GONE);
-        binding.shimmerCatProduct2.setVisibility(View.VISIBLE);
-        binding.productCatRecyclerView2.setVisibility(View.GONE);
-        binding.shimmerCatProduct3.setVisibility(View.VISIBLE);
-        binding.productCatRecyclerView3.setVisibility(View.GONE);
-        binding.shimmerCatProduct4.setVisibility(View.VISIBLE);
-        binding.productCatRecyclerView4.setVisibility(View.GONE);
-
-    }
-
-    @Override
-    public void onHomePopularCatProductStopLoading() {
-        //loadingDialog.dismissDialog();
-        binding.shimmerGroceryProduct.setVisibility(View.GONE);
-        binding.productGroceryRecyclerView.setVisibility(View.VISIBLE);
-        binding.shimmerCatProduct2.setVisibility(View.GONE);
-        binding.productCatRecyclerView2.setVisibility(View.VISIBLE);
-        binding.shimmerCatProduct3.setVisibility(View.GONE);
-        binding.productCatRecyclerView3.setVisibility(View.VISIBLE);
-        binding.shimmerCatProduct4.setVisibility(View.GONE);
-        binding.productCatRecyclerView4.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onHomePopularCatProductShowMessage(String errMsg) {
-        Toast.makeText(getContext(), errMsg, Toast.LENGTH_SHORT).show();
-    }
-
 
 
     public void switchFragment(Fragment fragment, String tag) {
         FragmentManager fm = getParentFragmentManager();
-     /*   for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
-            fm.popBackStack();*/
+
         fm.beginTransaction().replace(R.id.fragmentContainer, fragment, tag).addToBackStack(tag).commit();
     }
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onBlogListDataLoad(List<BlogsModel> blogs) {
-        blogsModels.addAll(blogs);
-        blogsAdapter.notifyDataSetChanged();
-
-
-    }
-
-    @Override
-    public void onBlogListStartLoading() {
-        loadingDialog.startLoadingAlertDialog();
-        binding.shimmerBlog.setVisibility(View.VISIBLE);
-        binding.blogRecyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onBlogListStopLoading() {
-        loadingDialog.dismissDialog();
-        binding.shimmerBlog.setVisibility(View.GONE);
-        binding.blogRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onBlogListShowMessage(String errmsg) {
-        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -766,7 +584,7 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
 
     @Override
     public void onTopSellingProStopLoading() {
-        loadingDialog.dismissDialog();
+      //  loadingDialog.dismissDialog();
     }
 
     @Override
@@ -774,12 +592,107 @@ public class HomeFragment extends Fragment implements OnHomeTopSliderImageView, 
         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
     }
 
-    static class MyThread extends Thread {
-        public void run() {
-         // topSellingProduct();
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onHomeDetailsLoadSuccess(@Nullable HomeDetailsResponse response) {
+
+
+        sliderItemList.addAll(response.getData().getSlideImage());
+        if (!sliderItemList.isEmpty()){
+            binding.shimmerImageSlider.setVisibility(View.GONE);
+            binding.imageSlider.setVisibility(View.VISIBLE);
         }
+        adapter.notifyDataSetChanged();
+
+
+        categoryList.addAll(response.getData().getCategory());
+        categoryAdapter.notifyDataSetChanged();
+
+
+        hotProductViews.addAll(response.getData().getHotProducts());
+        hotDealSliderAdapter.notifyDataSetChanged();
+        binding.shimmerHotProduct.setVisibility(View.GONE);
+        binding.hotDealSlider.setVisibility(View.VISIBLE);
+
+
+        popularProduct();
+        //popularProductList.addAll(response.getData().getPopularProduct());
+
+        bestSellerProductList.addAll(response.getData().getPopularProduct().subList(0, 12));
+        mostPopularProductList.addAll(response.getData().getPopularProduct().subList(13, 24));
+        featuredProductList.addAll(response.getData().getPopularProduct().subList(25, 36));
+        newArrivalProductList.addAll(response.getData().getPopularProduct().subList(37, 48));
+
+        popularProductList.clear();
+        popularProductList.addAll(bestSellerProductList);
+        popularProductAdapter.notifyDataSetChanged();
+        binding.shimmerProduct.setVisibility(View.GONE);
+        binding.productRecyclerView.setVisibility(View.VISIBLE);
+
+
+        popularCategoryProduct(categoryList.get(0).catID, categoryList.get(1).catID, categoryList.get(2).catID, categoryList.get(3).catID);
+        binding.catNameText1.setText(categoryList.get(0).categoryName);
+
+
+        for (int i = 0; i < response.getData().getPopularCategoryProduct().size(); i++) {
+            if (response.getData().getPopularCategoryProduct().get(i).getCatId().equals(categoryList.get(0).catID)){
+                popularCatProductList1.add(response.getData().getPopularCategoryProduct().get(i));
+                if(popularCatProductAdapter1.getSize()>0){
+                    binding.shimmerGroceryProduct.setVisibility(View.GONE);
+                    binding.productGroceryRecyclerView.setVisibility(View.VISIBLE);
+                }
+            } else if (response.getData().getPopularCategoryProduct().get(i).getCatId().equals(categoryList.get(1).catID)) {
+                popularCatProductList2.add(response.getData().getPopularCategoryProduct().get(i));
+                if(!popularCatProductList2.isEmpty()){
+                    binding.shimmerCatProduct2.setVisibility(View.GONE);
+                    binding.productCatRecyclerView2.setVisibility(View.VISIBLE);
+                }
+            } else if (response.getData().getPopularCategoryProduct().get(i).getCatId().equals(categoryList.get(2).catID)) {
+                popularCatProductList3.add(response.getData().getPopularCategoryProduct().get(i));
+                if(!popularCatProductList3.isEmpty()){
+                    binding.shimmerCatProduct3.setVisibility(View.GONE);
+                    binding.productCatRecyclerView3.setVisibility(View.VISIBLE);
+                }
+            } else if (response.getData().getPopularCategoryProduct().get(i).getCatId().equals(categoryList.get(3).catID)) {
+                popularCatProductList4.add(response.getData().getPopularCategoryProduct().get(i));
+                if(!popularCatProductList4.isEmpty()){
+                    binding.shimmerCatProduct4.setVisibility(View.GONE);
+                    binding.productCatRecyclerView4.setVisibility(View.VISIBLE);
+                }
+            }
+
+        }
+        popularCatProductAdapter1.notifyDataSetChanged();
+        popularCatProductAdapter2.notifyDataSetChanged();
+        popularCatProductAdapter3.notifyDataSetChanged();
+        popularCatProductAdapter4.notifyDataSetChanged();
+
+
+
+        blogsModels.addAll(response.getData().getAllBlogs());
+        blogsAdapter.notifyDataSetChanged();
+        binding.shimmerBlog.setVisibility(View.GONE);
+        binding.blogRecyclerView.setVisibility(View.VISIBLE);
+
+
+        loadingDialog.dismissDialog();
+
     }
 
+    @Override
+    public void onStartLoading() {
+        loadingDialog.startLoadingAlertDialog();
+    }
+
+    @Override
+    public void onStopLoading() {
+        loadingDialog.dismissDialog();
+    }
+
+    @Override
+    public void onError(@Nullable String errmsg) {
+
+    }
 
 
 }//wm20886455     @123456

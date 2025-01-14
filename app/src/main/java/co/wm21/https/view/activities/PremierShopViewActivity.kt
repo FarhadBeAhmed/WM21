@@ -105,11 +105,7 @@ class PremierShopViewActivity : AppCompatActivity(), OnPremierShopDetailView ,Pr
 
         // Check internet connection
         if (checkInternetConnection.isInternetAvailable(this)) {
-            presenter.onPremierShopViewResponseData(
-                user.username,
-                shopModel.shopId,
-                shopModel.shopTypeId
-            )
+            presenter.onPremierShopViewResponseData( shopModel.shopId, shopModel.shopTypeId)
         } else {
             // Display Snackbar for no internet connection
             val snackbar = Snackbar.make(
@@ -189,9 +185,9 @@ class PremierShopViewActivity : AppCompatActivity(), OnPremierShopDetailView ,Pr
 
 
         // Update shop info
-        binding.shopName.text = response.data?.shopInfo?.shopName ?: "N/A"
-        binding.mobileNumber.text = response.data?.shopInfo?.phone ?: "N/A"
-        binding.address.text = response.data?.shopInfo?.address ?: "N/A"
+        binding.shopName.text = response.data.shopInfo.shopName ?: "N/A"
+        binding.mobileNumber.text = response.data.shopInfo.phone ?: "N/A"
+        binding.address.text = response.data.shopInfo.address ?: "N/A"
         binding.image.load(ConstantValues.imageURL + "shop/img/shop/" + premierShopViewResponse!!.data.shopInfo.smallImg) {
             decoderFactory(SvgDecoder.Factory()) // Corrected method
         }
@@ -200,9 +196,10 @@ class PremierShopViewActivity : AppCompatActivity(), OnPremierShopDetailView ,Pr
         }
 
 
-        // Update product list
-       updateProducts(response.data.products)
+        if (response.data.products!=null)
+         updateProducts(response.data.products)
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun updateProducts(newProducts: List<ProductModel>) {
         products.clear()
         products.addAll(newProducts)

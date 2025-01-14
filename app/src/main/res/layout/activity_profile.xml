@@ -252,6 +252,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
                     android:id="@+id/basicInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -894,6 +895,8 @@ xmlns:tools="http://schemas.android.com/tools">
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+
                     android:id="@+id/contactInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1375,6 +1378,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
                     android:id="@+id/gatewayInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

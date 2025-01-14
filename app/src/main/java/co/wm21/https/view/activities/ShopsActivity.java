@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.example.SlideImage;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,7 +50,6 @@ import co.wm21.https.FHelper.networks.Models.PremierShopData;
 import co.wm21.https.FHelper.networks.Models.PremierShopResponseModel;
 import co.wm21.https.FHelper.networks.Models.ProductModel;
 import co.wm21.https.R;
-import co.wm21.https.SliderItem;
 import co.wm21.https.helpers.SessionHandler;
 import co.wm21.https.presenter.PremierShopPresenter;
 import co.wm21.https.presenter.application.EShopRefComPresenter;
@@ -248,7 +249,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         ArrayList<ProductModel> productList;
         co.wm21.https.FHelper.API api;
         ShopsAdapter adapter;
-        List<SliderItem> sliderTelrItemList;
+        List<SlideImage> sliderTelrItemList;
         SliderAdapter sliderAdapter;
         ProductAdapter productAdapter;
         //MaterialDialog dialog;
@@ -313,7 +314,6 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             binding.shopsView.setText("Tele Shop");
             String[] allShops = {"Tele Shop", "Showroom", "Mission Bazar", "Premier Shop", "BrandShop", "Vendor"};
             binding.shopsView.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, allShops));
-
             binding.shopsView.addTextChangedListener(new TextWatcher() {
 
                 @Override
@@ -369,6 +369,30 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             teleShopProductPresenter=new TeleShopProductPresenter(this);
             topSliderImage();
 
+            binding.listViewBtn.setOnClickListener(view1 -> {
+
+                binding.productTelRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+                productAdapter=  new ProductAdapter(getContext(), teleShopProductList,R.layout.layout_item_product_for_list).addOnClickListener((View, position) -> {
+                    // ProductModel productView = productList.get(position);
+                    startActivity(new Intent(getContext(), ProductDetailsActivity.class)
+                            .putExtra(Constant.Product.PARCEL, teleShopProductList.get(position)));
+                });
+                binding.productTelRecyclerView.setAdapter(productAdapter);
+            });
+            binding.gridViewButton.setOnClickListener(view1 -> {
+
+                binding.productTelRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+                productAdapter=  new ProductAdapter(getContext(), teleShopProductList).addOnClickListener((View, position) -> {
+                    // ProductModel productView = productList.get(position);
+                    startActivity(new Intent(getContext(), ProductDetailsActivity.class)
+                            .putExtra(Constant.Product.PARCEL, teleShopProductList.get(position)));
+                });
+                binding.productTelRecyclerView.setAdapter(productAdapter);
+            });
+
+
 
         }
         private void topSliderImage() {
@@ -380,19 +404,16 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             binding.imageSlider.startAutoCycle();
             binding.imageSlider.setSliderAdapter(sliderAdapter);
 
-            parseData("10");
+            homeTopSliderImagePresenter.getSliderImageDataResponse("10");
         }
-        private void parseData(String s) {
-            homeTopSliderImagePresenter.getSliderImageDataResponse(s);
-        }
-
 
 
         private void getTeleShopsProducts() {
             teleShopProductList=new ArrayList<>();
+            binding.productTelRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
             productAdapter=  new ProductAdapter(getContext(), teleShopProductList).addOnClickListener((View, position) -> {
                // ProductModel productView = productList.get(position);
-
                 startActivity(new Intent(getContext(), ProductDetailsActivity.class)
                         .putExtra(Constant.Product.PARCEL, teleShopProductList.get(position)));
             });
@@ -413,7 +434,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         }
 
         @Override
-        public void onHomeSliderDataLoaded(List<SliderItem> sliderItem) {
+        public void onHomeSliderDataLoaded(List<SlideImage> sliderItem) {
             sliderTelrItemList.addAll(sliderItem);
             sliderAdapter.notifyDataSetChanged();
 
@@ -440,6 +461,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         }
 
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onTeleShopProductDataLoaded(List<ProductModel> teleShopProducts) {
             binding.productTelRecyclerView.setVisibility(View.VISIBLE);
@@ -472,7 +494,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
     public static class Showroom extends Fragment implements OnPremierShopView  {
         FragmentShowroomBinding binding;
         PremierShopsAdapter adapter;
-        ArrayList<SliderItem> sliderItemList;
+        ArrayList<SlideImage> sliderItemList;
         List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
         PremierShopPresenter presenter;
@@ -715,7 +737,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
     public static class MissionBazar extends Fragment implements OnPremierShopView {
         FragmentMissionBazarBinding binding;
         PremierShopsAdapter adapter;
-        ArrayList<SliderItem> sliderItemList;
+        ArrayList<SlideImage> sliderItemList;
         List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
         PremierShopPresenter presenter;
@@ -960,7 +982,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
     public static class BrandShop extends Fragment implements OnPremierShopView  {
         FragmentBrandShopBinding binding;
         PremierShopsAdapter adapter;
-        ArrayList<SliderItem> sliderItemList;
+        ArrayList<SlideImage> sliderItemList;
         List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
         PremierShopPresenter presenter;
@@ -1204,7 +1226,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
     public static class PremierShop extends Fragment  implements OnPremierShopView, OnHomeTopSliderImageView {
         FragmentPremierShopBinding binding;
         PremierShopsAdapter adapter;
-        ArrayList<SliderItem> sliderItemList;
+        ArrayList<SlideImage> sliderItemList;
         List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
         PremierShopPresenter presenter;
@@ -1212,7 +1234,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         CheckInternetConnection checkInternetConnection;
         User user;
         LoadingDialog loadingDialog;
-        List<SliderItem> sliderTelrItemList;
+        List<SlideImage> sliderTelrItemList;
         HomeTopSliderImagePresenter homeTopSliderImagePresenter;
 
         @Override
@@ -1423,6 +1445,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
             shopList.clear();
             assert response != null;
             shopList.addAll(Objects.requireNonNull(response.getData()));
+            binding.recycleView.setVisibility(View.GONE);
             binding.shimmerImageSlider.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
 
@@ -1447,7 +1470,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
         }
 
         @Override
-        public void onHomeSliderDataLoaded(List<SliderItem> sliderItem) {
+        public void onHomeSliderDataLoaded(List<SlideImage> sliderItem) {
             loadingDialog.dismissDialog();
             sliderTelrItemList.addAll(sliderItem);
             sliderAdapter.notifyDataSetChanged();
@@ -1481,7 +1504,7 @@ public class ShopsActivity extends AppCompatActivity implements OnCartItemListVi
     public static class Vendor extends Fragment implements OnPremierShopView {
         FragmentVendorBinding binding;
         PremierShopsAdapter adapter;
-        ArrayList<SliderItem> sliderItemList;
+        ArrayList<SlideImage> sliderItemList;
         List<PremierShopData> shopList= new ArrayList<>();
         SliderAdapter sliderAdapter;
         PremierShopPresenter presenter;

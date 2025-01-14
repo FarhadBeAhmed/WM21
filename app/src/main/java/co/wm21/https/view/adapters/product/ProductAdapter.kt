@@ -171,10 +171,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>, O
             builder.setView(dialogView)
             val alertDialog = builder.create()
             alertDialog.show()
-            ok.setOnClickListener { view1: View? ->
+            ok.setOnClickListener {
                 alertDialog.dismiss()
             }
-            goToCart.setOnClickListener { view1: View? ->
+            goToCart.setOnClickListener {
                 alertDialog.dismiss()
                 (context as ShopsActivity).switchFragment(CartFragment(), "CartFragment")
             }

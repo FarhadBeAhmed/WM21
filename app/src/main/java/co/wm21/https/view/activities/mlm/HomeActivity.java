@@ -6,10 +6,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.example.SlideImage;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -25,7 +28,6 @@ import co.wm21.https.FHelper.networks.Models.ProfileDetailsHead;
 import co.wm21.https.FHelper.networks.Models.VerificationModel;
 import co.wm21.https.FHelper.networks.Models.balanceResponse.BalanceModel;
 import co.wm21.https.R;
-import co.wm21.https.SliderItem;
 import co.wm21.https.view.activities.MainActivity;
 import co.wm21.https.view.activities.MobileRechargeActivity;
 import co.wm21.https.view.adapters.SliderAdapter;
@@ -45,9 +47,10 @@ import co.wm21.https.presenter.VerificationPresenter;
 
 public class HomeActivity extends AppCompatActivity implements OnProfileDetailsView, OnVerificationView, OnBalancesView {
     ActivityHomeMlmBinding binding;
-    List<SliderItem> sliderItemList;
+    List<SlideImage> sliderItemList;
     SliderAdapter adapter;
-
+    public MenuItem bottomMenuItem;
+    public Menu bottomMenu;
     public static User user;
     View view;
     int progress = 0;
@@ -84,8 +87,8 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
         sliderItemList = new ArrayList<>();
         adapter = new SliderAdapter(this, sliderItemList);
-        sliderItemList.add(new SliderItem("20220921.png", ""));
-        sliderItemList.add(new SliderItem("20220928.png", ""));
+        sliderItemList.add(new SlideImage("20220921.png", ""));
+        sliderItemList.add(new SlideImage("20220928.png", ""));
         adapter.renewItems(sliderItemList);
         binding.imageSlider.setSliderAdapter(adapter);
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -100,8 +103,8 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
         sliderItemList = new ArrayList<>();
         adapter = new SliderAdapter(this, sliderItemList);
-        sliderItemList.add(new SliderItem("20220921.png", ""));
-        sliderItemList.add(new SliderItem("20220928.png", ""));
+        sliderItemList.add(new SlideImage("20220921.png", ""));
+        sliderItemList.add(new SlideImage("20220928.png", ""));
         adapter.renewItems(sliderItemList);
         binding.imageSlider2.setSliderAdapter(adapter);
         binding.imageSlider2.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -118,6 +121,11 @@ public class HomeActivity extends AppCompatActivity implements OnProfileDetailsV
 
         loadingDialog = new LoadingDialog(this);
         binding.userInfo.setText(user.getUsername());
+
+        bottomMenu=binding.bottomNavigationView.getMenu();
+        bottomMenuItem=bottomMenu.findItem(R.id.menu_account);
+
+
 
         binding.goToProfile.setOnClickListener(view -> {
 

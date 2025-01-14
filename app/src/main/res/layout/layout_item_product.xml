@@ -185,7 +185,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="$95.00"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_10ssp"
+                />
         </LinearLayout>
 
         <TextView

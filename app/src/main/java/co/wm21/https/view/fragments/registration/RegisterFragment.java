@@ -3,10 +3,13 @@ package co.wm21.https.view.fragments.registration;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -30,6 +34,7 @@ import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +45,7 @@ import co.wm21.https.FHelper.networks.Models.SignupModel;
 import co.wm21.https.FHelper.networks.Models.SignupNumberVerifyModel;
 import co.wm21.https.R;
 import co.wm21.https.databinding.FragmentRegisterBinding;
+import co.wm21.https.utils.dialog.DialogHelper;
 import co.wm21.https.utils.dialog.LoadingDialog;
 import co.wm21.https.view.fragments.LoginFragment;
 import co.wm21.https.utils.Constant;
@@ -71,6 +77,11 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
     ArrayList<String> districts = new ArrayList();
     ArrayList<String> ids = new ArrayList();
     ArrayAdapter<String> dAdapter;
+    private static final long TOTAL_TIME_IN_MILLIS = 2 * 60 * 1000; // 2 minutes in milliseconds
+
+
+
+
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +96,7 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
         api = ConstantValues.getAPI();
 
 
-        //requestPermission();
+        requestPermission();
         startUserConstant();
 
         binding.pinView.setLineColor(ResourcesCompat.getColor(getResources(), R.color.primary_red, requireActivity().getTheme()));
@@ -184,7 +195,7 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
                         binding.applicantMobile.setError("It's not Bangladeshi Mobile Number.");
                     else {
                         mobileNumber = binding.applicantMobile.getEditText().getText().toString();
-                        signupFirstPresenter.signupFirstDataLoad(mobileNumber, String.valueOf(countryValue));
+                        signupFirstPresenter.signupFirstDataLoad(mobileNumber, countryValue);
                         btnView=view;
                     }
                 }
@@ -239,9 +250,32 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
         return binding.getRoot();
     }
 
+    private void startTimer() {
+        CountDownTimer countDownTimer = new CountDownTimer(TOTAL_TIME_IN_MILLIS, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long minutes = (millisUntilFinished / 1000) / 60;
+                long seconds = (millisUntilFinished / 1000) % 60;
+                binding.otpTimerLayoutId.setVisibility(View.VISIBLE);
+                binding.timerForResend.setText("  "+String.format("%02d:%02d", minutes, seconds));
+            }
+
+            @Override
+            public void onFinish() {
+                binding.timerForResend.setText("  "+"Resend");
+                binding.timerForResend.setOnClickListener(view -> {
+
+                });
+            }
+        };
+        countDownTimer.start();
+    }
+
+
     private void requestPermission() {
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECEIVE_SMS}, REQ_USER_CODE);
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.RECEIVE_SMS}, REQ_USER_CODE);
         }
 
     }
@@ -277,6 +311,7 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     private void registerBroadcastReceiver() {
         smsBroadcastReceiver = new SmsBroadcastReceiver();
         smsBroadcastReceiver.smsBroadcastReceiverListener = new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
@@ -292,7 +327,9 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
         };
 
         IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
-        requireActivity().registerReceiver(smsBroadcastReceiver, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            requireActivity().registerReceiver(smsBroadcastReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED);
+        }
 
 
     }
@@ -300,14 +337,20 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
     @Override
     public void onStart() {
         super.onStart();
-        registerBroadcastReceiver();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerBroadcastReceiver();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        requireActivity().unregisterReceiver(smsBroadcastReceiver);
+        requireContext().unregisterReceiver(smsBroadcastReceiver);
     }
+
+
+
+
 
     public void switchFragment(Fragment fragment, String tag) {
         FragmentManager fm = getParentFragmentManager();
@@ -328,6 +371,7 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
             binding.applicantMobile.setVisibility(View.GONE);
             binding.applicantMobile.setEnabled(false);
             binding.pinView.setVisibility(View.VISIBLE);
+            startTimer();
             binding.btnSignUp.setText("Confirm");
             btnView.setOnClickListener(view1 -> {
                 btnView=view1;
@@ -336,6 +380,7 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
                     if (!Pattern.matches("^[0-9][0-9][0-9][0-9][0-9]$", binding.pinView.getText()))
                         binding.pinView.setError("Check Verification Code Again.");
                     else {
+                        binding.timerForResend.setVisibility(View.GONE);
                         dAdapter = new ArrayAdapter<String>(getContext(), R.layout.drop_down_single_item, districts);
                         dAdapter.setDropDownViewResource(R.layout.drop_down_single_item);
                         binding.selectDivision.setAdapter(dAdapter);
@@ -356,9 +401,24 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
         loadingDialog.dismissDialog();
     }
 
+    @SuppressLint("SuspiciousIndentation")
     @Override
     public void onSignupFirstShowMessage(String errmsg) {
-        Toast.makeText(getActivity(), errmsg, Toast.LENGTH_SHORT).show();
+        DialogHelper.showAlertDialog(
+                getContext(),
+                "Failed!!",
+                errmsg,
+                "OK",
+                "LOGIN",
+                (dialog, which) -> {
+                    dialog.dismiss();
+                },
+                (dialog, which) -> {
+                    // Handle the negative button click
+                    dialog.dismiss();
+                }
+        );
+
 
     }
 
@@ -396,30 +456,8 @@ public class RegisterFragment extends Fragment implements OnSignupFirstView, OnS
                             binding.referId.getEditText().getText().toString(),
                             binding.applicantEmail.getEditText().getText().toString(),
                             binding.division.getEditText().getText().toString(),
-                            binding.country.getEditText().getText().toString());
-
-//                                                                    MySingleton.getInstance(getContext()).addToRequestQueue(api.signUpFinal(
-//                                                                            binding.applicantMobile.getEditText().getText().toString(),
-//                                                                            binding.applicantName.getEditText().getText().toString(),
-//                                                                            binding.referId.getEditText().getText().toString(),
-//                                                                            binding.applicantEmail.getEditText().getText().toString(),
-//                                                                            binding.division.getEditText().getText().toString(),
-//                                                                            binding.country.getEditText().getText().toString(),
-//                                                                            response2 -> {
-//                                                                                try {
-//                                                                                    if (response2.getString("error").equals("0")) {
-//                                                                                        switchFragment(new HomeFragment(), "HomeFragment");
-//                                                                                        binding.agreePrivacyPolicy.setError("");
-//
-//                                                                                    }
-//                                                                                    Snackbar.make(view.getRootView(), response2.getString("msg"), Snackbar.LENGTH_LONG).show();
-//
-//                                                                                } catch (JSONException e) {
-//                                                                                    e.printStackTrace();
-//                                                                                }
-//
-//                                                                            }
-//                                                                    ));
+                            binding.country.getEditText().getText().toString()
+                    );
                 } else {
                     binding.agreePrivacyPolicy.setError("You didn't accept our privacy policy");
                 }

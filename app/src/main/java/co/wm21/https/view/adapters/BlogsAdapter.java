@@ -47,12 +47,12 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.viewHolder> 
     public void onBindViewHolder(@NonNull BlogsAdapter.viewHolder holder, int position) {
         BlogsModel blogs = blogsArrayList.get(position);
         //Picasso.get().load(ConstantValues.URL + "new/sys/stores/" + blogs.getImage()).into(holder.bloggerImage);
-        holder.bloggerName.setText(blogs.getName());
-        holder.blogSubject.setText(blogs.getSubject());
+        holder.bloggerName.setText(blogs.name);
+        holder.blogSubject.setText(blogs.subject);
         holder.readMoreBtn.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             ReadBlogFragment readBlogFragment = new ReadBlogFragment();
-            bundle.putString(ConstantValues.ARGUMENT1, blogs.getSerial());
+            bundle.putString(ConstantValues.ARGUMENT1, blogs.serial);
             readBlogFragment.setArguments(bundle);
             switchFragment(readBlogFragment,"ReadBlogFragment");
         });

@@ -1,5 +1,6 @@
 package co.wm21.https.view.adapters.product
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Paint
@@ -46,6 +47,7 @@ class ProductAdapterNew(
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
 
@@ -72,6 +74,8 @@ class ProductAdapterNew(
         holder.productName.text = product.name
         holder.previousPrice.text = String.format("৳ %s", product.sprice)
         holder.productPrice.text = String.format("৳ %s", product.price)
+        holder.previousPrice.paintFlags = holder.previousPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
 
         holder.productImage.load(ConstantValues.imageURL + "image/product/small/" + product.img) {
             decoderFactory(SvgDecoder.Factory())

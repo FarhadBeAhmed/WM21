@@ -1062,7 +1062,7 @@
                             android:orientation="horizontal"
                             android:paddingHorizontal="2dp"
                             android:paddingVertical="5dp"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:spanCount="2"
                             tools:listitem="@layout/layout_item_product2" />
@@ -1202,6 +1202,7 @@
                             android:orientation="horizontal"
                             android:paddingHorizontal="2dp"
                             android:paddingVertical="@dimen/_5sdp"
+                            android:visibility="gone"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:spanCount="2"
                             tools:listitem="@layout/layout_item_product2" />
@@ -1344,6 +1345,7 @@
                             android:orientation="horizontal"
                             android:paddingHorizontal="2dp"
                             android:paddingVertical="5dp"
+                            android:visibility="gone"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:spanCount="2"
                             tools:listitem="@layout/layout_item_product2" />

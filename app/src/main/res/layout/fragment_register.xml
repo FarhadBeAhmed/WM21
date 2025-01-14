@@ -40,33 +40,68 @@
                     android:textColor="@color/text_color"
                     android:textSize="35sp" />
 
-                
-
-                <com.chaos.view.PinView
-                    android:visibility="visible"
-                    android:id="@+id/pinView"
-                    style="@style/PinWidget.PinView"
+                <LinearLayout
+                    android:id="@+id/otpLayoutId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:cursorVisible="true"
-                    android:hint="00000"
-                    android:inputType="number"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/text_color2"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
-                    app:cursorColor="@color/primary_red"
-                    app:cursorWidth="2dp"
-                    app:hideLineWhenFilled="true"
-                    app:itemCount="5"
-                    app:itemHeight="@dimen/_38sdp"
-                    app:itemRadius="@dimen/_5sdp"
-                    app:itemSpacing="@dimen/_5sdp"
-                    app:itemWidth="@dimen/_38sdp"
-                    app:lineColor="@color/primary_red"
-                    app:lineWidth="2dp"
-                    app:viewType="rectangle"
-                    tools:ignore="HardcodedText" />
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:id="@+id/otpTimerLayoutId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="It May Takes few seconds"
+                            android:textStyle="normal"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            />
+                        <TextView
+                            android:id="@+id/timerForResend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="120"
+                            android:textStyle="normal"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <com.chaos.view.PinView
+                        android:visibility="gone"
+                        android:id="@+id/pinView"
+                        style="@style/PinWidget.PinView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:hint="00000"
+                        android:inputType="number"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/text_color2"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        app:cursorColor="@color/primary_red"
+                        app:cursorWidth="2dp"
+                        app:hideLineWhenFilled="true"
+                        app:itemCount="5"
+                        app:itemHeight="@dimen/_38sdp"
+                        app:itemRadius="@dimen/_5sdp"
+                        app:itemSpacing="@dimen/_5sdp"
+                        app:itemWidth="@dimen/_38sdp"
+                        app:lineColor="@color/primary_red"
+                        app:lineWidth="2dp"
+                        app:viewType="rectangle"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/verificationCode"
@@ -98,12 +133,14 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Country"
+                    android:hint="Select Country"
+                    app:hintTextColor="@color/gray"
                     android:paddingBottom="5dp"
                     app:boxCornerRadiusBottomEnd="5dp"
                     app:boxCornerRadiusBottomStart="5dp"
                     app:boxCornerRadiusTopEnd="5dp"
                     app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeColor="@color/black"
                     app:boxStrokeWidth="1.5dp">
 
                     <AutoCompleteTextView
@@ -112,10 +149,10 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:inputType="none"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_marginTop="5dp"
                         android:paddingVertical="16dp"
                         android:paddingStart="20dp"
+                        android:textColorHint="@color/gray"
                         android:paddingEnd="20dp"
                         tools:ignore="HardcodedText" />
 
@@ -173,12 +210,12 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused=".5dp"
-
                     app:boxCornerRadiusTopStart="10dp"
                     android:paddingVertical="5dp"
                     app:boxCornerRadiusTopEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
                     app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxStrokeColor="@color/gray"
                     android:visibility="gone"
                     >
 
@@ -187,6 +224,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="Applicant Mobile"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
                         android:inputType="phone" />
 
                 </com.google.android.material.textfield.TextInputLayout>

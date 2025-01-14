@@ -74,16 +74,10 @@ public class LoginFragment extends Fragment implements OnLoginView {
             tree_id = loginModel.getTreeId();
             user_id = loginModel.getProfileId();
             User.getSession().loginUser(username, password, binding.rememberMe.isChecked(), userType, mobile, tree_id, user_id);
-            if (userType.equals("MLM")){
-                startActivity(new Intent(getActivity(), HomeActivity.class));
-            }
-
-            else if (userType.equals("Aff")){
-                startActivity(new Intent(getActivity(), HomeActivityAff.class));
-            }
-            else if (userType.equals("Eco")){
-
-                mainActivity.bottomMenuItemAcc.setVisible(false);
+            switch (userType) {
+                case "MLM" -> startActivity(new Intent(getActivity(), HomeActivity.class));
+                case "Aff" -> startActivity(new Intent(getActivity(), HomeActivityAff.class));
+                case "Eco" -> mainActivity.bottomMenuItemAcc.setVisible(false);
             }
 
         } else
@@ -109,8 +103,7 @@ public class LoginFragment extends Fragment implements OnLoginView {
 
     public void switchFragment(Fragment fragment, String tag) {
         FragmentManager fm = getParentFragmentManager();
-        for (int i = 0; i < fm.getBackStackEntryCount(); ++i)
-            fm.popBackStack();
+
         fm.beginTransaction().replace(R.id.fragmentContainer, fragment, tag).addToBackStack(tag).commit();
     }
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import co.wm21.https.*;
+import co.wm21.https.FHelper.networks.Models.home.CategoryView;
 import co.wm21.https.view.adapters.ItemClickListener;
 import co.wm21.https.utils.Constant;
 
@@ -38,8 +39,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         CategoryView category = categoryList.get(position);
-        holder.image.setImageDrawable(Constant.getDrawableFromUrl("image", "cat", category.getCategoryImageUrl()));
-        holder.text.setText(category.getCategoryName());
+        holder.image.setImageDrawable(Constant.getDrawableFromUrl("image", "cat", category.categoryImageUrl));
+        holder.text.setText(category.categoryName);
     }
     
 

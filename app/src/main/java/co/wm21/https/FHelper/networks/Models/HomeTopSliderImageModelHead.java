@@ -1,11 +1,12 @@
 package co.wm21.https.FHelper.networks.Models;
 
+import com.example.example.SlideImage;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import co.wm21.https.SliderItem;
+
 
 public class HomeTopSliderImageModelHead {
     @SerializedName("error")
@@ -16,7 +17,7 @@ public class HomeTopSliderImageModelHead {
     private String errorReport;
     @SerializedName("data")
     @Expose
-    private List<SliderItem> sliderItems = null;
+    private List<SlideImage> sliderItems = null;
     private final static long serialVersionUID = 8482563432836191883L;
 
     public Integer getError() {
@@ -35,11 +36,11 @@ public class HomeTopSliderImageModelHead {
         this.errorReport = errorReport;
     }
 
-    public List<SliderItem> getSliderItems() {
+    public List<SlideImage> getSliderItems() {
         return sliderItems;
     }
 
-    public void setSliderItems(List<SliderItem> sliderItems) {
+    public void setSliderItems(List<SlideImage> sliderItems) {
         this.sliderItems = sliderItems;
     }
 }

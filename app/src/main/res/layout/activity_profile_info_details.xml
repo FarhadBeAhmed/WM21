@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".view.activities.mlm.profile.ProfileInfoDetailsActivity"
+
+    >
+
+    <include
+        android:id="@+id/app_bar_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_42sdp"
+        layout="@layout/app_bar"
+        />
+    <!-- Progress Bar -->
+    <LinearLayout
+        android:layout_below="@+id/app_bar_id"
+        android:id="@+id/profileLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center_horizontal"
+        android:paddingVertical="@dimen/_20sdp"
+        android:background="@drawable/profile_top_gradient_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <!-- Profile Image with Camera Icon -->
+        <FrameLayout
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/profile_circle_background">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Profile Image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/camera_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="4dp"
+                android:background="@drawable/profile_circle_background_light"
+                android:contentDescription="Camera Icon"
+                android:src="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <!-- Name and Profile Status -->
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="M Hossain"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/profile_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Profile Not Verified"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/profileLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingTop="@dimen/_50sdp"
+        android:layout_below="@+id/profileLayout1"
+        >
+
+        <!-- Basic Information -->
+        <LinearLayout
+            android:id="@+id/basicInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:drawablePadding="8dp"
+                android:text="Basic Information Edit"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/profile" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Name:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/yourName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="{Not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_person_solid1" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Father's:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/fatherName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_person_solid2" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Mother's:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/motherName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_calendar_month" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Date of birth:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/birthDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/id_card" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="National ID:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/nid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/equality" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Gender:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_bloodtype" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Blood group:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/bloodGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/profession" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Profession:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/profession"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/education" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Education:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/education"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/religion" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Religion:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/religion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/candidates" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Nominee:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/nominee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/relations" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Nominee's Relation:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/nomineeRelation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{Not Found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <Button
+                android:id="@+id/basicSkipButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="312dp"
+                android:background="@drawable/ic_image_temp"
+                android:paddingVertical="8dp"
+                android:text="Skip"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- personal Information -->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/personalInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:drawablePadding="8dp"
+                android:text="Personal Information Edit"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/gmail" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:orientation="vertical"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="E-mail:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="0dp"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/call" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Mobile:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/mobileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="01XXXXXXXXX"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/house" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="House/Village:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/village"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Word/Road/Street:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/word"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Union/Sector/Area:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/union"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Thana/PS:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/thana"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="District/City:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                <TextView
+                    android:id="@+id/district"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="{not found}"
+                    android:textColor="@color/profileTxtColor"
+                    android:textSize="@dimen/_10ssp"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Division/State/Zone:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/division"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="0dp"
+                    android:text="{not found}"
+                    android:textColor="@color/profileTxtColor"
+                    android:textSize="@dimen/_10ssp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".2dp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/map" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Country:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/country2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="0dp"
+                    android:text="{not found}"
+                    android:textColor="@color/profileTxtColor"
+                    android:textSize="@dimen/_10ssp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/personaSkipButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="312dp"
+                android:background="@drawable/ic_image_temp"
+                android:paddingVertical="8dp"
+                android:text="Skip"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- gateway Information -->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/gatewayInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:drawablePadding="8dp"
+                android:text="Gateway Information Edit"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:text="My Mobile Banking  Information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/bkashlogo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Bkash:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/bkashAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="01XXXXXXXXX"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/rocket_logo" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Rocket:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/rocketAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="01XXXXXXXXX"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/nagad_logo" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Nagad:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/nagadAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="5dp"
+                android:text="My Banking  Information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/bank" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Bank:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/bankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/acc_name" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Acc Name:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/accountName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="#757575"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/ic_local_phone_black" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Acc Number:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+
+                    <TextView
+                        android:id="@+id/accountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/house" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Branch Name:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/branchName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                android:weightSum="10">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:src="@drawable/profession" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="SWIFT/Routing/IFSC Code:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/routing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_vertical"
+                        android:text="{not found}"
+                        android:textColor="@color/profileTxtColor"
+                        android:textSize="@dimen/_10ssp"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/gatewaySkipButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="312dp"
+                android:background="@drawable/ic_image_temp"
+                android:paddingVertical="8dp"
+                android:text="Skip"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- document Information -->
+        <LinearLayout
+            android:id="@+id/documentInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_10sdp"
+            tools:ignore="UselessParent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:drawablePadding="8dp"
+                android:text="Basic Information Edit"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_image_temp"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:background="@drawable/border_grey_1dp_r6"
+                tools:ignore="UseCompoundDrawables">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:text="Uploaded Photo"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/uploadedPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_kyc_with_border_"
+                    android:src="@drawable/ic_image_temp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:paddingTop="5dp"
+                android:background="@drawable/border_grey_1dp_r6"
+                tools:ignore="UseCompoundDrawables">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:text="Uploaded Sign"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/signView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_kyc_with_border_"
+                    android:src="@drawable/ic_image_temp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/border_grey_1dp_r6"
+                tools:ignore="UseCompoundDrawables">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:text="Uploaded KYC1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/uploadedKyc1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_kyc_with_border_"
+                    android:src="@drawable/ic_image_temp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/border_grey_1dp_r6"
+                tools:ignore="UseCompoundDrawables">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:text="Uploaded KYC2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/uploadedKyc2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_kyc_with_border_"
+                    android:src="@drawable/ic_image_temp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/documentSkipButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="312dp"
+                android:background="@drawable/ic_image_temp"
+                android:paddingVertical="8dp"
+                android:text="Skip"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/profile_rounded_gradient_background"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_225sdp"
+        android:paddingVertical="12dp"
+        >
+
+        <TextView
+            android:id="@+id/information_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Information Complete 40%"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</RelativeLayout>
+
