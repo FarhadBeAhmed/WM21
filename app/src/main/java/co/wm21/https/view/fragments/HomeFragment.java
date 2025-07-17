@@ -618,10 +618,17 @@ public class HomeFragment extends Fragment implements OnHomeDetailsView, OnTopSe
         popularProduct();
         //popularProductList.addAll(response.getData().getPopularProduct());
 
-        bestSellerProductList.addAll(response.getData().getPopularProduct().subList(0, 12));
-        mostPopularProductList.addAll(response.getData().getPopularProduct().subList(13, 24));
-        featuredProductList.addAll(response.getData().getPopularProduct().subList(25, 36));
-        newArrivalProductList.addAll(response.getData().getPopularProduct().subList(37, 48));
+        List<ProductModel> popularProducts = response.getData().getPopularProduct();
+        int popularProductSize = popularProducts.size();
+
+        if (popularProductSize >= 12)
+            bestSellerProductList.addAll(popularProducts.subList(0, 12));
+        if (popularProductSize >= 24)
+            mostPopularProductList.addAll(popularProducts.subList(12, 24));
+        if (popularProductSize >= 36)
+            featuredProductList.addAll(popularProducts.subList(24, 36));
+        if (popularProductSize >= 48)
+            newArrivalProductList.addAll(popularProducts.subList(36, 48));
 
         popularProductList.clear();
         popularProductList.addAll(bestSellerProductList);
